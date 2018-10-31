@@ -5,11 +5,13 @@
  */
 package SuperMatematika;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -303,7 +305,11 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLekcije1ActionPerformed
 
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
-        // TODO add your handling code here:
+        pnlPredavanja newPnl=new pnlPredavanja();
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
