@@ -34,7 +34,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String msAccDB = currPath+"/Login.accdb";
+            String msAccDB = currPath+"/Supermatematika.accdb";
             String dbURL = "jdbc:ucanaccess://" + msAccDB; 
 
             // Step 2.A: Create and get connection using DriverManager class
