@@ -5,13 +5,11 @@
  */
 package SuperMatematika;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -29,7 +27,7 @@ public class StudentFrame extends javax.swing.JFrame {
     public StudentFrame() {
         initComponents();
                 setNav();
-        this.pnlProfilMenu.setVisible(false);
+        this.pnlProfilMenu.setVisible(true);
     }
     
     public void setNav(){
@@ -72,7 +70,6 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         pnlProfilMenu = new javax.swing.JPanel();
         btnProfil = new javax.swing.JButton();
@@ -94,14 +91,17 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        pnlHeader.setBackground(new java.awt.Color(185, 20, 60));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ime Prezime");
-        pnlHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 23, -1, -1));
+        pnlHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
 
-        btnMenu.setBackground(new java.awt.Color(204, 204, 204));
-        btnMenu.setText("MENU");
+        btnMenu.setBackground(new java.awt.Color(185, 20, 60));
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
         btnMenu.setBorder(null);
         btnMenu.setFocusPainted(false);
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -109,17 +109,12 @@ public class StudentFrame extends javax.swing.JFrame {
                 showMenu(evt);
             }
         });
-        pnlHeader.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 60, 40));
-
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("SLIKA");
-        jButton2.setBorder(null);
-        jButton2.setFocusPainted(false);
-        pnlHeader.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 70, 40));
+        pnlHeader.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 80, 60));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("RAZRED");
-        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 60));
 
@@ -213,9 +208,10 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLekcije1.setBackground(new java.awt.Color(153, 153, 153));
+        btnLekcije1.setBackground(new java.awt.Color(255, 255, 255));
         btnLekcije1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije1.setText("ZADACI");
+        btnLekcije1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ZadaciIcon.png"))); // NOI18N
+        btnLekcije1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
         btnLekcije1.setFocusPainted(false);
         btnLekcije1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLekcije1.addActionListener(new java.awt.event.ActionListener() {
@@ -225,16 +221,18 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlMainContent.add(btnLekcije1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 220, 230));
 
-        btnProbni.setBackground(new java.awt.Color(153, 153, 153));
+        btnProbni.setBackground(new java.awt.Color(255, 255, 255));
         btnProbni.setForeground(new java.awt.Color(255, 255, 255));
-        btnProbni.setText("TEST");
+        btnProbni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/TestIcon.png"))); // NOI18N
+        btnProbni.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
         btnProbni.setFocusPainted(false);
         btnProbni.setMargin(new java.awt.Insets(0, 0, 0, 0));
         pnlMainContent.add(btnProbni, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 220, 230));
 
-        btnLekcije2.setBackground(new java.awt.Color(153, 153, 153));
+        btnLekcije2.setBackground(new java.awt.Color(255, 255, 255));
         btnLekcije2.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije2.setText("LEKCIJE");
+        btnLekcije2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/LekcijeIcon.png"))); // NOI18N
+        btnLekcije2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
         btnLekcije2.setFocusPainted(false);
         btnLekcije2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLekcije2.addActionListener(new java.awt.event.ActionListener() {
@@ -244,9 +242,10 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlMainContent.add(btnLekcije2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 230));
 
-        btnLekcije3.setBackground(new java.awt.Color(153, 153, 153));
+        btnLekcije3.setBackground(new java.awt.Color(255, 255, 255));
         btnLekcije3.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije3.setText("PROBNI TEST");
+        btnLekcije3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ProbniTestIcon.png"))); // NOI18N
+        btnLekcije3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
         btnLekcije3.setFocusPainted(false);
         btnLekcije3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         pnlMainContent.add(btnLekcije3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, 230));
@@ -305,11 +304,7 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLekcije1ActionPerformed
 
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
-        pnlPredavanja newPnl=new pnlPredavanja();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
@@ -364,7 +359,6 @@ public class StudentFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnProbni;
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnStatistika;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

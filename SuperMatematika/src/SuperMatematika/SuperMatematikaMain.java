@@ -14,6 +14,8 @@ public class SuperMatematikaMain {
     public static void main(String[] args) throws SQLException {
       MainFrame mainApp= new MainFrame();
       mainApp.setVisible(true);
+//StudentFrame sf= new StudentFrame();
+//sf.setVisible(true);
     }
     
 }
