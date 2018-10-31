@@ -1,8 +1,0 @@
-Napraviti novi folder bilo gde, odraditi Tortoise SVN-> Import -> copy link od repozitorijuma, onda Checkout. 
-
-Dobicete poslednju verziju aplikacije, importujteje u netbeans, onda idite u properties od projekta, dodajte biblioteke koje se nalaze u folderu dependencies kao JAR.
-
-Trenutni useri: admin/admin , dzemil/dzemil, melida/melida
-
-Kada napravite nove promene, SVN Commit, za uzimanje poslednje verzije SVN Update.
-
