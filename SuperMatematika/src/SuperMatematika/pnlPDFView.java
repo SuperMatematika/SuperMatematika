@@ -8,6 +8,12 @@ package SuperMatematika;
 import java.awt.BorderLayout;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.commons.lang.SerializationUtils;
@@ -22,15 +28,24 @@ import org.icepdf.ri.common.SwingViewBuilder;
 public class pnlPDFView extends javax.swing.JPanel {
     private JPanel previousPanel;
     private JFrame mainFrame;
-           SwingController control=new SwingController();
-    String path=new File("").getAbsolutePath()+"\\predavanja";
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
+    String file;
+    int razred;
+    SwingController control=new SwingController();
+    String path=new File("").getAbsolutePath();
     /**
      * Creates new form pnlPDFView
      */
-    public pnlPDFView() {
+    public pnlPDFView(Connection c,Statement s,ResultSet rs,int rzrd,String putanja) {
+        connection=c;
+        statement=s;
+        resultSet=rs;
+        razred=rzrd;
+        file=putanja;
         initComponents();
-        openpdf("\\test.pdf");
-        
+        openpdf(file);
         }
     
     void openpdf(String file){
@@ -112,7 +127,12 @@ public class pnlPDFView extends javax.swing.JPanel {
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
-        this.add(new pnlPredavanja());
+        try {
+            System.out.println(razred);
+            this.add(new pnlPredavanja(connection,statement,resultSet,razred));
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlPDFView.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnBackActionPerformed
 
