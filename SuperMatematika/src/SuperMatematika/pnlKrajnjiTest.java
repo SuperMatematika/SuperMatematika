@@ -40,6 +40,9 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         username=ss;
         initComponents();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+        
+        // Postavi novi test u pocetku
+        jButton2.doClick();
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package SuperMatematika;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -51,6 +52,7 @@ public class ZadatakPanel extends JPanel {
         try {
             myPicture = ImageIO.read(new File("C:\\Users\\samed\\Documents\\Lightshot\\Screenshot_11.png"));
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            picLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             add(picLabel);
         } catch (IOException ex) {
             Logger.getLogger(ZadatakPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +75,7 @@ public class ZadatakPanel extends JPanel {
             rbGroup.add(rb);
             group.add(rb);
         }
-            
+        rbGroup.setAlignmentX(Component.CENTER_ALIGNMENT);
             
         this.add(rbGroup);
     }
