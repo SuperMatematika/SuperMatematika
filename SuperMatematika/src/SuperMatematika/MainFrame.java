@@ -214,7 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
             // Step 2.B: Creating JDBC Statement 
             statement = (Statement) connection.createStatement();  
           
-            resultSet = statement.executeQuery("SELECT usertype,username FROM Users where username='"+txtUser.getText()+"' and password='"+txtPass.getText()+"';");
+            resultSet = statement.executeQuery("SELECT usertype FROM Users where username='"+txtUser.getText()+"' and password='"+txtPass.getText()+"';");
             
             // Step 2.C: Executing SQL & retrieve data into ResultSet
              try{
@@ -227,7 +227,7 @@ public class MainFrame extends javax.swing.JFrame {
                          System.out.println("admin");
                      }else if(resultSet.getString(1).equals("student")){
                          System.out.println("student");
-                         StudentFrame newMain=new StudentFrame(resultSet.getString("username"));
+                         StudentFrame newMain=new StudentFrame();
                          newMain.setVisible(true);
                          this.dispose();
                             
@@ -258,7 +258,7 @@ public class MainFrame extends javax.swing.JFrame {
                     // cleanup resources, once after 
                     statement.close();
 
-                    connection.close();
+                    //connection.close();
                 }
             }
             catch (SQLException sqlex) {

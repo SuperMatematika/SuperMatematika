@@ -6,16 +6,6 @@
 package SuperMatematika;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 /**
  *
@@ -26,80 +16,8 @@ public class pnlPredavanja extends javax.swing.JPanel {
     /**
      * Creates new form pnlPredavanja
      */
-    Connection connection=null;
-    Statement statement=null;
-    ResultSet resultSet=null;
-    int razred;
-    ArrayList<String> listaPutanja=new ArrayList();
-    ArrayList<String> listaLekcija=new ArrayList();
-    ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlPredavanja(Connection cnc,Statement st,ResultSet rs,int rzrd) throws SQLException {
+    public pnlPredavanja() {
         initComponents();
-        razred=rzrd;
-         connection=cnc;
-         statement=st;
-         resultSet=rs;
-        loadLekcije();
-    }
-    private void createForm(){
-        this.btnHolder.removeAll();
-        this.btnHolder.revalidate();
-        this.btnHolder.setLayout(new GridLayout(4,0));
-        System.out.println(listaLekcija.size());
-        for(int i=0;i<listaLekcija.size();i++){
-            JButton b=new JButton(listaLekcija.get(i));
-            b.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    showPdf(evt);
-                }
-            });
-            listaButtona.add(b);
-            this.btnHolder.add(b);
-            this.btnHolder.setVisible(true);
-        }
-    }
-    private void loadLekcije(){
-        try {
-
-            // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from Lekcija where Razred='"+ razred+"';");
-            
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-             try{
-                 while(resultSet.next()){
-                     listaPutanja.add(resultSet.getString("Putanja"));
-                     listaLekcija.add(resultSet.getString("NaslovLekcije"));
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
-            System.out.println(E);
-        }
-        finally {
-
-            // Step 3: Closing database connection
-            try {
-                if(null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-            
-        createForm(); 
-        }
     }
 
     /**
@@ -111,48 +29,72 @@ public class pnlPredavanja extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHolder = new javax.swing.JPanel();
+        btnSkupovi = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout btnHolderLayout = new javax.swing.GroupLayout(btnHolder);
-        btnHolder.setLayout(btnHolderLayout);
-        btnHolderLayout.setHorizontalGroup(
-            btnHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        btnHolderLayout.setVerticalGroup(
-            btnHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
+        btnSkupovi.setText("Skupovi");
+        btnSkupovi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPdf(evt);
+            }
+        });
+
+        jButton2.setText("Razlomci");
+
+        jButton3.setText("itd");
+
+        jButton4.setText("itd");
+
+        jButton5.setText("itd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnHolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSkupovi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(btnSkupovi)
+                .addGap(3, 3, 3)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showPdf(java.awt.event.ActionEvent evt) {                         
-            String putanja=null;
-            for(int i=0;i<this.listaButtona.size();i++){
-                if(evt.getSource()==this.listaButtona.get(i)){
-                    putanja=listaPutanja.get(i);
-                    break;
-                }
-            }
-            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(newPnl);
-        }    
+    private void showPdf(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPdf
+        pnlPDFView newPnl=new pnlPDFView();
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(newPnl);
+    }//GEN-LAST:event_showPdf
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnHolder;
+    private javax.swing.JButton btnSkupovi;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }
