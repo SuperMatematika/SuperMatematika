@@ -227,7 +227,7 @@ public class MainFrame extends javax.swing.JFrame {
                          System.out.println("admin");
                      }else if(resultSet.getString(1).equals("student")){
                          System.out.println("student");
-                         StudentFrame newMain=new StudentFrame(resultSet.getString("username"));
+                         StudentFrame newMain=new StudentFrame(connection,statement,resultSet,resultSet.getString("username"));
                          newMain.setVisible(true);
                          this.dispose();
                      }else if(resultSet.getString(1).equals("profesor")){  
