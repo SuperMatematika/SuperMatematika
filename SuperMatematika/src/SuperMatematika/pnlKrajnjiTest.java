@@ -31,7 +31,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     ResultSet resultSet = null;
     int razred;
     String username;
-    
+    JPanel mainPanel; //c
     private static int BROJ_ZADATAKA = 3;
     
     public pnlKrajnjiTest(Connection c,Statement s,ResultSet rs,int rz,String ss) {
@@ -41,7 +41,8 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         razred=rz;
         username=ss;
         initComponents();
-        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+        mainPanel=new JPanel();
+        mainPanel.setLayout(new GridLayout(5,0)); //c
 
         
         // Postavi novi test u pocetku
@@ -60,7 +61,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JScrollPane();
 
         jButton1.setText("back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,17 +84,6 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,8 +91,8 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -120,7 +110,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                         .addComponent(jButton3))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -142,14 +132,15 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
 
     // Novi test, nemam pojma kako se ovde menjanu nazivi textboxa, ipak sam ja noob za ovo
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jPanel1.removeAll();
-        jPanel1.revalidate();
+        mainPanel.removeAll();
+        mainPanel.revalidate();
         
+        mainPanel.setLayout(new GridLayout(5,0));
         Test test = new Test(connection, statement, resultSet);
         List<Zadatak> zadaci = test.SastaviTest("skupovi", "peti", BROJ_ZADATAKA); 
         for (Zadatak z: zadaci)
-            jPanel1.add(new ZadatakPanel(z));
-        
+            mainPanel.add(new ZadatakPanel(z));
+        jPanel1.setViewportView(mainPanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Proveri rezultate
@@ -181,6 +172,6 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jPanel1;
     // End of variables declaration//GEN-END:variables
 }
