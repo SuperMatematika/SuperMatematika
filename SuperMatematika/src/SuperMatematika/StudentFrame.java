@@ -376,7 +376,12 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
-        // TODO add your handling code here:
+         pnlZadaci newPnl;
+         newPnl = new pnlZadaci(connection,statement,resultSet,razred);
+         this.pnlMainContent.removeAll();
+         this.pnlMainContent.revalidate();
+         this.pnlMainContent.setLayout(new BorderLayout());
+         this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnLekcije1ActionPerformed
 
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
