@@ -37,7 +37,11 @@ public class StudentFrame extends javax.swing.JFrame {
         razred=dbGetRazred();
         initComponents();
         setNav();
-        this.pnlProfilMenu.setVisible(true);
+        this.pnlProfilMenu.setVisible(false);
+    }
+
+    StudentFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public int dbGetRazred() throws SQLException{
