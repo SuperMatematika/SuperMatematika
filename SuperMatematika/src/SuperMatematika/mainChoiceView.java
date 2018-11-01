@@ -106,6 +106,11 @@ public class mainChoiceView extends javax.swing.JPanel {
         btnProbni.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
         btnProbni.setFocusPainted(false);
         btnProbni.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnProbni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProbniActionPerformed(evt);
+            }
+        });
         pnlMainContent.add(btnProbni);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -152,6 +157,14 @@ public class mainChoiceView extends javax.swing.JPanel {
         this.setLayout(new BorderLayout());
         this.add(newPnl);
     }//GEN-LAST:event_btnLekcije3ActionPerformed
+
+    private void btnProbniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbniActionPerformed
+        pnlKrajnjiTest newPnl=new pnlKrajnjiTest(connection,statement,resultSet,razred,username);
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(newPnl);
+    }//GEN-LAST:event_btnProbniActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
