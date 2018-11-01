@@ -6,20 +6,32 @@
 package SuperMatematika;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Component;
+import java.awt.Label;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author 1
  */
 public class pnlKrajnjiTest extends javax.swing.JPanel {
+    
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
     int razred;
     String username;
+    
+    private static int BROJ_ZADATAKA = 5;
+    
     public pnlKrajnjiTest(Connection c,Statement s,ResultSet rs,int rz,String ss) {
         connection=c;
         statement=s;
@@ -27,6 +39,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         razred=rz;
         username=ss;
         initComponents();
+        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
     }
 
     /**
@@ -39,11 +52,41 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         jButton1.setText("back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Novi test");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 355, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jButton3.setText("Proveri resenja");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -53,13 +96,26 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1)
-                .addGap(0, 345, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1)
-                .addGap(0, 277, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -78,8 +134,46 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // Novi test, nemam pojma kako se ovde menjanu nazivi textboxa, ipak sam ja noob za ovo
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jPanel1.removeAll();
+        
+        Test test = new Test(connection, statement, resultSet);
+        List<Zadatak> zadaci = test.SastaviTest("test", "test", BROJ_ZADATAKA); 
+        for (Zadatak z: zadaci)
+            jPanel1.add(new ZadatakPanel(z));
+        jPanel1.revalidate();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    // Proveri rezultate
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int brojTacnihOdgovora = 0;
+        
+        // Prolazi kroz sve komponente u jPanel1, kad naidje na komponentu tipa ZadatakPanel koristi funkcije te komponente da proveri
+        // da li je pritisnut neki radioButton i da li je dati odgovor tacan
+        // Prikazuje gresku ako nije pritisnut nijedan radio button za neki zadatak
+        // I na kraju ispisuje rezultat
+        for (Component c: jPanel1.getComponents())
+            if (c instanceof ZadatakPanel)
+            {
+                if (!((ZadatakPanel) c).pritisnutJeNekiRadioButton()){
+                    JOptionPane.showMessageDialog(this, "Niste dali odgovor na sve zadatke!");
+                    return;
+                }
+                if (((ZadatakPanel) c).odgovorJeTacan())
+                    brojTacnihOdgovora++;
+            }
+        
+        JOptionPane.showMessageDialog(this, "Broj bodova: " + brojTacnihOdgovora + "/" + BROJ_ZADATAKA);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
