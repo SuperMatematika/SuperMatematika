@@ -230,7 +230,6 @@ public class MainFrame extends javax.swing.JFrame {
                          StudentFrame newMain=new StudentFrame(resultSet.getString("username"));
                          newMain.setVisible(true);
                          this.dispose();
-                            
                      }else if(resultSet.getString(1).equals("profesor")){  
                          System.out.println("Profesor");
                      }

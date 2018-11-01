@@ -33,17 +33,19 @@ public class pnlPDFView extends javax.swing.JPanel {
     String file;
     Connection connection = null;
     int razred;
+    String username;
     SwingController control=new SwingController();
     String path=new File("").getAbsolutePath();
     /**
      * Creates new form pnlPDFView
      */
-    public pnlPDFView(Connection c,Statement s,ResultSet rs,int rzrd,String putanja) {
+    public pnlPDFView(Connection c,Statement s,ResultSet rs,int rzrd,String putanja,String un) {
         connection=c;
         statement=s;
         resultSet=rs;
         razred=rzrd;
         file=putanja;
+        username=un;
         initComponents();
         openpdf(file);
         }
@@ -111,7 +113,7 @@ public class pnlPDFView extends javax.swing.JPanel {
         this.setLayout(new BorderLayout());
         try {
             System.out.println(razred);
-            this.add(new pnlPredavanja(connection,statement,resultSet,razred));
+            this.add(new pnlPredavanja(connection,statement,resultSet,razred,username));
         } catch (SQLException ex) {
             Logger.getLogger(pnlPDFView.class.getName()).log(Level.SEVERE, null, ex);
         }

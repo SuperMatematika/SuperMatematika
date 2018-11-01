@@ -377,7 +377,7 @@ public class StudentFrame extends javax.swing.JFrame {
 
     private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
          pnlZadaci newPnl;
-         newPnl = new pnlZadaci(connection,statement,resultSet,razred);
+         newPnl = new pnlZadaci(connection,statement,resultSet,razred,username);
          this.pnlMainContent.removeAll();
          this.pnlMainContent.revalidate();
          this.pnlMainContent.setLayout(new BorderLayout());
@@ -388,7 +388,7 @@ public class StudentFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         pnlPredavanja newPnl;
        try {
-           newPnl = new pnlPredavanja(connection,statement,resultSet,razred);
+           newPnl = new pnlPredavanja(connection,statement,resultSet,razred,username);
             this.pnlMainContent.removeAll();
             this.pnlMainContent.revalidate();
             this.pnlMainContent.setLayout(new BorderLayout());

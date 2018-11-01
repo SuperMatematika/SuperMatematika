@@ -30,15 +30,17 @@ public class pnlZadaci extends javax.swing.JPanel {
     Statement statement=null;
     ResultSet resultSet=null;
     int razred;
+    String username;
     ArrayList<String> listaPutanja=new ArrayList();
     ArrayList<String> listaOblasti=new ArrayList();
     ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlZadaci(Connection c,Statement s,ResultSet rs,int rzrd) {
+    public pnlZadaci(Connection c,Statement s,ResultSet rs,int rzrd,String un) {
         initComponents();
         razred=rzrd;
         connection=c;
         statement=s;
         resultSet=rs;
+        username=un;
         loadLekcije();
     }
     private void createForm(){
@@ -128,7 +130,7 @@ public class pnlZadaci extends javax.swing.JPanel {
                     break;
                 }
             }
-            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja);
+            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja,username);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
