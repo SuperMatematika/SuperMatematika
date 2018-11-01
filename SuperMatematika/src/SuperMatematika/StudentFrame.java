@@ -36,6 +36,12 @@ public class StudentFrame extends javax.swing.JFrame {
         username=un;
         razred=dbGetRazred();
         initComponents();
+        mainChoiceView newPnl;
+        newPnl = new mainChoiceView(connection,statement,resultSet,razred,username);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
         setNav();
         this.pnlProfilMenu.setVisible(false);
     }
@@ -143,10 +149,6 @@ public class StudentFrame extends javax.swing.JFrame {
         btnOcene = new javax.swing.JButton();
         btnOdjava = new javax.swing.JButton();
         pnlMainContent = new javax.swing.JPanel();
-        btnLekcije1 = new javax.swing.JButton();
-        btnProbni = new javax.swing.JButton();
-        btnLekcije2 = new javax.swing.JButton();
-        btnLekcije3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Navigacija = new javax.swing.JTree();
 
@@ -283,49 +285,6 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 150, 200));
 
         pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnLekcije1.setBackground(new java.awt.Color(255, 255, 255));
-        btnLekcije1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ZadaciIcon.png"))); // NOI18N
-        btnLekcije1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
-        btnLekcije1.setFocusPainted(false);
-        btnLekcije1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnLekcije1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLekcije1ActionPerformed(evt);
-            }
-        });
-        pnlMainContent.add(btnLekcije1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 390, 320));
-
-        btnProbni.setBackground(new java.awt.Color(255, 255, 255));
-        btnProbni.setForeground(new java.awt.Color(255, 255, 255));
-        btnProbni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/TestIcon.png"))); // NOI18N
-        btnProbni.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
-        btnProbni.setFocusPainted(false);
-        btnProbni.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        pnlMainContent.add(btnProbni, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 390, 330));
-
-        btnLekcije2.setBackground(new java.awt.Color(255, 255, 255));
-        btnLekcije2.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/LekcijeIcon.png"))); // NOI18N
-        btnLekcije2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
-        btnLekcije2.setFocusPainted(false);
-        btnLekcije2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnLekcije2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLekcije2ActionPerformed(evt);
-            }
-        });
-        pnlMainContent.add(btnLekcije2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
-
-        btnLekcije3.setBackground(new java.awt.Color(255, 255, 255));
-        btnLekcije3.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ProbniTestIcon.png"))); // NOI18N
-        btnLekcije3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
-        btnLekcije3.setFocusPainted(false);
-        btnLekcije3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        pnlMainContent.add(btnLekcije3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 410, 330));
-
         pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 800, 650));
 
         jScrollPane1.setViewportView(Navigacija);
@@ -375,29 +334,6 @@ public class StudentFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
-    private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
-         pnlZadaci newPnl;
-         newPnl = new pnlZadaci(connection,statement,resultSet,razred,username);
-         this.pnlMainContent.removeAll();
-         this.pnlMainContent.revalidate();
-         this.pnlMainContent.setLayout(new BorderLayout());
-         this.pnlMainContent.add(newPnl);
-    }//GEN-LAST:event_btnLekcije1ActionPerformed
-
-    private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
-        // TODO add your handling code here:
-        pnlPredavanja newPnl;
-       try {
-           newPnl = new pnlPredavanja(connection,statement,resultSet,razred,username);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
-       } catch (SQLException ex) {
-           Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }//GEN-LAST:event_btnLekcije2ActionPerformed
-
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
         this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible()?false:true);
     }//GEN-LAST:event_showMenu
@@ -445,13 +381,9 @@ public class StudentFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree Navigacija;
-    private javax.swing.JButton btnLekcije1;
-    private javax.swing.JButton btnLekcije2;
-    private javax.swing.JButton btnLekcije3;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnOcene;
     private javax.swing.JButton btnOdjava;
-    private javax.swing.JButton btnProbni;
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnStatistika;
     private javax.swing.JLabel jLabel1;

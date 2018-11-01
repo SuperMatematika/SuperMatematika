@@ -163,7 +163,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
-         mainChoiceView main;
+        mainChoiceView main;
         try{
             main=new mainChoiceView(connection,statement,resultSet,razred,username);
         this.removeAll();
@@ -185,7 +185,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                     break;
                 }
             }
-            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja,username);
+            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja,username,"predavanja");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());

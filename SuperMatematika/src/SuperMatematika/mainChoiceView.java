@@ -23,7 +23,7 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Melida
  */
 public class mainChoiceView extends javax.swing.JPanel {
- Connection connection = null;
+    Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
     int razred;
@@ -93,6 +93,11 @@ public class mainChoiceView extends javax.swing.JPanel {
         btnLekcije3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
         btnLekcije3.setFocusPainted(false);
         btnLekcije3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnLekcije3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLekcije3ActionPerformed(evt);
+            }
+        });
         pnlMainContent.add(btnLekcije3);
 
         btnProbni.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,8 +136,22 @@ public class mainChoiceView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
-        // TODO add your handling code here:
+        pnlZadaci newPnl;
+        newPnl = new pnlZadaci(connection,statement,resultSet,razred,username);
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(newPnl);
+      
     }//GEN-LAST:event_btnLekcije1ActionPerformed
+
+    private void btnLekcije3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije3ActionPerformed
+        pnlProbniTest newPnl=new pnlProbniTest(connection,statement,resultSet,razred,username);
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(newPnl);
+    }//GEN-LAST:event_btnLekcije3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
