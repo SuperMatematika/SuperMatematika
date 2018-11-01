@@ -57,9 +57,10 @@ public class StudentFrame extends javax.swing.JFrame {
     public String getIme(){
         try {
             statement = (Statement) connection.createStatement();
-            resultSet = statement.executeQuery("SELECT ime,prezime from Student where username='"+username+"';");
+            resultSet = statement.executeQuery("SELECT ime,prezime,razred from Student where username='"+username+"';");
              try{
                  while(resultSet.next()){
+                     this.lblRazred.setText(resultSet.getString(3)+" RAZRED");
                      return resultSet.getString(1)+" "+resultSet.getString(2);
                  }
                 
@@ -168,7 +169,7 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         imePrezime = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblRazred = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         pnlProfilMenu = new javax.swing.JPanel();
         btnProfil = new javax.swing.JButton();
@@ -195,10 +196,10 @@ public class StudentFrame extends javax.swing.JFrame {
         imePrezime.setText("Ime Prezime");
         pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("RAZRED");
-        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        lblRazred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblRazred.setForeground(new java.awt.Color(255, 255, 255));
+        lblRazred.setText("RAZRED");
+        pnlHeader.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         btnMenu.setBackground(new java.awt.Color(185, 20, 60));
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
@@ -414,8 +415,8 @@ public class StudentFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnStatistika;
     private javax.swing.JLabel imePrezime;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMainContent;
