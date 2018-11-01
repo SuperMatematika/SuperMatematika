@@ -50,8 +50,14 @@ public class ZadatakPanel extends JPanel {
         
         BufferedImage myPicture;
         try {
+            //myPicture = ImageIO.read(new File(new File("").getAbsolutePath() + z.getPutanjaDoZadatka()));
             myPicture = ImageIO.read(new File("C:\\Users\\samed\\Documents\\Lightshot\\Screenshot_11.png"));
+            
+            // TODO: da pokaze da je pogresan odgovor
+            // TODO: da postavim velicinu slike
+            
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            picLabel.setSize(300, 100);
             picLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             add(picLabel);
         } catch (IOException ex) {

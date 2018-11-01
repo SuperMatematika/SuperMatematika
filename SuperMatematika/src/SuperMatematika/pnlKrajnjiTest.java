@@ -8,6 +8,7 @@ package SuperMatematika;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.Label;
 import java.io.File;
 import java.sql.Connection;
@@ -17,6 +18,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -30,7 +32,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     int razred;
     String username;
     
-    private static int BROJ_ZADATAKA = 5;
+    private static int BROJ_ZADATAKA = 3;
     
     public pnlKrajnjiTest(Connection c,Statement s,ResultSet rs,int rz,String ss) {
         connection=c;
@@ -40,6 +42,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         username=ss;
         initComponents();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+
         
         // Postavi novi test u pocetku
         jButton2.doClick();
@@ -56,8 +59,8 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         jButton1.setText("back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -73,25 +76,23 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         jButton3.setText("Proveri resenja");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,8 +101,8 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -113,12 +114,14 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,12 +143,13 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     // Novi test, nemam pojma kako se ovde menjanu nazivi textboxa, ipak sam ja noob za ovo
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jPanel1.removeAll();
+        jPanel1.revalidate();
         
         Test test = new Test(connection, statement, resultSet);
-        List<Zadatak> zadaci = test.SastaviTest("test", "test", BROJ_ZADATAKA); 
+        List<Zadatak> zadaci = test.SastaviTest("skupovi", "peti", BROJ_ZADATAKA); 
         for (Zadatak z: zadaci)
             jPanel1.add(new ZadatakPanel(z));
-        jPanel1.revalidate();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Proveri rezultate
