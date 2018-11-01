@@ -22,6 +22,8 @@ import javax.swing.JButton;
 import static javax.swing.text.StyleConstants.Bold;
 import static javax.swing.text.StyleConstants.Size;
 import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -74,6 +76,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
             
             listaButtona.add(b);
             this.btnHolder.add(b);
+            this.btnHolder.add(btnBaack);
             this.btnHolder.setVisible(true);
         }
       
@@ -139,12 +142,58 @@ public class pnlPredavanja extends javax.swing.JPanel {
     private void initComponents() {
 
         btnHolder = new javax.swing.JPanel();
+        btnBaack = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnHolder.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(btnHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 260));
+
+        btnBaack.setBackground(new java.awt.Color(102, 102, 102));
+        btnBaack.setText("Back");
+        btnBaack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HandlerBack(evt);
+            }
+        });
+        btnBaack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaackActionPerformed(evt);
+            }
+        });
+        btnHolder.add(btnBaack, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 90, 60));
+
+        add(btnHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 340));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
+         mainChoiceView main;
+        try{
+            main=new mainChoiceView();
+        this.btnHolder.removeAll();
+        this.btnHolder.revalidate();
+        this.btnHolder.setLayout(new BorderLayout());
+        this.btnHolder.add(main);
+        }
+        catch(Exception ex)
+        {
+            
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_btnBaackActionPerformed
+
+    private void HandlerBack(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HandlerBack
+  mainChoiceView main;
+        try{
+            main=new mainChoiceView();
+        this.btnHolder.removeAll();
+        this.btnHolder.revalidate();
+        this.btnHolder.setLayout(new BorderLayout());
+        this.btnHolder.add(main);
+        }
+        catch(Exception ex)
+        {
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_HandlerBack
 
     private void showPdf(java.awt.event.ActionEvent evt) {                         
             String putanja=null;
@@ -161,6 +210,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
             this.add(newPnl);
         }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBaack;
     private javax.swing.JPanel btnHolder;
     // End of variables declaration//GEN-END:variables
 }
