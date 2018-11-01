@@ -16,6 +16,7 @@ public class SuperMatematikaMain {
       mainApp.setVisible(true);
 //StudentFrame sf= new StudentFrame();
 //sf.setVisible(true);
+         
     }
     
 }

@@ -6,6 +6,8 @@
 package SuperMatematika;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
 import java.sql.Connection;
@@ -14,8 +16,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import static javax.swing.text.StyleConstants.Bold;
+import static javax.swing.text.StyleConstants.Size;
+import java.awt.Font;
+import javax.swing.UIManager;
 
 /**
  *
@@ -35,29 +42,46 @@ public class pnlPredavanja extends javax.swing.JPanel {
     ArrayList<JButton> listaButtona=new ArrayList();
     public pnlPredavanja(Connection cnc,Statement st,ResultSet rs,int rzrd) throws SQLException {
         initComponents();
-        razred=rzrd;
+         razred=rzrd;
          connection=cnc;
          statement=st;
          resultSet=rs;
         loadLekcije();
+        
     }
     private void createForm(){
         this.btnHolder.removeAll();
         this.btnHolder.revalidate();
         this.btnHolder.setLayout(new GridLayout(4,0));
         System.out.println(listaLekcija.size());
+          Font f = new Font("Arial", Font.ITALIC, 24);
         for(int i=0;i<listaLekcija.size();i++){
             JButton b=new JButton(listaLekcija.get(i));
+            b.setBackground(Color.white);
+            b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
+            b.setPreferredSize(new Dimension(40,40));
+            b.setFont(f);
+            
+            b.setFocusPainted(false);
+            
             b.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     showPdf(evt);
                 }
-            });
+                
+            }
+            );
+            
             listaButtona.add(b);
             this.btnHolder.add(b);
             this.btnHolder.setVisible(true);
         }
+      
     }
+    
+    
+       
+    
     private void loadLekcije(){
         try {
 
@@ -70,6 +94,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                  while(resultSet.next()){
                      listaPutanja.add(resultSet.getString("Putanja"));
                      listaLekcija.add(resultSet.getString("NaslovLekcije"));
+                     
                  }
                 
              }       
@@ -99,7 +124,9 @@ public class pnlPredavanja extends javax.swing.JPanel {
             }
             
         createForm(); 
+        
         }
+        
     }
 
     /**
@@ -113,29 +140,10 @@ public class pnlPredavanja extends javax.swing.JPanel {
 
         btnHolder = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout btnHolderLayout = new javax.swing.GroupLayout(btnHolder);
-        btnHolder.setLayout(btnHolderLayout);
-        btnHolderLayout.setHorizontalGroup(
-            btnHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        btnHolderLayout.setVerticalGroup(
-            btnHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnHolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        btnHolder.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(btnHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 260));
     }// </editor-fold>//GEN-END:initComponents
 
     private void showPdf(java.awt.event.ActionEvent evt) {                         
