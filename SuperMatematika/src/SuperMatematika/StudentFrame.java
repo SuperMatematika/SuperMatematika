@@ -7,12 +7,7 @@ package SuperMatematika;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -27,77 +22,22 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class StudentFrame extends javax.swing.JFrame {
 
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
-    public StudentFrame(String un) throws SQLException {
-        username=un;
-        razred=dbGetRazred();
+    /**
+     * Creates new form NewJFrame
+     */
+    public StudentFrame() {
         initComponents();
-        setNav();
-        this.pnlProfilMenu.setVisible(true);
+                setNav();
+        this.pnlProfilMenu.setVisible(false);
     }
-    public int dbGetRazred() throws SQLException{
-        try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String msAccDB = new File("").getAbsolutePath()+"/Supermatematika.accdb";
-            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
-
-            // Step 2.A: Create and get connection using DriverManager class
-            connection = DriverManager.getConnection(dbURL); 
-
-        }
-        catch(ClassNotFoundException cnfex) {
-
-            System.out.println("Problem in loading or "
-                    + "registering MS Access JDBC driver");
-            cnfex.printStackTrace();
-        }
-         try {
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT razred from Student where username='"+username+"';");
-             try{
-                 while(resultSet.next()){
-                     return resultSet.getInt("razred");
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
-            System.out.println(E);
-        }
-        finally {
-
-            // Step 3: Closing database connection
-            try {
-                if(null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
-         return 0;
-    }
+    
     public void setNav(){
         //create the root node
-        DefaultMutableTreeNode category = new DefaultMutableTreeNode("Categories");
-        DefaultMutableTreeNode category1 = new DefaultMutableTreeNode("Categorie1");
+        DefaultMutableTreeNode category = new DefaultMutableTreeNode("Navigacija");
+        DefaultMutableTreeNode category1 = new DefaultMutableTreeNode("V Razred");
         //create the child nodes
-        DefaultMutableTreeNode category1_1 = new DefaultMutableTreeNode("Category1.1");
-        DefaultMutableTreeNode category1_2 = new DefaultMutableTreeNode("Category1.2");
+        DefaultMutableTreeNode category1_1 = new DefaultMutableTreeNode("Skupovi");
+        DefaultMutableTreeNode category1_2 = new DefaultMutableTreeNode("Deljivost brojeva");
         //add the child nodes to the root node
         category1.add(category1_1);
         category1.add(category1_2);
@@ -109,12 +49,12 @@ public class StudentFrame extends javax.swing.JFrame {
     }
     
     public void hoverButton(JButton b){
-        b.setBackground(Color.decode("#F0F0F0"));
-        b.setForeground(Color.BLACK);
+        b.setBackground(Color.white);
+        b.setForeground(Color.decode("#B9143C"));
     }
     public void hoverButtonExit(JButton b)
     {
-        b.setBackground(Color.decode("#cccccc"));
+        b.setBackground(Color.decode("#B9143C"));
         b.setForeground(Color.WHITE);
     }
     
@@ -130,8 +70,8 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnMenu = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
         pnlProfilMenu = new javax.swing.JPanel();
         btnProfil = new javax.swing.JButton();
         btnStatistika = new javax.swing.JButton();
@@ -159,29 +99,39 @@ public class StudentFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ime Prezime");
-        pnlHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
-
-        btnMenu.setBackground(new java.awt.Color(185, 20, 60));
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
-        btnMenu.setBorder(null);
-        btnMenu.setFocusPainted(false);
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showMenu(evt);
-            }
-        });
-        pnlHeader.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 80, 60));
+        pnlHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("RAZRED");
         pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 60));
+        btnMenu.setBackground(new java.awt.Color(185, 20, 60));
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setFocusPainted(false);
+        btnMenu.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                MouseDragger(evt);
+            }
+        });
+        btnMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MouseDragger(evt);
+            }
+        });
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showMenu(evt);
+            }
+        });
+        pnlHeader.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 0, 80, 60));
+
+        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 60));
 
         pnlProfilMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnProfil.setBackground(new java.awt.Color(204, 204, 204));
+        btnProfil.setBackground(new java.awt.Color(185, 20, 60));
         btnProfil.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnProfil.setText("Profil");
@@ -203,7 +153,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
 
-        btnStatistika.setBackground(new java.awt.Color(204, 204, 204));
+        btnStatistika.setBackground(new java.awt.Color(185, 20, 60));
         btnStatistika.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnStatistika.setForeground(new java.awt.Color(255, 255, 255));
         btnStatistika.setText("Statistika ");
@@ -226,7 +176,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnStatistika, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 150, 50));
 
-        btnOcene.setBackground(new java.awt.Color(204, 204, 204));
+        btnOcene.setBackground(new java.awt.Color(185, 20, 60));
         btnOcene.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnOcene.setForeground(new java.awt.Color(255, 255, 255));
         btnOcene.setText("Ocene");
@@ -243,7 +193,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 50));
 
-        btnOdjava.setBackground(new java.awt.Color(204, 204, 204));
+        btnOdjava.setBackground(new java.awt.Color(185, 20, 60));
         btnOdjava.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnOdjava.setForeground(new java.awt.Color(255, 255, 255));
         btnOdjava.setText("Odjava");
@@ -265,7 +215,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnOdjava, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 150, 50));
 
-        pnlBackground.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 150, 200));
+        pnlBackground.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 150, 200));
 
         pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -280,7 +230,7 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnLekcije1ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(btnLekcije1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 220, 230));
+        pnlMainContent.add(btnLekcije1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 390, 320));
 
         btnProbni.setBackground(new java.awt.Color(255, 255, 255));
         btnProbni.setForeground(new java.awt.Color(255, 255, 255));
@@ -288,7 +238,7 @@ public class StudentFrame extends javax.swing.JFrame {
         btnProbni.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
         btnProbni.setFocusPainted(false);
         btnProbni.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        pnlMainContent.add(btnProbni, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 220, 230));
+        pnlMainContent.add(btnProbni, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 390, 330));
 
         btnLekcije2.setBackground(new java.awt.Color(255, 255, 255));
         btnLekcije2.setForeground(new java.awt.Color(255, 255, 255));
@@ -301,7 +251,7 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnLekcije2ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(btnLekcije2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 230));
+        pnlMainContent.add(btnLekcije2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
 
         btnLekcije3.setBackground(new java.awt.Color(255, 255, 255));
         btnLekcije3.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,23 +259,23 @@ public class StudentFrame extends javax.swing.JFrame {
         btnLekcije3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
         btnLekcije3.setFocusPainted(false);
         btnLekcije3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        pnlMainContent.add(btnLekcije3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, 230));
+        pnlMainContent.add(btnLekcije3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 410, 330));
 
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 440, 460));
+        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 800, 650));
 
         jScrollPane1.setViewportView(Navigacija);
 
-        pnlBackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 460));
+        pnlBackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -366,21 +316,20 @@ public class StudentFrame extends javax.swing.JFrame {
 
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
         // TODO add your handling code here:
-        pnlPredavanja newPnl;
-       try {
-           newPnl = new pnlPredavanja(connection,statement,resultSet,razred);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
-       } catch (SQLException ex) {
-           Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        pnlPredavanja newPnl=new pnlPredavanja();
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
         this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible()?false:true);
     }//GEN-LAST:event_showMenu
+
+    private void MouseDragger(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MouseDragger
+      this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible()?false:true);  // TODO add your handling code here:
+    }//GEN-LAST:event_MouseDragger
 
     /**
      * @param args the command line arguments
@@ -413,7 +362,7 @@ public class StudentFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new StudentFrame().setVisible(true);
+                new StudentFrame().setVisible(true);
                 
             }
         });
