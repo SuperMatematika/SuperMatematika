@@ -7,7 +7,12 @@ package SuperMatematika;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -22,15 +27,71 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class StudentFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
-    public StudentFrame() {
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
+    int razred;
+    String username;
+    public StudentFrame(String un) throws SQLException {
+        username=un;
+        razred=dbGetRazred();
         initComponents();
-                setNav();
-        this.pnlProfilMenu.setVisible(false);
+        setNav();
+        this.pnlProfilMenu.setVisible(true);
     }
     
+    public int dbGetRazred() throws SQLException{
+        try {
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            String msAccDB = new File("").getAbsolutePath()+"/Supermatematika.accdb";
+            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
+
+            // Step 2.A: Create and get connection using DriverManager class
+            connection = DriverManager.getConnection(dbURL); 
+
+        }
+        catch(ClassNotFoundException cnfex) {
+
+            System.out.println("Problem in loading or "
+                    + "registering MS Access JDBC driver");
+            cnfex.printStackTrace();
+        }
+         try {
+            statement = (Statement) connection.createStatement();  
+            resultSet = statement.executeQuery("SELECT razred from Student where username='"+username+"';");
+             try{
+                 while(resultSet.next()){
+                     return resultSet.getInt("razred");
+                 }
+                
+             }       
+             catch(Exception e){
+                 System.out.println(e);
+             }
+            // processing returned data and printing into console
+          
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+                if(null != connection) {
+
+                    // cleanup resources, once after 
+                    statement.close();
+
+                    //connection.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+         return 0;
+    }
     public void setNav(){
         //create the root node
         DefaultMutableTreeNode category = new DefaultMutableTreeNode("Navigacija");
@@ -316,11 +377,16 @@ public class StudentFrame extends javax.swing.JFrame {
 
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
         // TODO add your handling code here:
-        pnlPredavanja newPnl=new pnlPredavanja();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        pnlPredavanja newPnl;
+       try {
+           newPnl = new pnlPredavanja(connection,statement,resultSet,razred);
+            this.pnlMainContent.removeAll();
+            this.pnlMainContent.revalidate();
+            this.pnlMainContent.setLayout(new BorderLayout());
+            this.pnlMainContent.add(newPnl);
+       } catch (SQLException ex) {
+           Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
@@ -362,7 +428,7 @@ public class StudentFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentFrame().setVisible(true);
+                //new StudentFrame().setVisible(true);
                 
             }
         });

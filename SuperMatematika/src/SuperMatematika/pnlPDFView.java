@@ -8,8 +8,14 @@ package SuperMatematika;
 import java.awt.BorderLayout;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.lang.SerializationUtils;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
@@ -22,17 +28,26 @@ import org.icepdf.ri.common.SwingViewBuilder;
 public class pnlPDFView extends javax.swing.JPanel {
     private JPanel previousPanel;
     private JFrame mainFrame;
-           SwingController control=new SwingController();
-    String path=new File("").getAbsolutePath()+"\\predavanja";
+    Statement statement = null;
+    ResultSet resultSet = null;
+    String file;
+    Connection connection = null;
+    int razred;
+    SwingController control=new SwingController();
+    String path=new File("").getAbsolutePath();
     /**
      * Creates new form pnlPDFView
      */
-    public pnlPDFView() {
+    public pnlPDFView(Connection c,Statement s,ResultSet rs,int rzrd,String putanja) {
+        connection=c;
+        statement=s;
+        resultSet=rs;
+        razred=rzrd;
+        file=putanja;
         initComponents();
-        openpdf("\\test.pdf");
-        
+        openpdf(file);
         }
-    
+  
     void openpdf(String file){
   
     try {
@@ -94,7 +109,12 @@ public class pnlPDFView extends javax.swing.JPanel {
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
-        this.add(new pnlPredavanja());
+        try {
+            System.out.println(razred);
+            this.add(new pnlPredavanja(connection,statement,resultSet,razred));
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlPDFView.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnBackActionPerformed
 
