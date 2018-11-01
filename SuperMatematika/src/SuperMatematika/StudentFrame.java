@@ -32,7 +32,11 @@ public class StudentFrame extends javax.swing.JFrame {
     ResultSet resultSet = null;
     int razred;
     String username;
-    public StudentFrame(String un) throws SQLException {
+    public StudentFrame(Connection c,Statement s,ResultSet rs,String un) throws SQLException {
+        connection=c;
+        statement=s;
+        resultSet=rs;
+        
         username=un;
         razred=dbGetRazred();
         initComponents();
@@ -42,6 +46,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
+        this.imePrezime.setText(getIme());
         setNav();
         this.pnlProfilMenu.setVisible(false);
     }
@@ -49,23 +54,45 @@ public class StudentFrame extends javax.swing.JFrame {
     StudentFrame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public int dbGetRazred() throws SQLException{
+    public String getIme(){
         try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String msAccDB = new File("").getAbsolutePath()+"/Supermatematika.accdb";
-            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
-
-            // Step 2.A: Create and get connection using DriverManager class
-            connection = DriverManager.getConnection(dbURL); 
-
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT ime,prezime from Student where username='"+username+"';");
+             try{
+                 while(resultSet.next()){
+                     return resultSet.getString(1)+" "+resultSet.getString(2);
+                 }
+                
+             }       
+             catch(Exception e){
+                 System.out.println(e);
+             }
+            // processing returned data and printing into console
+          
         }
-        catch(ClassNotFoundException cnfex) {
-
-            System.out.println("Problem in loading or "
-                    + "registering MS Access JDBC driver");
-            cnfex.printStackTrace();
+        catch(Exception E){
+            System.out.println(E);
         }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+                if(null != connection) {
+
+                    // cleanup resources, once after 
+                    statement.close();
+
+                    //connection.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        return "";
+    }
+    public int dbGetRazred() throws SQLException{
+        
          try {
             statement = (Statement) connection.createStatement();  
             resultSet = statement.executeQuery("SELECT razred from Student where username='"+username+"';");
@@ -140,7 +167,7 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlBackground = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        imePrezime = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         pnlProfilMenu = new javax.swing.JPanel();
@@ -162,11 +189,11 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlHeader.setBackground(new java.awt.Color(185, 20, 60));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Ime Prezime");
-        pnlHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
+        imePrezime.setBackground(new java.awt.Color(255, 255, 255));
+        imePrezime.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        imePrezime.setForeground(new java.awt.Color(255, 255, 255));
+        imePrezime.setText("Ime Prezime");
+        pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -386,7 +413,7 @@ public class StudentFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnOdjava;
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnStatistika;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel imePrezime;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlBackground;
