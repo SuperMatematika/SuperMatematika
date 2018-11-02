@@ -71,9 +71,15 @@ public class ZadatakPanel extends JPanel {
         
         // Lista sa svim odgovorima da bih mogao da uradim shuffle()
         buttoni.add(new JRadioButton(z.getTacanOdogovor()));
-        buttoni.add(new JRadioButton(z.getPogresanOdg1()));
-        buttoni.add(new JRadioButton(z.getPogresanOdg2()));
-        buttoni.add(new JRadioButton(z.getPogresanOdg3()));
+        if(z.getPogresanOdg1()!=null && z.getPogresanOdg1()!="")
+            buttoni.add(new JRadioButton(z.getPogresanOdg1()));
+        
+        if(z.getPogresanOdg2()!=null && z.getPogresanOdg2()!="")
+            buttoni.add(new JRadioButton(z.getPogresanOdg2()));
+        
+        if(z.getPogresanOdg3()!=null  && z.getPogresanOdg3()!="")
+         buttoni.add(new JRadioButton(z.getPogresanOdg3()));
+       
         Collections.shuffle(buttoni, new Random());
         
         // Novi panel koji je horizonalan, jer hocu da radioButtoni budu horizontalno poredjani
@@ -93,6 +99,7 @@ public class ZadatakPanel extends JPanel {
     public boolean odgovorJeTacan() {
         for(JRadioButton rb: buttoni)
             if (rb.isSelected()){
+                
                 return rb.getText().equals(tacanOdgovor); 
             }
         return false;
