@@ -7,6 +7,8 @@ package SuperMatematika;
 
 import java.awt.BorderLayout;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -64,6 +66,11 @@ public class pnlPDFView extends javax.swing.JPanel {
            control.openDocument(path+file);
         
         this.jScrollPane1.setViewportView(veiwerCompntpnl); 
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+        public void adjustmentValueChanged(AdjustmentEvent e) {  
+            e.getAdjustable().setValue(50);
+        }
+    });
         } catch (Exception ex) {
             ex.printStackTrace();
         }

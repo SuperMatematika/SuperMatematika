@@ -95,6 +95,11 @@ public class MainFrame extends javax.swing.JFrame {
                 txtUserActionPerformed(evt);
             }
         });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterHandle(evt);
+            }
+        });
         pnlLogin.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 183, 240, 30));
 
         btnLogin.setBackground(new java.awt.Color(185, 20, 60));
@@ -126,6 +131,11 @@ public class MainFrame extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterHandle(evt);
+            }
+        });
         pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 80, 30));
 
         txtPass.setForeground(new java.awt.Color(204, 204, 204));
@@ -135,6 +145,11 @@ public class MainFrame extends javax.swing.JFrame {
         txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPassFocusGained(evt);
+            }
+        });
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterHandle(evt);
             }
         });
         pnlLogin.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 240, 30));
@@ -205,6 +220,12 @@ public class MainFrame extends javax.swing.JFrame {
        this.btnLogin.setBackground(Color.decode("#B9143C"));
        this.btnLogin.setForeground(Color.white);
     }//GEN-LAST:event_HoverExited
+
+    private void enterHandle(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterHandle
+        if(evt.getKeyCode()==10){
+            handleLogin();
+        }
+    }//GEN-LAST:event_enterHandle
                       
     
    
