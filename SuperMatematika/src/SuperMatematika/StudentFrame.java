@@ -32,10 +32,21 @@ public class StudentFrame extends javax.swing.JFrame {
     ResultSet resultSet = null;
     int razred;
     String username;
-    public StudentFrame(String un) throws SQLException {
+    public StudentFrame(Connection c,Statement s,ResultSet rs,String un) throws SQLException {
+        connection=c;
+        statement=s;
+        resultSet=rs;
+        
         username=un;
         razred=dbGetRazred();
         initComponents();
+        mainChoiceView newPnl;
+        newPnl = new mainChoiceView(connection,statement,resultSet,razred,username);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+        this.imePrezime.setText(getIme());
         setNav();
         this.pnlProfilMenu.setVisible(false);
     }
@@ -43,23 +54,46 @@ public class StudentFrame extends javax.swing.JFrame {
     StudentFrame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public int dbGetRazred() throws SQLException{
+    public String getIme(){
         try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String msAccDB = new File("").getAbsolutePath()+"/Supermatematika.accdb";
-            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
-
-            // Step 2.A: Create and get connection using DriverManager class
-            connection = DriverManager.getConnection(dbURL); 
-
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT ime,prezime,razred from Student where username='"+username+"';");
+             try{
+                 while(resultSet.next()){
+                     this.lblRazred.setText(resultSet.getString(3)+" RAZRED");
+                     return resultSet.getString(1)+" "+resultSet.getString(2);
+                 }
+                
+             }       
+             catch(Exception e){
+                 System.out.println(e);
+             }
+            // processing returned data and printing into console
+          
         }
-        catch(ClassNotFoundException cnfex) {
-
-            System.out.println("Problem in loading or "
-                    + "registering MS Access JDBC driver");
-            cnfex.printStackTrace();
+        catch(Exception E){
+            System.out.println(E);
         }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+                if(null != connection) {
+
+                    // cleanup resources, once after 
+                    statement.close();
+
+                    //connection.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        return "";
+    }
+    public int dbGetRazred() throws SQLException{
+        
          try {
             statement = (Statement) connection.createStatement();  
             resultSet = statement.executeQuery("SELECT razred from Student where username='"+username+"';");
@@ -134,8 +168,8 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlBackground = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        imePrezime = new javax.swing.JLabel();
+        lblRazred = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         pnlProfilMenu = new javax.swing.JPanel();
         btnProfil = new javax.swing.JButton();
@@ -143,10 +177,6 @@ public class StudentFrame extends javax.swing.JFrame {
         btnOcene = new javax.swing.JButton();
         btnOdjava = new javax.swing.JButton();
         pnlMainContent = new javax.swing.JPanel();
-        btnLekcije1 = new javax.swing.JButton();
-        btnProbni = new javax.swing.JButton();
-        btnLekcije2 = new javax.swing.JButton();
-        btnLekcije3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Navigacija = new javax.swing.JTree();
 
@@ -160,16 +190,16 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlHeader.setBackground(new java.awt.Color(185, 20, 60));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Ime Prezime");
-        pnlHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
+        imePrezime.setBackground(new java.awt.Color(255, 255, 255));
+        imePrezime.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        imePrezime.setForeground(new java.awt.Color(255, 255, 255));
+        imePrezime.setText("Ime Prezime");
+        pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("RAZRED");
-        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        lblRazred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblRazred.setForeground(new java.awt.Color(255, 255, 255));
+        lblRazred.setText("RAZRED");
+        pnlHeader.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         btnMenu.setBackground(new java.awt.Color(185, 20, 60));
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
@@ -283,49 +313,6 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 150, 200));
 
         pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnLekcije1.setBackground(new java.awt.Color(255, 255, 255));
-        btnLekcije1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ZadaciIcon.png"))); // NOI18N
-        btnLekcije1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
-        btnLekcije1.setFocusPainted(false);
-        btnLekcije1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnLekcije1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLekcije1ActionPerformed(evt);
-            }
-        });
-        pnlMainContent.add(btnLekcije1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 390, 320));
-
-        btnProbni.setBackground(new java.awt.Color(255, 255, 255));
-        btnProbni.setForeground(new java.awt.Color(255, 255, 255));
-        btnProbni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/TestIcon.png"))); // NOI18N
-        btnProbni.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
-        btnProbni.setFocusPainted(false);
-        btnProbni.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        pnlMainContent.add(btnProbni, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 390, 330));
-
-        btnLekcije2.setBackground(new java.awt.Color(255, 255, 255));
-        btnLekcije2.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/LekcijeIcon.png"))); // NOI18N
-        btnLekcije2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
-        btnLekcije2.setFocusPainted(false);
-        btnLekcije2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnLekcije2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLekcije2ActionPerformed(evt);
-            }
-        });
-        pnlMainContent.add(btnLekcije2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
-
-        btnLekcije3.setBackground(new java.awt.Color(255, 255, 255));
-        btnLekcije3.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ProbniTestIcon.png"))); // NOI18N
-        btnLekcije3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
-        btnLekcije3.setFocusPainted(false);
-        btnLekcije3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        pnlMainContent.add(btnLekcije3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 410, 330));
-
         pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 800, 650));
 
         jScrollPane1.setViewportView(Navigacija);
@@ -375,24 +362,6 @@ public class StudentFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
-    private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLekcije1ActionPerformed
-
-    private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
-        // TODO add your handling code here:
-        pnlPredavanja newPnl;
-       try {
-           newPnl = new pnlPredavanja(connection,statement,resultSet,razred);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
-       } catch (SQLException ex) {
-           Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }//GEN-LAST:event_btnLekcije2ActionPerformed
-
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
         this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible()?false:true);
     }//GEN-LAST:event_showMenu
@@ -440,18 +409,14 @@ public class StudentFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree Navigacija;
-    private javax.swing.JButton btnLekcije1;
-    private javax.swing.JButton btnLekcije2;
-    private javax.swing.JButton btnLekcije3;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnOcene;
     private javax.swing.JButton btnOdjava;
-    private javax.swing.JButton btnProbni;
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnStatistika;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel imePrezime;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMainContent;

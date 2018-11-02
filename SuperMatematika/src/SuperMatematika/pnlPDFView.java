@@ -7,6 +7,8 @@ package SuperMatematika;
 
 import java.awt.BorderLayout;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,22 +30,27 @@ import org.icepdf.ri.common.SwingViewBuilder;
 public class pnlPDFView extends javax.swing.JPanel {
     private JPanel previousPanel;
     private JFrame mainFrame;
+    
     Statement statement = null;
     ResultSet resultSet = null;
     String file;
     Connection connection = null;
     int razred;
+    String username;
+    String goBack;
     SwingController control=new SwingController();
     String path=new File("").getAbsolutePath();
     /**
      * Creates new form pnlPDFView
      */
-    public pnlPDFView(Connection c,Statement s,ResultSet rs,int rzrd,String putanja) {
+    public pnlPDFView(Connection c,Statement s,ResultSet rs,int rzrd,String putanja,String un,String previous) {
         connection=c;
         statement=s;
         resultSet=rs;
         razred=rzrd;
         file=putanja;
+        username=un;
+        goBack=previous;
         initComponents();
         openpdf(file);
         }
@@ -60,6 +67,12 @@ public class pnlPDFView extends javax.swing.JPanel {
            control.openDocument(path+file);
         
         this.jScrollPane1.setViewportView(veiwerCompntpnl); 
+       
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+        public void adjustmentValueChanged(AdjustmentEvent e) {  
+            e.getAdjustable().setValue(50);
+        }
+    });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -88,12 +101,13 @@ public class pnlPDFView extends javax.swing.JPanel {
         contain.setPreferredSize(new java.awt.Dimension(800, 650));
         contain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.darkGray));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 650));
         contain.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 730, 650));
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/backIcon.png"))); // NOI18N
-        btnBack.setActionCommand("");
         btnBack.setBorder(null);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +125,14 @@ public class pnlPDFView extends javax.swing.JPanel {
         this.setLayout(new BorderLayout());
         try {
             System.out.println(razred);
-            this.add(new pnlPredavanja(connection,statement,resultSet,razred));
+            switch(goBack){
+                case "zadaci":
+                    this.add(new pnlZadaci(connection,statement,resultSet,razred,username));
+                    break;
+                case "predavanja":
+                    this.add(new pnlPredavanja(connection,statement,resultSet,razred,username));
+                    break;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(pnlPDFView.class.getName()).log(Level.SEVERE, null, ex);
         }

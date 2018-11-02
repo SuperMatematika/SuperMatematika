@@ -39,15 +39,17 @@ public class pnlPredavanja extends javax.swing.JPanel {
     Statement statement=null;
     ResultSet resultSet=null;
     int razred;
+    String username;
     ArrayList<String> listaPutanja=new ArrayList();
     ArrayList<String> listaLekcija=new ArrayList();
     ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlPredavanja(Connection cnc,Statement st,ResultSet rs,int rzrd) throws SQLException {
+    public pnlPredavanja(Connection cnc,Statement st,ResultSet rs,int rzrd,String un) throws SQLException {
         initComponents();
          razred=rzrd;
          connection=cnc;
          statement=st;
          resultSet=rs;
+         username=un;
         loadLekcije();
         
     }
@@ -150,11 +152,6 @@ public class pnlPredavanja extends javax.swing.JPanel {
 
         btnBaack.setBackground(new java.awt.Color(102, 102, 102));
         btnBaack.setText("Back");
-        btnBaack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HandlerBack(evt);
-            }
-        });
         btnBaack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBaackActionPerformed(evt);
@@ -166,34 +163,19 @@ public class pnlPredavanja extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
-         mainChoiceView main;
+        mainChoiceView main;
         try{
-            main=new mainChoiceView();
-        this.btnHolder.removeAll();
-        this.btnHolder.revalidate();
-        this.btnHolder.setLayout(new BorderLayout());
-        this.btnHolder.add(main);
+            main=new mainChoiceView(connection,statement,resultSet,razred,username);
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(main);
         }
         catch(Exception ex)
         {
             
         } // TODO add your handling code here:
     }//GEN-LAST:event_btnBaackActionPerformed
-
-    private void HandlerBack(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HandlerBack
-  mainChoiceView main;
-        try{
-            main=new mainChoiceView();
-        this.btnHolder.removeAll();
-        this.btnHolder.revalidate();
-        this.btnHolder.setLayout(new BorderLayout());
-        this.btnHolder.add(main);
-        }
-        catch(Exception ex)
-        {
-            
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_HandlerBack
 
     private void showPdf(java.awt.event.ActionEvent evt) {                         
             String putanja=null;
@@ -203,7 +185,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                     break;
                 }
             }
-            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja);
+            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja,username,"predavanja");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());

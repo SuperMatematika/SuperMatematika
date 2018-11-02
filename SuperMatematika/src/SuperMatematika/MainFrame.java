@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -68,15 +69,28 @@ public class MainFrame extends javax.swing.JFrame {
         pnlPrijaviteSe = new javax.swing.JPanel();
         lblPrijaviteSe = new javax.swing.JLabel();
         lblDangerIcon = new javax.swing.JLabel();
+        pnlHeader = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblSlika6 = new javax.swing.JLabel();
+        lblSlika7 = new javax.swing.JLabel();
+        lblSlika8 = new javax.swing.JLabel();
+        lblSlika5 = new javax.swing.JLabel();
+        lblDobroDosli = new javax.swing.JLabel();
+        lblBoljaOcena = new javax.swing.JLabel();
+        pnlHeader1 = new javax.swing.JPanel();
+        lblSuperMatematika1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(780, 520));
+        setPreferredSize(new java.awt.Dimension(1140, 710));
 
-        pnlPozadina.setBackground(new java.awt.Color(51, 51, 51));
+        pnlPozadina.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPozadina.setMinimumSize(new java.awt.Dimension(1110, 700));
+        pnlPozadina.setPreferredSize(new java.awt.Dimension(1140, 710));
         pnlPozadina.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
+        pnlLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), java.awt.Color.lightGray, new java.awt.Color(153, 153, 153)));
         pnlLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -90,14 +104,24 @@ public class MainFrame extends javax.swing.JFrame {
                 txtUserFocusGained(evt);
             }
         });
+        txtUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMouseClicked(evt);
+            }
+        });
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
             }
         });
-        pnlLogin.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 183, 240, 30));
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterHandle(evt);
+            }
+        });
+        pnlLogin.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 290, 30));
 
-        btnLogin.setBackground(new java.awt.Color(185, 20, 60));
+        btnLogin.setBackground(new java.awt.Color(205, 19, 31));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("LOG IN");
         btnLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, null, null, java.awt.Color.black));
@@ -126,7 +150,12 @@ public class MainFrame extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 80, 30));
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterHandle(evt);
+            }
+        });
+        pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 110, 40));
 
         txtPass.setForeground(new java.awt.Color(204, 204, 204));
         txtPass.setText("password");
@@ -137,35 +166,81 @@ public class MainFrame extends javax.swing.JFrame {
                 txtPassFocusGained(evt);
             }
         });
-        pnlLogin.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 240, 30));
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                enterHandle(evt);
+            }
+        });
+        pnlLogin.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 290, 30));
 
         lblWrongUser.setForeground(new java.awt.Color(255, 0, 0));
-        pnlLogin.add(lblWrongUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 180, 20));
+        pnlLogin.add(lblWrongUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 180, 20));
 
-        pnlPrijaviteSe.setBackground(new java.awt.Color(185, 20, 60));
-        pnlPrijaviteSe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlPrijaviteSe.setBackground(new java.awt.Color(34, 31, 31));
+        pnlPrijaviteSe.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         pnlPrijaviteSe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblPrijaviteSe.setBackground(new java.awt.Color(255, 255, 255));
-        lblPrijaviteSe.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lblPrijaviteSe.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         lblPrijaviteSe.setForeground(new java.awt.Color(255, 255, 255));
         lblPrijaviteSe.setText("PRIJAVITE SE");
-        pnlPrijaviteSe.add(lblPrijaviteSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
+        pnlPrijaviteSe.add(lblPrijaviteSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
 
-        pnlLogin.add(pnlPrijaviteSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 90));
-        pnlLogin.add(lblDangerIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 40, 20));
+        pnlLogin.add(pnlPrijaviteSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 90));
+        pnlLogin.add(lblDangerIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 20, 20));
 
-        pnlPozadina.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 330, 410));
+        pnlPozadina.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 430, 410));
+
+        pnlHeader.setBackground(new java.awt.Color(34, 31, 31));
+        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPozadina.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1140, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        pnlPozadina.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 10, 560));
+
+        lblSlika6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj6Icon.png"))); // NOI18N
+        pnlPozadina.add(lblSlika6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, 230));
+
+        lblSlika7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj7Icon.png"))); // NOI18N
+        pnlPozadina.add(lblSlika7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 278, -1, 230));
+
+        lblSlika8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj8Icon.png"))); // NOI18N
+        pnlPozadina.add(lblSlika8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 278, -1, 230));
+
+        lblSlika5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj5Icon.png"))); // NOI18N
+        pnlPozadina.add(lblSlika5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, 240));
+
+        lblDobroDosli.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        lblDobroDosli.setText("Dobrodosli na E-Matematiku");
+        pnlPozadina.add(lblDobroDosli, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        lblBoljaOcena.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        lblBoljaOcena.setText("I BOLJA OCENA I VISE ZNANJA");
+        pnlPozadina.add(lblBoljaOcena, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
+
+        pnlHeader1.setBackground(new java.awt.Color(34, 31, 31));
+        pnlHeader1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSuperMatematika1.setBackground(new java.awt.Color(255, 255, 255));
+        lblSuperMatematika1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        lblSuperMatematika1.setForeground(new java.awt.Color(255, 255, 255));
+        lblSuperMatematika1.setText("SuperMatematika");
+        pnlHeader1.add(lblSuperMatematika1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 50));
+
+        pnlPozadina.add(pnlHeader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPozadina, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
+            .addComponent(pnlPozadina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPozadina, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlPozadina, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,27 +259,41 @@ public class MainFrame extends javax.swing.JFrame {
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
            txtUser.setText("");
         txtUser.setForeground(Color.black);
+                txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray, Color.lightGray, Color.lightGray));
+
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
           txtPass.setText("");
         txtPass.setForeground(Color.black);
+        txtPass.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray, Color.lightGray, Color.lightGray));
     }//GEN-LAST:event_txtPassFocusGained
 
     private void HoverOnReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverOnReleased
-        this.btnLogin.setBackground(Color.decode("#B9143C"));
+        this.btnLogin.setBackground(Color.decode("#CD131F"));
         this.btnLogin.setForeground(Color.white);
     }//GEN-LAST:event_HoverOnReleased
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
         this.btnLogin.setBackground(Color.white);
-        this.btnLogin.setForeground(Color.decode("#B9143C"));
+        this.btnLogin.setForeground(Color.decode("#CD131F"));
     }//GEN-LAST:event_HoverHandler
 
     private void HoverExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverExited
-       this.btnLogin.setBackground(Color.decode("#B9143C"));
+       this.btnLogin.setBackground(Color.decode("#CD131F"));
        this.btnLogin.setForeground(Color.white);
     }//GEN-LAST:event_HoverExited
+
+    private void enterHandle(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterHandle
+        if(evt.getKeyCode()==10){
+            handleLogin();
+        }
+    }//GEN-LAST:event_enterHandle
+
+    private void txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMouseClicked
+        // TODO add your handling code here:
+        txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.black, Color.lightGray, Color.lightGray, Color.lightGray));
+    }//GEN-LAST:event_txtMouseClicked
                       
     
    
@@ -227,12 +316,14 @@ public class MainFrame extends javax.swing.JFrame {
                          System.out.println("admin");
                      }else if(resultSet.getString(1).equals("student")){
                          System.out.println("student");
-                         StudentFrame newMain=new StudentFrame(resultSet.getString("username"));
+                         StudentFrame newMain=new StudentFrame(connection,statement,resultSet,resultSet.getString("username"));
                          newMain.setVisible(true);
                          this.dispose();
-                            
                      }else if(resultSet.getString(1).equals("profesor")){  
                          System.out.println("Profesor");
+                         ProfesorFrame newMain=new ProfesorFrame(connection,statement,resultSet,resultSet.getString("username"));
+                          newMain.setVisible(true);
+                          this.dispose();
                      }
                  }
                  if(i==0){
@@ -307,9 +398,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblBoljaOcena;
     private javax.swing.JLabel lblDangerIcon;
+    private javax.swing.JLabel lblDobroDosli;
     private javax.swing.JLabel lblPrijaviteSe;
+    private javax.swing.JLabel lblSlika5;
+    private javax.swing.JLabel lblSlika6;
+    private javax.swing.JLabel lblSlika7;
+    private javax.swing.JLabel lblSlika8;
+    private javax.swing.JLabel lblSuperMatematika1;
     private javax.swing.JLabel lblWrongUser;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlHeader1;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlPozadina;
     private javax.swing.JPanel pnlPrijaviteSe;
