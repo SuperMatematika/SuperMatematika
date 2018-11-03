@@ -67,10 +67,7 @@ public class pnlPDFView extends javax.swing.JPanel {
            control.openDocument(path+file);
         
         this.jScrollPane1.setViewportView(veiwerCompntpnl); 
-<<<<<<< HEAD
        
-=======
->>>>>>> master
         jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
         public void adjustmentValueChanged(AdjustmentEvent e) {  
             e.getAdjustable().setValue(50);

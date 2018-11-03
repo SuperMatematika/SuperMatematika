@@ -119,11 +119,7 @@ public class MainFrame extends javax.swing.JFrame {
                 enterHandle(evt);
             }
         });
-<<<<<<< HEAD
         pnlLogin.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 290, 30));
-=======
-        pnlLogin.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 183, 240, 30));
->>>>>>> master
 
         btnLogin.setBackground(new java.awt.Color(205, 19, 31));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,11 +155,7 @@ public class MainFrame extends javax.swing.JFrame {
                 enterHandle(evt);
             }
         });
-<<<<<<< HEAD
         pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 110, 40));
-=======
-        pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 80, 30));
->>>>>>> master
 
         txtPass.setForeground(new java.awt.Color(204, 204, 204));
         txtPass.setText("password");
@@ -179,11 +171,7 @@ public class MainFrame extends javax.swing.JFrame {
                 enterHandle(evt);
             }
         });
-<<<<<<< HEAD
         pnlLogin.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 290, 30));
-=======
-        pnlLogin.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 240, 30));
->>>>>>> master
 
         lblWrongUser.setForeground(new java.awt.Color(255, 0, 0));
         pnlLogin.add(lblWrongUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 180, 20));
@@ -301,14 +289,11 @@ public class MainFrame extends javax.swing.JFrame {
             handleLogin();
         }
     }//GEN-LAST:event_enterHandle
-<<<<<<< HEAD
 
     private void txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMouseClicked
         // TODO add your handling code here:
         txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.black, Color.lightGray, Color.lightGray, Color.lightGray));
     }//GEN-LAST:event_txtMouseClicked
-=======
->>>>>>> master
                       
     
    
