@@ -151,9 +151,10 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         // da li je pritisnut neki radioButton i da li je dati odgovor tacan
         // Prikazuje gresku ako nije pritisnut nijedan radio button za neki zadatak
         // I na kraju ispisuje rezultat
-        for (Component c: jPanel1.getComponents())
+        for (Component c: mainPanel.getComponents())
             if (c instanceof ZadatakPanel)
             {
+                System.out.println("Prolaz");
                 if (!((ZadatakPanel) c).pritisnutJeNekiRadioButton()){
                     JOptionPane.showMessageDialog(this, "Niste dali odgovor na sve zadatke!");
                     return;
