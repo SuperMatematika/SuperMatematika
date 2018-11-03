@@ -314,13 +314,13 @@ public class MainFrame extends javax.swing.JFrame {
                      System.out.println(resultSet.getString(1));
                      if(resultSet.getString(1).equals("admin")){
                          System.out.println("admin");
-                     }else if(resultSet.getString(1).equals("student")){
-                         System.out.println("student");
+                     }else if(resultSet.getString(1).equals("ucenik")){
+                         System.out.println("ucenik");
                          StudentFrame newMain=new StudentFrame(connection,statement,resultSet,resultSet.getString("username"));
                          newMain.setVisible(true);
                          this.dispose();
-                     }else if(resultSet.getString(1).equals("profesor")){  
-                         System.out.println("Profesor");
+                     }else if(resultSet.getString(1).equals("nastavnik")){  
+                         System.out.println("nastavnik");
                          ProfesorFrame newMain=new ProfesorFrame(connection,statement,resultSet,resultSet.getString("username"));
                           newMain.setVisible(true);
                           this.dispose();
