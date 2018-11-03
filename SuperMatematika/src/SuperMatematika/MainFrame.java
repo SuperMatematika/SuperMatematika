@@ -303,47 +303,42 @@ public class MainFrame extends javax.swing.JFrame {
 
             resultSet = statement.executeQuery("SELECT usertype,username FROM Users where username='" + txtUser.getText() + "' and password='" + txtPass.getText() + "';");
 
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-            try { 
-                boolean ispravanUnos = false;
-                
-                while (resultSet.next()) {
-                    ispravanUnos = true;
-                    JFrame newFrame = null;  
-                    
-                    switch (resultSet.getString("usertype")) {
-                        case "admin":
-                            System.out.println("admin");
-                            newFrame = new AdminFrame();
-                            break;
-                        case "nastavnik":
-                            System.out.println("nastavnik");
-                            newFrame = new ProfesorFrame(connection, statement, resultSet, resultSet.getString("username"));
-                            break;
-                        case "ucenik":
-                            System.out.println("ucenik");
-                            newFrame = new StudentFrame(connection, statement, resultSet, resultSet.getString("username"));
-                            break;
-                    }
-                    
-                    if (newFrame != null) {
-                        newFrame.setVisible(true);
-                        this.dispose();
-                    }
+            boolean ispravanUnos = false;
+
+            while (resultSet.next()) {
+                ispravanUnos = true;
+                JFrame newFrame = null;
+
+                switch (resultSet.getString("usertype")) {
+                    case "admin":
+                        System.out.println("admin");
+                        newFrame = new AdminFrame();
+                        break;
+                    case "nastavnik":
+                        System.out.println("nastavnik");
+                        newFrame = new ProfesorFrame(connection, statement, resultSet, resultSet.getString("username"));
+                        break;
+                    case "ucenik":
+                        System.out.println("ucenik");
+                        newFrame = new StudentFrame(connection, statement, resultSet, resultSet.getString("username"));
+                        break;
                 }
-                
-                // Ako je resultSet prazan, tj. ako ne postoji kosinik u bazi
-                if (!ispravanUnos) {
-                    this.lblWrongUser.setText("Wrong user or pass!");
-                    this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath() + "\\src\\SlikeDizajn\\DangerIcon.png"));
+
+                if (newFrame != null) {
+                    newFrame.setVisible(true);
+                    this.dispose();
                 }
-            } catch (Exception e) {
-                System.out.println(e);
             }
-            // processing returned data and printing into console
+
+            // Ako je resultSet prazan, tj. ako ne postoji kosinik u bazi
+            if (!ispravanUnos) {
+                this.lblWrongUser.setText("Wrong user or pass!");
+                this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath() + "\\src\\SlikeDizajn\\DangerIcon.png"));
+            }
 
         } catch (Exception E) {
-            System.out.println(E);
+            System.out.println("Greska u logovanju: " + E);
+            E.printStackTrace();
         } finally {
 
             // Step 3: Closing database connection

@@ -32,16 +32,18 @@ public class StudentFrame extends javax.swing.JFrame {
     ResultSet resultSet = null;
     int razred;
     String username;
-    public StudentFrame(Connection c,Statement s,ResultSet rs,String un) throws SQLException {
-        connection=c;
-        statement=s;
-        resultSet=rs;
+
+    public StudentFrame(Connection c, Statement s, ResultSet rs, String un) throws SQLException {
+        connection = c;
+        statement = s;
+        resultSet = rs;
+
+        username = un;
+        razred = dbGetRazred();
         
-        username=un;
-        razred=dbGetRazred();
         initComponents();
         mainChoiceView newPnl;
-        newPnl = new mainChoiceView(connection,statement,resultSet,razred,username);
+        newPnl = new mainChoiceView(connection, statement, resultSet, razred, username);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
@@ -49,88 +51,77 @@ public class StudentFrame extends javax.swing.JFrame {
         this.imePrezime.setText(getIme());
         setNav();
         this.pnlProfilMenu.setVisible(false);
+        lblRazred.setText(razred + ". RAZRED");
     }
 
     StudentFrame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public String getIme(){
+
+    public String getIme() {
         try {
             statement = (Statement) connection.createStatement();
-            resultSet = statement.executeQuery("SELECT ime,prezime,razred from Student where username='"+username+"';");
-             try{
-                 while(resultSet.next()){
-                     this.lblRazred.setText(resultSet.getString(3)+" RAZRED");
-                     return resultSet.getString(1)+" "+resultSet.getString(2);
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
+            resultSet = statement.executeQuery("SELECT ime,prezime from Student INNER JOIN Users ON Student.username = Users.username WHERE username='" + username + "';");
+            while (resultSet.next()) {
+                return resultSet.getString(1) + " " + resultSet.getString(2);
+            }
+
+        } catch (Exception E) {
             System.out.println(E);
-        }
-        finally {
+        } finally {
 
             // Step 3: Closing database connection
             try {
-                if(null != connection) {
+                if (null != connection) {
 
                     // cleanup resources, once after 
                     statement.close();
 
                     //connection.close();
                 }
-            }
-            catch (SQLException sqlex) {
+            } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
             }
         }
         return "";
     }
-    public int dbGetRazred() throws SQLException{
-        
-         try {
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT razred from Student where username='"+username+"';");
-             try{
-                 while(resultSet.next()){
-                     return resultSet.getInt("razred");
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
+
+    public int dbGetRazred() throws SQLException {
+
+        try {
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT razred from Student where username='" + username + "';");
+            try {
+                while (resultSet.next()) {
+                    return resultSet.getInt("razred");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
+
+        } catch (Exception E) {
             System.out.println(E);
-        }
-        finally {
+        } finally {
 
             // Step 3: Closing database connection
             try {
-                if(null != connection) {
+                if (null != connection) {
 
                     // cleanup resources, once after 
                     statement.close();
 
                     //connection.close();
                 }
-            }
-            catch (SQLException sqlex) {
+            } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
             }
         }
-         return 0;
+        return 0;
     }
-    public void setNav(){
+
+    public void setNav() {
         //create the root node
         DefaultMutableTreeNode category = new DefaultMutableTreeNode("Navigacija");
         DefaultMutableTreeNode category1 = new DefaultMutableTreeNode("V Razred");
@@ -141,22 +132,21 @@ public class StudentFrame extends javax.swing.JFrame {
         category1.add(category1_1);
         category1.add(category1_2);
         category.add(category1);
-        DefaultTreeModel defaultTreeModel= new DefaultTreeModel(category);
+        DefaultTreeModel defaultTreeModel = new DefaultTreeModel(category);
         Navigacija.setModel(defaultTreeModel);
-         
-         
+
     }
-    
-    public void hoverButton(JButton b){
+
+    public void hoverButton(JButton b) {
         b.setBackground(Color.white);
         b.setForeground(Color.decode("#B9143C"));
     }
-    public void hoverButtonExit(JButton b)
-    {
+
+    public void hoverButtonExit(JButton b) {
         b.setBackground(Color.decode("#B9143C"));
         b.setForeground(Color.WHITE);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -342,32 +332,32 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStatistikaActionPerformed
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
-                hoverButton((JButton)evt.getSource());        
+        hoverButton((JButton) evt.getSource());
     }//GEN-LAST:event_HoverHandler
 
     private void HoverLeave(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverLeave
         // TODO add your handling code here:
-        hoverButtonExit((JButton)evt.getSource());
+        hoverButtonExit((JButton) evt.getSource());
     }//GEN-LAST:event_HoverLeave
 
     private void btnOdjavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdjavaActionPerformed
-        
+
         try {
-            MainFrame m= new MainFrame();
+            MainFrame m = new MainFrame();
             m.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void showMenu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMenu
-        this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible()?false:true);
+        this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible() ? false : true);
     }//GEN-LAST:event_showMenu
 
     private void MouseDragger(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MouseDragger
-      this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible()?false:true);  // TODO add your handling code here:
+        this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible() ? false : true);  // TODO add your handling code here:
     }//GEN-LAST:event_MouseDragger
 
     /**
@@ -402,7 +392,7 @@ public class StudentFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new StudentFrame().setVisible(true);
-                
+
             }
         });
     }

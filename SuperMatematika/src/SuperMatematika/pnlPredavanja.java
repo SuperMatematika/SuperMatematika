@@ -91,8 +91,10 @@ public class pnlPredavanja extends javax.swing.JPanel {
         try {
 
             // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from Lekcija where Razred='"+ razred+"';");
+            statement = (Statement) connection.createStatement(); 
+            
+            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
+            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from Lekcija where ID_predmeta=1;");
             
             // Step 2.C: Executing SQL & retrieve data into ResultSet
              try{
