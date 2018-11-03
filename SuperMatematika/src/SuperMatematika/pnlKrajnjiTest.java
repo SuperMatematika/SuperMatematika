@@ -46,7 +46,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
 
         
         // Postavi novi test u pocetku
-        jButton2.doClick();
+        bNoviTest.doClick();
     }
 
     /**
@@ -59,8 +59,8 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bNoviTest = new javax.swing.JButton();
+        bProverResenja = new javax.swing.JButton();
         jPanel1 = new javax.swing.JScrollPane();
 
         jButton1.setText("back");
@@ -70,17 +70,17 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Novi test");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bNoviTest.setText("Novi test");
+        bNoviTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bNoviTestActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Proveri resenja");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bProverResenja.setText("Proveri resenja");
+        bProverResenja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bProverResenjaActionPerformed(evt);
             }
         });
 
@@ -94,8 +94,8 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(bNoviTest)
+                    .addComponent(bProverResenja, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,9 +107,9 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)
+                        .addComponent(bNoviTest)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(bProverResenja))
                     .addComponent(jPanel1))
                 .addContainerGap())
         );
@@ -131,7 +131,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Novi test, nemam pojma kako se ovde menjanu nazivi textboxa, ipak sam ja noob za ovo
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bNoviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoviTestActionPerformed
         mainPanel.removeAll();
         mainPanel.revalidate();
         
@@ -141,16 +141,21 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         for (Zadatak z: zadaci)
             mainPanel.add(new ZadatakPanel(z));
         jPanel1.setViewportView(mainPanel);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bNoviTestActionPerformed
 
     // Proveri rezultate
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    private void bProverResenjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProverResenjaActionPerformed
         int brojTacnihOdgovora = 0;
         
         // Prolazi kroz sve komponente u jPanel1, kad naidje na komponentu tipa ZadatakPanel koristi funkcije te komponente da proveri
         // da li je pritisnut neki radioButton i da li je dati odgovor tacan
         // Prikazuje gresku ako nije pritisnut nijedan radio button za neki zadatak
         // I na kraju ispisuje rezultat
+        
+        /**
+         * 
+         */
         for (Component c: mainPanel.getComponents())
             if (c instanceof ZadatakPanel)
             {
@@ -163,15 +168,15 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             }
         
         JOptionPane.showMessageDialog(this, "Broj bodova: " + brojTacnihOdgovora + "/" + BROJ_ZADATAKA);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bProverResenjaActionPerformed
 
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bNoviTest;
+    private javax.swing.JButton bProverResenja;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jPanel1;
     // End of variables declaration//GEN-END:variables
 }
