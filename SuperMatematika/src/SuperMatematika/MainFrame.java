@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
@@ -26,23 +27,22 @@ import javax.swing.JButton;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    
-        String currPath=new File("").getAbsolutePath();
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+    String currPath = new File("").getAbsolutePath();
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
+
     public MainFrame() throws SQLException {
-        
+
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String msAccDB = currPath+"/Supermatematika.accdb";
-            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
+            String msAccDB = currPath + "/Supermatematika.accdb";
+            String dbURL = "jdbc:ucanaccess://" + msAccDB;
 
             // Step 2.A: Create and get connection using DriverManager class
-            connection = DriverManager.getConnection(dbURL); 
+            connection = DriverManager.getConnection(dbURL);
 
-        }
-        catch(ClassNotFoundException cnfex) {
+        } catch (ClassNotFoundException cnfex) {
 
             System.out.println("Problem in loading or "
                     + "registering MS Access JDBC driver");
@@ -249,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         txtUser.setText("");
         txtUser.setForeground(Color.black);
-        
+
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -257,14 +257,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-           txtUser.setText("");
+        txtUser.setText("");
         txtUser.setForeground(Color.black);
-                txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray, Color.lightGray, Color.lightGray));
+        txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray, Color.lightGray, Color.lightGray));
 
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
-          txtPass.setText("");
+        txtPass.setText("");
         txtPass.setForeground(Color.black);
         txtPass.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray, Color.lightGray, Color.lightGray));
     }//GEN-LAST:event_txtPassFocusGained
@@ -280,12 +280,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HoverHandler
 
     private void HoverExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverExited
-       this.btnLogin.setBackground(Color.decode("#CD131F"));
-       this.btnLogin.setForeground(Color.white);
+        this.btnLogin.setBackground(Color.decode("#CD131F"));
+        this.btnLogin.setForeground(Color.white);
     }//GEN-LAST:event_HoverExited
 
     private void enterHandle(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterHandle
-        if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             handleLogin();
         }
     }//GEN-LAST:event_enterHandle
@@ -294,69 +294,73 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.black, Color.lightGray, Color.lightGray, Color.lightGray));
     }//GEN-LAST:event_txtMouseClicked
-                      
-    
-   
-    public void handleLogin(){
-          try {
+
+    public void handleLogin() {
+        try {
 
             // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement();  
-          
-            resultSet = statement.executeQuery("SELECT usertype,username FROM Users where username='"+txtUser.getText()+"' and password='"+txtPass.getText()+"';");
-            
+            statement = (Statement) connection.createStatement();
+
+            resultSet = statement.executeQuery("SELECT usertype,username FROM Users where username='" + txtUser.getText() + "' and password='" + txtPass.getText() + "';");
+
             // Step 2.C: Executing SQL & retrieve data into ResultSet
-             try{
-                 int i=0;
-                 while(resultSet.next()){
-                     i++;   
-                     //    this.jPanel1.setVisible(false);
-                     System.out.println(resultSet.getString(1));
-                     if(resultSet.getString(1).equals("admin")){
-                         System.out.println("admin");
-                     }else if(resultSet.getString(1).equals("ucenik")){
-                         System.out.println("ucenik");
-                         StudentFrame newMain=new StudentFrame(connection,statement,resultSet,resultSet.getString("username"));
-                         newMain.setVisible(true);
-                         this.dispose();
-                     }else if(resultSet.getString(1).equals("nastavnik")){  
-                         System.out.println("nastavnik");
-                         ProfesorFrame newMain=new ProfesorFrame(connection,statement,resultSet,resultSet.getString("username"));
-                          newMain.setVisible(true);
-                          this.dispose();
-                     }
-                 }
-                 if(i==0){
-                     this.lblWrongUser.setText("Wrong user or pass!");
-                     this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath()+"\\src\\SlikeDizajn\\DangerIcon.png"));
-                 }
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
+            try { 
+                boolean ispravanUnos = false;
+                
+                while (resultSet.next()) {
+                    ispravanUnos = true;
+                    JFrame newFrame = null;  
+                    
+                    switch (resultSet.getString("usertype")) {
+                        case "admin":
+                            System.out.println("admin");
+                            newFrame = new AdminFrame();
+                            break;
+                        case "nastavnik":
+                            System.out.println("nastavnik");
+                            newFrame = new ProfesorFrame(connection, statement, resultSet, resultSet.getString("username"));
+                            break;
+                        case "ucenik":
+                            System.out.println("ucenik");
+                            newFrame = new StudentFrame(connection, statement, resultSet, resultSet.getString("username"));
+                            break;
+                    }
+                    
+                    if (newFrame != null) {
+                        newFrame.setVisible(true);
+                        this.dispose();
+                    }
+                }
+                
+                // Ako je resultSet prazan, tj. ako ne postoji kosinik u bazi
+                if (!ispravanUnos) {
+                    this.lblWrongUser.setText("Wrong user or pass!");
+                    this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath() + "\\src\\SlikeDizajn\\DangerIcon.png"));
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
+
+        } catch (Exception E) {
             System.out.println(E);
-        }
-        finally {
+        } finally {
 
             // Step 3: Closing database connection
             try {
-                if(null != connection) {
+                if (null != connection) {
 
                     // cleanup resources, once after 
                     statement.close();
 
-                   // connection.close();
+                    // connection.close();
                 }
-            }
-            catch (SQLException sqlex) {
+            } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
             }
         }
     }
+
     /**
      * @param args the command line arguments
      */
