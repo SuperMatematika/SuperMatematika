@@ -82,11 +82,5 @@ public class Test {
         
         return zadaci;
     }
-    
-    // Isto kao i funkcija iznad samo uzima 5 zadataka
-    public List<Zadatak> SastaviTest(String oblast, String razred) {
-        return SastaviTest(oblast, razred, 5);
-    }
-
-    
+ 
 }
