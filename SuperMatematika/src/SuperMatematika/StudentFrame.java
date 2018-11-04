@@ -209,6 +209,11 @@ public class StudentFrame extends javax.swing.JFrame {
                 HoverLeave(evt);
             }
         });
+        btnOcene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOceneActionPerformed(evt);
+            }
+        });
         pnlProfilMenu.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 50));
 
         btnOdjava.setBackground(new java.awt.Color(185, 20, 60));
@@ -304,6 +309,16 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnProfilClick
+
+    private void btnOceneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOceneActionPerformed
+       
+        // TODO add your handling code here:
+        OcenePanel newPnl = new OcenePanel(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnOceneActionPerformed
 
     /**
      * @param args the command line arguments
