@@ -35,105 +35,92 @@ public class pnlPredavanja extends javax.swing.JPanel {
     /**
      * Creates new form pnlPredavanja
      */
-    Connection connection=null;
-    Statement statement=null;
-    ResultSet resultSet=null;
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
     int razred;
     String username;
-    ArrayList<String> listaPutanja=new ArrayList();
-    ArrayList<String> listaLekcija=new ArrayList();
-    ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlPredavanja(Connection cnc,Statement st,ResultSet rs,int rzrd,String un) throws SQLException {
+    ArrayList<String> listaPutanja = new ArrayList();
+    ArrayList<String> listaLekcija = new ArrayList();
+    ArrayList<JButton> listaButtona = new ArrayList();
+
+    public pnlPredavanja(Connection cnc, Statement st, ResultSet rs, int rzrd, String un) throws SQLException {
         initComponents();
-         razred=rzrd;
-         connection=cnc;
-         statement=st;
-         resultSet=rs;
-         username=un;
+        razred = rzrd;
+        connection = cnc;
+        statement = st;
+        resultSet = rs;
+        username = un;
         loadLekcije();
-        
+
     }
-    private void createForm(){
+
+    private void createForm() {
         this.btnHolder.removeAll();
         this.btnHolder.revalidate();
-        this.btnHolder.setLayout(new GridLayout(4,0));
+        this.btnHolder.setLayout(new GridLayout(4, 0));
         System.out.println(listaLekcija.size());
-          Font f = new Font("Arial", Font.ITALIC, 24);
-        for(int i=0;i<listaLekcija.size();i++){
-            JButton b=new JButton(listaLekcija.get(i));
+        Font f = new Font("Arial", Font.ITALIC, 24);
+        for (int i = 0; i < listaLekcija.size(); i++) {
+            JButton b = new JButton(listaLekcija.get(i));
             b.setBackground(Color.white);
             b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
-            b.setPreferredSize(new Dimension(40,40));
+            b.setPreferredSize(new Dimension(40, 40));
             b.setFont(f);
-            
+
             b.setFocusPainted(false);
-            
+
             b.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     showPdf(evt);
                 }
-                
+
             }
             );
-            
+
             listaButtona.add(b);
             this.btnHolder.add(b);
             this.btnHolder.add(btnBaack);
             this.btnHolder.setVisible(true);
         }
-      
+
     }
-    
-    
-       
-    
-    private void loadLekcije(){
+
+    private void loadLekcije() {
         try {
 
             // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement(); 
-            
+            statement = (Statement) connection.createStatement();
+
             // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
             resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from Lekcija where ID_predmeta=1;");
-            
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-             try{
-                 while(resultSet.next()){
-                     listaPutanja.add(resultSet.getString("Putanja"));
-                     listaLekcija.add(resultSet.getString("NaslovLekcije"));
-                     
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
+
+            while (resultSet.next()) {
+                listaPutanja.add(resultSet.getString("Putanja"));
+                listaLekcija.add(resultSet.getString("NaslovLekcije"));
+            }
+
+        } catch (Exception E) {
             System.out.println(E);
-        }
-        finally {
+        } finally {
 
             // Step 3: Closing database connection
             try {
-                if(null != connection) {
+                if (null != connection) {
 
                     // cleanup resources, once after 
                     statement.close();
 
                     //connection.close();
                 }
-            }
-            catch (SQLException sqlex) {
+            } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
             }
-            
-        createForm(); 
-        
+
+            createForm();
+
         }
-        
+
     }
 
     /**
@@ -166,33 +153,31 @@ public class pnlPredavanja extends javax.swing.JPanel {
 
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
         mainChoiceView main;
-        try{
-            main=new mainChoiceView(connection,statement,resultSet,razred,username);
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(main);
-        }
-        catch(Exception ex)
-        {
-            
-        } // TODO add your handling code here:
-    }//GEN-LAST:event_btnBaackActionPerformed
-
-    private void showPdf(java.awt.event.ActionEvent evt) {                         
-            String putanja=null;
-            for(int i=0;i<this.listaButtona.size();i++){
-                if(evt.getSource()==this.listaButtona.get(i)){
-                    putanja=listaPutanja.get(i);
-                    break;
-                }
-            }
-            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja,username,"predavanja");
+        try {
+            main = new mainChoiceView(connection, statement, resultSet, razred, username);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
-            this.add(newPnl);
-        }    
+            this.add(main);
+        } catch (Exception ex) {
+
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_btnBaackActionPerformed
+
+    private void showPdf(java.awt.event.ActionEvent evt) {
+        String putanja = null;
+        for (int i = 0; i < this.listaButtona.size(); i++) {
+            if (evt.getSource() == this.listaButtona.get(i)) {
+                putanja = listaPutanja.get(i);
+                break;
+            }
+        }
+        pnlPDFView newPnl = new pnlPDFView(connection, statement, resultSet, razred, putanja, username, "predavanja");
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(newPnl);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBaack;
     private javax.swing.JPanel btnHolder;

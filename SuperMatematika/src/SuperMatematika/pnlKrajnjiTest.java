@@ -137,7 +137,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         
         mainPanel.setLayout(new GridLayout(5,0));
         Test test = new Test(connection, statement, resultSet);
-        List<Zadatak> zadaci = test.SastaviTest("skupovi", "peti", BROJ_ZADATAKA); 
+        List<Zadatak> zadaci = test.SastaviTest("skupovi", BROJ_ZADATAKA); 
         for (Zadatak z: zadaci)
             mainPanel.add(new ZadatakPanel(z));
         jPanel1.setViewportView(mainPanel);
