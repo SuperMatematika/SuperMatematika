@@ -35,23 +35,18 @@ public class pnlPredavanja extends javax.swing.JPanel {
     /**
      * Creates new form pnlPredavanja
      */
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
+    Student trenutniKorisnik;
     ArrayList<String> listaPutanja = new ArrayList();
     ArrayList<String> listaLekcija = new ArrayList();
     ArrayList<JButton> listaButtona = new ArrayList();
 
-    public pnlPredavanja(Connection cnc, Statement st, ResultSet rs, int rzrd, String un) throws SQLException {
+    public pnlPredavanja(Student tk) throws SQLException {
+        trenutniKorisnik=tk;
         initComponents();
-        razred = rzrd;
-        connection = cnc;
-        statement = st;
-        resultSet = rs;
-        username = un;
-        loadLekcije();
+        listaPutanja=DBController.require().getPutanjeLekcija();
+        listaLekcija=DBController.require().getLekcije();
+        createForm();
+//        loadLekcije();
 
     }
 
@@ -86,42 +81,6 @@ public class pnlPredavanja extends javax.swing.JPanel {
 
     }
 
-    private void loadLekcije() {
-        try {
-
-            // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement();
-
-            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from Lekcija where ID_predmeta=1;");
-
-            while (resultSet.next()) {
-                listaPutanja.add(resultSet.getString("Putanja"));
-                listaLekcija.add(resultSet.getString("NaslovLekcije"));
-            }
-
-        } catch (Exception E) {
-            System.out.println(E);
-        } finally {
-
-            // Step 3: Closing database connection
-            try {
-                if (null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            } catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-
-            createForm();
-
-        }
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,7 +113,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
         mainChoiceView main;
         try {
-            main = new mainChoiceView(connection, statement, resultSet, razred, username);
+            main = new mainChoiceView(trenutniKorisnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -172,7 +131,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                 break;
             }
         }
-        pnlPDFView newPnl = new pnlPDFView(connection, statement, resultSet, razred, putanja, username, "predavanja");
+        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik,putanja, "predavanja");
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());

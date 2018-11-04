@@ -28,26 +28,11 @@ import javax.swing.JFrame;
 public class MainFrame extends javax.swing.JFrame {
 
     String currPath = new File("").getAbsolutePath();
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
 
     public MainFrame() throws SQLException {
-
-        try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String msAccDB = currPath + "/Supermatematika.accdb";
-            String dbURL = "jdbc:ucanaccess://" + msAccDB;
-
-            // Step 2.A: Create and get connection using DriverManager class
-            connection = DriverManager.getConnection(dbURL);
-
-        } catch (ClassNotFoundException cnfex) {
-
-            System.out.println("Problem in loading or "
-                    + "registering MS Access JDBC driver");
-            cnfex.printStackTrace();
-        }
+        
+        // To increase speed later on, is not required
+        DBController startConnection=DBController.require();
         initComponents();
     }
 
@@ -253,7 +238,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        handleLogin();
+
+        try {
+            handleLogin();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
@@ -286,7 +276,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void enterHandle(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterHandle
         if (evt.getKeyCode() == 10) {
-            handleLogin();
+            try {
+                handleLogin();
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_enterHandle
 
@@ -295,65 +289,37 @@ public class MainFrame extends javax.swing.JFrame {
         txtUser.setBorder(BorderFactory.createSoftBevelBorder(1, Color.black, Color.lightGray, Color.lightGray, Color.lightGray));
     }//GEN-LAST:event_txtMouseClicked
 
-    public void handleLogin() {
-        try {
-
-            // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement();
-
-            resultSet = statement.executeQuery("SELECT usertype,username FROM Users where username='" + txtUser.getText() + "' and password='" + txtPass.getText() + "';");
-
-            boolean ispravanUnos = false;
-
-            while (resultSet.next()) {
-                ispravanUnos = true;
-                JFrame newFrame = null;
-
-                switch (resultSet.getString("usertype")) {
-                    case "admin":
-                        System.out.println("admin");
-                        newFrame = new AdminFrame();
-                        break;
-                    case "nastavnik":
-                        System.out.println("nastavnik");
-                        newFrame = new ProfesorFrame(connection, statement, resultSet, resultSet.getString("username"));
-                        break;
-                    case "ucenik":
-                        System.out.println("ucenik");
-                        newFrame = new StudentFrame(connection, statement, resultSet, resultSet.getString("username"));
-                        break;
-                }
-
-                if (newFrame != null) {
-                    newFrame.setVisible(true);
+    public void handleLogin() throws SQLException {
+        Korisnik tr=DBController.require().loginValid(this.txtUser.getText(),this.txtPass.getText());
+        if(tr!=null){
+            System.out.println("USPESAN LOGIN");
+            
+            //HANDLE GRAPHICS
+            switch(tr.getUserType()){
+                case "ucenik":
+                    StudentFrame newMain=new StudentFrame(new Student(tr));
+                    newMain.setVisible(true);
                     this.dispose();
-                }
-            }
-
-            // Ako je resultSet prazan, tj. ako ne postoji kosinik u bazi
-            if (!ispravanUnos) {
-                this.lblWrongUser.setText("Wrong user or pass!");
-                this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath() + "\\src\\SlikeDizajn\\DangerIcon.png"));
-            }
-
-        } catch (Exception E) {
-            System.out.println("Greska u logovanju: " + E);
-            E.printStackTrace();
-        } finally {
-
-            // Step 3: Closing database connection
-            try {
-                if (null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    // connection.close();
-                }
-            } catch (SQLException sqlex) {
-                sqlex.printStackTrace();
+                    break;
+                case "nastavnik":
+                    ProfesorFrame newMain2=new ProfesorFrame(new Profesor(tr));
+                    newMain2.setVisible(true);
+                    this.dispose();
+                    break;
+                case "admin":
+                    AdminFrame newMain3=new AdminFrame(new Admin(tr));
+                    newMain3.setVisible(true);
+                    this.dispose();
+                    break;
             }
         }
+        else{
+            
+            // HANDLE GRAHPICS
+            this.lblWrongUser.setText("Wrong user or pass!");
+            this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath()+"\\src\\SlikeDizajn\\DangerIcon.png"));
+        }
+        
     }
 
     /**

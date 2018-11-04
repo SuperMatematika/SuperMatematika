@@ -9,36 +9,27 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Melida
  */
 public class ProfesorFrame extends javax.swing.JFrame {
-
+    Profesor trenutniProfesor;
     /**
      * Creates new form ProfesorFrame
      */
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
-    public ProfesorFrame(Connection c, Statement s, ResultSet rs, String un) throws SQLException {
-        connection=c;
-        statement=s;
-        resultSet=rs;
-        
-        username=un;
+   
+    public ProfesorFrame(Profesor p) throws SQLException {
+        trenutniProfesor=p;
         initComponents();
-        
-        
+    }
+
+    private ProfesorFrame() {
     }
     
-    ProfesorFrame()
-    {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

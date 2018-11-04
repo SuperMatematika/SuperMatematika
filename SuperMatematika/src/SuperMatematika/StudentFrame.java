@@ -26,100 +26,30 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Melida
  */
 public class StudentFrame extends javax.swing.JFrame {
+    Student trenutniKorisnik;
 
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
-
-    public StudentFrame(Connection c, Statement s, ResultSet rs, String un) throws SQLException {
-        connection = c;
-        statement = s;
-        resultSet = rs;
-
-        username = un;
-        razred = dbGetRazred();
-        
+    public StudentFrame(Korisnik k) throws SQLException {
         initComponents();
-        mainChoiceView newPnl;
-        newPnl = new mainChoiceView(connection, statement, resultSet, razred, username);
+        
+        this.trenutniKorisnik=new Student(k);
+        System.out.println(trenutniKorisnik);
+        trenutniKorisnik.setRazred(DBController.require().getRazred(trenutniKorisnik));
+        this.lblRazred.setText(trenutniKorisnik.getRazred() + ". RAZRED");
+        System.out.println(trenutniKorisnik.getIme());
+        this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
+        
+        mainChoiceView newPnl = new mainChoiceView(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.imePrezime.setText(getIme());
+        
         setNav();
         this.pnlProfilMenu.setVisible(false);
-        lblRazred.setText(razred + ". RAZRED");
     }
 
-    StudentFrame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    public String getIme() {
-        try {
-            statement = (Statement) connection.createStatement();
-            resultSet = statement.executeQuery("SELECT ime,prezime from Student INNER JOIN Users ON Student.username = Users.username WHERE username='" + username + "';");
-            while (resultSet.next()) {
-                return resultSet.getString(1) + " " + resultSet.getString(2);
-            }
-
-        } catch (Exception E) {
-            System.out.println(E);
-        } finally {
-
-            // Step 3: Closing database connection
-            try {
-                if (null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            } catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
-        return "";
-    }
-
-    public int dbGetRazred() throws SQLException {
-
-        try {
-            statement = (Statement) connection.createStatement();
-            resultSet = statement.executeQuery("SELECT razred from Student where username='" + username + "';");
-            try {
-                while (resultSet.next()) {
-                    return resultSet.getInt("razred");
-                }
-
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            // processing returned data and printing into console
-
-        } catch (Exception E) {
-            System.out.println(E);
-        } finally {
-
-            // Step 3: Closing database connection
-            try {
-                if (null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            } catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
-        return 0;
-    }
+//    
 
     public void setNav() {
         //create the root node
@@ -341,7 +271,6 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HoverLeave
 
     private void btnOdjavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdjavaActionPerformed
-
         try {
             MainFrame m = new MainFrame();
             m.setVisible(true);
