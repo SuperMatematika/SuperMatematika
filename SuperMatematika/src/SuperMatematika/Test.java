@@ -31,15 +31,15 @@ public class Test {
     // Funkcija nazlazi odredjeni broj zadataka u bazi za dati razred i datu oblast
     // Vraca listu zadataka odgovarajuce duzine
    
-    public List<Zadatak> SastaviTest(String oblast, String razred, int brojZadataka){
+    public List<Zadatak> SastaviTest(String oblast, int brojZadataka){
         ArrayList<Zadatak> zadaci = new ArrayList();
         
         try {
 
-            // Step 2.B: Creating JDBC Statement 
+            // Treba da se popravi, da zavisi od razreda i od predmeta
             statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT * from PraviTest " 
-                                                + "WHERE Razred = '" + razred + "' AND Oblast = '" + oblast + "'" 
+            resultSet = statement.executeQuery("SELECT * from Zadatak " 
+                                                + "WHERE Oblast = '" + oblast + "'" 
                                                 + "ORDER BY RAND() LIMIT " + brojZadataka + ";");
             
             // Step 2.C: Executing SQL & retrieve data into ResultSet
@@ -82,11 +82,5 @@ public class Test {
         
         return zadaci;
     }
-    
-    // Isto kao i funkcija iznad samo uzima 5 zadataka
-    public List<Zadatak> SastaviTest(String oblast, String razred) {
-        return SastaviTest(oblast, razred, 5);
-    }
-
-    
+ 
 }

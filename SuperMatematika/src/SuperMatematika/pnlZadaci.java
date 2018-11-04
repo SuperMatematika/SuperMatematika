@@ -81,22 +81,15 @@ public class pnlZadaci extends javax.swing.JPanel {
 
             // Step 2.B: Creating JDBC Statement 
             statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from vezbe where Razred='"+ razred+"';");
+            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
+            // Bice na sednici upravnog odbora o ovome, ako dodjem tj. :D
+            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from vezbe where ID_predmeta=1;");
             
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-             try{
-                 while(resultSet.next()){
-                     listaPutanja.add(resultSet.getString("Putanja"));
-                     listaOblasti.add(resultSet.getString("NaslovLekcije"));
-                     
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
+            while (resultSet.next()) {
+                listaPutanja.add(resultSet.getString("Putanja"));
+                listaOblasti.add(resultSet.getString("NaslovLekcije"));
+            }
+
         }
         catch(Exception E){
             System.out.println(E);
