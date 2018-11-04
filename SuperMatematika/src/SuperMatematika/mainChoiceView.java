@@ -23,22 +23,10 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Melida
  */
 public class mainChoiceView extends javax.swing.JPanel {
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
-    /**
-     * Creates new form mainChoiceView
-     * @throws java.sql.SQLException
-     */
-    public mainChoiceView(Connection c,Statement s,ResultSet rs,int rz,String us) throws SQLException {
-        connection=c;
-        statement=s;
-        resultSet=rs;
-        razred=rz;
-        username=us;
-        initComponents();
+    
+    Student trenutniKorisnik;
+    public mainChoiceView(Student tk) throws SQLException {
+        trenutniKorisnik=tk;
         initComponents();
     }
 
@@ -129,8 +117,7 @@ public class mainChoiceView extends javax.swing.JPanel {
          // TODO add your handling code here:
         pnlPredavanja newPnl;
        try {
-           newPnl = new pnlPredavanja(connection,statement,resultSet,razred,username);
-           System.out.println(razred+username);
+            newPnl = new pnlPredavanja(trenutniKorisnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -142,16 +129,20 @@ public class mainChoiceView extends javax.swing.JPanel {
 
     private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
         pnlZadaci newPnl;
-        newPnl = new pnlZadaci(connection,statement,resultSet,razred,username);
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
+        try {
+            newPnl = new pnlZadaci(trenutniKorisnik);
+            this.removeAll();
+            this.revalidate();
+            this.setLayout(new BorderLayout());
+            this.add(newPnl);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainChoiceView.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
     }//GEN-LAST:event_btnLekcije1ActionPerformed
 
     private void btnLekcije3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije3ActionPerformed
-        pnlProbniTest newPnl=new pnlProbniTest(connection,statement,resultSet,razred,username);
+        pnlProbniTest newPnl=new pnlProbniTest(trenutniKorisnik);
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
@@ -159,7 +150,7 @@ public class mainChoiceView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLekcije3ActionPerformed
 
     private void btnProbniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbniActionPerformed
-        pnlKrajnjiTest newPnl=new pnlKrajnjiTest(connection,statement,resultSet,razred,username);
+        pnlKrajnjiTest newPnl=new pnlKrajnjiTest(trenutniKorisnik);
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());

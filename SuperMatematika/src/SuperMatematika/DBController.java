@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 /**
@@ -35,6 +37,7 @@ public class DBController {
             cnfex.printStackTrace();
         }
     }
+    
     public static DBController require() throws SQLException{
         if(instance==null){
             instance=new DBController();
@@ -60,68 +63,148 @@ public class DBController {
                 sqlex.printStackTrace();
             }
         }
-         return resultSet;
+        return resultSet;
+    }
+    public int getRazred(Korisnik k){
+        try {
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT razred from Student where username='" + k.getUsername() + "';");
+            try {
+                statement.close();
+                while (resultSet.next()) {
+                    return resultSet.getInt("razred");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+        return 0;
     }
     
-//    public Boolean handleLogin(String username,String password){
-//         try {
-//            statement = (Statement) connection.createStatement();  
-//            resultSet = statement.executeQuery("SELECT usertype,username FROM Users where username='"+username+"' and password='"+password+"';");
-//             try{
-//                 if(resultSet.first()){
-//                     return true;
-//                 }
-//                 else{
-//                     return false;
-//                 }
-//                 int i=0;
-//                 while(resultSet.next()){
-//                     i++;   
-//                     if(resultSet.getString(1).equals("admin")){
-//                         System.out.println("admin");
-//                     }else if(resultSet.getString(1).equals("student")){
-//                         System.out.println("student");
-//                         StudentFrame newMain=new StudentFrame(connection,statement,resultSet,resultSet.getString("username"));
-//                         newMain.setVisible(true);
-//                         this.dispose();
-//                     }else if(resultSet.getString(1).equals("profesor")){  
-//                         System.out.println("Profesor");
-//                         ProfesorFrame newMain=new ProfesorFrame(connection,statement,resultSet,resultSet.getString("username"));
-//                          newMain.setVisible(true);
-//                          this.dispose();
-//                     }
-//                 }
-//                 if(i==0){
-//                     this.lblWrongUser.setText("Wrong user or pass!");
-//                     this.lblDangerIcon.setIcon(new ImageIcon(new File("").getAbsolutePath()+"\\src\\SlikeDizajn\\DangerIcon.png"));
-//                 }
-//             }       
-//             catch(Exception e){
-//                 System.out.println(e);
-//             }
-//            // processing returned data and printing into console
-//          
-//        }
-//        catch(Exception E){
-//            System.out.println(E);
-//        }
-//        finally {
-//
-//            // Step 3: Closing database connection
-//            try {
-//                if(null != connection) {
-//
-//                    // cleanup resources, once after 
-//                    statement.close();
-//
-//                   // connection.close();
-//                }
-//            }
-//            catch (SQLException sqlex) {
-//                sqlex.printStackTrace();
-//            }
-//        }
-//    }
+    
+    
+    public Korisnik loginValid(String username,String password){
+         try {
+            statement = (Statement) connection.createStatement();  
+            resultSet=statement.executeQuery("SELECT username,usertype,ime,prezime,godina_rodjenja,pol from Users where username='"+username+"' and password='"+password+"';");
+            statement.close();
+            if(resultSet.next()){
+                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("Godina_rodjenja"),resultSet.getString("pol"));
+            }
+            else{
+                return null;
+            }
+          
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection)
+                    statement.close();
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    ArrayList<String> getPutanjeLekcija() {
+        try {
+            ArrayList<String> listaPutanja=new ArrayList();
+            statement = (Statement) connection.createStatement();
+            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
+            resultSet = statement.executeQuery("SELECT Putanja from Lekcija where ID_predmeta=1;");
+            statement.close();
+            while (resultSet.next()) {
+                listaPutanja.add(resultSet.getString("Putanja"));
+//                listaLekcija.add(resultSet.getString("NaslovLekcije"));
+            }
+            return listaPutanja;
+
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+
+        return null;
+    }
+
+    ArrayList<String> getLekcije() {
+        try {
+            ArrayList<String> listaLekcija=new ArrayList();
+            statement = (Statement) connection.createStatement();
+            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
+            resultSet = statement.executeQuery("SELECT NaslovLekcije from Lekcija where ID_predmeta=1;");
+            statement.close();
+            while (resultSet.next()) {
+//                listaPutanja.add(resultSet.getString("Putanja"));
+                listaLekcija.add(resultSet.getString("NaslovLekcije"));
+            }
+            return listaLekcija;
+
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+
+        return null;
+    }
+
+    List<Zadatak> SastaviTest(String oblast, int brzadataka) {
+        ArrayList<Zadatak> zadaci = new ArrayList();
+        
+        try {
+
+            // Treba da se popravi, da zavisi od razreda i od predmeta
+            statement = (Statement) connection.createStatement();  
+            resultSet = statement.executeQuery("SELECT * from Zadatak " 
+                                                + "WHERE Oblast = '" + oblast + "'" 
+                                                + "ORDER BY RAND() LIMIT " + brzadataka + ";");
+            
+            // Step 2.C: Executing SQL & retrieve data into ResultSet
+             try{
+                 while(resultSet.next()){
+                     Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
+                                                resultSet.getString("TacanOdgovor"),
+                                                resultSet.getString("PogresanOdgovor1"),
+                                                resultSet.getString("PogresanOdgovor2"),
+                                                resultSet.getString("PogresanOdgovor3"));
+                    zadaci.add(temp);
+                 }
+                
+             }       
+             catch(Exception e){
+                 System.out.println(e);
+             }
+            // processing returned data and printing into console
+          
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+                if(null != connection) {
+
+                    // cleanup resources, once after 
+                    statement.close();
+
+                    //connection.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        
+        return zadaci;
+    }
+    
     
     
 }

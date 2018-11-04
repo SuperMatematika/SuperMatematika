@@ -13,8 +13,11 @@ import java.awt.Label;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,20 +29,12 @@ import javax.swing.JScrollPane;
  */
 public class pnlKrajnjiTest extends javax.swing.JPanel {
     
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
+    Student trenutniKorisnik;
     JPanel mainPanel; //c
     private static int BROJ_ZADATAKA = 3;
     
-    public pnlKrajnjiTest(Connection c,Statement s,ResultSet rs,int rz,String ss) {
-        connection=c;
-        statement=s;
-        resultSet=rs;
-        razred=rz;
-        username=ss;
+    public pnlKrajnjiTest(Student tr) {
+        trenutniKorisnik=tr;
         initComponents();
         mainPanel=new JPanel();
         mainPanel.setLayout(new GridLayout(5,0)); //c
@@ -118,7 +113,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          mainChoiceView main;
         try{
-            main=new mainChoiceView(connection,statement,resultSet,razred,username);
+            main=new mainChoiceView(trenutniKorisnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -136,11 +131,15 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         mainPanel.revalidate();
         
         mainPanel.setLayout(new GridLayout(5,0));
-        Test test = new Test(connection, statement, resultSet);
-        List<Zadatak> zadaci = test.SastaviTest("skupovi", BROJ_ZADATAKA); 
-        for (Zadatak z: zadaci)
-            mainPanel.add(new ZadatakPanel(z));
-        jPanel1.setViewportView(mainPanel);
+        List<Zadatak> zadaci; 
+        try {
+            zadaci = DBController.require().SastaviTest("skupovi", BROJ_ZADATAKA);
+            for (Zadatak z: zadaci)
+                mainPanel.add(new ZadatakPanel(z));
+            jPanel1.setViewportView(mainPanel);
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bNoviTestActionPerformed
 
     // Proveri rezultate

@@ -14,7 +14,14 @@ public class AdminFrame extends javax.swing.JFrame {
     /**
      * Creates new form AdminFrame
      */
+    Admin trenutniKorisnik;
+    
     public AdminFrame() {
+        initComponents();
+    }
+
+    AdminFrame(Admin admin) {
+        trenutniKorisnik=admin;
         initComponents();
     }
 
