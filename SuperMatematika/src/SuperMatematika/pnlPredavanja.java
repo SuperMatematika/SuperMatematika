@@ -43,8 +43,8 @@ public class pnlPredavanja extends javax.swing.JPanel {
     public pnlPredavanja(Student tk) throws SQLException {
         trenutniKorisnik=tk;
         initComponents();
-        listaPutanja=DBController.require().getPutanjeLekcija();
-        listaLekcija=DBController.require().getLekcije();
+        listaPutanja=DBController.require().getPutanjeOblasti("Lekcija");
+        listaLekcija=DBController.require().getOblasti("Lekcija");
         createForm();
 //        loadLekcije();
 

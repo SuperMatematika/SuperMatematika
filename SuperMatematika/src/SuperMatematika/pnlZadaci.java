@@ -32,8 +32,8 @@ public class pnlZadaci extends javax.swing.JPanel {
     public pnlZadaci(Student tr) throws SQLException {
         trenutniKorisnik=tr;
         initComponents();
-        listaPutanja=DBController.require().getPutanjeLekcija();
-        listaOblasti=DBController.require().getLekcije();
+        listaPutanja=DBController.require().getPutanjeOblasti("Vezbe");
+        listaOblasti=DBController.require().getOblasti("Vezbe");
         createForm();
     }
     private void createForm(){

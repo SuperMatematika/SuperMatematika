@@ -113,12 +113,12 @@ public class DBController {
         return null;
     }
 
-    ArrayList<String> getPutanjeLekcija() {
+    ArrayList<String> getPutanjeOblasti(String oblast) {
         try {
             ArrayList<String> listaPutanja=new ArrayList();
             statement = (Statement) connection.createStatement();
             // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT Putanja from Lekcija where ID_predmeta=1;");
+            resultSet = statement.executeQuery("SELECT Putanja from "+oblast+" where ID_predmeta=1;");
             statement.close();
             while (resultSet.next()) {
                 listaPutanja.add(resultSet.getString("Putanja"));
@@ -133,12 +133,12 @@ public class DBController {
         return null;
     }
 
-    ArrayList<String> getLekcije() {
+    ArrayList<String> getOblasti(String tabela) {
         try {
             ArrayList<String> listaLekcija=new ArrayList();
             statement = (Statement) connection.createStatement();
             // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT NaslovLekcije from Lekcija where ID_predmeta=1;");
+            resultSet = statement.executeQuery("SELECT NaslovLekcije from "+tabela+" where ID_predmeta=1;");
             statement.close();
             while (resultSet.next()) {
 //                listaPutanja.add(resultSet.getString("Putanja"));
