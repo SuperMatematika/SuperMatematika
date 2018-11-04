@@ -15,17 +15,9 @@ import java.sql.Statement;
  * @author 1
  */
 public class pnlProbniTest extends javax.swing.JPanel {
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    int razred;
-    String username;
-    public pnlProbniTest(Connection c,Statement s,ResultSet rs,int rz,String ss) {
-        connection=c;
-        statement=s;
-        resultSet=rs;
-        razred=rz;
-        username=ss;
+    Student trenutniKorisnik;
+    public pnlProbniTest(Student tr) {
+        trenutniKorisnik=tr;
         initComponents();
     }
 
@@ -66,7 +58,7 @@ public class pnlProbniTest extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         mainChoiceView main;
         try{
-            main=new mainChoiceView(connection,statement,resultSet,razred,username);
+            main=new mainChoiceView(trenutniKorisnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());

@@ -25,23 +25,16 @@ import javax.swing.JButton;
  * @author 1
  */
 public class pnlZadaci extends javax.swing.JPanel {
-
-     Connection connection=null;
-    Statement statement=null;
-    ResultSet resultSet=null;
-    int razred;
-    String username;
+    Student trenutniKorisnik;
     ArrayList<String> listaPutanja=new ArrayList();
     ArrayList<String> listaOblasti=new ArrayList();
     ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlZadaci(Connection c,Statement s,ResultSet rs,int rzrd,String un) {
+    public pnlZadaci(Student tr) throws SQLException {
+        trenutniKorisnik=tr;
         initComponents();
-        razred=rzrd;
-        connection=c;
-        statement=s;
-        resultSet=rs;
-        username=un;
-        loadLekcije();
+        listaPutanja=DBController.require().getPutanjeOblasti("Vezbe");
+        listaOblasti=DBController.require().getOblasti("Vezbe");
+        createForm();
     }
     private void createForm(){
         this.btnHolder.removeAll();
@@ -75,53 +68,6 @@ public class pnlZadaci extends javax.swing.JPanel {
     
     
        
-    
-    private void loadLekcije(){
-        try {
-
-            // Step 2.B: Creating JDBC Statement 
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT NaslovLekcije,Putanja from vezbe where Razred='"+ razred+"';");
-            
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-             try{
-                 while(resultSet.next()){
-                     listaPutanja.add(resultSet.getString("Putanja"));
-                     listaOblasti.add(resultSet.getString("NaslovLekcije"));
-                     
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
-        }
-        catch(Exception E){
-            System.out.println(E);
-        }
-        finally {
-
-            // Step 3: Closing database connection
-            try {
-                if(null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-            
-        createForm(); 
-        
-        }
-        
-    }
      private void showPdf(java.awt.event.ActionEvent evt) {                         
             String putanja=null;
             for(int i=0;i<this.listaButtona.size();i++){
@@ -130,7 +76,7 @@ public class pnlZadaci extends javax.swing.JPanel {
                     break;
                 }
             }
-            pnlPDFView newPnl=new pnlPDFView(connection,statement,resultSet,razred,putanja,username,"zadaci");
+            pnlPDFView newPnl=new pnlPDFView(trenutniKorisnik,putanja,"zadaci");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -196,7 +142,7 @@ public class pnlZadaci extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
          mainChoiceView main;
         try{
-            main=new mainChoiceView(connection,statement,resultSet,razred,username);
+            main=new mainChoiceView(trenutniKorisnik);
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
