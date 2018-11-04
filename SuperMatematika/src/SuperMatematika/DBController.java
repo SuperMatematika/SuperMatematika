@@ -65,6 +65,7 @@ public class DBController {
         }
         return resultSet;
     }
+    
     public int getRazred(Korisnik k){
         try {
             statement = (Statement) connection.createStatement();
@@ -81,6 +82,24 @@ public class DBController {
             System.out.println(E);
         } 
         return 0;
+    }
+    
+    public String getFakultet(Korisnik k){
+        try {
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT Fakultet from Nastavnik where username='" + k.getUsername() + "';");
+            try {
+                statement.close();
+                while (resultSet.next()) {
+                    return resultSet.getString("Fakultet");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+        return "";
     }
     
     

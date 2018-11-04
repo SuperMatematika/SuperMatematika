@@ -5,19 +5,43 @@
  */
 package SuperMatematika;
 
+import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Melida
  */
 public class ProfilPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ProfilPanel
-     */
-    Student trenutniKorisnik;
-    public ProfilPanel(Student tk) {
+    
+    Korisnik trenutniKorisnik;
+    
+    // Ovaj panel ce se koristiti za prikazivanje profila ucenika i profesora, zbog toga je atribut "trenutniKorsnik" tipa
+    // korsinik jer obe ove klase nasledjuju tu klasu
+    public ProfilPanel(Korisnik tk) {
         trenutniKorisnik=tk;
         initComponents();
+        popuniLabele();
+    }
+    
+    private void popuniLabele() {
+        lUsername.setText(trenutniKorisnik.username);
+        lIme.setText(trenutniKorisnik.ime);
+        lPrezime.setText(trenutniKorisnik.prezime);
+        lDatumRodjenja.setText(trenutniKorisnik.datumRodjenja.toString());
+        lPol.setText(trenutniKorisnik.pol);
+        
+        // Za student se pamti razred dok se za nastavnika pamti njegov fakultet
+        if (trenutniKorisnik instanceof Student)
+            lRazredIliFakultet.setText(((Student)trenutniKorisnik).getRazred() + "");
+        else if(trenutniKorisnik instanceof Profesor) {
+            lRazredIliFakultet.setText(((Profesor)trenutniKorisnik).getFakultet());
+            // Umesto razred treba da pise fakultet
+            jLabel12.setText("Fakultet");
+        }
     }
 
     
@@ -32,23 +56,130 @@ public class ProfilPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lRazredIliFakultet = new javax.swing.JLabel();
+        lUsername = new javax.swing.JLabel();
+        lIme = new javax.swing.JLabel();
+        lPrezime = new javax.swing.JLabel();
+        lDatumRodjenja = new javax.swing.JLabel();
+        lPol = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        bBack = new javax.swing.JButton();
+        bIzmeniProfil = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lRazredIliFakultet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lRazredIliFakultet.setText("_");
+        jPanel1.add(lRazredIliFakultet, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, -1, -1));
+
+        lUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lUsername.setText("_");
+        jPanel1.add(lUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
+
+        lIme.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lIme.setText("_");
+        jPanel1.add(lIme, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+
+        lPrezime.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lPrezime.setText("_");
+        jPanel1.add(lPrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, -1, -1));
+
+        lDatumRodjenja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lDatumRodjenja.setText("_");
+        jPanel1.add(lDatumRodjenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
+
+        lPol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lPol.setText("_");
+        jPanel1.add(lPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Ime:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Username:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Prezime:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Datum rodjenja:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Pol:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Razred:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+
+        bBack.setText("Back");
+        bBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        bIzmeniProfil.setText("Izmeni profil");
+        bIzmeniProfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bIzmeniProfilActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bIzmeniProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackActionPerformed
+        try {
+            this.removeAll();
+            this.revalidate();
+            this.setLayout(new BorderLayout());
+            this.add(new mainChoiceView((Student)trenutniKorisnik));
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_bBackActionPerformed
+
+    private void bIzmeniProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIzmeniProfilActionPerformed
+        JOptionPane.showMessageDialog(this, "Comming soon!");
+    }//GEN-LAST:event_bIzmeniProfilActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bBack;
+    private javax.swing.JButton bIzmeniProfil;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lDatumRodjenja;
+    private javax.swing.JLabel lIme;
+    private javax.swing.JLabel lPol;
+    private javax.swing.JLabel lPrezime;
+    private javax.swing.JLabel lRazredIliFakultet;
+    private javax.swing.JLabel lUsername;
     // End of variables declaration//GEN-END:variables
 }

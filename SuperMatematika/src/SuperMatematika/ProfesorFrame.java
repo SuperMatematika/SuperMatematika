@@ -24,6 +24,8 @@ public class ProfesorFrame extends javax.swing.JFrame {
    
     public ProfesorFrame(Profesor p) throws SQLException {
         trenutniProfesor=p;
+        trenutniProfesor.setFakultet(DBController.require().getFakultet((Korisnik)trenutniProfesor));
+        //System.out.println("Nastavnik je studirao na " + trenutniProfesor.getFakultet());
         initComponents();
     }
 
