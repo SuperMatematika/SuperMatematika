@@ -65,6 +65,10 @@ public class DBController {
         }
         return resultSet;
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> Profil-i-Ocene
     public int getRazred(Korisnik k){
         try {
             statement = (Statement) connection.createStatement();
@@ -83,6 +87,27 @@ public class DBController {
         return 0;
     }
     
+<<<<<<< HEAD
+=======
+    public String getFakultet(Korisnik k){
+        try {
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT Fakultet from Nastavnik where username='" + k.getUsername() + "';");
+            try {
+                statement.close();
+                while (resultSet.next()) {
+                    return resultSet.getString("Fakultet");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+        return "";
+    }
+    
+>>>>>>> Profil-i-Ocene
     
     
     public Korisnik loginValid(String username,String password){
