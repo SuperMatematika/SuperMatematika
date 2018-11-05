@@ -34,14 +34,16 @@ public class pnlPDFView extends javax.swing.JPanel {
    
     String file;
     Student trenutniKorisnik;
+    Predmet trenutniPredmet;
     String goBack;
     SwingController control=new SwingController();
     String path=new File("").getAbsolutePath();
     /**
      * Creates new form pnlPDFView
      */
-    public pnlPDFView(Student tr,String putanja,String previous) {
-        
+    public pnlPDFView(Student tr,Predmet pk,String putanja,String previous) {
+        trenutniKorisnik=tr;
+        trenutniPredmet=pk;
         file=putanja;
         goBack=previous;
         initComponents();
@@ -119,10 +121,10 @@ public class pnlPDFView extends javax.swing.JPanel {
         try {
             switch(goBack){
                 case "zadaci":
-                    this.add(new pnlZadaci(trenutniKorisnik));
+                    this.add(new pnlZadaci(trenutniKorisnik,trenutniPredmet));
                     break;
                 case "predavanja":
-                    this.add(new pnlPredavanja(trenutniKorisnik));
+                    this.add(new pnlPredavanja(trenutniKorisnik,trenutniPredmet));
                     break;
             }
         } catch (SQLException ex) {

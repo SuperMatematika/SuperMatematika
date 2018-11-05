@@ -205,6 +205,24 @@ public class DBController {
         return zadaci;
     }
     
-    
+    public ArrayList<Predmet> getPredmete(int razred){
+         try {
+            ArrayList<Predmet> listaPredmeta=new ArrayList();
+            statement = (Statement) connection.createStatement();
+            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
+            resultSet = statement.executeQuery("SELECT * from Predmet where Razred='"+razred+"';");
+            statement.close();
+            while (resultSet.next()) {
+//                listaPutanja.add(resultSet.getString("Putanja"));
+                listaPredmeta.add(new Predmet(resultSet.getString("ID_predmeta"),resultSet.getString("Naziv"),resultSet.getString("Username_nastavnika"),resultSet.getInt("Razred")));
+            }
+            return listaPredmeta;
+
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+
+        return null;
+    }
     
 }

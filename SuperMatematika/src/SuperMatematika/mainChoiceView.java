@@ -105,37 +105,37 @@ public class mainChoiceView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 @SuppressWarnings("unchecked")
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
          // TODO add your handling code here:
-        pnlPredavanja newPnl;
+        pnlBirajRazred newPnl;
        try {
-            newPnl = new pnlPredavanja(trenutniKorisnik);
+            newPnl = new pnlBirajRazred(trenutniKorisnik,"predavanja");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
             this.add(newPnl);
-       } catch (SQLException ex) {
+       } catch (Exception ex) {
            Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
        }
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
-        pnlZadaci newPnl;
+        pnlBirajRazred newPnl;
         try {
-            newPnl = new pnlZadaci(trenutniKorisnik);
+            newPnl = new pnlBirajRazred(trenutniKorisnik,"zadaci");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
             this.add(newPnl);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(mainChoiceView.class.getName()).log(Level.SEVERE, null, ex);
         }
       

@@ -96,9 +96,9 @@ public class StudentFrame extends javax.swing.JFrame {
         btnStatistika = new javax.swing.JButton();
         btnOcene = new javax.swing.JButton();
         btnOdjava = new javax.swing.JButton();
-        pnlMainContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Navigacija = new javax.swing.JTree();
+        pnlMainContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -240,12 +240,12 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlBackground.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 150, 200));
 
-        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 800, 650));
-
         jScrollPane1.setViewportView(Navigacija);
 
         pnlBackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 650));
+
+        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 800, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

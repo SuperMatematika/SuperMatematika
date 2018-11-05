@@ -36,11 +36,13 @@ public class pnlPredavanja extends javax.swing.JPanel {
      * Creates new form pnlPredavanja
      */
     Student trenutniKorisnik;
+    Predmet trenutniPredmet;
     ArrayList<String> listaPutanja = new ArrayList();
     ArrayList<String> listaLekcija = new ArrayList();
     ArrayList<JButton> listaButtona = new ArrayList();
 
-    public pnlPredavanja(Student tk) throws SQLException {
+    public pnlPredavanja(Student tk,Predmet pk) throws SQLException {
+        trenutniPredmet=pk;
         trenutniKorisnik=tk;
         initComponents();
         listaPutanja=DBController.require().getPutanjeOblasti("Lekcija");
@@ -111,9 +113,9 @@ public class pnlPredavanja extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
-        mainChoiceView main;
+        pnlBirajPredmet main;
         try {
-            main = new mainChoiceView(trenutniKorisnik);
+            main = new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniPredmet.getRazred()),"predavanja");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -131,7 +133,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                 break;
             }
         }
-        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik,putanja, "predavanja");
+        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik,trenutniPredmet,putanja, "predavanja");
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
