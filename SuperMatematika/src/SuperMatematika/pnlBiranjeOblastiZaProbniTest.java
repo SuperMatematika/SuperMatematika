@@ -37,13 +37,14 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         btnGeoObjekti = new javax.swing.JCheckBox();
         btnStart = new javax.swing.JButton();
         btnSkupovi = new javax.swing.JCheckBox();
-        btnKruzniceKrug = new javax.swing.JCheckBox();
-        btnOsnGeoPojmovi = new javax.swing.JCheckBox();
         lblPrvoTrom = new javax.swing.JLabel();
         pnlSkupovi = new javax.swing.JPanel();
         btnPojamSkupa = new javax.swing.JCheckBox();
         btnOperacije = new javax.swing.JCheckBox();
         btnPrirodniBr = new javax.swing.JCheckBox();
+        pnlGeoObjekti = new javax.swing.JPanel();
+        btnOsnGeoPojmovi = new javax.swing.JCheckBox();
+        btnKruzniceKrug = new javax.swing.JCheckBox();
 
         pnlOblasti.setBackground(new java.awt.Color(255, 255, 255));
         pnlOblasti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,26 +58,26 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         pnlOblasti.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        pnlOblasti.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 390, 10));
+        pnlOblasti.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 380, 10));
 
         lblDrugoTrom.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        lblDrugoTrom.setText("OBLASTI IZ DRUGOG TROMESECJA");
+        lblDrugoTrom.setText("DRUGO TROMESECJE");
         pnlOblasti.add(lblDrugoTrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         btnGeoObjekti.setBackground(new java.awt.Color(255, 255, 255));
         btnGeoObjekti.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnGeoObjekti.setText("Geometrijski objekti");
+        btnGeoObjekti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeoObjektiActionPerformed(evt);
+            }
+        });
         pnlOblasti.add(btnGeoObjekti, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         btnStart.setText("Start");
         btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnStartMouseClicked(evt);
-            }
-        });
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
             }
         });
         pnlOblasti.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 90, 30));
@@ -96,17 +97,9 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         });
         pnlOblasti.add(btnSkupovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        btnKruzniceKrug.setBackground(new java.awt.Color(255, 255, 255));
-        btnKruzniceKrug.setText("Kruznice i krugovi");
-        pnlOblasti.add(btnKruzniceKrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
-
-        btnOsnGeoPojmovi.setBackground(new java.awt.Color(255, 255, 255));
-        btnOsnGeoPojmovi.setText("Osnovni geometrijski pojmovi");
-        pnlOblasti.add(btnOsnGeoPojmovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
-
         lblPrvoTrom.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        lblPrvoTrom.setText("OBLASTI IZ PRVOG TROMESECJA");
-        pnlOblasti.add(lblPrvoTrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        lblPrvoTrom.setText("PRVO TROMESECJE");
+        pnlOblasti.add(lblPrvoTrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 40));
 
         pnlSkupovi.setBackground(new java.awt.Color(255, 255, 255));
         pnlSkupovi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,24 +107,37 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         btnPojamSkupa.setBackground(new java.awt.Color(255, 255, 255));
         btnPojamSkupa.setText("Pojam skupa");
         btnPojamSkupa.setEnabled(false);
+        btnPojamSkupa.setFocusPainted(false);
         pnlSkupovi.add(btnPojamSkupa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         btnOperacije.setBackground(new java.awt.Color(255, 255, 255));
         btnOperacije.setText("Operacija sa skupovima");
         btnOperacije.setEnabled(false);
+        btnOperacije.setFocusPainted(false);
         pnlSkupovi.add(btnOperacije, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         btnPrirodniBr.setBackground(new java.awt.Color(255, 255, 255));
         btnPrirodniBr.setText("Skup prirodnih brojeva");
         btnPrirodniBr.setEnabled(false);
-        btnPrirodniBr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrirodniBrActionPerformed(evt);
-            }
-        });
+        btnPrirodniBr.setFocusPainted(false);
         pnlSkupovi.add(btnPrirodniBr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         pnlOblasti.add(pnlSkupovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 170, 70));
+
+        pnlGeoObjekti.setBackground(new java.awt.Color(255, 255, 255));
+        pnlGeoObjekti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnOsnGeoPojmovi.setBackground(new java.awt.Color(255, 255, 255));
+        btnOsnGeoPojmovi.setText("Osnovni geometrijski pojmovi");
+        btnOsnGeoPojmovi.setEnabled(false);
+        pnlGeoObjekti.add(btnOsnGeoPojmovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        btnKruzniceKrug.setBackground(new java.awt.Color(255, 255, 255));
+        btnKruzniceKrug.setText("Kruznice i krugovi");
+        btnKruzniceKrug.setEnabled(false);
+        pnlGeoObjekti.add(btnKruzniceKrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+
+        pnlOblasti.add(pnlGeoObjekti, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -160,10 +166,6 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartActionPerformed
-
     private void btnSkupoviSkupoviCheck(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkupoviSkupoviCheck
         // TODO add your handling code here:
         if(this.btnSkupovi.isSelected()==true){
@@ -179,20 +181,20 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         if(this.btnSkupovi.isSelected()==false){
 
             this.btnPojamSkupa.setEnabled(false);
-
-            this.btnPrirodniBr.setEnabled(false);
+            if(this.btnPojamSkupa.isSelected()==true){
+                   this.btnPojamSkupa.setSelected(false);
+            }
+           
             this.btnOperacije.setEnabled(false);
+             if(this.btnOperacije.isSelected()==true){
+                   this.btnOperacije.setSelected(false);
+            }
+              this.btnPrirodniBr.setEnabled(false);
+             if(this.btnPrirodniBr.isSelected()==true){
+                   this.btnPrirodniBr.setSelected(false);
+            }
         }
     }//GEN-LAST:event_btnSkupoviActionPerformed
-
-    private void btnPrirodniBrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrirodniBrActionPerformed
-        // TODO add your handling code here:
-        pnlProbniTest newPnl=new pnlProbniTest(trenutniKorisnik);
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
-    }//GEN-LAST:event_btnPrirodniBrActionPerformed
 
     private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
         // TODO add your handling code here:
@@ -202,6 +204,22 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         this.setLayout(new BorderLayout());
         this.add(newPnl);
     }//GEN-LAST:event_btnStartMouseClicked
+
+    private void btnGeoObjektiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeoObjektiActionPerformed
+                    // TODO add your handling code here:
+            if(this.btnGeoObjekti.isSelected()==false){
+            this.btnOsnGeoPojmovi.setEnabled(false);
+            this.btnKruzniceKrug.setEnabled(false);  
+                
+        }
+            else
+            {
+                 this.btnOsnGeoPojmovi.setEnabled(true);
+                 this.btnKruzniceKrug.setEnabled(true);
+             
+            }
+            
+    }//GEN-LAST:event_btnGeoObjektiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -217,6 +235,7 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblDrugoTrom;
     private javax.swing.JLabel lblPrvoTrom;
+    private javax.swing.JPanel pnlGeoObjekti;
     private javax.swing.JPanel pnlOblasti;
     private javax.swing.JPanel pnlSkupovi;
     // End of variables declaration//GEN-END:variables
