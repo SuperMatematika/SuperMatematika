@@ -26,10 +26,12 @@ import javax.swing.JButton;
  */
 public class pnlZadaci extends javax.swing.JPanel {
     Student trenutniKorisnik;
+    Predmet trenutniPredmet;
     ArrayList<String> listaPutanja=new ArrayList();
     ArrayList<String> listaOblasti=new ArrayList();
     ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlZadaci(Student tr) throws SQLException {
+    public pnlZadaci(Student tr,Predmet pk) throws SQLException {
+        trenutniPredmet=pk;
         trenutniKorisnik=tr;
         initComponents();
         listaPutanja=DBController.require().getPutanjeOblasti("Vezbe");
@@ -76,7 +78,7 @@ public class pnlZadaci extends javax.swing.JPanel {
                     break;
                 }
             }
-            pnlPDFView newPnl=new pnlPDFView(trenutniKorisnik,putanja,"zadaci");
+            pnlPDFView newPnl=new pnlPDFView(trenutniKorisnik,trenutniPredmet,putanja,"zadaci");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -140,9 +142,9 @@ public class pnlZadaci extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         mainChoiceView main;
+         pnlBirajPredmet main;
         try{
-            main=new mainChoiceView(trenutniKorisnik);
+            main=new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniPredmet.getRazred()),"zadaci");
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
