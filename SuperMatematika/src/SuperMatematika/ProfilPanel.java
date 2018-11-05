@@ -39,7 +39,7 @@ public class ProfilPanel extends javax.swing.JPanel {
         if (trenutniKorisnik instanceof Student)
             lRazredIliFakultet.setText(((Student)trenutniKorisnik).getRazred() + "");
         else if(trenutniKorisnik instanceof Profesor) {
-          //  lRazredIliFakultet.setText(((Profesor)trenutniKorisnik).getFakultet());
+            lRazredIliFakultet.setText(((Profesor)trenutniKorisnik).getFakultet());
             // Umesto razred treba da pise fakultet
             jLabel12.setText("Fakultet");
         }

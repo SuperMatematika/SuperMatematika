@@ -32,6 +32,7 @@ public class OcenePanel extends javax.swing.JPanel {
     
     // Popunja jTable1 sa svim ocenama za datom ucenika koje se nalaze u bazi, sortira ih po predmetu i po datumu
     private void popuniTabelu() {
+      
         String upit = "SELECT Predmet.Naziv, Ocena.Ocena, Ocena.Datum " 
                     + "FROM Predmet INNER JOIN Ocena ON Predmet.ID_predmeta=Ocena.ID_predmeta "
                     + "WHERE Ocena.Username_ucenika = '" + trenutniKorisnik.username + "' "
