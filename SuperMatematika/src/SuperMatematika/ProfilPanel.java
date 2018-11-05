@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Melida
+ * @author Samed
  */
 public class ProfilPanel extends javax.swing.JPanel {
     
