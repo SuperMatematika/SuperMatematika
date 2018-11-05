@@ -154,6 +154,9 @@ public class StudentFrame extends javax.swing.JFrame {
         btnProfil.setFocusPainted(false);
         btnProfil.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnProfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProfilClick(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 HoverHandler(evt);
             }
@@ -206,6 +209,11 @@ public class StudentFrame extends javax.swing.JFrame {
                 HoverLeave(evt);
             }
         });
+        btnOcene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOceneActionPerformed(evt);
+            }
+        });
         pnlProfilMenu.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 50));
 
         btnOdjava.setBackground(new java.awt.Color(185, 20, 60));
@@ -254,7 +262,11 @@ public class StudentFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
-        // TODO add your handling code here:
+        ProfilPanel newPnl = new ProfilPanel(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void btnStatistikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaActionPerformed
@@ -288,6 +300,25 @@ public class StudentFrame extends javax.swing.JFrame {
     private void MouseDragger(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MouseDragger
         this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible() ? false : true);  // TODO add your handling code here:
     }//GEN-LAST:event_MouseDragger
+
+    private void btnProfilClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfilClick
+        // TODO add your handling code here:
+        ProfilPanel newPnl = new ProfilPanel(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnProfilClick
+
+    private void btnOceneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOceneActionPerformed
+       
+        // TODO add your handling code here:
+        OcenePanel newPnl = new OcenePanel(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnOceneActionPerformed
 
     /**
      * @param args the command line arguments
