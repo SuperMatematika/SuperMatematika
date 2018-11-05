@@ -21,5 +21,9 @@ public class Profesor extends Korisnik{
     public Profesor(Korisnik tr) {
         super(tr.getUserType(),tr.getUsername(),tr.getIme(),tr.getPrezime(),tr.getDatumRodjenja(),tr.getPol());
     }
+
+    String getFakultet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

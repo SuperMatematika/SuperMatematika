@@ -6,6 +6,7 @@
 package SuperMatematika;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -18,7 +19,9 @@ public class pnlProbniTest extends javax.swing.JPanel {
     Student trenutniKorisnik;
     public pnlProbniTest(Student tr) {
         trenutniKorisnik=tr;
+        
         initComponents();
+        
     }
 
     /**
@@ -30,48 +33,24 @@ public class pnlProbniTest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBack = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
-        btnBack.setText("back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addGap(0, 345, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addGap(0, 277, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainChoiceView main;
-        try{
-            main=new mainChoiceView(trenutniKorisnik);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
-        }
-        catch(Exception ex)
-        {
-            System.out.println(ex);
-        } 
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

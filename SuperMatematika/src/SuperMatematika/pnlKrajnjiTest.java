@@ -111,7 +111,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         mainChoiceView main;
+        mainChoiceView main;
         try{
             main=new mainChoiceView(trenutniKorisnik);
             this.removeAll();
