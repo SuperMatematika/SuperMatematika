@@ -17,8 +17,8 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
     /**
      * Creates new form UcenikPodaciPanel
      */
-    Korisnik trenutniKorisnik;
-    public UcenikPodaciPanel(Korisnik tk) {
+    Student trenutniKorisnik;
+    public UcenikPodaciPanel(Student tk) {
         trenutniKorisnik=tk;
         initComponents();
         popuniLabele();
@@ -31,14 +31,11 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
         lPol.setText(trenutniKorisnik.pol);
         
         // Za student se pamti razred dok se za nastavnika pamti njegov fakultet
-        if (trenutniKorisnik instanceof Student)
             lRazredIliFakultet.setText(((Student)trenutniKorisnik).getRazred() + "");
-        else if(trenutniKorisnik instanceof Profesor) {
-            lRazredIliFakultet.setText(((Profesor)trenutniKorisnik).getFakultet());
             // Umesto razred treba da pise fakultet
             lblRazred.setText("Fakultet");
         }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

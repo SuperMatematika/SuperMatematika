@@ -5,6 +5,17 @@
  */
 package SuperMatematika;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+
 /**
  *
  * @author Melida
@@ -14,12 +25,50 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
     /**
      * Creates new form UcenikPredmetiPanel
      */
-    Korisnik trenutniKorisnik;
-    public UcenikPredmetiPanel(Korisnik tk) {
+    Student trenutniKorisnik;
+    ArrayList<Predmet> predmeti;
+    ArrayList<JButton> listaButtona = new ArrayList();
+    public UcenikPredmetiPanel(Student tk) {
         trenutniKorisnik=tk;
+        System.out.println(trenutniKorisnik.getRazred());
+        try {
+            predmeti=DBController.require().getPredmete(trenutniKorisnik.getRazred());
+        } catch (SQLException ex) {
+            Logger.getLogger(UcenikPredmetiPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
+        
+        createForm();
     }
+   private void createForm() {
+        this.MainPanel.removeAll();
+        this.MainPanel.revalidate();
+        this.MainPanel.setLayout(new GridLayout(4, 0));
+        Font f = new Font("Arial", Font.ITALIC, 24);
+        predmeti.forEach(elemn->{
+            JButton b = new JButton(elemn.getNazivPredmeta());
+            b.setBackground(Color.white);
+            b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
+            b.setPreferredSize(new Dimension(40, 40));
+            b.setFont(f);
+            
+            b.setFocusPainted(false);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    
+                }
 
+            }
+            );
+            listaButtona.add(b);
+            this.MainPanel.add(b);
+            this.MainPanel.setVisible(true);
+        });
+        for (int i = 0; i <= predmeti.size(); i++) {
+            
+        }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,30 +78,32 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        MainPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel.setPreferredSize(new java.awt.Dimension(300, 300));
+        MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel MainPanel;
     // End of variables declaration//GEN-END:variables
 }

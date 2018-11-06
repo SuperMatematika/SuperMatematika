@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class ProfilPanel extends javax.swing.JPanel {
     
-    Korisnik trenutniKorisnik;
+    Student trenutniKorisnik;
     
     // Ovaj panel ce se koristiti za prikazivanje profila ucenika i profesora, zbog toga je atribut "trenutniKorsnik" tipa
     // korsinik jer obe ove klase nasledjuju tu klasu
-    public ProfilPanel(Korisnik tk) {
+    public ProfilPanel(Student tk) {
         trenutniKorisnik=tk;
         initComponents();
         UcenikPodaciPanel newPnl = new UcenikPodaciPanel(trenutniKorisnik);
