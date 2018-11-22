@@ -115,9 +115,10 @@ public class mainChoiceView extends javax.swing.JPanel {
 @SuppressWarnings("unchecked")
     private void btnLekcije2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije2ActionPerformed
          // TODO add your handling code here:
-        pnlBirajRazred newPnl;
+        pnlBirajPredmet newPnl;
        try {
-            newPnl = new pnlBirajRazred(trenutniKorisnik,"predavanja");
+            newPnl = new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniKorisnik.getRazred()),"predavanja");
+//            newPnl = new pnlBirajRazred(trenutniKorisnik,"predavanja");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -128,9 +129,10 @@ public class mainChoiceView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLekcije2ActionPerformed
 
     private void btnLekcije1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLekcije1ActionPerformed
-        pnlBirajRazred newPnl;
+        pnlBirajPredmet newPnl;
         try {
-            newPnl = new pnlBirajRazred(trenutniKorisnik,"zadaci");
+            newPnl = new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniKorisnik.getRazred()),"zadaci");
+          //  newPnl = new pnlBirajRazred(trenutniKorisnik,"zadaci");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());

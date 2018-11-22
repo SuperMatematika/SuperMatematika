@@ -39,7 +39,7 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
     private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
-        this.MainPanel.setLayout(new GridLayout(4, 0));
+        this.MainPanel.setLayout(new GridLayout(listaPredmeta.size(), 0));
         Font f = new Font("Arial", Font.ITALIC, 24);
         listaPredmeta.forEach(elemn->{
             JButton b = new JButton(elemn.getNazivPredmeta());
@@ -139,9 +139,9 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-      pnlBirajRazred main;
+      mainChoiceView main;
         try {
-            main = new pnlBirajRazred(trenutniKorisnik,prethodnik);
+            main = new mainChoiceView(trenutniKorisnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
