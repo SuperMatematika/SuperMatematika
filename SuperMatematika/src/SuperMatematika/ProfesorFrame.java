@@ -5,7 +5,6 @@
  */
 package SuperMatematika;
 
-import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,19 +17,14 @@ import java.util.logging.Logger;
  * @author Melida
  */
 public class ProfesorFrame extends javax.swing.JFrame {
-    Profesor trenutniKorisnik;
+    Profesor trenutniProfesor;
     /**
      * Creates new form ProfesorFrame
      */
    
-    public ProfesorFrame(Profesor tk) throws SQLException {
-        trenutniKorisnik=tk;
+    public ProfesorFrame(Profesor p) throws SQLException {
+        trenutniProfesor=p;
         initComponents();
-        this.pnlProfilMenu.setVisible(false);
-        this.pnlOdeljenje.setVisible(false);
-         this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
-         this.btnPredmeti.setVisible(false);
-         this.pnlPredmeti.setVisible(false);
     }
 
     private ProfesorFrame() {
@@ -45,197 +39,49 @@ public class ProfesorFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton7 = new javax.swing.JButton();
-        pnlBackground = new javax.swing.JPanel();
-        pnlHeader = new javax.swing.JPanel();
-        imePrezime = new javax.swing.JLabel();
-        btnOdeljenje = new javax.swing.JButton();
-        btnPredmeti = new javax.swing.JButton();
-        btnMenu = new javax.swing.JButton();
-        ProfesorViewLeft = new javax.swing.JPanel();
-        pnlMainContent = new javax.swing.JPanel();
-        pnlOdeljenje = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        pnlPredmeti = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        pnlProfilMenu = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        btnProfil = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-
-        jButton7.setText("jButton7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlBackground.setPreferredSize(new java.awt.Dimension(1140, 710));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jButton1.setText("jButton1");
 
-        pnlHeader.setBackground(new java.awt.Color(153, 0, 153));
-        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imePrezime.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        imePrezime.setForeground(new java.awt.Color(255, 255, 255));
-        imePrezime.setText("IME I PREZIME");
-        pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 180, 40));
-
-        btnOdeljenje.setBackground(new java.awt.Color(153, 0, 153));
-        btnOdeljenje.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        btnOdeljenje.setForeground(new java.awt.Color(255, 255, 255));
-        btnOdeljenje.setText("Odeljenje");
-        btnOdeljenje.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnOdeljenje.setFocusPainted(false);
-        btnOdeljenje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOdeljenjeActionPerformed(evt);
-            }
-        });
-        pnlHeader.add(btnOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 200, 60));
-
-        btnPredmeti.setBackground(new java.awt.Color(153, 0, 153));
-        btnPredmeti.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        btnPredmeti.setForeground(new java.awt.Color(255, 255, 255));
-        btnPredmeti.setText("Predmeti");
-        btnPredmeti.setBorder(null);
-        btnPredmeti.setFocusPainted(false);
-        btnPredmeti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPredmetiActionPerformed(evt);
-            }
-        });
-        pnlHeader.add(btnPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 200, 60));
-
-        btnMenu.setBackground(new java.awt.Color(153, 0, 153));
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
-        btnMenu.setBorder(null);
-        btnMenu.setFocusPainted(false);
-        btnMenu.setPreferredSize(new java.awt.Dimension(80, 60));
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
-            }
-        });
-        pnlHeader.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 0, -1, -1));
-
-        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 60));
-
-        ProfesorViewLeft.setBackground(new java.awt.Color(255, 255, 255));
-        ProfesorViewLeft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        ProfesorViewLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlBackground.add(ProfesorViewLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 220, 650));
-
-        pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMainContent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        pnlOdeljenje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton3.setText("NEKO ODELJENJE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        pnlOdeljenje.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
-
-        pnlMainContent.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 230));
-
-        pnlPredmeti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setText("Neki Predmet");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        pnlPredmeti.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
-
-        pnlMainContent.add(pnlPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 200, 230));
-
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 800, 650));
-
-        pnlProfilMenu.setPreferredSize(new java.awt.Dimension(150, 200));
-        pnlProfilMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton2.setBackground(new java.awt.Color(153, 51, 255));
-        jButton2.setBorder(null);
-        jButton2.setFocusPainted(false);
-        pnlProfilMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 150, 50));
-
-        btnProfil.setBackground(new java.awt.Color(153, 51, 255));
-        btnProfil.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        btnProfil.setForeground(new java.awt.Color(255, 255, 255));
-        btnProfil.setText("Profil");
-        btnProfil.setBorder(null);
-        btnProfil.setFocusPainted(false);
-        btnProfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProfilActionPerformed(evt);
-            }
-        });
-        pnlProfilMenu.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
-
-        jButton5.setBackground(new java.awt.Color(153, 51, 255));
-        jButton5.setBorder(null);
-        jButton5.setFocusPainted(false);
-        pnlProfilMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 150, 50));
-
-        jButton8.setBackground(new java.awt.Color(153, 51, 255));
-        jButton8.setBorder(null);
-        jButton8.setFocusPainted(false);
-        pnlProfilMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 50));
-
-        pnlBackground.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 60, -1, 200));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(55, 55, 55))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 1170, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(159, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
-          this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible() ? false : true);
-    }//GEN-LAST:event_btnMenuActionPerformed
-
-    private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
-        // TODO add your handling code here:
-         ProfesorPanel newPnl = new ProfesorPanel(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
-    }//GEN-LAST:event_btnProfilActionPerformed
-
-    private void btnOdeljenjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdeljenjeActionPerformed
-        // TODO add your handling code here:
-        this.pnlOdeljenje.setVisible(pnlOdeljenje.isVisible()?false: true);
-    }//GEN-LAST:event_btnOdeljenjeActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-         this.btnPredmeti.setVisible(btnPredmeti.isVisible() ? false : true);
-       
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void btnPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPredmetiActionPerformed
-        // TODO add your handling code here:
-        
-        this.pnlPredmeti.setVisible(pnlPredmeti.isVisible() ? false : true);
-    }//GEN-LAST:event_btnPredmetiActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,23 +119,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ProfesorViewLeft;
-    private javax.swing.JButton btnMenu;
-    private javax.swing.JButton btnOdeljenje;
-    private javax.swing.JButton btnPredmeti;
-    private javax.swing.JButton btnProfil;
-    private javax.swing.JLabel imePrezime;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlHeader;
-    private javax.swing.JPanel pnlMainContent;
-    private javax.swing.JPanel pnlOdeljenje;
-    private javax.swing.JPanel pnlPredmeti;
-    private javax.swing.JPanel pnlProfilMenu;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

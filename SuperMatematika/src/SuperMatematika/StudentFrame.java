@@ -107,21 +107,21 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(153, 0, 255));
+        pnlHeader.setBackground(new java.awt.Color(185, 20, 60));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imePrezime.setBackground(new java.awt.Color(255, 255, 255));
-        imePrezime.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        imePrezime.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         imePrezime.setForeground(new java.awt.Color(255, 255, 255));
         imePrezime.setText("Ime Prezime");
-        pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, -1, -1));
+        pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         lblRazred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblRazred.setForeground(new java.awt.Color(255, 255, 255));
         lblRazred.setText("RAZRED");
         pnlHeader.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        btnMenu.setBackground(new java.awt.Color(153, 0, 255));
+        btnMenu.setBackground(new java.awt.Color(185, 20, 60));
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
         btnMenu.setBorder(null);
         btnMenu.setFocusPainted(false);
@@ -146,7 +146,7 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlProfilMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnProfil.setBackground(new java.awt.Color(153, 0, 255));
+        btnProfil.setBackground(new java.awt.Color(185, 20, 60));
         btnProfil.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnProfil.setText("Profil");
@@ -171,7 +171,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
 
-        btnStatistika.setBackground(new java.awt.Color(153, 0, 255));
+        btnStatistika.setBackground(new java.awt.Color(185, 20, 60));
         btnStatistika.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnStatistika.setForeground(new java.awt.Color(255, 255, 255));
         btnStatistika.setText("Statistika ");
@@ -194,7 +194,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnStatistika, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 150, 50));
 
-        btnOcene.setBackground(new java.awt.Color(153, 0, 255));
+        btnOcene.setBackground(new java.awt.Color(185, 20, 60));
         btnOcene.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnOcene.setForeground(new java.awt.Color(255, 255, 255));
         btnOcene.setText("Ocene");
@@ -216,7 +216,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 50));
 
-        btnOdjava.setBackground(new java.awt.Color(153, 0, 255));
+        btnOdjava.setBackground(new java.awt.Color(185, 20, 60));
         btnOdjava.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnOdjava.setForeground(new java.awt.Color(255, 255, 255));
         btnOdjava.setText("Odjava");
@@ -255,7 +255,7 @@ public class StudentFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
