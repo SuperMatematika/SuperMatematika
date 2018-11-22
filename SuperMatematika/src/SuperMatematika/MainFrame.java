@@ -54,6 +54,8 @@ public class MainFrame extends javax.swing.JFrame {
         pnlPrijaviteSe = new javax.swing.JPanel();
         lblPrijaviteSe = new javax.swing.JLabel();
         lblDangerIcon = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         pnlHeader = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         lblSlika6 = new javax.swing.JLabel();
@@ -80,7 +82,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         txtUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtUser.setForeground(new java.awt.Color(204, 204, 204));
-        txtUser.setText("Username");
         txtUser.setToolTipText("");
         txtUser.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, null, null, java.awt.Color.lightGray));
         txtUser.setPreferredSize(new java.awt.Dimension(64, 23));
@@ -143,7 +144,6 @@ public class MainFrame extends javax.swing.JFrame {
         pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 110, 40));
 
         txtPass.setForeground(new java.awt.Color(204, 204, 204));
-        txtPass.setText("password");
         txtPass.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, null, null, java.awt.Color.lightGray));
         txtPass.setPreferredSize(new java.awt.Dimension(64, 20));
         txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -173,6 +173,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlLogin.add(pnlPrijaviteSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 90));
         pnlLogin.add(lblDangerIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 20, 20));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Password");
+        pnlLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 70, 30));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Username");
+        pnlLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 70, 30));
 
         pnlPozadina.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 430, 410));
 
@@ -363,6 +371,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblBoljaOcena;
     private javax.swing.JLabel lblDangerIcon;

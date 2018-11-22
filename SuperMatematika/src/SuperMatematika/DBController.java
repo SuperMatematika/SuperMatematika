@@ -113,12 +113,12 @@ public class DBController {
         return null;
     }
 
-    ArrayList<String> getPutanjeOblasti(String oblast) {
+    ArrayList<String> getPutanjeOblasti(String oblast,int idPredmeta) {
         try {
             ArrayList<String> listaPutanja=new ArrayList();
             statement = (Statement) connection.createStatement();
             // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT Putanja from "+oblast+" where ID_predmeta=1;");
+            resultSet = statement.executeQuery("SELECT Putanja from "+oblast+" where ID_predmeta='"+idPredmeta+"';");
             statement.close();
             while (resultSet.next()) {
                 listaPutanja.add(resultSet.getString("Putanja"));
@@ -133,12 +133,12 @@ public class DBController {
         return null;
     }
 
-    ArrayList<String> getOblasti(String tabela) {
+    ArrayList<String> getOblasti(String tabela,int idPredmeta) {
         try {
             ArrayList<String> listaLekcija=new ArrayList();
             statement = (Statement) connection.createStatement();
             // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT NaslovLekcije from "+tabela+" where ID_predmeta=1;");
+            resultSet = statement.executeQuery("SELECT NaslovLekcije from "+tabela+" where ID_predmeta='"+idPredmeta+"';");
             statement.close();
             while (resultSet.next()) {
 //                listaPutanja.add(resultSet.getString("Putanja"));
@@ -210,11 +210,11 @@ public class DBController {
             ArrayList<Predmet> listaPredmeta=new ArrayList();
             statement = (Statement) connection.createStatement();
             // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT * from Predmet where Razred='"+razred+"';");
+            resultSet = statement.executeQuery("SELECT ID_predmeta,naziv,Users.ime,Users.prezime,razred from Predmet,Users where Predmet.username_nastavnika=username and Razred='"+razred+"';");
             statement.close();
             while (resultSet.next()) {
 //                listaPutanja.add(resultSet.getString("Putanja"));
-                listaPredmeta.add(new Predmet(resultSet.getString("ID_predmeta"),resultSet.getString("Naziv"),resultSet.getString("Username_nastavnika"),resultSet.getInt("Razred")));
+                listaPredmeta.add(new Predmet(resultSet.getInt("ID_predmeta"),resultSet.getString("Naziv"),resultSet.getString("Ime")+" "+resultSet.getString("Prezime"),resultSet.getInt("Razred")));
             }
             return listaPredmeta;
 

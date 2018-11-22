@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -27,7 +28,8 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
      */
     Student trenutniKorisnik;
     ArrayList<Predmet> predmeti;
-    ArrayList<JButton> listaButtona = new ArrayList();
+    ArrayList<JLabel> listaPredmeta = new ArrayList();
+    ArrayList<JLabel> listaProfesora = new ArrayList();
     public UcenikPredmetiPanel(Student tk) {
         trenutniKorisnik=tk;
         System.out.println(trenutniKorisnik.getRazred());
@@ -43,30 +45,23 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
    private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
-        this.MainPanel.setLayout(new GridLayout(4, 0));
+        this.MainPanel.setLayout(new GridLayout(predmeti.size(), 2));
         Font f = new Font("Arial", Font.ITALIC, 24);
         predmeti.forEach(elemn->{
-            JButton b = new JButton(elemn.getNazivPredmeta());
+            JLabel b = new JLabel(elemn.getNazivPredmeta());
             b.setBackground(Color.white);
-            b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
             b.setPreferredSize(new Dimension(40, 40));
             b.setFont(f);
             
-            b.setFocusPainted(false);
-            b.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    
-                }
-
-            }
-            );
-            listaButtona.add(b);
+            JLabel prof=new JLabel(elemn.getPredavac());
+            prof.setBackground(Color.green);
+            prof.setPreferredSize(new Dimension(40,40));
+            prof.setFont(f);
+            listaPredmeta.add(b);
             this.MainPanel.add(b);
+            this.MainPanel.add(prof);
             this.MainPanel.setVisible(true);
         });
-        for (int i = 0; i <= predmeti.size(); i++) {
-            
-        }
 
     }
     /**

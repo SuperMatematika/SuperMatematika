@@ -10,7 +10,7 @@ package SuperMatematika;
  * @author 1
  */
 public class Predmet {
-    private String id;
+    private int id;
     private String nazivPredmeta;
     private String predavac;
     private int razred;
@@ -18,14 +18,14 @@ public class Predmet {
     public Predmet() {
     }
 
-    public Predmet(String id, String nazivPredmeta, String predavac, int razred) {
+    public Predmet(int id, String nazivPredmeta, String predavac, int razred) {
         this.id = id;
         this.nazivPredmeta = nazivPredmeta;
         this.predavac = predavac;
         this.razred = razred;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class Predmet {
         return razred;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

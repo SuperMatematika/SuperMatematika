@@ -61,6 +61,7 @@ public class ProfilPanel extends javax.swing.JPanel {
         btnUcenikPodaci = new javax.swing.JButton();
         btnMojiPredmeti = new javax.swing.JButton();
         btnNalog = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         pnlMainContent = new javax.swing.JPanel();
 
         pnlGlavni.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,6 +120,24 @@ public class ProfilPanel extends javax.swing.JPanel {
             }
         });
         pnlUserInfo.add(btnNalog);
+
+        btnBack.setBackground(new java.awt.Color(224, 224, 224));
+        btnBack.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(102, 102, 102));
+        btnBack.setText("Nazad");
+        btnBack.setBorder(null);
+        btnBack.setFocusPainted(false);
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackbtnClicked(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        pnlUserInfo.add(btnBack);
 
         pnlGlavni.add(pnlUserInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 650));
 
@@ -186,8 +205,26 @@ public class ProfilPanel extends javax.swing.JPanel {
         this.btnUcenikPodaci.setForeground(Color.decode("666666"));
     }//GEN-LAST:event_btnNalogActionPerformed
 
+    private void btnBackbtnClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackbtnClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackbtnClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        mainChoiceView main;
+        try {
+            main = new mainChoiceView(trenutniKorisnik);
+            this.removeAll();
+            this.revalidate();
+            this.setLayout(new BorderLayout());
+            this.add(main);
+        } catch (Exception ex) {
+
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnMojiPredmeti;
     private javax.swing.JButton btnNalog;
     private javax.swing.JButton btnUcenikPodaci;

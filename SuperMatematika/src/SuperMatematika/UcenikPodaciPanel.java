@@ -33,7 +33,7 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
         // Za student se pamti razred dok se za nastavnika pamti njegov fakultet
             lRazredIliFakultet.setText(((Student)trenutniKorisnik).getRazred() + "");
             // Umesto razred treba da pise fakultet
-            lblRazred.setText("Fakultet");
+          
         }
     
 

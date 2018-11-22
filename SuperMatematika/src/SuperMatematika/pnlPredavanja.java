@@ -45,19 +45,20 @@ public class pnlPredavanja extends javax.swing.JPanel {
         trenutniPredmet=pk;
         trenutniKorisnik=tk;
         initComponents();
-        listaPutanja=DBController.require().getPutanjeOblasti("Lekcija");
-        listaLekcija=DBController.require().getOblasti("Lekcija");
+        listaPutanja=DBController.require().getPutanjeOblasti("Lekcija",pk.getId());
+        listaLekcija=DBController.require().getOblasti("Lekcija",pk.getId());
         createForm();
 //        loadLekcije();
 
     }
 
     private void createForm() {
-        this.btnHolder.removeAll();
-        this.btnHolder.revalidate();
-        this.btnHolder.setLayout(new GridLayout(4, 0));
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new GridLayout(listaLekcija.size()<6?6:listaLekcija.size()+1, 0));
         System.out.println(listaLekcija.size());
         Font f = new Font("Arial", Font.ITALIC, 24);
+            this.add(btnBaack);
         for (int i = 0; i < listaLekcija.size(); i++) {
             JButton b = new JButton(listaLekcija.get(i));
             b.setBackground(Color.white);
@@ -76,9 +77,8 @@ public class pnlPredavanja extends javax.swing.JPanel {
             );
 
             listaButtona.add(b);
-            this.btnHolder.add(b);
-            this.btnHolder.add(btnBaack);
-            this.btnHolder.setVisible(true);
+            this.add(b);
+            this.setVisible(true);
         }
 
     }
@@ -93,12 +93,9 @@ public class pnlPredavanja extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHolder = new javax.swing.JPanel();
         btnBaack = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnHolder.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBaack.setBackground(new java.awt.Color(102, 102, 102));
         btnBaack.setText("Back");
@@ -107,9 +104,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                 btnBaackActionPerformed(evt);
             }
         });
-        btnHolder.add(btnBaack, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 90, 60));
-
-        add(btnHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 340));
+        add(btnBaack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
@@ -141,6 +136,5 @@ public class pnlPredavanja extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBaack;
-    private javax.swing.JPanel btnHolder;
     // End of variables declaration//GEN-END:variables
 }

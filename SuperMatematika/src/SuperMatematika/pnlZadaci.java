@@ -34,16 +34,17 @@ public class pnlZadaci extends javax.swing.JPanel {
         trenutniPredmet=pk;
         trenutniKorisnik=tr;
         initComponents();
-        listaPutanja=DBController.require().getPutanjeOblasti("Vezbe");
-        listaOblasti=DBController.require().getOblasti("Vezbe");
+        listaPutanja=DBController.require().getPutanjeOblasti("Vezbe",pk.getId());
+        listaOblasti=DBController.require().getOblasti("Vezbe",pk.getId());
         createForm();
     }
     private void createForm(){
-        this.btnHolder.removeAll();
-        this.btnHolder.revalidate();
-        this.btnHolder.setLayout(new GridLayout(4,0));
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new GridLayout(listaOblasti.size()<6?6:listaOblasti.size()+1,0));
         System.out.println(listaOblasti.size());
           Font f = new Font("Arial", Font.ITALIC, 24);
+        this.add(this.btnBack);
         for(int i=0;i<listaOblasti.size();i++){
             JButton b=new JButton(listaOblasti.get(i));
             b.setBackground(Color.white);
@@ -62,8 +63,8 @@ public class pnlZadaci extends javax.swing.JPanel {
             );
             
             listaButtona.add(b);
-            this.btnHolder.add(b);
-            this.btnHolder.setVisible(true);
+            this.add(b);
+            this.setVisible(true);
         }
       
     }
@@ -93,20 +94,8 @@ public class pnlZadaci extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHolder = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-
-        javax.swing.GroupLayout btnHolderLayout = new javax.swing.GroupLayout(btnHolder);
-        btnHolder.setLayout(btnHolderLayout);
-        btnHolderLayout.setHorizontalGroup(
-            btnHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        btnHolderLayout.setVerticalGroup(
-            btnHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-        );
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("jLabel1");
@@ -122,7 +111,6 @@ public class pnlZadaci extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnBack)
                 .addGap(48, 48, 48)
@@ -136,8 +124,7 @@ public class pnlZadaci extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(btnBack))
-                .addGap(18, 18, 18)
-                .addComponent(btnHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(243, 243, 243))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,7 +146,6 @@ public class pnlZadaci extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JPanel btnHolder;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
