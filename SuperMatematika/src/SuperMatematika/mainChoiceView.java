@@ -49,7 +49,7 @@ public class mainChoiceView extends javax.swing.JPanel {
 
         pnlMainContent.setLayout(new java.awt.GridLayout(2, 2));
 
-        btnLekcije2.setBackground(new java.awt.Color(255, 255, 255));
+        btnLekcije2.setBackground(new java.awt.Color(255, 255, 204));
         btnLekcije2.setForeground(new java.awt.Color(255, 255, 255));
         btnLekcije2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/LekcijeIcon.png"))); // NOI18N
         btnLekcije2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
