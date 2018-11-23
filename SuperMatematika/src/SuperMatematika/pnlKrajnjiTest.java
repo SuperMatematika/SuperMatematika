@@ -218,6 +218,10 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         
         pnlZadaci.setLayout(new GridLayout(1,0));
         try {
+            
+            try{
+                this.t.stop();
+            }catch(Exception e){}
             timerDuration=3600;
             trenutni=0;
             zadaci = DBController.require().SastaviTest("skupovi", BROJ_ZADATAKA);
