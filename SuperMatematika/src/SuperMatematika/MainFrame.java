@@ -176,11 +176,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Password");
-        pnlLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 70, 30));
+        pnlLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 60, 30));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Username");
-        pnlLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 70, 30));
+        pnlLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 60, 30));
 
         pnlPozadina.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 430, 410));
 

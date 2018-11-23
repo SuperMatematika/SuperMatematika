@@ -5,6 +5,7 @@
  */
 package SuperMatematika;
 
+import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,14 +18,19 @@ import java.util.logging.Logger;
  * @author Melida
  */
 public class ProfesorFrame extends javax.swing.JFrame {
-    Profesor trenutniProfesor;
+    Profesor trenutniKorisnik;
     /**
      * Creates new form ProfesorFrame
      */
    
-    public ProfesorFrame(Profesor p) throws SQLException {
-        trenutniProfesor=p;
+    public ProfesorFrame(Profesor tk) throws SQLException {
+        trenutniKorisnik=tk;
         initComponents();
+        this.pnlProfilMenu.setVisible(false);
+       
+        
+         this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
+       
     }
 
     private ProfesorFrame() {
@@ -39,61 +45,227 @@ public class ProfesorFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        pnlBackground = new javax.swing.JPanel();
+        pnlHeader = new javax.swing.JPanel();
+        imePrezime = new javax.swing.JLabel();
+        btnProfil = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        ProfesorViewLeft = new javax.swing.JPanel();
+        btnMenu = new javax.swing.JButton();
+        pnlProfilMenu = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        btnRezultatiTesta = new javax.swing.JButton();
+        btnSastaviTest = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        PnlMenu = new javax.swing.JPanel();
+        lblMenu = new javax.swing.JLabel();
+        pnlMainContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1140, 710));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBackground.setPreferredSize(new java.awt.Dimension(1140, 710));
+        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 0, 153));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlHeader.setBackground(new java.awt.Color(34, 31, 31));
+        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("IME I PREZIME");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 210, 40));
+        imePrezime.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        imePrezime.setForeground(new java.awt.Color(255, 255, 255));
+        imePrezime.setText("IME I PREZIME");
+        pnlHeader.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 180, 40));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ODELJENJA");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 150, 40));
+        btnProfil.setBackground(new java.awt.Color(34, 31, 31));
+        btnProfil.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        btnProfil.setForeground(new java.awt.Color(255, 255, 255));
+        btnProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/settings icon.png"))); // NOI18N
+        btnProfil.setBorder(null);
+        btnProfil.setFocusPainted(false);
+        btnProfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfilActionPerformed(evt);
+            }
+        });
+        pnlHeader.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 60));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 60));
+        jButton1.setBackground(new java.awt.Color(34, 31, 31));
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("ODJAVA");
+        jButton1.setActionCommand("Odjava");
+        jButton1.setBorder(null);
+        jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlHeader.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 120, 60));
 
-        jPanel3.setBackground(new java.awt.Color(153, 51, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 60));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("DNEVNIK");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 150, 70));
+        ProfesorViewLeft.setBackground(new java.awt.Color(255, 255, 255));
+        ProfesorViewLeft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        ProfesorViewLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 280, 650));
+        btnMenu.setBackground(new java.awt.Color(255, 255, 255));
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setFocusPainted(false);
+        btnMenu.setPreferredSize(new java.awt.Dimension(80, 60));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        ProfesorViewLeft.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 890, 650));
+        pnlProfilMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlProfilMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(102, 102, 102));
+        jButton2.setText("Izvestaj");
+        jButton2.setToolTipText("");
+        jButton2.setBorder(null);
+        jButton2.setFocusPainted(false);
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        pnlProfilMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 190, 60));
+
+        btnRezultatiTesta.setBackground(new java.awt.Color(255, 255, 255));
+        btnRezultatiTesta.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        btnRezultatiTesta.setForeground(new java.awt.Color(102, 102, 102));
+        btnRezultatiTesta.setText("Rezultati testa");
+        btnRezultatiTesta.setAlignmentY(0.0F);
+        btnRezultatiTesta.setBorder(null);
+        btnRezultatiTesta.setFocusPainted(false);
+        btnRezultatiTesta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRezultatiTesta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRezultatiTesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRezultatiTestaActionPerformed(evt);
+            }
+        });
+        pnlProfilMenu.add(btnRezultatiTesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 190, 60));
+
+        btnSastaviTest.setBackground(new java.awt.Color(255, 255, 255));
+        btnSastaviTest.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        btnSastaviTest.setForeground(new java.awt.Color(102, 102, 102));
+        btnSastaviTest.setText("Sastavi test");
+        btnSastaviTest.setBorder(null);
+        btnSastaviTest.setFocusPainted(false);
+        btnSastaviTest.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSastaviTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSastaviTestActionPerformed(evt);
+            }
+        });
+        pnlProfilMenu.add(btnSastaviTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 190, 60));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/dnevnikicon.png"))); // NOI18N
+        pnlProfilMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 60, 60));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/dnevnikicon.png"))); // NOI18N
+        pnlProfilMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 60));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/dnevnikicon.png"))); // NOI18N
+        pnlProfilMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, 60));
+
+        ProfesorViewLeft.add(pnlProfilMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 270, 220));
+
+        PnlMenu.setBackground(new java.awt.Color(255, 255, 255));
+        PnlMenu.setForeground(new java.awt.Color(102, 102, 102));
+
+        lblMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        lblMenu.setForeground(new java.awt.Color(102, 102, 102));
+        lblMenu.setText("MENU");
+
+        javax.swing.GroupLayout PnlMenuLayout = new javax.swing.GroupLayout(PnlMenu);
+        PnlMenu.setLayout(PnlMenuLayout);
+        PnlMenuLayout.setHorizontalGroup(
+            PnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlMenuLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        PnlMenuLayout.setVerticalGroup(
+            PnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnlMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMenu)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        ProfesorViewLeft.add(PnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 140, 60));
+
+        pnlBackground.add(ProfesorViewLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 280, 650));
+
+        pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMainContent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 890, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1170, Short.MAX_VALUE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 1171, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+         this.pnlProfilMenu.setVisible(pnlProfilMenu.isVisible() ? false : true);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
+        // TODO add your handling code here:
+         ProfesorPanel newPnl = new ProfesorPanel(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnProfilActionPerformed
+
+    private void btnSastaviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSastaviTestActionPerformed
+        // TODO add your handling code here:
+        pnlSastaviTest newPnl = new pnlSastaviTest(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnSastaviTestActionPerformed
+
+    private void btnRezultatiTestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTestaActionPerformed
+        // TODO add your handling code here:
+         pnlRezultatiTesta newPnl = new pnlRezultatiTesta(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnRezultatiTestaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         try {
+            MainFrame m = new MainFrame();
+            m.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,12 +303,22 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel PnlMenu;
+    private javax.swing.JPanel ProfesorViewLeft;
+    private javax.swing.JButton btnMenu;
+    private javax.swing.JButton btnProfil;
+    private javax.swing.JButton btnRezultatiTesta;
+    private javax.swing.JButton btnSastaviTest;
+    private javax.swing.JLabel imePrezime;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblMenu;
+    private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlMainContent;
+    private javax.swing.JPanel pnlProfilMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -107,7 +107,7 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(153, 0, 255));
+        pnlHeader.setBackground(new java.awt.Color(34, 31, 31));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imePrezime.setBackground(new java.awt.Color(255, 255, 255));
@@ -121,7 +121,7 @@ public class StudentFrame extends javax.swing.JFrame {
         lblRazred.setText("RAZRED");
         pnlHeader.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        btnMenu.setBackground(new java.awt.Color(153, 0, 255));
+        btnMenu.setBackground(new java.awt.Color(34, 31, 31));
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/MenuIcon.png"))); // NOI18N
         btnMenu.setBorder(null);
         btnMenu.setFocusPainted(false);
@@ -146,7 +146,7 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlProfilMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnProfil.setBackground(new java.awt.Color(153, 0, 255));
+        btnProfil.setBackground(new java.awt.Color(34, 31, 31));
         btnProfil.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnProfil.setText("Profil");
@@ -171,7 +171,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
 
-        btnStatistika.setBackground(new java.awt.Color(153, 0, 255));
+        btnStatistika.setBackground(new java.awt.Color(34, 31, 31));
         btnStatistika.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnStatistika.setForeground(new java.awt.Color(255, 255, 255));
         btnStatistika.setText("Statistika ");
@@ -194,7 +194,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnStatistika, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 150, 50));
 
-        btnOcene.setBackground(new java.awt.Color(153, 0, 255));
+        btnOcene.setBackground(new java.awt.Color(34, 31, 31));
         btnOcene.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnOcene.setForeground(new java.awt.Color(255, 255, 255));
         btnOcene.setText("Ocene");
@@ -216,7 +216,7 @@ public class StudentFrame extends javax.swing.JFrame {
         });
         pnlProfilMenu.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 50));
 
-        btnOdjava.setBackground(new java.awt.Color(153, 0, 255));
+        btnOdjava.setBackground(new java.awt.Color(34, 31, 31));
         btnOdjava.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnOdjava.setForeground(new java.awt.Color(255, 255, 255));
         btnOdjava.setText("Odjava");
@@ -245,7 +245,7 @@ public class StudentFrame extends javax.swing.JFrame {
         pnlBackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 650));
 
         pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 800, 650));
+        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 950, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -224,5 +224,18 @@ public class DBController {
 
         return null;
     }
+
+    void submitTest(ArrayList<ZadatakPanel> resenjaZadataka,Student s) throws SQLException {
+        try{
+            statement=(Statement) connection.createStatement();
+            
+            statement.executeUpdate("Insert into rezultati values('"+s.getUsername()+"', ");
+            
+        }catch(Exception e){
+            
+        }finally{
+            statement.close();
+        }
+    }
     
 }
