@@ -36,15 +36,8 @@ public class ProfilPanel extends javax.swing.JPanel {
     }
     
   
-     public void hoverButton(JButton b) {
-        b.setBackground(Color.decode("#666666"));
-        b.setForeground(Color.decode("#E0E0E0"));
-    }
-     public void hoverButtonExit(JButton b)
-     {
-         b.setBackground(Color.decode("#E0E0E0"));
-        b.setForeground(Color.decode("#666666"));
-     }
+     
+     
      
 
     /**
@@ -57,61 +50,55 @@ public class ProfilPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         pnlGlavni = new javax.swing.JPanel();
+        pnlMainContent = new javax.swing.JPanel();
         pnlUserInfo = new javax.swing.JPanel();
         btnUcenikPodaci = new javax.swing.JButton();
         btnMojiPredmeti = new javax.swing.JButton();
         btnNalog = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        pnlMainContent = new javax.swing.JPanel();
 
+        pnlGlavni.setBackground(new java.awt.Color(255, 255, 255));
         pnlGlavni.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlUserInfo.setBackground(new java.awt.Color(224, 224, 224));
-        pnlUserInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlUserInfo.setLayout(new java.awt.GridLayout(14, 0));
+        pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlGlavni.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 682, 650));
 
-        btnUcenikPodaci.setBackground(new java.awt.Color(224, 224, 224));
+        pnlUserInfo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlUserInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnUcenikPodaci.setBackground(new java.awt.Color(255, 204, 66));
         btnUcenikPodaci.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnUcenikPodaci.setForeground(new java.awt.Color(102, 102, 102));
-        btnUcenikPodaci.setText("PODACI O UCENIKU");
-        btnUcenikPodaci.setBorder(null);
+        btnUcenikPodaci.setForeground(new java.awt.Color(255, 255, 255));
+        btnUcenikPodaci.setText("OPSTE");
+        btnUcenikPodaci.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnUcenikPodaci.setFocusPainted(false);
-        btnUcenikPodaci.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnClicked(evt);
-            }
-        });
         btnUcenikPodaci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUcenikPodaciActionPerformed(evt);
             }
         });
-        pnlUserInfo.add(btnUcenikPodaci);
+        pnlUserInfo.add(btnUcenikPodaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 42));
 
-        btnMojiPredmeti.setBackground(new java.awt.Color(224, 224, 224));
+        btnMojiPredmeti.setBackground(new java.awt.Color(255, 187, 0));
         btnMojiPredmeti.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnMojiPredmeti.setForeground(new java.awt.Color(102, 102, 102));
+        btnMojiPredmeti.setForeground(new java.awt.Color(255, 255, 255));
         btnMojiPredmeti.setText("MOJI PREDMETI");
-        btnMojiPredmeti.setBorder(null);
+        btnMojiPredmeti.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnMojiPredmeti.setFocusPainted(false);
         btnMojiPredmeti.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnMojiPredmeti.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnClicked(evt);
-            }
-        });
         btnMojiPredmeti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMojiPredmetiActionPerformed(evt);
             }
         });
-        pnlUserInfo.add(btnMojiPredmeti);
+        pnlUserInfo.add(btnMojiPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, 42));
 
-        btnNalog.setBackground(new java.awt.Color(224, 224, 224));
+        btnNalog.setBackground(new java.awt.Color(255, 187, 0));
         btnNalog.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnNalog.setForeground(new java.awt.Color(102, 102, 102));
+        btnNalog.setForeground(new java.awt.Color(255, 255, 255));
         btnNalog.setText("NALOG");
-        btnNalog.setBorder(null);
+        btnNalog.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnNalog.setFocusPainted(false);
         btnNalog.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNalog.addActionListener(new java.awt.event.ActionListener() {
@@ -119,13 +106,13 @@ public class ProfilPanel extends javax.swing.JPanel {
                 btnNalogActionPerformed(evt);
             }
         });
-        pnlUserInfo.add(btnNalog);
+        pnlUserInfo.add(btnNalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 42));
 
-        btnBack.setBackground(new java.awt.Color(224, 224, 224));
+        btnBack.setBackground(new java.awt.Color(255, 187, 0));
         btnBack.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(102, 102, 102));
-        btnBack.setText("Nazad");
-        btnBack.setBorder(null);
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back");
+        btnBack.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnBack.setFocusPainted(false);
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,19 +124,15 @@ public class ProfilPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        pnlUserInfo.add(btnBack);
+        pnlUserInfo.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, 42));
 
-        pnlGlavni.add(pnlUserInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 650));
-
-        pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlGlavni.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 620, 650));
+        pnlGlavni.add(pnlUserInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 210, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,20 +147,12 @@ public class ProfilPanel extends javax.swing.JPanel {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.btnUcenikPodaci.setBackground(Color.decode("666666"));
-        this.btnUcenikPodaci.setForeground(Color.decode("#E0E0E0"));
-        this.btnMojiPredmeti.setBackground(Color.decode("#E0E0E0"));
-        this.btnMojiPredmeti.setForeground(Color.decode("666666"));
+        this.btnUcenikPodaci.setBackground(Color.decode("#FFCC42"));
+        this.btnMojiPredmeti.setBackground(Color.decode("#FFBB00"));
         
-        this.btnNalog.setBackground(Color.decode("#E0E0E0"));
-        this.btnNalog.setForeground(Color.decode("666666"));
+        this.btnNalog.setBackground(Color.decode("#FFBB00"));
         
     }//GEN-LAST:event_btnUcenikPodaciActionPerformed
-
-    private void btnClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClicked
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_btnClicked
 
     private void btnMojiPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMojiPredmetiActionPerformed
         // TODO add your handling code here:
@@ -186,23 +161,17 @@ public class ProfilPanel extends javax.swing.JPanel {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPn1);
-        this.btnMojiPredmeti.setBackground(Color.decode("666666"));
-        this.btnMojiPredmeti.setForeground(Color.decode("#E0E0E0"));
-         this.btnNalog.setBackground(Color.decode("#E0E0E0"));
-        this.btnNalog.setForeground(Color.decode("666666"));
-        this.btnUcenikPodaci.setBackground(Color.decode("#E0E0E0"));
-        this.btnUcenikPodaci.setForeground(Color.decode("666666"));
+        this.btnMojiPredmeti.setBackground(Color.decode("#FFCC42"));
+         this.btnNalog.setBackground(Color.decode("#FFBB00"));
+        this.btnUcenikPodaci.setBackground(Color.decode("#FFBB00"));
        
     }//GEN-LAST:event_btnMojiPredmetiActionPerformed
 
     private void btnNalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNalogActionPerformed
         // TODO add your handling code here:
-          this.btnMojiPredmeti.setForeground(Color.decode("666666"));
-        this.btnMojiPredmeti.setBackground(Color.decode("#E0E0E0"));
-         this.btnNalog.setForeground(Color.decode("#E0E0E0"));
-        this.btnNalog.setBackground(Color.decode("666666"));
-        this.btnUcenikPodaci.setBackground(Color.decode("#E0E0E0"));
-        this.btnUcenikPodaci.setForeground(Color.decode("666666"));
+        this.btnMojiPredmeti.setBackground(Color.decode("#FFBB00"));
+        this.btnNalog.setBackground(Color.decode("#FFCC42"));
+        this.btnUcenikPodaci.setBackground(Color.decode("#FFBB00"));
     }//GEN-LAST:event_btnNalogActionPerformed
 
     private void btnBackbtnClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackbtnClicked

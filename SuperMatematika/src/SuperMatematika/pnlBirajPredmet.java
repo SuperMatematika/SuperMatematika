@@ -39,13 +39,15 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
     private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
-        this.MainPanel.setLayout(new GridLayout(listaPredmeta.size(), 0));
-        Font f = new Font("Arial", Font.ITALIC, 24);
+        this.MainPanel.setLayout(new GridLayout(6,2,6,2));
+        
+        Font f = new Font("Century Gothic", Font.PLAIN, 24);
         listaPredmeta.forEach(elemn->{
             JButton b = new JButton(elemn.getNazivPredmeta());
             b.setBackground(Color.white);
-            b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
-            b.setPreferredSize(new Dimension(40, 40));
+            b.setBorder(BorderFactory.createLineBorder(Color.white, 1, true));
+            b.setBackground(Color.decode("#FFCC42"));
+            b.setForeground(Color.white);
             b.setFont(f);
             
             b.setFocusPainted(false);
@@ -100,60 +102,38 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
     private void initComponents() {
 
         MainPanel = new javax.swing.JPanel();
-        btnBack = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 271, Short.MAX_VALUE)
         );
 
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addGap(0, 345, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-      mainChoiceView main;
-        try {
-            main = new mainChoiceView(trenutniKorisnik);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
-        } catch (Exception ex) {
-
-        }
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JButton btnBack;
     // End of variables declaration//GEN-END:variables
 }

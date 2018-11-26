@@ -69,7 +69,6 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlUcenikPodaci.setBackground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnlUcenikPodaci.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUsername.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -98,61 +97,61 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
         pnlUcenikPodaci.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         lRazredIliFakultet.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lRazredIliFakultet.setForeground(new java.awt.Color(102, 102, 102));
+        lRazredIliFakultet.setForeground(new java.awt.Color(153, 153, 153));
         lRazredIliFakultet.setText("razred");
         pnlUcenikPodaci.add(lRazredIliFakultet, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 110, 20));
 
         lUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lUsername.setForeground(new java.awt.Color(102, 102, 102));
+        lUsername.setForeground(new java.awt.Color(153, 153, 153));
         lUsername.setText("username");
         pnlUcenikPodaci.add(lUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 53, 90, 20));
 
         lIme.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lIme.setForeground(new java.awt.Color(102, 102, 102));
+        lIme.setForeground(new java.awt.Color(153, 153, 153));
         lIme.setText("ime");
         pnlUcenikPodaci.add(lIme, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 13, 70, -1));
 
         lPrezime.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lPrezime.setForeground(new java.awt.Color(102, 102, 102));
+        lPrezime.setForeground(new java.awt.Color(153, 153, 153));
         lPrezime.setText("pprezime");
         pnlUcenikPodaci.add(lPrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 13, 70, -1));
 
         lDatumRodjenja.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lDatumRodjenja.setForeground(new java.awt.Color(102, 102, 102));
+        lDatumRodjenja.setForeground(new java.awt.Color(153, 153, 153));
         lDatumRodjenja.setText("datum");
         pnlUcenikPodaci.add(lDatumRodjenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 97, 130, -1));
 
         lPol.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lPol.setForeground(new java.awt.Color(102, 102, 102));
+        lPol.setForeground(new java.awt.Color(153, 153, 153));
         lPol.setText("pol");
         pnlUcenikPodaci.add(lPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 80, -1));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 618, 10));
+        pnlUcenikPodaci.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 682, 10));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 84, 618, 10));
+        pnlUcenikPodaci.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 84, 682, 10));
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 126, 618, 10));
+        pnlUcenikPodaci.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 126, 682, 10));
 
         jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 168, 618, 10));
+        pnlUcenikPodaci.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 168, 682, 10));
         pnlUcenikPodaci.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
 
-        jSeparator7.setBackground(new java.awt.Color(153, 153, 153));
-        jSeparator7.setForeground(new java.awt.Color(153, 153, 153));
-        pnlUcenikPodaci.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 618, 10));
+        jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        pnlUcenikPodaci.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 682, 10));
 
         jSeparator8.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator8.setForeground(new java.awt.Color(153, 153, 153));
         pnlUcenikPodaci.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 618, 10));
 
-        add(pnlUcenikPodaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 650));
+        add(pnlUcenikPodaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 650));
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -150,12 +150,12 @@ public class StudentFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        pnlHeader.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 90, 60));
+        pnlHeader.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 90, 60));
 
         pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 60));
 
         pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 850, 650));
+        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 860, 650));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -310,6 +310,16 @@ public class StudentFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         mainChoiceView main;
+        try {
+            main = new mainChoiceView(trenutniKorisnik);
+            this.pnlMainContent.removeAll();
+            this.pnlMainContent.revalidate();
+            this.pnlMainContent.setLayout(new BorderLayout());
+            this.pnlMainContent.add(main);
+        } catch (Exception ex) {
+
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

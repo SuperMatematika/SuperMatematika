@@ -55,15 +55,14 @@ public class pnlPredavanja extends javax.swing.JPanel {
     private void createForm() {
         this.removeAll();
         this.revalidate();
-        this.setLayout(new GridLayout(listaLekcija.size()<6?6:listaLekcija.size()+1, 0));
+        this.setLayout(new GridLayout(2,2,4,2));
         System.out.println(listaLekcija.size());
-        Font f = new Font("Arial", Font.ITALIC, 24);
-            this.add(btnBaack);
+        Font f = new Font("Century Gothic", Font.PLAIN, 24);
         for (int i = 0; i < listaLekcija.size(); i++) {
             JButton b = new JButton(listaLekcija.get(i));
-            b.setBackground(Color.white);
-            b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
-            b.setPreferredSize(new Dimension(40, 40));
+            b.setBackground(Color.decode("#FFCC42"));
+            b.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
+            b.setForeground(Color.white);
             b.setFont(f);
 
             b.setFocusPainted(false);
@@ -95,6 +94,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
 
         btnBaack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBaack.setBackground(new java.awt.Color(102, 102, 102));
@@ -104,7 +104,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                 btnBaackActionPerformed(evt);
             }
         });
-        add(btnBaack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 60));
+        add(btnBaack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 80, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
