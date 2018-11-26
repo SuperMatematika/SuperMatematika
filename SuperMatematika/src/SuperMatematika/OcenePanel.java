@@ -26,6 +26,7 @@ public class OcenePanel extends javax.swing.JPanel {
     Student trenutniKorisnik;
     public OcenePanel(Student tk) {
         trenutniKorisnik=tk;
+        
         initComponents();
         popuniTabelu();
     }
@@ -64,8 +65,13 @@ public class OcenePanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         bBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(850, 650));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 204));
+        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -77,20 +83,26 @@ public class OcenePanel extends javax.swing.JPanel {
                 "Predmet", "Ocena", "Datum"
             }
         ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setRowHeight(27);
+        jTable1.setSelectionBackground(new java.awt.Color(0, 161, 241));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 550, 450));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 720, 660));
 
         bBack.setText("Back");
         bBack.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +110,7 @@ public class OcenePanel extends javax.swing.JPanel {
                 bBackActionPerformed(evt);
             }
         });
-        add(bBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        add(bBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackActionPerformed

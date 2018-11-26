@@ -5,6 +5,9 @@
  */
 package SuperMatematika;
 
+import java.awt.Color;
+import javax.swing.UIManager;
+
 /**
  *
  * @author 1
@@ -17,7 +20,10 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     Profesor trenutniKorisnik;
     public pnlSastaviTest(Profesor tk) {
         trenutniKorisnik=tk;
+       
         initComponents();
+         
+   
     }
 
     /**
@@ -29,77 +35,403 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnPredmetiGroup = new javax.swing.ButtonGroup();
+        btnRazrediGroup = new javax.swing.ButtonGroup();
+        btnOdeljenjeGroup = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        pnlLeft = new javax.swing.JPanel();
+        pnlRZ = new javax.swing.JPanel();
+        lblRazred = new javax.swing.JLabel();
+        pnlPR = new javax.swing.JPanel();
+        lblPredmet = new javax.swing.JLabel();
+        pnlOD = new javax.swing.JPanel();
+        lblOdeljenje = new javax.swing.JLabel();
+        btnPR2 = new javax.swing.JButton();
+        btnPR1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        pnlPredmeti = new javax.swing.JPanel();
+        btnMatematika = new javax.swing.JRadioButton();
+        btnFizika = new javax.swing.JRadioButton();
+        pnlRazred = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        pnlOdeljenje = new javax.swing.JPanel();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        TabPanel = new javax.swing.JTabbedPane();
+        pnlOBLASTI = new javax.swing.JPanel();
+        pnlOblasti = new javax.swing.JPanel();
+        btnSkupovi = new javax.swing.JCheckBox();
+        btnOsnaSimetrija = new javax.swing.JCheckBox();
+        btnGeoObjekti1 = new javax.swing.JCheckBox();
+        btnDeljivost = new javax.swing.JCheckBox();
+        btnUgao = new javax.swing.JCheckBox();
+        btnRazlomci = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        btnPrikaziZadatke = new javax.swing.JButton();
+        pnlZADACI = new javax.swing.JPanel();
 
+        pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setPreferredSize(new java.awt.Dimension(890, 650));
         pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Predmet");
-        pnlBackground.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 50));
+        pnlLeft.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLeft.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("Odeljenje");
-        pnlBackground.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 140, 50));
+        pnlRZ.setBackground(new java.awt.Color(0, 161, 241));
+        pnlRZ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setText("Razred");
-        pnlBackground.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 140, 50));
+        lblRazred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblRazred.setForeground(new java.awt.Color(255, 255, 255));
+        lblRazred.setText("RAZRED");
+        pnlRZ.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 70, 20));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlLeft.add(pnlRZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 200, 40));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("---");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 100, 20));
+        pnlPR.setBackground(new java.awt.Color(246, 83, 20));
+        pnlPR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("---");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 100, 20));
+        lblPredmet.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPredmet.setForeground(new java.awt.Color(255, 255, 255));
+        lblPredmet.setText("PREDMET");
+        pnlPR.add(lblPredmet, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, 20));
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("---");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 100, 20));
+        pnlLeft.add(pnlPR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 40));
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Izabrano odeljenje");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 100, 20));
+        pnlOD.setBackground(new java.awt.Color(255, 187, 0));
+        pnlOD.setPreferredSize(new java.awt.Dimension(220, 40));
+        pnlOD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Izabrani predmet");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 100, 20));
+        lblOdeljenje.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblOdeljenje.setForeground(new java.awt.Color(255, 255, 255));
+        lblOdeljenje.setText("ODELJENJE");
+        pnlOD.add(lblOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 100, 20));
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Izabrani razred");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 100, 20));
+        pnlLeft.add(pnlOD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 200, -1));
 
-        pnlBackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 480, 670));
+        btnPR2.setBackground(new java.awt.Color(124, 187, 0));
+        btnPR2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPR2.setForeground(new java.awt.Color(255, 255, 255));
+        btnPR2.setText("SACUVAJ");
+        pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 40));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
-        );
+        btnPR1.setBackground(new java.awt.Color(204, 204, 204));
+        btnPR1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPR1.setForeground(new java.awt.Color(255, 255, 255));
+        btnPR1.setText("IZMENI");
+        pnlLeft.add(btnPR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 200, 40));
+        pnlLeft.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 10));
 
-        pnlBackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 410, 620));
+        pnlPredmeti.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPredmeti.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlPredmeti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMatematika.setBackground(new java.awt.Color(255, 255, 255));
+        btnPredmetiGroup.add(btnMatematika);
+        btnMatematika.setText("Matematika");
+        pnlPredmeti.add(btnMatematika, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 20));
+
+        btnFizika.setBackground(new java.awt.Color(255, 255, 255));
+        btnPredmetiGroup.add(btnFizika);
+        btnFizika.setText("Fizika");
+        pnlPredmeti.add(btnFizika, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, -1));
+
+        pnlLeft.add(pnlPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, 90));
+
+        pnlRazred.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRazred.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlRazred.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton1);
+        jRadioButton1.setText("5");
+        pnlRazred.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton3);
+        jRadioButton3.setText("6");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        pnlRazred.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton2);
+        jRadioButton2.setText("7");
+        pnlRazred.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton4);
+        jRadioButton4.setText("8");
+        pnlRazred.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
+
+        pnlLeft.add(pnlRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 90));
+
+        pnlOdeljenje.setBackground(new java.awt.Color(255, 255, 255));
+        pnlOdeljenje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlOdeljenje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton5);
+        jRadioButton5.setText("1");
+        pnlOdeljenje.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton7);
+        jRadioButton7.setText("2");
+        pnlOdeljenje.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+
+        jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton8);
+        jRadioButton8.setText("3");
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
+        pnlOdeljenje.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton6);
+        jRadioButton6.setText("4");
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
+        pnlOdeljenje.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        pnlLeft.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 200, 100));
+
+        pnlBackground.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 500));
+
+        TabPanel.setBackground(new java.awt.Color(246, 83, 20));
+        TabPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        TabPanel.setForeground(new java.awt.Color(255, 255, 255));
+        TabPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        pnlOBLASTI.setBackground(new java.awt.Color(255, 255, 255));
+        pnlOBLASTI.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlOblasti.setBackground(new java.awt.Color(255, 255, 255));
+        pnlOblasti.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlOblasti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSkupovi.setBackground(new java.awt.Color(255, 255, 255));
+        btnSkupovi.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnSkupovi.setForeground(new java.awt.Color(153, 153, 153));
+        btnSkupovi.setText("Skupovi");
+        btnSkupovi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSkupoviSkupoviCheck(evt);
+            }
+        });
+        btnSkupovi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkupoviActionPerformed(evt);
+            }
+        });
+        pnlOblasti.add(btnSkupovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        btnOsnaSimetrija.setBackground(new java.awt.Color(255, 255, 255));
+        btnOsnaSimetrija.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnOsnaSimetrija.setForeground(new java.awt.Color(153, 153, 153));
+        btnOsnaSimetrija.setText("Osna simetrija");
+        btnOsnaSimetrija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOsnaSimetrijaActionPerformed(evt);
+            }
+        });
+        pnlOblasti.add(btnOsnaSimetrija, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, -1));
+
+        btnGeoObjekti1.setBackground(new java.awt.Color(255, 255, 255));
+        btnGeoObjekti1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnGeoObjekti1.setForeground(new java.awt.Color(153, 153, 153));
+        btnGeoObjekti1.setText("Geometrijski objekti");
+        btnGeoObjekti1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeoObjekti1ActionPerformed(evt);
+            }
+        });
+        pnlOblasti.add(btnGeoObjekti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
+
+        btnDeljivost.setBackground(new java.awt.Color(255, 255, 255));
+        btnDeljivost.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnDeljivost.setForeground(new java.awt.Color(153, 153, 153));
+        btnDeljivost.setText("Deljivost");
+        btnDeljivost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeljivostActionPerformed(evt);
+            }
+        });
+        pnlOblasti.add(btnDeljivost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+
+        btnUgao.setBackground(new java.awt.Color(255, 255, 255));
+        btnUgao.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnUgao.setForeground(new java.awt.Color(153, 153, 153));
+        btnUgao.setText("Ugao");
+        btnUgao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUgaoActionPerformed(evt);
+            }
+        });
+        pnlOblasti.add(btnUgao, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
+
+        btnRazlomci.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazlomci.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnRazlomci.setForeground(new java.awt.Color(153, 153, 153));
+        btnRazlomci.setText("Razlomci");
+        btnRazlomci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRazlomciActionPerformed(evt);
+            }
+        });
+        pnlOblasti.add(btnRazlomci, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Prosti i slozeni brojevi");
+        pnlOblasti.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Operacije sa skupovima");
+        pnlOblasti.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("Skup prirodnih brojeva");
+        pnlOblasti.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Pojam skupa");
+        pnlOblasti.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Osnovni geometrijski pojmovi");
+        pnlOblasti.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Delovi prave i ravni");
+        pnlOblasti.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Kruznice i krugovi");
+        pnlOblasti.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Simetrala duzi i ugla");
+        pnlOblasti.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Deljivost nekim brojevima");
+        pnlOblasti.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Pojam deljivosti");
+        pnlOblasti.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Pojam ugla");
+        pnlOblasti.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Uporedjivanje uglova");
+        pnlOblasti.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setText("Vrste uglova");
+        pnlOblasti.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel14.setText("Pojam razlomka");
+        pnlOblasti.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, 20));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel15.setText("Vrste razlomka");
+        pnlOblasti.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel16.setText("Mnozenje i deljenje");
+        pnlOblasti.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel17.setText("Pojam osne sitmetrije");
+        pnlOblasti.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel18.setText("Osna simetricnost");
+        pnlOblasti.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        pnlOblasti.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 30, 520));
+        pnlOblasti.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 640, 30));
+        pnlOblasti.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 640, 30));
+
+        pnlOBLASTI.add(pnlOblasti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 520));
+
+        btnPrikaziZadatke.setBackground(new java.awt.Color(124, 187, 0));
+        btnPrikaziZadatke.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPrikaziZadatke.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrikaziZadatke.setText("Nastavi");
+        pnlOBLASTI.add(btnPrikaziZadatke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 630, 70));
+        btnPrikaziZadatke.getAccessibleContext().setAccessibleName("NASTAVI");
+
+        TabPanel.addTab("OBLASTI", pnlOBLASTI);
+
+        pnlZADACI.setBackground(new java.awt.Color(255, 255, 255));
+        pnlZADACI.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        TabPanel.addTab("ZADACI", pnlZADACI);
+
+        pnlBackground.add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 640, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -109,19 +441,111 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void btnRazlomciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRazlomciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRazlomciActionPerformed
+
+    private void btnUgaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUgaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUgaoActionPerformed
+
+    private void btnDeljivostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeljivostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeljivostActionPerformed
+
+    private void btnGeoObjekti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeoObjekti1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGeoObjekti1ActionPerformed
+
+    private void btnOsnaSimetrijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOsnaSimetrijaActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnOsnaSimetrijaActionPerformed
+
+    private void btnSkupoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkupoviActionPerformed
+        // TODO add your handling code here:
+        if(this.btnSkupovi.isSelected()==false){
+
+        }
+    }//GEN-LAST:event_btnSkupoviActionPerformed
+
+    private void btnSkupoviSkupoviCheck(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkupoviSkupoviCheck
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnSkupoviSkupoviCheck
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTabbedPane TabPanel;
+    private javax.swing.JCheckBox btnDeljivost;
+    private javax.swing.JRadioButton btnFizika;
+    private javax.swing.JCheckBox btnGeoObjekti1;
+    private javax.swing.JRadioButton btnMatematika;
+    private javax.swing.ButtonGroup btnOdeljenjeGroup;
+    private javax.swing.JCheckBox btnOsnaSimetrija;
+    private javax.swing.JButton btnPR1;
+    private javax.swing.JButton btnPR2;
+    private javax.swing.ButtonGroup btnPredmetiGroup;
+    private javax.swing.JButton btnPrikaziZadatke;
+    private javax.swing.JCheckBox btnRazlomci;
+    private javax.swing.ButtonGroup btnRazrediGroup;
+    private javax.swing.JCheckBox btnSkupovi;
+    private javax.swing.JCheckBox btnUgao;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblOdeljenje;
+    private javax.swing.JLabel lblPredmet;
+    private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlLeft;
+    private javax.swing.JPanel pnlOBLASTI;
+    private javax.swing.JPanel pnlOD;
+    private javax.swing.JPanel pnlOblasti;
+    private javax.swing.JPanel pnlOdeljenje;
+    private javax.swing.JPanel pnlPR;
+    private javax.swing.JPanel pnlPredmeti;
+    private javax.swing.JPanel pnlRZ;
+    private javax.swing.JPanel pnlRazred;
+    private javax.swing.JPanel pnlZADACI;
     // End of variables declaration//GEN-END:variables
 }

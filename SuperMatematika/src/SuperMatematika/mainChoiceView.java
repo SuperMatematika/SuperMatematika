@@ -47,12 +47,14 @@ public class mainChoiceView extends javax.swing.JPanel {
         btnLekcije3 = new javax.swing.JButton();
         btnProbni = new javax.swing.JButton();
 
-        pnlMainContent.setLayout(new java.awt.GridLayout(2, 2));
+        pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLekcije2.setBackground(new java.awt.Color(255, 255, 204));
+        btnLekcije2.setBackground(new java.awt.Color(255, 204, 102));
+        btnLekcije2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         btnLekcije2.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/LekcijeIcon.png"))); // NOI18N
-        btnLekcije2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
+        btnLekcije2.setText("LEKCIJE");
+        btnLekcije2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnLekcije2.setFocusPainted(false);
         btnLekcije2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLekcije2.addActionListener(new java.awt.event.ActionListener() {
@@ -60,12 +62,13 @@ public class mainChoiceView extends javax.swing.JPanel {
                 btnLekcije2ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(btnLekcije2);
+        pnlMainContent.add(btnLekcije2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 180));
 
-        btnLekcije1.setBackground(new java.awt.Color(255, 255, 255));
+        btnLekcije1.setBackground(new java.awt.Color(255, 204, 102));
+        btnLekcije1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         btnLekcije1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ZadaciIcon.png"))); // NOI18N
-        btnLekcije1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
+        btnLekcije1.setText("ZADACI");
+        btnLekcije1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnLekcije1.setFocusPainted(false);
         btnLekcije1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLekcije1.addActionListener(new java.awt.event.ActionListener() {
@@ -73,12 +76,14 @@ public class mainChoiceView extends javax.swing.JPanel {
                 btnLekcije1ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(btnLekcije1);
+        pnlMainContent.add(btnLekcije1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 200, 180));
 
-        btnLekcije3.setBackground(new java.awt.Color(255, 255, 255));
+        btnLekcije3.setBackground(new java.awt.Color(255, 204, 102));
+        btnLekcije3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         btnLekcije3.setForeground(new java.awt.Color(255, 255, 255));
-        btnLekcije3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ProbniTestIcon.png"))); // NOI18N
-        btnLekcije3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
+        btnLekcije3.setText("PROBNI TEST");
+        btnLekcije3.setToolTipText("");
+        btnLekcije3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnLekcije3.setFocusPainted(false);
         btnLekcije3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLekcije3.addActionListener(new java.awt.event.ActionListener() {
@@ -86,12 +91,13 @@ public class mainChoiceView extends javax.swing.JPanel {
                 btnLekcije3ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(btnLekcije3);
+        pnlMainContent.add(btnLekcije3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 200, 180));
 
-        btnProbni.setBackground(new java.awt.Color(255, 255, 255));
+        btnProbni.setBackground(new java.awt.Color(255, 204, 102));
+        btnProbni.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         btnProbni.setForeground(new java.awt.Color(255, 255, 255));
-        btnProbni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/TestIcon.png"))); // NOI18N
-        btnProbni.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
+        btnProbni.setText("TEST");
+        btnProbni.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnProbni.setFocusPainted(false);
         btnProbni.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnProbni.addActionListener(new java.awt.event.ActionListener() {
@@ -99,17 +105,17 @@ public class mainChoiceView extends javax.swing.JPanel {
                 btnProbniActionPerformed(evt);
             }
         });
-        pnlMainContent.add(btnProbni);
+        pnlMainContent.add(btnProbni, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 200, 180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 @SuppressWarnings("unchecked")
