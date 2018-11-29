@@ -13,9 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -242,14 +239,14 @@ public class DBController {
     
     // Ovo sam malo drugacije uradio jer zelim da radim sa izuzecima u UcenikNalogPanel posto ima tamo jos nekih izuzetaka
     void postaviNovuLozinku(String username, String staraLozinka, String novaLozinka) throws SQLException, Exception {
-        // koristim funkciju loginValid da bi proverio da li je stara lozinka ispravna
+        // Koristim funkciju loginValid da bi proverio da li je stara lozinka ispravna
         Korisnik k = require().loginValid(username,staraLozinka);
-        if (k != null) {
-            String upit = "UPDATE Users SET Password = '" + novaLozinka + "' WHERE Username = '" + username + "';";
-            statement=(Statement) connection.createStatement();
-            statement.executeUpdate(upit);
-        }
-        else
-            throw new Exception("Neispravna stara lozinka!");     
+        if (k == null) 
+            throw new Exception("Neispravna stara lozinka!"); 
+        
+        // Promena lozinke u bazi podataka
+        String upit = "UPDATE Users SET Password = '" + novaLozinka + "' WHERE Username = '" + username + "';";
+        statement=(Statement) connection.createStatement();
+        statement.executeUpdate(upit);           
     }
 }

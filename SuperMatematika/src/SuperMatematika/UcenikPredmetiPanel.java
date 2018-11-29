@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,7 +40,7 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
       
         String upit = "SELECT Predmet.Naziv, Users.Ime, Users.Prezime\n" +
                       "FROM Users INNER JOIN ((Nastavnik INNER JOIN Predmet ON Nastavnik.username = Predmet.Username_nastavnika) INNER JOIN SlusaPredmet ON Predmet.ID_predmeta = SlusaPredmet.ID_predmeta) ON Users.Username = Nastavnik.username\n" +
-                      "WHERE SlusaPredmet.Username_ucenik=\"" + trenutniKorisnik.getUsername() + "\";";
+                      "WHERE SlusaPredmet.Username_ucenik='" + trenutniKorisnik.getUsername() + "';";
         
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
