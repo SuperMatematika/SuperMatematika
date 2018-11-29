@@ -88,6 +88,25 @@ public class DBController {
         return 0;
     }
     
+    // Isto kao i funkcija iznad, ovo bi moglo da se ispravi da se ne ponavlja kod, ali neka ga za sad
+    public int getOdeljenje(Korisnik k) {
+        try {
+            statement = (Statement) connection.createStatement();
+            resultSet = statement.executeQuery("SELECT Odeljenje from Student where username='" + k.getUsername() + "';");
+            try {
+                statement.close();
+                while (resultSet.next()) {
+                    return resultSet.getInt("Odeljenje");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception E) {
+            System.out.println(E);
+        } 
+        return 0;
+    }
+    
     
     
     public Korisnik loginValid(String username,String password){
@@ -340,4 +359,6 @@ public class DBController {
         }
     return 0;
     }
+
+
 }

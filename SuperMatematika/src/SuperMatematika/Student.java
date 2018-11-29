@@ -14,9 +14,11 @@ import java.util.Date;
  */
 public class Student extends Korisnik {
     private int razred;
-    public Student(String userType, String username, String Ime, String prezime, Date datumRodjenja, String pol,int razred) {
+    private int odeljenje;
+    public Student(String userType, String username, String Ime, String prezime, Date datumRodjenja, String pol,int razred, int odeljenje) {
         super(userType, username, Ime, prezime, datumRodjenja, pol);
         this.razred=razred;
+        this.odeljenje = odeljenje;
     }
     
 
@@ -31,6 +33,16 @@ public class Student extends Korisnik {
     public void setRazred(int razred) {
         this.razred = razred;
     }
+
+    public int getOdeljenje() {
+        return odeljenje;
+    }
+
+    public void setOdeljenje(int odeljenje) {
+        this.odeljenje = odeljenje;
+    }
+    
+    
 
     @Override
     public String toString() {
