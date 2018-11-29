@@ -13,7 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -251,5 +254,90 @@ public class DBController {
         }
         else
             throw new Exception("Neispravna stara lozinka!");     
+    }
+
+    ArrayList<Predmet> getProfPredmeti(Profesor trenutniKorisnik) throws SQLException {
+        ArrayList<Predmet> listaPredmeta=new ArrayList();
+        try{
+            int i=0;
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("SELECT id_predmeta,naziv,username_nastavnika,razred from predmet where username_nastavnika='"+trenutniKorisnik.getUsername()+"';");
+            while(resultSet.next()){
+                listaPredmeta.add(new Predmet(resultSet.getInt("id_predmeta"),resultSet.getString("naziv"),resultSet.getString("username_nastavnika"),resultSet.getInt("razred")));
+            }
+            
+        }
+        catch(Exception e){
+
+        }finally{
+            statement.close();
+        }
+        return listaPredmeta;
+    }
+
+    void kreirajTest(Profesor p,TestWrapper newTest, ArrayList<Integer> izabraniZadaci) throws SQLException {
+        try {
+            statement=(Statement)connection.createStatement();
+            statement.executeUpdate("insert into test values('"+p.getUsername()+"','"+newTest.getId_predmeta()+"','"+newTest.getRazred()+"','"+newTest.getOdeljenje()+"','"+newTest.getRedni_broj_testa()+"','"+izabraniZadaci.get(0)+"','"+izabraniZadaci.get(1)+"','"+izabraniZadaci.get(2)+"','"+izabraniZadaci.get(3)+"','"+izabraniZadaci.get(4)+"');");
+            JOptionPane.showMessageDialog(null, "Uspesno!");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            statement.close();
+        }
+    }
+
+    ArrayList<Zadatak> prikaziZadatke(String selectedPredmet,String selectedRazred, ArrayList<String> izabraneOblasti) {
+        ArrayList<String> izabObl=new ArrayList();
+        ArrayList<Zadatak> iza=new ArrayList();
+        System.out.println("Asd");
+        izabraneOblasti.forEach(e->{
+            System.out.println("PRE:"+e);
+            if(izabraneOblasti.get(izabraneOblasti.size()-1)!=e)
+                izabObl.add("'"+e+"',");
+            else
+                izabObl.add("'"+e+"'");
+            System.out.println("POSLE:"+izabObl.get(izabObl.size()-1));
+        });
+        try{
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("SELECT id_zadatka,oblast,putanja from zadatak,predmet where predmet.razred='"+selectedRazred+"' and predmet.id_predmeta=zadatak.id_predmeta and predmet.naziv='"+selectedPredmet+"' and zadatak.oblast in ("+prebaci(izabObl)+");");
+            while(resultSet.next()){
+                System.out.println(resultSet.getInt("id_zadatka"));
+                iza.add(new Zadatak(resultSet.getInt("id_zadatka"),resultSet.getString("oblast"),resultSet.getString("putanja")));
+            }
+            return iza;
+        }catch(Exception e){
+            System.out.println(e);
+        }finally{
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return null;
+    }
+
+    private String prebaci(ArrayList<String> izabObl) {
+        String ret="";
+        for(int i=0;i<izabObl.size();i++){
+            ret+=izabObl.get(i);
+        }
+        return ret;
+    }
+    public int getIdPredmeta(String nazivP,int raz){
+        
+        try {
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("select id_predmeta from predmet where naziv='"+nazivP+"' and razred='"+raz+"';");
+            while(resultSet.next()){
+                return resultSet.getInt("id_predmeta");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return 0;
     }
 }

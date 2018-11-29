@@ -15,6 +15,23 @@ import java.lang.String;
  * Ova klasa pamti podatke o pojedinacnom zadatku, putanju do slike, tacan odgovor i netacne odgovore
  */
 public class Zadatak {
+    private int id_zadatka;
+    private String oblast;
+    private Object slika_zadatka;
+
+    Zadatak(int aInt, String str1, String string) {
+        id_zadatka=aInt;
+        oblast=str1;
+        slika_zadatka=(Object)string;
+    }
+
+    public void setSlika_zadatka(Object slika_zadatka) {
+        this.slika_zadatka = slika_zadatka;
+    }
+
+    public Object getSlika_zadatka() {
+        return slika_zadatka;
+    }
     private String putanjaDoZadatka;
     private String tacanOdogovor;
     private String pogresanOdg1;
@@ -29,6 +46,21 @@ public class Zadatak {
         this.pogresanOdg3 = pogresanOdg3;
     }
 
+    public void setId_zadatka(int id_zadatka) {
+        this.id_zadatka = id_zadatka;
+    }
+
+    public void setOblast(String oblast) {
+        this.oblast = oblast;
+    }
+
+    public int getId_zadatka() {
+        return id_zadatka;
+    }
+
+    public String getOblast() {
+        return oblast;
+    }
     public String getPutanjaDoZadatka() {
         return putanjaDoZadatka;
     }

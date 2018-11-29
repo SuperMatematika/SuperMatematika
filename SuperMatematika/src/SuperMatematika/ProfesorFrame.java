@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,17 +21,22 @@ import java.util.logging.Logger;
  */
 public class ProfesorFrame extends javax.swing.JFrame {
     Profesor trenutniKorisnik;
+    ArrayList<Predmet> listaPredmeta=new ArrayList();
     /**
      * Creates new form ProfesorFrame
      */
    
+    
+    
     public ProfesorFrame(Profesor tk) throws SQLException {
         trenutniKorisnik=tk;
         initComponents();
+        listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
+        listaPredmeta.forEach(e->{
+            System.out.println(e.getNazivPredmeta());  
+        });
         this.pnlProfilMenu.setVisible(false);
-       
-        
-         this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
+        this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
        
     }
 
@@ -318,11 +324,16 @@ public class ProfesorFrame extends javax.swing.JFrame {
 
     private void btnSastaviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSastaviTestActionPerformed
         // TODO add your handling code here:
-        pnlSastaviTest newPnl = new pnlSastaviTest(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        pnlSastaviTest newPnl;
+        try {
+            newPnl = new pnlSastaviTest(trenutniKorisnik,listaPredmeta);
+            this.pnlMainContent.removeAll();
+            this.pnlMainContent.revalidate();
+            this.pnlMainContent.setLayout(new BorderLayout());
+            this.pnlMainContent.add(newPnl);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSastaviTestActionPerformed
 
     private void btnRezultatiTestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTestaActionPerformed
