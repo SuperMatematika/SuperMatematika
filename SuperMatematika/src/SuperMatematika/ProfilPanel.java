@@ -169,6 +169,11 @@ public class ProfilPanel extends javax.swing.JPanel {
 
     private void btnNalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNalogActionPerformed
         // TODO add your handling code here:
+        UcenikNalogPanel newPn1= new UcenikNalogPanel(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPn1);
         this.btnMojiPredmeti.setBackground(Color.decode("#FFBB00"));
         this.btnNalog.setBackground(Color.decode("#FFCC42"));
         this.btnUcenikPodaci.setBackground(Color.decode("#FFBB00"));

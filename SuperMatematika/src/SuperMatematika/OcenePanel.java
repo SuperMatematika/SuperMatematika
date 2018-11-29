@@ -34,15 +34,16 @@ public class OcenePanel extends javax.swing.JPanel {
     // Popunja jTable1 sa svim ocenama za datom ucenika koje se nalaze u bazi, sortira ih po predmetu i po datumu
     private void popuniTabelu() {
       
-        String upit = "SELECT Predmet.Naziv, Ocena.Ocena, Ocena.Datum " 
-                    + "FROM Predmet INNER JOIN Ocena ON Predmet.ID_predmeta=Ocena.ID_predmeta "
-                    + "WHERE Ocena.Username_ucenika = '" + trenutniKorisnik.username + "' "
-                    + "ORDER BY Naziv, Datum;";
+        String upit = "SELECT Predmet.Naziv, Rezultati_testa.redni_broj_testa, Rezultati_testa.broj_bodova " 
+                    + "FROM Predmet INNER JOIN Rezultati_testa ON Predmet.ID_predmeta=Rezultati_testa.predmet "
+                    + "WHERE Rezultati_testa.student = '" + trenutniKorisnik.username + "' "
+                    + "ORDER BY Naziv, redni_broj_testa DESC;";
         
+        System.out.println(upit);
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
             while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Naziv"), rezultat.getInt("Ocena"), rezultat.getDate("Datum") };
+                Object[] row = { rezultat.getString("Naziv"), rezultat.getInt("redni_broj_testa"), rezultat.getInt("broj_bodova") };
                 ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
             }
         } catch (SQLException ex) {
@@ -80,7 +81,7 @@ public class OcenePanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Predmet", "Ocena", "Datum"
+                "Predmet", "Redni broj testa", "Broj bodova"
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
