@@ -229,6 +229,55 @@ public class DBController {
         return zadaci;
     }
     
+    // Funkcija vraca listu od 5 zadataka koji su unapred odrednjeni od strane nastavnika i nalaze se u bazi
+    public List<Zadatak> SastaviTest(int razred, int odeljenje, int ID_predmeta, int redniBrojTesta) {
+        ArrayList<Zadatak> zadaci = new ArrayList();
+        
+        try {
+
+            // Treba da se popravi, da zavisi od razreda i od predmeta
+            statement = (Statement) connection.createStatement();
+            String upit =   "SELECT Zadatak.*\n" +
+                            "FROM Zadatak, Test\n" +
+                            "WHERE (Zadatak.ID_zadatka = Test.zad1 OR Zadatak.ID_zadatka = Test.zad2 OR Zadatak.ID_zadatka = Test.zad3 OR Zadatak.ID_zadatka = Test.zad4 OR Zadatak.ID_zadatka = Test.zad5) \n" +
+                            " AND Test.redni_broj_testa = " + redniBrojTesta +
+                            " AND Test.predmet = " + ID_predmeta +
+                            " AND Test.razred = " + razred +
+                            " AND Test.odeljenje = " + odeljenje + ";";
+            resultSet = statement.executeQuery(upit);
+            
+            while(resultSet.next()){
+                Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
+                                           resultSet.getString("TacanOdgovor"),
+                                           resultSet.getString("PogresanOdgovor1"),
+                                           resultSet.getString("PogresanOdgovor2"),
+                                           resultSet.getString("PogresanOdgovor3"));
+               zadaci.add(temp);
+            }
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+                if(null != connection) {
+
+                    // cleanup resources, once after 
+                    statement.close();
+
+                    //connection.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        
+        return zadaci;
+    }
+    
     public ArrayList<Predmet> getPredmete(int razred){
          try {
             ArrayList<Predmet> listaPredmeta=new ArrayList();

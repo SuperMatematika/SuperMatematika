@@ -32,23 +32,51 @@ import javax.swing.Timer;
  *
  * @author 1
  */
-public class pnlKrajnjiTest extends javax.swing.JPanel {
+public class pnlTest extends javax.swing.JPanel {
     
     Student trenutniKorisnik;
-    private static int BROJ_ZADATAKA = 3;
+    private boolean zapamtiUBazi;
+    private final int BROJ_ZADATAKA = 5;
     private int trenutni=0;
     List<Zadatak> zadaci; 
     Timer t;
     private int timerDuration=3600;
-    ArrayList<ZadatakPanel> resenjaZadataka=new ArrayList();    
-    public pnlKrajnjiTest(Student tr) {
+    ArrayList<ZadatakPanel> resenjaZadataka=new ArrayList();   
+    
+    // Ovaj konstruktor se koristi za probni test, sastavlja random test
+    public pnlTest(Student tr) {
         trenutniKorisnik=tr;
         initComponents();
-
-        
+        // Rezultati probnog testa se ne pamte u bazi
+        zapamtiUBazi = false;
+  
         // Postavi novi test u pocetku
         bNoviTest.doClick();
+        
     }
+    
+    // Ovaj konstruktor se koristi za pravi test, u njemu se sastavlja test od upared odrenjenih zadataka od strane nastavnika
+    // I btw dubme bNoviTest se gasi jer nema smisla
+    public pnlTest(Student tr, int ID_predmeta, int redniBrojTesta){
+        trenutniKorisnik=tr;
+        initComponents();
+        // Rezultati pravog testa se pamte u bazi
+        zapamtiUBazi = true;
+        try {
+            zadaci = DBController.require().SastaviTest(tr.getRazred(), tr.getOdeljenje(), ID_predmeta, redniBrojTesta);
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Moram ovako, ali cu to sigurno da ispravim, 100%, sigurno necu da zaborvim
+        // Jer mi je tako trenutno najlakse
+        bNoviTest.doClick();
+        
+        // Nema mogucnost odabira novog testa
+        bNoviTest.setEnabled(false);
+        
+    }
+            
     
     private void krajTesta() throws SQLException{
         this.btnPrethodni.setEnabled(false);
@@ -246,7 +274,13 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             }catch(Exception e){}
             timerDuration=3600;
             trenutni=0;
-            zadaci = DBController.require().SastaviTest("skupovi", BROJ_ZADATAKA);
+            // Znam da je ovo glupo ali...
+            // Na osnovu varijable zapamtiUBazi odredjujem da li cu da sastavljam random test ili predefinisani test
+            if (!zapamtiUBazi)
+                zadaci = DBController.require().SastaviTest("skupovi", BROJ_ZADATAKA);
+            // Ako treba da se pamti u bazi onda se to radi u konstruktoru jer se u tom slucaju to radi samo jednom
+            
+            
             resenjaZadataka.clear();
             for (Zadatak z: zadaci){
                 resenjaZadataka.add(new ZadatakPanel(z));
@@ -264,7 +298,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                         try {
                             krajTesta();
                         } catch (SQLException ex) {
-                            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }else{
                         timerDuration--;
@@ -276,7 +310,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             t=new Timer(1000,actListner);
             t.start();
         } catch (SQLException ex) {
-            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bNoviTestActionPerformed
 
@@ -304,7 +338,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         try {
             krajTesta();
         } catch (SQLException ex) {
-            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(this, "Broj bodova: " + brojTacnihOdgovora + "/" + BROJ_ZADATAKA);
     }//GEN-LAST:event_bProverResenjaActionPerformed
