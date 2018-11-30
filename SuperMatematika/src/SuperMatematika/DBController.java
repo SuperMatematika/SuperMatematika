@@ -440,4 +440,18 @@ public class DBController {
 
 
 
+
+    ArrayList<RezultatiTesta> getRezultati(Profesor trenutniKorisnik) throws SQLException {
+        ArrayList<RezultatiTesta> rt=new ArrayList();
+         try {
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("select rezultati_testa.* from rezultati_testa,nastavnik,predmet where nastavnik.username=predmet.username_nastavnika and nastavnik.username='"+trenutniKorisnik.getUsername()+"' and predmet.id_predmeta=rezultati_testa.predmet");
+            while(resultSet.next()){
+                rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getInt("predmet"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5"),resultSet.getInt("broj_bodova")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{statement.close();}
+         return rt;
+    }
 }
