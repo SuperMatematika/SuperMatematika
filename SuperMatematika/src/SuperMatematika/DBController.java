@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SuperMatematika;
 
 import java.io.File;
@@ -29,6 +24,7 @@ public class DBController {
     private Connection connection = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
+    
     private DBController() throws SQLException{
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -70,102 +66,68 @@ public class DBController {
         }
         return resultSet;
     }
+    
+    // Vraca razred za datog ucenika
     public int getRazred(Korisnik k){
+        resultSet = submitQuery("SELECT razred FROM Student WHERE username='" + k.getUsername() + "';");
         try {
-            statement = (Statement) connection.createStatement();
-            resultSet = statement.executeQuery("SELECT razred from Student where username='" + k.getUsername() + "';");
-            try {
-                statement.close();
-                while (resultSet.next()) {
-                    return resultSet.getInt("razred");
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        } catch (Exception E) {
-            System.out.println(E);
-        } 
+            if (resultSet.next()) 
+                return resultSet.getInt("razred");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
         return 0;
     }
     
-    // Isto kao i funkcija iznad, ovo bi moglo da se ispravi da se ne ponavlja kod, ali neka ga za sad
+    // Vraca odeljnje ucenika
     public int getOdeljenje(Korisnik k) {
+        resultSet = submitQuery("SELECT Odeljenje FROM Student WHERE username='" + k.getUsername() + "';");
         try {
-            statement = (Statement) connection.createStatement();
-            resultSet = statement.executeQuery("SELECT Odeljenje from Student where username='" + k.getUsername() + "';");
-            try {
-                statement.close();
-                while (resultSet.next()) {
-                    return resultSet.getInt("Odeljenje");
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        } catch (Exception E) {
-            System.out.println(E);
-        } 
+            if (resultSet.next()) 
+                return resultSet.getInt("odeljenje");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
         return 0;
     }
     
-    
-    
+    // Proverava da li je login ispravan
     public Korisnik loginValid(String username,String password){
-         try {
-            statement = (Statement) connection.createStatement();  
-            resultSet=statement.executeQuery("SELECT username,usertype,ime,prezime,godina_rodjenja,pol from Users where username='"+username+"' and password='"+password+"';");
-            statement.close();
-            if(resultSet.next()){
-                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("Godina_rodjenja"),resultSet.getString("pol"));
-            }
-            else{
-                return null;
-            }
-          
+        resultSet = submitQuery("SELECT username,usertype,ime,prezime,godina_rodjenja,pol from Users where username='"+username+"' and password='"+password+"';");
+
+        try {
+            if(resultSet.next())
+                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("Godina_rodjenja"),resultSet.getString("pol"));                  
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        catch(Exception E){
-            System.out.println(E);
-        }
-        finally {
-            try {
-                if(null != connection)
-                    statement.close();
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
+        
         return null;
-    }
+        }
 
     ArrayList<String> getPutanjeOblasti(String oblast,int idPredmeta) {
+        ArrayList<String> listaPutanja=new ArrayList();
+        resultSet = submitQuery("SELECT Putanja from "+oblast+" where ID_predmeta='"+idPredmeta+"';");
         try {
-            ArrayList<String> listaPutanja=new ArrayList();
-            statement = (Statement) connection.createStatement();
-            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT Putanja from "+oblast+" where ID_predmeta='"+idPredmeta+"';");
-            statement.close();
             while (resultSet.next()) {
                 listaPutanja.add(resultSet.getString("Putanja"));
-//                listaLekcija.add(resultSet.getString("NaslovLekcije"));
             }
             return listaPutanja;
-
+            
         } catch (Exception E) {
-            System.out.println(E);
+            E.printStackTrace();
         } 
 
         return null;
     }
 
     ArrayList<String> getOblasti(String tabela,int idPredmeta) {
-        try {
-            ArrayList<String> listaLekcija=new ArrayList();
-            statement = (Statement) connection.createStatement();
-            // HARDKODOVANO mora da se ispravi, join sa tabelom Predmet, ovo sad radi samo za predmet matematika
-            resultSet = statement.executeQuery("SELECT NaslovLekcije from "+tabela+" where ID_predmeta='"+idPredmeta+"';");
-            statement.close();
+        ArrayList<String> listaLekcija=new ArrayList();
+        resultSet = submitQuery("SELECT NaslovLekcije from "+tabela+" where ID_predmeta='"+idPredmeta+"';");
+        try {   
             while (resultSet.next()) {
-//                listaPutanja.add(resultSet.getString("Putanja"));
                 listaLekcija.add(resultSet.getString("NaslovLekcije"));
             }
             return listaLekcija;
@@ -179,53 +141,29 @@ public class DBController {
 
     List<Zadatak> SastaviTest(ArrayList<String> oblasti, int brzadataka) throws GreskaNemaDovoljnoPitanja {
         ArrayList<Zadatak> zadaci = new ArrayList();
-        
-        try {
+       
+        String upit = "SELECT * from Zadatak " 
+                    + "WHERE Oblast = '" + String.join("' OR Oblast = '", oblasti) + "' "
+                    + "ORDER BY RAND() LIMIT " + brzadataka + ";";
 
-            String upit = "SELECT * from Zadatak " 
-                        + "WHERE Oblast = '" + String.join("' OR Oblast = '", oblasti) + "' "
-                        + "ORDER BY RAND() LIMIT " + brzadataka + ";";
-            
-            
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery(upit);
-            
+        resultSet = submitQuery(upit);
+
+        try {
             while(resultSet.next()){
                 Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
-                                           resultSet.getString("TacanOdgovor"),
-                                           resultSet.getString("PogresanOdgovor1"),
-                                           resultSet.getString("PogresanOdgovor2"),
-                                           resultSet.getString("PogresanOdgovor3"));
-               zadaci.add(temp);
+                        resultSet.getString("TacanOdgovor"),
+                        resultSet.getString("PogresanOdgovor1"),
+                        resultSet.getString("PogresanOdgovor2"),
+                        resultSet.getString("PogresanOdgovor3"));
+                zadaci.add(temp);
             }
-
-            if (zadaci.size() < 5)
-                throw new GreskaNemaDovoljnoPitanja();
-  
-        }
-        catch (GreskaNemaDovoljnoPitanja g) {
-                 throw g;
-             }
-        catch(Exception E){
-            System.out.println(E);
-        }
-        finally {
-
-            // Step 3: Closing database connection
-            try {
-                if(null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         
+        if (zadaci.size() < 5)
+            throw new GreskaNemaDovoljnoPitanja();
+
         return zadaci;
     }
     
@@ -233,10 +171,6 @@ public class DBController {
     public List<Zadatak> SastaviTest(int razred, int odeljenje, int ID_predmeta, int redniBrojTesta) {
         ArrayList<Zadatak> zadaci = new ArrayList();
         
-        try {
-
-            // Treba da se popravi, da zavisi od razreda i od predmeta
-            statement = (Statement) connection.createStatement();
             String upit =   "SELECT Zadatak.*\n" +
                             "FROM Zadatak, Test\n" +
                             "WHERE (Zadatak.ID_zadatka = Test.zad1 OR Zadatak.ID_zadatka = Test.zad2 OR Zadatak.ID_zadatka = Test.zad3 OR Zadatak.ID_zadatka = Test.zad4 OR Zadatak.ID_zadatka = Test.zad5) \n" +
@@ -244,37 +178,21 @@ public class DBController {
                             " AND Test.predmet = " + ID_predmeta +
                             " AND Test.razred = " + razred +
                             " AND Test.odeljenje = " + odeljenje + ";";
-            resultSet = statement.executeQuery(upit);
+            resultSet = submitQuery(upit);
             
+        try {
             while(resultSet.next()){
-                Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
-                                           resultSet.getString("TacanOdgovor"),
-                                           resultSet.getString("PogresanOdgovor1"),
-                                           resultSet.getString("PogresanOdgovor2"),
-                                           resultSet.getString("PogresanOdgovor3"));
-               zadaci.add(temp);
+                Zadatak temp = new Zadatak( resultSet.getString("Putanja"),
+                                            resultSet.getString("TacanOdgovor"),
+                                            resultSet.getString("PogresanOdgovor1"),
+                                            resultSet.getString("PogresanOdgovor2"),
+                                            resultSet.getString("PogresanOdgovor3"));
+                zadaci.add(temp);
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        catch(Exception E){
-            System.out.println(E);
-        }
-        finally {
 
-            // Step 3: Closing database connection
-            try {
-                if(null != connection) {
-
-                    // cleanup resources, once after 
-                    statement.close();
-
-                    //connection.close();
-                }
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
-        
         return zadaci;
     }
     
@@ -298,6 +216,8 @@ public class DBController {
         return null;
     }
   
+    // U tabeli Rezultati_testa upisuje podatke o tom testu, informacije o svakom zadatku
+    // tj. da li je tacan ili ne i ukupan broj bodova
     void submitTest(ArrayList<ZadatakPanel> resenjaZadataka, Student trenutniKorisnik, int ID_predmeta, int redniBrojTesta) throws SQLException {
         try{
             String upit = "INSERT INTO Rezultati_testa VALUES ('" + trenutniKorisnik.getUsername() + "', " +
@@ -334,16 +254,15 @@ public class DBController {
     
     // Ovo sam malo drugacije uradio jer zelim da radim sa izuzecima u UcenikNalogPanel posto ima tamo jos nekih izuzetaka
     void postaviNovuLozinku(String username, String staraLozinka, String novaLozinka) throws SQLException, Exception {
-        // koristim funkciju loginValid da bi proverio da li je stara lozinka ispravna
+        // Koristim funkciju loginValid da bi proverio da li je stara lozinka ispravna
         Korisnik k = require().loginValid(username,staraLozinka);
-        if (k != null) {
-            String upit = "UPDATE Users SET Password = '" + novaLozinka + "' WHERE Username = '" + username + "';";
-            statement=(Statement) connection.createStatement();
-            statement.executeUpdate(upit);
-        }
-        else
-            throw new Exception("Neispravna stara lozinka!");     
-    }
+        if (k == null) 
+            throw new Exception("Neispravna stara lozinka!");  
+        
+        String upit = "UPDATE Users SET Password = '" + novaLozinka + "' WHERE Username = '" + username + "';";
+        statement=(Statement) connection.createStatement();
+        statement.executeUpdate(upit);        
+}
 
     ArrayList<Predmet> getProfPredmeti(Profesor trenutniKorisnik) throws SQLException {
         ArrayList<Predmet> listaPredmeta=new ArrayList();
@@ -435,11 +354,6 @@ public class DBController {
             super("Nema dovoljno pitanja u bazi!");
         }  
     }
-
-    
-
-
-
 
     ArrayList<RezultatiTesta> getRezultati(Profesor trenutniKorisnik) throws SQLException {
         ArrayList<RezultatiTesta> rt=new ArrayList();
