@@ -34,6 +34,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.trenutniKorisnik=new Student(k);
         System.out.println(trenutniKorisnik);
         trenutniKorisnik.setRazred(DBController.require().getRazred(trenutniKorisnik));
+        trenutniKorisnik.setOdeljenje(DBController.require().getOdeljenje(trenutniKorisnik));
         this.lblRazred.setText(trenutniKorisnik.getRazred() + ".");
         System.out.println(trenutniKorisnik.getIme());
         this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
@@ -46,6 +47,8 @@ public class StudentFrame extends javax.swing.JFrame {
         
         setNav();
         this.pnlProfilMenu.setVisible(false);
+        
+        System.out.println(trenutniKorisnik.getRazred() + " - " + trenutniKorisnik.getOdeljenje());
     }
 
 

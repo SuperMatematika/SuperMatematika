@@ -34,17 +34,28 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
     ArrayList<JLabel> listaProfesora = new ArrayList();
     public UcenikPredmetiPanel(Student tk) {
         trenutniKorisnik=tk;
-        System.out.println(trenutniKorisnik.getRazred());
-        try {
-            predmeti=DBController.require().getPredmete(trenutniKorisnik.getRazred());
-        } catch (SQLException ex) {
-            Logger.getLogger(UcenikPredmetiPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
         initComponents();
-       
-        
-        
+        popuniTabelu();  
     }
+    
+    private void popuniTabelu() {
+      
+        String upit = "SELECT Predmet.Naziv, Users.Ime, Users.Prezime\n" +
+                      "FROM Users INNER JOIN ((Nastavnik INNER JOIN Predmet ON Nastavnik.username = Predmet.Username_nastavnika) INNER JOIN SlusaPredmet ON Predmet.ID_predmeta = SlusaPredmet.ID_predmeta) ON Users.Username = Nastavnik.username\n" +
+                      "WHERE SlusaPredmet.Username_ucenik=\"" + trenutniKorisnik.getUsername() + "\";";
+        
+        try {
+            ResultSet rezultat = DBController.require().submitQuery(upit);
+            while(rezultat.next()) {
+                Object[] row = { rezultat.getString("Naziv"), rezultat.getString("Ime"), rezultat.getString("Prezime") };
+                ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
    private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();

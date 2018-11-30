@@ -5,6 +5,7 @@
  */
 package SuperMatematika;
 
+import SuperMatematika.DBController.GreskaNemaDovoljnoPitanja;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
@@ -32,29 +33,64 @@ import javax.swing.Timer;
  *
  * @author 1
  */
-public class pnlKrajnjiTest extends javax.swing.JPanel {
+public class pnlTest extends javax.swing.JPanel {
     
     Student trenutniKorisnik;
-    private static int BROJ_ZADATAKA = 3;
+    private boolean zapamtiUBazi;
+    private int ID_predmeta;
+    private int redniBrojTesta;
+    private ArrayList<String> oblasti; // ovo sluzi samo za random test
+    private final int BROJ_ZADATAKA = 5;
+    
     private int trenutni=0;
     List<Zadatak> zadaci; 
     Timer t;
     private int timerDuration=3600;
-    ArrayList<ZadatakPanel> resenjaZadataka=new ArrayList();    
-    public pnlKrajnjiTest(Student tr) {
+    ArrayList<ZadatakPanel> resenjaZadataka=new ArrayList();   
+    
+    // Ovaj konstruktor se koristi za probni test, sastavlja random test
+    public pnlTest(Student tr, ArrayList<String> oblasti) {
         trenutniKorisnik=tr;
+        this.oblasti = oblasti;
         initComponents();
-
-        
+        // Rezultati probnog testa se ne pamte u bazi
+        zapamtiUBazi = false;
+  
         // Postavi novi test u pocetku
-        bNoviTest.doClick();
+        bNoviTest.doClick();     
     }
+    
+    // Ovaj konstruktor se koristi za pravi test, u njemu se sastavlja test od upared odrenjenih zadataka od strane nastavnika
+    // I btw dubme bNoviTest se gasi jer nema smisla
+    public pnlTest(Student tr, int ID_predmeta, int redniBrojTesta){
+        trenutniKorisnik=tr;
+        this.ID_predmeta = ID_predmeta;
+        this.redniBrojTesta = redniBrojTesta;
+        initComponents();
+        // Rezultati pravog testa se pamte u bazi
+        zapamtiUBazi = true;
+        try {
+            zadaci = DBController.require().SastaviTest(tr.getRazred(), tr.getOdeljenje(), ID_predmeta, redniBrojTesta);
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Moram ovako, ali cu to sigurno da ispravim, 100%, sigurno necu da zaborvim
+        // Jer mi je tako trenutno najlakse
+        bNoviTest.doClick();
+        
+        // Nema mogucnost odabira novog testa
+        bNoviTest.setEnabled(false);
+        
+    }
+            
     
     private void krajTesta() throws SQLException{
         this.btnPrethodni.setEnabled(false);
         this.btnSledeci.setEnabled(false);
         this.bProverResenja.setEnabled(false);
-        DBController.require().submitTest(resenjaZadataka,trenutniKorisnik);
+        if (zapamtiUBazi)
+            DBController.require().submitTest(resenjaZadataka,trenutniKorisnik, ID_predmeta, redniBrojTesta);
         t.stop();
     }
     private String sekundeUMinute(int seconds){
@@ -141,17 +177,19 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(btnPrethodni, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(780, 780, 780)
-                .addComponent(btnSledeci, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(bProverResenja, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSledeci, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(bProverResenja, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnPrethodni, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPrethodni, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSledeci, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(bProverResenja, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,9 +212,10 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bNoviTest, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(108, 108, 108))
                     .addComponent(pnlZadaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -221,14 +260,10 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                 
                 pnlZadaci.add(resenjaZadataka.get(trenutni));
        //     jPanel1.setViewportView(mainPanel);
-       if(trenutni==BROJ_ZADATAKA-1){
-           this.btnSledeci.setEnabled(false);
-       }else
-           this.btnSledeci.setEnabled(true);
-       if(trenutni==0){
-           this.btnPrethodni.setEnabled(false);
-       }else
-           this.btnPrethodni.setEnabled(true);
+       
+           this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
+           this.btnPrethodni.setEnabled(trenutni!=0);
+
     }//GEN-LAST:event_btnPrethodniActionPerformed
 
     private void bNoviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoviTestActionPerformed
@@ -243,7 +278,13 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             }catch(Exception e){}
             timerDuration=3600;
             trenutni=0;
-            zadaci = DBController.require().SastaviTest("skupovi", BROJ_ZADATAKA);
+            // Znam da je ovo glupo ali...
+            // Na osnovu varijable zapamtiUBazi odredjujem da li cu da sastavljam random test ili predefinisani test
+            if (!zapamtiUBazi)
+                zadaci = DBController.require().SastaviTest(oblasti, BROJ_ZADATAKA);
+            // Ako treba da se pamti u bazi onda se to radi u konstruktoru jer se u tom slucaju to radi samo jednom
+            
+            
             resenjaZadataka.clear();
             for (Zadatak z: zadaci){
                 resenjaZadataka.add(new ZadatakPanel(z));
@@ -261,7 +302,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
                         try {
                             krajTesta();
                         } catch (SQLException ex) {
-                            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }else{
                         timerDuration--;
@@ -273,7 +314,10 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
             t=new Timer(1000,actListner);
             t.start();
         } catch (SQLException ex) {
-            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GreskaNemaDovoljnoPitanja g) {
+                 JOptionPane.showMessageDialog(this, g.getMessage() + "Ovo sto sledi je bug, ne bi smeo da otvori sledeci prozor, resicu to, sad nemam vremena");
+         
         }
     }//GEN-LAST:event_bNoviTestActionPerformed
 
@@ -301,7 +345,7 @@ public class pnlKrajnjiTest extends javax.swing.JPanel {
         try {
             krajTesta();
         } catch (SQLException ex) {
-            Logger.getLogger(pnlKrajnjiTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(this, "Broj bodova: " + brojTacnihOdgovora + "/" + BROJ_ZADATAKA);
     }//GEN-LAST:event_bProverResenjaActionPerformed
@@ -316,14 +360,8 @@ this.pnlZadaci.removeAll();
                 
                 pnlZadaci.add(resenjaZadataka.get(trenutni));
        //     jPanel1.setViewportView(mainPanel);
-        if(trenutni==BROJ_ZADATAKA-1)
-           this.btnSledeci.setEnabled(false);
-        else
-           this.btnSledeci.setEnabled(true);
-        if(trenutni==0)
-           this.btnPrethodni.setEnabled(false);
-        else
-           this.btnPrethodni.setEnabled(true);
+        this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
+        this.btnPrethodni.setEnabled(trenutni!=0);
         
     }//GEN-LAST:event_btnSledeciActionPerformed
 

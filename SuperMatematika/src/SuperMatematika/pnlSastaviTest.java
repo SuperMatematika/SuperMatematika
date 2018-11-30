@@ -6,7 +6,17 @@
 package SuperMatematika;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,12 +28,58 @@ public class pnlSastaviTest extends javax.swing.JPanel {
      * Creates new form pnlSastaviTest
      */
     Profesor trenutniKorisnik;
-    public pnlSastaviTest(Profesor tk) {
+    ArrayList<Predmet> listaPredmeta;
+    ArrayList<JRadioButton> RBlistaRazreda=new ArrayList();
+    ArrayList<JRadioButton> RBListaOdeljenja=new ArrayList();
+    ArrayList<JRadioButton> RBlistaPredmeta=new ArrayList();
+    ArrayList<JRadioButton> RBlistaBrojTestova=new ArrayList();
+    ArrayList<JCheckBox> CBlistaZadataka=new ArrayList();
+    ArrayList<JLabel> zadaciLabele=new ArrayList();
+    TestWrapper newTest=new TestWrapper();
+    private int iterator=0;
+    public pnlSastaviTest(Profesor tk,ArrayList<Predmet> listaPr) throws SQLException {
         trenutniKorisnik=tk;
-       
+        listaPredmeta=listaPr;
         initComponents();
-         
-   
+        
+        zadaciLabele.add(zad1);
+        zadaciLabele.add(zad2);
+        zadaciLabele.add(zad3);
+        zadaciLabele.add(zad4);
+        zadaciLabele.add(zad5);
+        
+        RBlistaRazreda.add(this.jRadioButton1);
+        RBlistaRazreda.add(this.jRadioButton3);
+        RBlistaRazreda.add(this.jRadioButton2);
+        RBlistaRazreda.add(this.jRadioButton4);
+        
+        RBListaOdeljenja.add(this.jRadioButton5);
+        RBListaOdeljenja.add(this.jRadioButton7);
+        RBListaOdeljenja.add(this.jRadioButton6);
+        RBListaOdeljenja.add(this.jRadioButton8);
+        
+        RBlistaBrojTestova.add(this.jRadioButton9);
+        RBlistaBrojTestova.add(this.jRadioButton10);
+        RBlistaBrojTestova.add(this.jRadioButton12);
+        RBlistaBrojTestova.add(this.jRadioButton11);
+        
+        CBlistaZadataka.add(this.btnSkupovi);
+        CBlistaZadataka.add(this.btnDeljivost);
+        CBlistaZadataka.add(this.btnGeoObjekti1);
+        CBlistaZadataka.add(this.btnOsnaSimetrija);
+        CBlistaZadataka.add(this.btnRazlomci);
+        CBlistaZadataka.add(this.btnUgao);
+        listaPredmeta.forEach(e->{
+            RBlistaPredmeta.add(new JRadioButton(e.getNazivPredmeta()));
+        });
+        this.pnlPredmeti.removeAll();
+        this.pnlPredmeti.revalidate();
+        this.pnlPredmeti.setLayout(new FlowLayout());
+        RBlistaPredmeta.forEach(e->{
+            System.out.println(e.getText());
+            this.btnPredmetiGroup.add(e);
+            this.pnlPredmeti.add(e);
+        });
     }
 
     /**
@@ -38,6 +94,8 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         btnPredmetiGroup = new javax.swing.ButtonGroup();
         btnRazrediGroup = new javax.swing.ButtonGroup();
         btnOdeljenjeGroup = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        btnBrojTestaGroup = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
         pnlLeft = new javax.swing.JPanel();
         pnlRZ = new javax.swing.JPanel();
@@ -62,6 +120,13 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
+        jPanel2 = new javax.swing.JPanel();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
         TabPanel = new javax.swing.JTabbedPane();
         pnlOBLASTI = new javax.swing.JPanel();
         pnlOblasti = new javax.swing.JPanel();
@@ -94,6 +159,28 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         btnPrikaziZadatke = new javax.swing.JButton();
         pnlZADACI = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        zadaciTable = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        pnlIzabraniZadaci = new javax.swing.JPanel();
+        zad1 = new javax.swing.JLabel();
+        zad3 = new javax.swing.JLabel();
+        zad4 = new javax.swing.JLabel();
+        zad2 = new javax.swing.JLabel();
+        zad5 = new javax.swing.JLabel();
+        submitTest = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setPreferredSize(new java.awt.Dimension(890, 650));
@@ -138,13 +225,18 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         btnPR2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPR2.setForeground(new java.awt.Color(255, 255, 255));
         btnPR2.setText("SACUVAJ");
-        pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 40));
+        btnPR2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPR2ActionPerformed(evt);
+            }
+        });
+        pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 200, 40));
 
         btnPR1.setBackground(new java.awt.Color(204, 204, 204));
         btnPR1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPR1.setForeground(new java.awt.Color(255, 255, 255));
         btnPR1.setText("IZMENI");
-        pnlLeft.add(btnPR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 200, 40));
+        pnlLeft.add(btnPR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 200, 40));
         pnlLeft.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 10));
 
         pnlPredmeti.setBackground(new java.awt.Color(255, 255, 255));
@@ -230,7 +322,90 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
         pnlLeft.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 200, 100));
 
-        pnlBackground.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 500));
+        jRadioButton9.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton9);
+        jRadioButton9.setText("1");
+
+        jRadioButton10.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton10);
+        jRadioButton10.setText("2");
+
+        jRadioButton11.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton11);
+        jRadioButton11.setText("4");
+        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton11ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton12.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton12);
+        jRadioButton12.setText("3");
+        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton12ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jRadioButton9)
+                            .addGap(59, 59, 59)
+                            .addComponent(jRadioButton10))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jRadioButton12)
+                            .addGap(59, 59, 59)
+                            .addComponent(jRadioButton11)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton9)
+                        .addComponent(jRadioButton10))
+                    .addGap(17, 17, 17)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton12)
+                        .addComponent(jRadioButton11))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pnlLeft.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 200, -1));
+
+        jPanel3.setBackground(new java.awt.Color(0, 255, 0));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("BROJ TESTA");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        pnlLeft.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 50));
+
+        pnlBackground.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 630));
 
         TabPanel.setBackground(new java.awt.Color(246, 83, 20));
         TabPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
@@ -416,6 +591,11 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         btnPrikaziZadatke.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPrikaziZadatke.setForeground(new java.awt.Color(255, 255, 255));
         btnPrikaziZadatke.setText("Nastavi");
+        btnPrikaziZadatke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrikaziZadatkeActionPerformed(evt);
+            }
+        });
         pnlOBLASTI.add(btnPrikaziZadatke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 630, 70));
         btnPrikaziZadatke.getAccessibleContext().setAccessibleName("NASTAVI");
 
@@ -423,6 +603,115 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
         pnlZADACI.setBackground(new java.awt.Color(255, 255, 255));
         pnlZADACI.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        zadaciTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        zadaciTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "id_zadatka", "oblast", "slika"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        zadaciTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zadaciTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(zadaciTable);
+        if (zadaciTable.getColumnModel().getColumnCount() > 0) {
+            zadaciTable.getColumnModel().getColumn(0).setResizable(false);
+            zadaciTable.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        pnlZADACI.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 290, 510));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Izabrani zadaci");
+
+        zad1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        zad3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        zad4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        zad2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        zad5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout pnlIzabraniZadaciLayout = new javax.swing.GroupLayout(pnlIzabraniZadaci);
+        pnlIzabraniZadaci.setLayout(pnlIzabraniZadaciLayout);
+        pnlIzabraniZadaciLayout.setHorizontalGroup(
+            pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(zad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(zad3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(zad4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(zad2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(zad5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+        );
+        pnlIzabraniZadaciLayout.setVerticalGroup(
+            pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIzabraniZadaciLayout.createSequentialGroup()
+                .addComponent(zad1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(zad2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(zad3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(zad4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(zad5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 147, Short.MAX_VALUE))
+        );
+
+        submitTest.setText("Submit");
+        submitTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitTestActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlIzabraniZadaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(submitTest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlIzabraniZadaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submitTest)
+                .addContainerGap())
+        );
+
+        pnlZADACI.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 330, 510));
+
         TabPanel.addTab("ZADACI", pnlZADACI);
 
         pnlBackground.add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 640, 630));
@@ -486,9 +775,110 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSkupoviSkupoviCheck
 
+    private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
+        
+        newTest.setNastavnik(this.trenutniKorisnik.getUsername());
+         for(int i=0;i<4;i++){
+            if(this.RBlistaRazreda.get(i).isSelected()){
+                newTest.setRazred(i+5);
+                break;
+            }
+        }
+        for(int i=0;i<this.listaPredmeta.size();i++){
+            if(this.RBlistaPredmeta.get(i).isSelected()){
+                try {
+                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(),newTest.getRazred()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+        }
+        for(int i=0;i<4;i++){
+                System.out.println(RBListaOdeljenja.get(i).getText());
+               // System.out.println(RBlistaRazreda.get(i).getText());
+            if(this.RBListaOdeljenja.get(i).isSelected()){
+                newTest.setOdeljenje(i+1);
+                break;
+            }
+        }
+       
+        for(int i=0;i<4;i++){
+            if(this.RBlistaBrojTestova.get(i).isSelected()){
+                newTest.setRedni_broj_testa(i+1);
+                break;
+            }
+        }
+        
+       
+    }//GEN-LAST:event_btnPR2ActionPerformed
+
+    String getSelected(ArrayList<JRadioButton> j){
+        for(int i=0;i<j.size();i++){
+            if(j.get(i).isSelected())
+                return j.get(i).getText();
+        }
+        return null;
+    }
+    
+    private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton11ActionPerformed
+
+    private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton12ActionPerformed
+
+    private void btnPrikaziZadatkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziZadatkeActionPerformed
+        ArrayList<String> izabraneOblasti=new ArrayList();
+        this.CBlistaZadataka.forEach(e->{
+            if(e.isSelected()){
+                izabraneOblasti.add(e.getText());
+            }
+        });
+        this.TabPanel.setSelectedIndex(1);
+        try {
+            ArrayList<Zadatak> zadaci=DBController.require().prikaziZadatke(getSelected(RBlistaPredmeta),getSelected(this.RBlistaRazreda),izabraneOblasti);
+            
+            zadaci.forEach(z-> {
+                System.out.print(z.getOblast());
+                Object[] row = { z.getId_zadatka(), z.getOblast(),z.getSlika_zadatka() };
+                ((DefaultTableModel) this.zadaciTable.getModel()).insertRow(0, row);
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPrikaziZadatkeActionPerformed
+
+    private void submitTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitTestActionPerformed
+        if(iterator>=5){
+            if(JOptionPane.showConfirmDialog(null, "Jeste li sigurni?")==0){
+                ArrayList<Integer> listaIzabranihZadataka=new ArrayList();
+
+                zadaciLabele.forEach(e->{
+                    listaIzabranihZadataka.add(Integer.valueOf(e.getText()));
+                });
+                try {
+                    DBController.require().kreirajTest(trenutniKorisnik, newTest, listaIzabranihZadataka);
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Niste dali 5 zadataka");
+        }
+    }//GEN-LAST:event_submitTestActionPerformed
+
+    private void zadaciTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zadaciTableMouseClicked
+        if(evt.getClickCount()==2 && iterator<5){
+            this.zadaciLabele.get(iterator++).setText(zadaciTable.getValueAt(zadaciTable.getSelectedRow(), 0).toString());
+        }
+    }//GEN-LAST:event_zadaciTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabPanel;
+    private javax.swing.ButtonGroup btnBrojTestaGroup;
     private javax.swing.JCheckBox btnDeljivost;
     private javax.swing.JRadioButton btnFizika;
     private javax.swing.JCheckBox btnGeoObjekti1;
@@ -513,7 +903,9 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -521,7 +913,14 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
@@ -529,6 +928,8 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -537,6 +938,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JLabel lblPredmet;
     private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlIzabraniZadaci;
     private javax.swing.JPanel pnlLeft;
     private javax.swing.JPanel pnlOBLASTI;
     private javax.swing.JPanel pnlOD;
@@ -547,5 +949,12 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JPanel pnlRZ;
     private javax.swing.JPanel pnlRazred;
     private javax.swing.JPanel pnlZADACI;
+    private javax.swing.JButton submitTest;
+    private javax.swing.JLabel zad1;
+    private javax.swing.JLabel zad2;
+    private javax.swing.JLabel zad3;
+    private javax.swing.JLabel zad4;
+    private javax.swing.JLabel zad5;
+    private javax.swing.JTable zadaciTable;
     // End of variables declaration//GEN-END:variables
 }

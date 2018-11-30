@@ -158,7 +158,7 @@ public class mainChoiceView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLekcije3ActionPerformed
 
     private void btnProbniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbniActionPerformed
-        pnlKrajnjiTest newPnl=new pnlKrajnjiTest(trenutniKorisnik);
+        pnlOdabirTesta newPnl=new pnlOdabirTesta(trenutniKorisnik);
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
