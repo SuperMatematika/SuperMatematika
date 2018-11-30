@@ -212,9 +212,7 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     // Vraca listu od svih oblasti koje se selektovane, one se nalaze u podpanelima panela pnlOblasti
     private ArrayList<String> selektovaneOblasti() {
         ArrayList<String> oblasti = new ArrayList();
-        for (Component podPanel: pnlOblasti.getComponents())
-            if (podPanel instanceof JPanel)
-                for (Component c: ((JPanel) podPanel).getComponents())
+                for (Component c: pnlOblasti.getComponents())
                     if (c instanceof JCheckBox && ((JCheckBox)c).isSelected())
                         oblasti.add(((JCheckBox)c).getText());
         return oblasti;
