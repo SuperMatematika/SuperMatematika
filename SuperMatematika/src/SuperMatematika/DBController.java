@@ -177,17 +177,21 @@ public class DBController {
         return null;
     }
 
-    List<Zadatak> SastaviTest(String oblast, int brzadataka) {
+    List<Zadatak> SastaviTest(ArrayList<String> oblasti, int brzadataka) {
         ArrayList<Zadatak> zadaci = new ArrayList();
         
         try {
 
             // Treba da se popravi, da zavisi od razreda i od predmeta
-            statement = (Statement) connection.createStatement();  
-            resultSet = statement.executeQuery("SELECT * from Zadatak " 
-                                                + "WHERE Oblast = '" + oblast + "'" 
-                                                + "ORDER BY RAND() LIMIT " + brzadataka + ";");
+            String upit = "SELECT * from Zadatak " 
+                        + "WHERE Oblast = '" + String.join("' OR Oblast = '", oblasti) + "' "
+                        + "ORDER BY RAND() LIMIT " + brzadataka + ";";
+            System.out.println(upit);
             
+            statement = (Statement) connection.createStatement();  
+            resultSet = statement.executeQuery(upit);
+            
+
             // Step 2.C: Executing SQL & retrieve data into ResultSet
              try{
                  while(resultSet.next()){
@@ -297,19 +301,40 @@ public class DBController {
 
         return null;
     }
-
-    void submitTest(ArrayList<ZadatakPanel> resenjaZadataka,Student s) throws SQLException {
+  
+    void submitTest(ArrayList<ZadatakPanel> resenjaZadataka, Student trenutniKorisnik, int ID_predmeta, int redniBrojTesta) throws SQLException {
         try{
-            statement=(Statement) connection.createStatement();
+            String upit = "INSERT INTO Rezultati_testa VALUES ('" + trenutniKorisnik.getUsername() + "', " +
+                          ID_predmeta + ", " + trenutniKorisnik.getOdeljenje() + ", " + 
+                          trenutniKorisnik.getRazred() + ", " + redniBrojTesta + ", " +
+                          resenjaZadataka.get(0).odgovorJeTacan() + ", " +
+                          resenjaZadataka.get(1).odgovorJeTacan() + ", " +
+                          resenjaZadataka.get(2).odgovorJeTacan() + ", " +
+                          resenjaZadataka.get(3).odgovorJeTacan() + ", " +
+                          resenjaZadataka.get(4).odgovorJeTacan() + ", " +
+                          izracunajBrojBodova(resenjaZadataka) + ");";
             
-            statement.executeUpdate("Insert into rezultati values('"+s.getUsername()+"', ");
+            statement=(Statement) connection.createStatement();
+            statement.executeUpdate(upit);
+            
+            System.out.println(upit);
             
         }catch(Exception e){
-            
+            e.printStackTrace();
         }finally{
             statement.close();
         }
-    }  
+    }
+    
+    // Pomocna funkcija koja izracunava broj bodova za dati niz ZadatakPanela
+    private int izracunajBrojBodova(ArrayList<ZadatakPanel> resenjaZadataka) {
+        int brojTacnihOdgovora = 0;
+        for(ZadatakPanel zp: resenjaZadataka)
+            if (zp.odgovorJeTacan())
+                brojTacnihOdgovora++;
+        
+        return 100 * brojTacnihOdgovora / resenjaZadataka.size();
+    }
     
     // Ovo sam malo drugacije uradio jer zelim da radim sa izuzecima u UcenikNalogPanel posto ima tamo jos nekih izuzetaka
     void postaviNovuLozinku(String username, String staraLozinka, String novaLozinka) throws SQLException, Exception {
@@ -408,6 +433,9 @@ public class DBController {
         }
     return 0;
     }
+
+    
+
 
 
 }

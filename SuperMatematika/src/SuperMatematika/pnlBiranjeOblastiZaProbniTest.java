@@ -6,6 +6,10 @@
 package SuperMatematika;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 /**
  *
@@ -198,7 +202,7 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
 
     private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
         // TODO add your handling code here:
-       pnlProbniTest newPnl=new pnlProbniTest(trenutniKorisnik);
+       pnlTest newPnl=new pnlTest(trenutniKorisnik, selektovaneOblasti());
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
@@ -239,4 +243,19 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     private javax.swing.JPanel pnlOblasti;
     private javax.swing.JPanel pnlSkupovi;
     // End of variables declaration//GEN-END:variables
+
+    
+    // Vraca slitu od svih oblasti koje su selektovane u panelu pnlOblasti
+    // i svim podpanelima tog panela
+    private ArrayList<String> selektovaneOblasti() {
+        ArrayList<String> oblasti = new ArrayList();
+        for (Component c: pnlOblasti.getComponents()) 
+            if (c instanceof JCheckBox && ((JCheckBox)c).isSelected())
+                oblasti.add(((JCheckBox)c).getText());
+            else if (c instanceof JPanel) // Ako ima podpanel
+                for (Component c2: ((JPanel) c).getComponents())
+                    if (c2 instanceof JCheckBox && ((JCheckBox)c2).isSelected())
+                        oblasti.add(((JCheckBox)c2).getText());
+        return oblasti;
+    }
 }

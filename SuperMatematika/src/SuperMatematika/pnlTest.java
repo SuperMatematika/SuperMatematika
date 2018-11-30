@@ -36,7 +36,11 @@ public class pnlTest extends javax.swing.JPanel {
     
     Student trenutniKorisnik;
     private boolean zapamtiUBazi;
+    private int ID_predmeta;
+    private int redniBrojTesta;
+    private ArrayList<String> oblasti; // ovo sluzi samo za random test
     private final int BROJ_ZADATAKA = 5;
+    
     private int trenutni=0;
     List<Zadatak> zadaci; 
     Timer t;
@@ -44,21 +48,23 @@ public class pnlTest extends javax.swing.JPanel {
     ArrayList<ZadatakPanel> resenjaZadataka=new ArrayList();   
     
     // Ovaj konstruktor se koristi za probni test, sastavlja random test
-    public pnlTest(Student tr) {
+    public pnlTest(Student tr, ArrayList<String> oblasti) {
         trenutniKorisnik=tr;
+        this.oblasti = oblasti;
         initComponents();
         // Rezultati probnog testa se ne pamte u bazi
         zapamtiUBazi = false;
   
         // Postavi novi test u pocetku
-        bNoviTest.doClick();
-        
+        bNoviTest.doClick();     
     }
     
     // Ovaj konstruktor se koristi za pravi test, u njemu se sastavlja test od upared odrenjenih zadataka od strane nastavnika
     // I btw dubme bNoviTest se gasi jer nema smisla
     public pnlTest(Student tr, int ID_predmeta, int redniBrojTesta){
         trenutniKorisnik=tr;
+        this.ID_predmeta = ID_predmeta;
+        this.redniBrojTesta = redniBrojTesta;
         initComponents();
         // Rezultati pravog testa se pamte u bazi
         zapamtiUBazi = true;
@@ -82,7 +88,8 @@ public class pnlTest extends javax.swing.JPanel {
         this.btnPrethodni.setEnabled(false);
         this.btnSledeci.setEnabled(false);
         this.bProverResenja.setEnabled(false);
-        DBController.require().submitTest(resenjaZadataka,trenutniKorisnik);
+        if (zapamtiUBazi)
+            DBController.require().submitTest(resenjaZadataka,trenutniKorisnik, ID_predmeta, redniBrojTesta);
         t.stop();
     }
     private String sekundeUMinute(int seconds){
@@ -252,14 +259,10 @@ public class pnlTest extends javax.swing.JPanel {
                 
                 pnlZadaci.add(resenjaZadataka.get(trenutni));
        //     jPanel1.setViewportView(mainPanel);
-       if(trenutni==BROJ_ZADATAKA-1){
-           this.btnSledeci.setEnabled(false);
-       }else
-           this.btnSledeci.setEnabled(true);
-       if(trenutni==0){
-           this.btnPrethodni.setEnabled(false);
-       }else
-           this.btnPrethodni.setEnabled(true);
+       
+           this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
+           this.btnPrethodni.setEnabled(trenutni!=0);
+
     }//GEN-LAST:event_btnPrethodniActionPerformed
 
     private void bNoviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoviTestActionPerformed
@@ -277,7 +280,7 @@ public class pnlTest extends javax.swing.JPanel {
             // Znam da je ovo glupo ali...
             // Na osnovu varijable zapamtiUBazi odredjujem da li cu da sastavljam random test ili predefinisani test
             if (!zapamtiUBazi)
-                zadaci = DBController.require().SastaviTest("skupovi", BROJ_ZADATAKA);
+                zadaci = DBController.require().SastaviTest(oblasti, BROJ_ZADATAKA);
             // Ako treba da se pamti u bazi onda se to radi u konstruktoru jer se u tom slucaju to radi samo jednom
             
             
@@ -353,14 +356,8 @@ this.pnlZadaci.removeAll();
                 
                 pnlZadaci.add(resenjaZadataka.get(trenutni));
        //     jPanel1.setViewportView(mainPanel);
-        if(trenutni==BROJ_ZADATAKA-1)
-           this.btnSledeci.setEnabled(false);
-        else
-           this.btnSledeci.setEnabled(true);
-        if(trenutni==0)
-           this.btnPrethodni.setEnabled(false);
-        else
-           this.btnPrethodni.setEnabled(true);
+        this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
+        this.btnPrethodni.setEnabled(trenutni!=0);
         
     }//GEN-LAST:event_btnSledeciActionPerformed
 
