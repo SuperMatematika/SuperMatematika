@@ -338,11 +338,16 @@ public class ProfesorFrame extends javax.swing.JFrame {
 
     private void btnRezultatiTestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTestaActionPerformed
         // TODO add your handling code here:
-        pnlRezultatiTesta newPnl = new pnlRezultatiTesta(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        pnlRezultatiTesta newPnl;
+        try {
+            newPnl = new pnlRezultatiTesta(trenutniKorisnik);
+            this.pnlMainContent.removeAll();
+            this.pnlMainContent.revalidate();
+            this.pnlMainContent.setLayout(new BorderLayout());
+            this.pnlMainContent.add(newPnl);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnRezultatiTestaActionPerformed
 
     private void btnSastaviTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSastaviTestMouseClicked
