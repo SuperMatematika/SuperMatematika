@@ -5,6 +5,7 @@
  */
 package SuperMatematika;
 
+import SuperMatematika.DBController.GreskaNemaDovoljnoPitanja;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
@@ -314,6 +315,9 @@ public class pnlTest extends javax.swing.JPanel {
             t.start();
         } catch (SQLException ex) {
             Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GreskaNemaDovoljnoPitanja g) {
+                 JOptionPane.showMessageDialog(this, g.getMessage() + "Ovo sto sledi je bug, ne bi smeo da otvori sledeci prozor, resicu to, sad nemam vremena");
+         
         }
     }//GEN-LAST:event_bNoviTestActionPerformed
 

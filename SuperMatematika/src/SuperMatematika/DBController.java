@@ -177,39 +177,35 @@ public class DBController {
         return null;
     }
 
-    List<Zadatak> SastaviTest(ArrayList<String> oblasti, int brzadataka) {
+    List<Zadatak> SastaviTest(ArrayList<String> oblasti, int brzadataka) throws GreskaNemaDovoljnoPitanja {
         ArrayList<Zadatak> zadaci = new ArrayList();
         
         try {
 
-            // Treba da se popravi, da zavisi od razreda i od predmeta
             String upit = "SELECT * from Zadatak " 
                         + "WHERE Oblast = '" + String.join("' OR Oblast = '", oblasti) + "' "
                         + "ORDER BY RAND() LIMIT " + brzadataka + ";";
-            System.out.println(upit);
+            
             
             statement = (Statement) connection.createStatement();  
             resultSet = statement.executeQuery(upit);
             
+            while(resultSet.next()){
+                Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
+                                           resultSet.getString("TacanOdgovor"),
+                                           resultSet.getString("PogresanOdgovor1"),
+                                           resultSet.getString("PogresanOdgovor2"),
+                                           resultSet.getString("PogresanOdgovor3"));
+               zadaci.add(temp);
+            }
 
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-             try{
-                 while(resultSet.next()){
-                     Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
-                                                resultSet.getString("TacanOdgovor"),
-                                                resultSet.getString("PogresanOdgovor1"),
-                                                resultSet.getString("PogresanOdgovor2"),
-                                                resultSet.getString("PogresanOdgovor3"));
-                    zadaci.add(temp);
-                 }
-                
-             }       
-             catch(Exception e){
-                 System.out.println(e);
-             }
-            // processing returned data and printing into console
-          
+            if (zadaci.size() < 5)
+                throw new GreskaNemaDovoljnoPitanja();
+  
         }
+        catch (GreskaNemaDovoljnoPitanja g) {
+                 throw g;
+             }
         catch(Exception E){
             System.out.println(E);
         }
@@ -432,6 +428,12 @@ public class DBController {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
     return 0;
+    }
+    
+    public class GreskaNemaDovoljnoPitanja extends Exception {
+        public GreskaNemaDovoljnoPitanja() {
+            super("Nema dovoljno pitanja u bazi!");
+        }  
     }
 
     

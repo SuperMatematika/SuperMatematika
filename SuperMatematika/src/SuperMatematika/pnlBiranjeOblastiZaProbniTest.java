@@ -208,7 +208,18 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
         this.setLayout(new BorderLayout());
         this.add(newPnl);
     }//GEN-LAST:event_btnStartMouseClicked
-
+    
+    // Vraca listu od svih oblasti koje se selektovane, one se nalaze u podpanelima panela pnlOblasti
+    private ArrayList<String> selektovaneOblasti() {
+        ArrayList<String> oblasti = new ArrayList();
+        for (Component podPanel: pnlOblasti.getComponents())
+            if (podPanel instanceof JPanel)
+                for (Component c: ((JPanel) podPanel).getComponents())
+                    if (c instanceof JCheckBox && ((JCheckBox)c).isSelected())
+                        oblasti.add(((JCheckBox)c).getText());
+        return oblasti;
+    }
+    
     private void btnGeoObjektiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeoObjektiActionPerformed
                     // TODO add your handling code here:
             if(this.btnGeoObjekti.isSelected()==false){
@@ -244,18 +255,5 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     private javax.swing.JPanel pnlSkupovi;
     // End of variables declaration//GEN-END:variables
 
-    
-    // Vraca slitu od svih oblasti koje su selektovane u panelu pnlOblasti
-    // i svim podpanelima tog panela
-    private ArrayList<String> selektovaneOblasti() {
-        ArrayList<String> oblasti = new ArrayList();
-        for (Component c: pnlOblasti.getComponents()) 
-            if (c instanceof JCheckBox && ((JCheckBox)c).isSelected())
-                oblasti.add(((JCheckBox)c).getText());
-            else if (c instanceof JPanel) // Ako ima podpanel
-                for (Component c2: ((JPanel) c).getComponents())
-                    if (c2 instanceof JCheckBox && ((JCheckBox)c2).isSelected())
-                        oblasti.add(((JCheckBox)c2).getText());
-        return oblasti;
-    }
+
 }
