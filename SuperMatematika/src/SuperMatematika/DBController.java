@@ -286,10 +286,18 @@ public class DBController {
     void kreirajTest(Profesor p,TestWrapper newTest, ArrayList<Integer> izabraniZadaci) throws SQLException {
         try {
             statement=(Statement)connection.createStatement();
+            
+            System.out.println("test"+newTest.getRedni_broj_testa());
             statement.executeUpdate("insert into test values('"+p.getUsername()+"','"+newTest.getId_predmeta()+"','"+newTest.getRazred()+"','"+newTest.getOdeljenje()+"','"+newTest.getRedni_broj_testa()+"','"+izabraniZadaci.get(0)+"','"+izabraniZadaci.get(1)+"','"+izabraniZadaci.get(2)+"','"+izabraniZadaci.get(3)+"','"+izabraniZadaci.get(4)+"');");
             JOptionPane.showMessageDialog(null, "Uspesno!");
         } catch (SQLException ex) {
-            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Dati test vec postoji. Kliknite YES ako zelite da ga izmenite, NO ako zelite da ostane isti.", "Test vec postoji", dialogButton);
+            if(dialogResult == 0) {
+                System.out.println("Yes option");
+            } else {
+                System.out.println("No Option");
+            }
         }finally{
             statement.close();
         }
@@ -347,6 +355,31 @@ public class DBController {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
     return 0;
+    }
+
+    ArrayList<TestWrapper> prikaziTestove(Profesor trenutniKorisnik) throws SQLException {
+        ArrayList<TestWrapper> testovi=new ArrayList();
+        
+        try{
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("SELECT predmet,razred,odeljenje,redni_broj_testa FROM test where nastavnik='"+trenutniKorisnik.getUsername()+"'");
+            int i=0;
+            while(resultSet.next()){
+                testovi.add(new TestWrapper());
+                testovi.get(i).setId_predmeta(resultSet.getInt("predmet"));
+                testovi.get(i).setRazred(resultSet.getInt("razred"));
+                testovi.get(i).setOdeljenje(resultSet.getInt("odeljenje"));
+                testovi.get(i).setRedni_broj_testa(resultSet.getInt("redni_broj_testa"));
+                i++;
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }finally{
+            statement.close();
+        }
+        
+        return testovi;
     }
     
     public class GreskaNemaDovoljnoPitanja extends Exception {

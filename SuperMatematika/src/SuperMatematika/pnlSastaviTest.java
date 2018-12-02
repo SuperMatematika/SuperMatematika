@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +36,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     ArrayList<JRadioButton> RBlistaBrojTestova=new ArrayList();
     ArrayList<JCheckBox> CBlistaZadataka=new ArrayList();
     ArrayList<JLabel> zadaciLabele=new ArrayList();
+    ArrayList<JButton> brisiButtoni=new ArrayList();
     TestWrapper newTest=new TestWrapper();
     private int iterator=0;
     public pnlSastaviTest(Profesor tk,ArrayList<Predmet> listaPr) throws SQLException {
@@ -47,6 +49,28 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         zadaciLabele.add(zad3);
         zadaciLabele.add(zad4);
         zadaciLabele.add(zad5);
+        brisiButtoni.add(rmButton1);
+        brisiButtoni.add(rmButton2);
+        brisiButtoni.add(rmButton3);
+        brisiButtoni.add(rmButton4);
+        brisiButtoni.add(rmButton5);
+        brisiButtoni.forEach(e->{
+            int redniBroj=brisiButtoni.indexOf(e);
+            e.setVisible(false);
+            e.addActionListener(event->{
+                for(int i=redniBroj;i<iterator;i++){
+                    if(i!=iterator-1){
+                        zadaciLabele.get(i).setText(zadaciLabele.get(i+1).getText());
+                    }
+                    else{
+                        zadaciLabele.get(i).setText("");
+                        brisiButtoni.get(iterator-1).setVisible(false);
+                    }
+                }
+                iterator--;
+            });
+        });
+        
         
         RBlistaRazreda.add(this.jRadioButton1);
         RBlistaRazreda.add(this.jRadioButton3);
@@ -80,6 +104,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
             this.btnPredmetiGroup.add(e);
             this.pnlPredmeti.add(e);
         });
+        prikaziTestove();
     }
 
     /**
@@ -169,7 +194,15 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         zad4 = new javax.swing.JLabel();
         zad2 = new javax.swing.JLabel();
         zad5 = new javax.swing.JLabel();
+        rmButton1 = new javax.swing.JButton();
+        rmButton2 = new javax.swing.JButton();
+        rmButton3 = new javax.swing.JButton();
+        rmButton4 = new javax.swing.JButton();
+        rmButton5 = new javax.swing.JButton();
         submitTest = new javax.swing.JButton();
+        pnlTestovi = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaTestova = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -655,28 +688,58 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
         zad5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        rmButton1.setText("X");
+
+        rmButton2.setText("X");
+
+        rmButton3.setText("X");
+
+        rmButton4.setText("X");
+
+        rmButton5.setText("X");
+
         javax.swing.GroupLayout pnlIzabraniZadaciLayout = new javax.swing.GroupLayout(pnlIzabraniZadaci);
         pnlIzabraniZadaci.setLayout(pnlIzabraniZadaciLayout);
         pnlIzabraniZadaciLayout.setHorizontalGroup(
             pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(zad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(zad3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(zad4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(zad2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(zad5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addGroup(pnlIzabraniZadaciLayout.createSequentialGroup()
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(zad5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(zad4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(zad3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(zad2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(zad1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rmButton1)
+                    .addComponent(rmButton2)
+                    .addComponent(rmButton3)
+                    .addComponent(rmButton4)
+                    .addComponent(rmButton5))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlIzabraniZadaciLayout.setVerticalGroup(
             pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlIzabraniZadaciLayout.createSequentialGroup()
-                .addComponent(zad1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(zad1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(rmButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(zad2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(zad2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(rmButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(zad3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(zad3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(rmButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(zad4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(zad4, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(rmButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(zad5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(zad5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(rmButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 147, Short.MAX_VALUE))
         );
 
@@ -691,7 +754,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,6 +776,29 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         pnlZADACI.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 330, 510));
 
         TabPanel.addTab("ZADACI", pnlZADACI);
+
+        tabelaTestova.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Predmet", "Razred", "Odeljenje", "Broj testa"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelaTestova);
+
+        javax.swing.GroupLayout pnlTestoviLayout = new javax.swing.GroupLayout(pnlTestovi);
+        pnlTestovi.setLayout(pnlTestoviLayout);
+        pnlTestoviLayout.setHorizontalGroup(
+            pnlTestoviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+        );
+        pnlTestoviLayout.setVerticalGroup(
+            pnlTestoviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+        );
+
+        TabPanel.addTab("TESTOVI", pnlTestovi);
 
         pnlBackground.add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 640, 630));
 
@@ -798,14 +884,15 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 System.out.println(RBListaOdeljenja.get(i).getText());
                // System.out.println(RBlistaRazreda.get(i).getText());
             if(this.RBListaOdeljenja.get(i).isSelected()){
-                newTest.setOdeljenje(i+1);
+                newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
                 break;
             }
         }
        
         for(int i=0;i<4;i++){
             if(this.RBlistaBrojTestova.get(i).isSelected()){
-                newTest.setRedni_broj_testa(i+1);
+                System.out.println(RBlistaBrojTestova.get(i).getText());
+                newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
                 break;
             }
         }
@@ -831,20 +918,27 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
     private void btnPrikaziZadatkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziZadatkeActionPerformed
         ArrayList<String> izabraneOblasti=new ArrayList();
+        DefaultTableModel dm=(DefaultTableModel)this.zadaciTable.getModel();
+        dm.setRowCount(0);
         this.CBlistaZadataka.forEach(e->{
             if(e.isSelected()){
                 izabraneOblasti.add(e.getText());
             }
         });
-        this.TabPanel.setSelectedIndex(1);
         try {
             ArrayList<Zadatak> zadaci=DBController.require().prikaziZadatke(getSelected(RBlistaPredmeta),getSelected(this.RBlistaRazreda),izabraneOblasti);
-            
-            zadaci.forEach(z-> {
-                System.out.print(z.getOblast());
-                Object[] row = { z.getId_zadatka(), z.getOblast(),z.getSlika_zadatka() };
-                ((DefaultTableModel) this.zadaciTable.getModel()).insertRow(0, row);
-            });
+            try{
+                zadaci.forEach(z-> {
+                    System.out.print(z.getOblast());
+                    Object[] row = { z.getId_zadatka(), z.getOblast(),z.getSlika_zadatka() };
+                    ((DefaultTableModel) this.zadaciTable.getModel()).insertRow(0, row);
+                });
+                
+                this.TabPanel.setSelectedIndex(1);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Nista izabrali nijednu oblast!");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -864,6 +958,8 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                     Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            prikaziTestove();
+            TabPanel.setSelectedIndex(2);
         }else{
             JOptionPane.showMessageDialog(null, "Niste dali 5 zadataka");
         }
@@ -871,7 +967,9 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
     private void zadaciTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zadaciTableMouseClicked
         if(evt.getClickCount()==2 && iterator<5){
-            this.zadaciLabele.get(iterator++).setText(zadaciTable.getValueAt(zadaciTable.getSelectedRow(), 0).toString());
+            this.zadaciLabele.get(iterator).setText(zadaciTable.getValueAt(zadaciTable.getSelectedRow(), 0).toString());
+            this.brisiButtoni.get(iterator).setVisible(true);
+            iterator++;
         }
     }//GEN-LAST:event_zadaciTableMouseClicked
 
@@ -930,6 +1028,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -948,8 +1047,15 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JPanel pnlPredmeti;
     private javax.swing.JPanel pnlRZ;
     private javax.swing.JPanel pnlRazred;
+    private javax.swing.JPanel pnlTestovi;
     private javax.swing.JPanel pnlZADACI;
+    private javax.swing.JButton rmButton1;
+    private javax.swing.JButton rmButton2;
+    private javax.swing.JButton rmButton3;
+    private javax.swing.JButton rmButton4;
+    private javax.swing.JButton rmButton5;
     private javax.swing.JButton submitTest;
+    private javax.swing.JTable tabelaTestova;
     private javax.swing.JLabel zad1;
     private javax.swing.JLabel zad2;
     private javax.swing.JLabel zad3;
@@ -957,4 +1063,20 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JLabel zad5;
     private javax.swing.JTable zadaciTable;
     // End of variables declaration//GEN-END:variables
+
+    private void prikaziTestove() {
+        DefaultTableModel dm=(DefaultTableModel)this.tabelaTestova.getModel();
+        dm.setRowCount(0);
+        try {
+            ArrayList<TestWrapper> testovi=DBController.require().prikaziTestove(this.trenutniKorisnik);
+            System.out.println(testovi.size());
+            testovi.forEach(z-> {
+                System.out.println(z.getId_predmeta());
+                Object[] row = { z.getId_predmeta(),z.getRazred(),z.getOdeljenje(),z.getRedni_broj_testa()};
+                ((DefaultTableModel) this.tabelaTestova.getModel()).insertRow(0, row);
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
