@@ -288,7 +288,8 @@ public class DBController {
             statement=(Statement)connection.createStatement();
             
             System.out.println("test"+newTest.getRedni_broj_testa());
-            statement.executeUpdate("insert into test values('"+p.getUsername()+"','"+newTest.getId_predmeta()+"','"+newTest.getRazred()+"','"+newTest.getOdeljenje()+"','"+newTest.getRedni_broj_testa()+"','"+izabraniZadaci.get(0)+"','"+izabraniZadaci.get(1)+"','"+izabraniZadaci.get(2)+"','"+izabraniZadaci.get(3)+"','"+izabraniZadaci.get(4)+"');");
+            System.out.println("REDNIBROJ:"+newTest.getRedni_broj_testa());
+            statement.executeUpdate("insert into test values('"+p.getUsername()+"','"+newTest.getId_predmeta()+"','"+newTest.getRazred()+"','"+newTest.getOdeljenje()+"','"+izabraniZadaci.get(0)+"','"+izabraniZadaci.get(1)+"','"+izabraniZadaci.get(2)+"','"+izabraniZadaci.get(3)+"','"+izabraniZadaci.get(4)+"','"+newTest.getRedni_broj_testa()+"');");
             JOptionPane.showMessageDialog(null, "Uspesno!");
         } catch (SQLException ex) {
             int dialogButton = JOptionPane.YES_NO_OPTION;

@@ -84,8 +84,8 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         
         RBlistaBrojTestova.add(this.jRadioButton9);
         RBlistaBrojTestova.add(this.jRadioButton10);
-        RBlistaBrojTestova.add(this.jRadioButton12);
         RBlistaBrojTestova.add(this.jRadioButton11);
+        RBlistaBrojTestova.add(this.jRadioButton12);
         
         CBlistaZadataka.add(this.btnSkupovi);
         CBlistaZadataka.add(this.btnDeljivost);
@@ -881,8 +881,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
             }
         }
         for(int i=0;i<4;i++){
-                System.out.println(RBListaOdeljenja.get(i).getText());
-               // System.out.println(RBlistaRazreda.get(i).getText());
             if(this.RBListaOdeljenja.get(i).isSelected()){
                 newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
                 break;
@@ -891,7 +889,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
        
         for(int i=0;i<4;i++){
             if(this.RBlistaBrojTestova.get(i).isSelected()){
-                System.out.println(RBlistaBrojTestova.get(i).getText());
+                System.out.println(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
                 newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
                 break;
             }
@@ -950,6 +948,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 ArrayList<Integer> listaIzabranihZadataka=new ArrayList();
 
                 zadaciLabele.forEach(e->{
+                    System.out.println("VREDNOST ZADATKA:"+Integer.valueOf(e.getText()));
                     listaIzabranihZadataka.add(Integer.valueOf(e.getText()));
                 });
                 try {
