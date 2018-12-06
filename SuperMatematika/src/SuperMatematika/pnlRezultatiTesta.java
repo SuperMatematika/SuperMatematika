@@ -6,13 +6,19 @@
 package SuperMatematika;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,10 +31,47 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
      */
     ArrayList<RezultatiTesta> rt;
     Profesor trenutniKorisnik;
+    
+    ArrayList<Predmet> listaPredmeta;
+    ArrayList<JRadioButton> RBlistaRazreda=new ArrayList();
+    ArrayList<JRadioButton> RBListaOdeljenja=new ArrayList();
+    ArrayList<JRadioButton> RBlistaPredmeta=new ArrayList();
+    ArrayList<JRadioButton> RBlistaBrojTestova=new ArrayList();
     public pnlRezultatiTesta(Profesor tk) throws SQLException {
         trenutniKorisnik=tk;
+        listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
         rt=DBController.require().getRezultati(trenutniKorisnik);
         initComponents();
+        
+        
+        RBlistaRazreda.add(this.jRadioButton1);
+        RBlistaRazreda.add(this.jRadioButton3);
+        RBlistaRazreda.add(this.jRadioButton2);
+        RBlistaRazreda.add(this.jRadioButton4);
+        
+        RBListaOdeljenja.add(this.jRadioButton5);
+        RBListaOdeljenja.add(this.jRadioButton7);
+        RBListaOdeljenja.add(this.jRadioButton6);
+        RBListaOdeljenja.add(this.jRadioButton8);
+        RBListaOdeljenja.add(this.svaOdeljenja);
+        RBlistaBrojTestova.add(this.jRadioButton9);
+        RBlistaBrojTestova.add(this.jRadioButton10);
+        RBlistaBrojTestova.add(this.jRadioButton11);
+        RBlistaBrojTestova.add(this.jRadioButton12);
+        RBlistaBrojTestova.add(this.sviTestovi);
+        listaPredmeta.forEach(e->{
+            RBlistaPredmeta.add(new JRadioButton(e.getNazivPredmeta()));
+        });
+        this.pnlPredmeti.removeAll();
+        this.pnlPredmeti.revalidate();
+        this.pnlPredmeti.setLayout(new FlowLayout());
+        RBlistaPredmeta.forEach(e->{
+            System.out.println(e.getText());
+            this.btnPredmetiGroup.add(e);
+            this.pnlPredmeti.add(e);
+        });
+        
+        this.jTable1.setAutoCreateRowSorter(true);
         System.out.println(rt.get(0).getRedni_broj_testa());
         rt.forEach(rezultat-> {
                 Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.isOdgovor1(),rezultat.isOdgovor2(),rezultat.isOdgovor3(),rezultat.isOdgovor4(),rezultat.isOdgovor5() };
@@ -45,12 +88,46 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnRazrediGroup = new javax.swing.ButtonGroup();
+        btnOdeljenjeGroup = new javax.swing.ButtonGroup();
+        btnBrojTestaGroup = new javax.swing.ButtonGroup();
+        btnPredmetiGroup = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
+        pnlLeft = new javax.swing.JPanel();
+        pnlRZ = new javax.swing.JPanel();
+        lblRazred = new javax.swing.JLabel();
+        pnlPR = new javax.swing.JPanel();
+        lblPredmet = new javax.swing.JLabel();
+        pnlOD = new javax.swing.JPanel();
+        lblOdeljenje = new javax.swing.JLabel();
+        btnPR2 = new javax.swing.JButton();
+        btnPR1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        pnlPredmeti = new javax.swing.JPanel();
+        pnlRazred = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        pnlOdeljenje = new javax.swing.JPanel();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        svaOdeljenja = new javax.swing.JRadioButton();
+        jPanel2 = new javax.swing.JPanel();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
+        sviTestovi = new javax.swing.JRadioButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnOcene = new javax.swing.JButton();
-        btnPredmeti = new javax.swing.JButton();
-        btnUcenici = new javax.swing.JButton();
+        filterTable = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(890, 650));
 
@@ -58,108 +135,273 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         pnlBackground.setPreferredSize(new java.awt.Dimension(890, 650));
         pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        pnlLeft.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLeft.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlRZ.setBackground(new java.awt.Color(0, 161, 241));
+        pnlRZ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblRazred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblRazred.setForeground(new java.awt.Color(255, 255, 255));
+        lblRazred.setText("RAZRED");
+        pnlRZ.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 70, 20));
+
+        pnlLeft.add(pnlRZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 220, 40));
+
+        pnlPR.setBackground(new java.awt.Color(246, 83, 20));
+        pnlPR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblPredmet.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPredmet.setForeground(new java.awt.Color(255, 255, 255));
+        lblPredmet.setText("PREDMET");
+        pnlPR.add(lblPredmet, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, 20));
+
+        pnlLeft.add(pnlPR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
+
+        pnlOD.setBackground(new java.awt.Color(255, 187, 0));
+        pnlOD.setPreferredSize(new java.awt.Dimension(220, 40));
+        pnlOD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblOdeljenje.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblOdeljenje.setForeground(new java.awt.Color(255, 255, 255));
+        lblOdeljenje.setText("ODELJENJE");
+        pnlOD.add(lblOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 100, 20));
+
+        pnlLeft.add(pnlOD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
+
+        btnPR2.setBackground(new java.awt.Color(124, 187, 0));
+        btnPR2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPR2.setForeground(new java.awt.Color(255, 255, 255));
+        btnPR2.setText("SACUVAJ");
+        btnPR2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPR2ActionPerformed(evt);
+            }
+        });
+        pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 220, 40));
+
+        btnPR1.setBackground(new java.awt.Color(204, 204, 204));
+        btnPR1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPR1.setForeground(new java.awt.Color(255, 255, 255));
+        btnPR1.setText("IZMENI");
+        pnlLeft.add(btnPR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 220, 40));
+        pnlLeft.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 10));
+
+        pnlPredmeti.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPredmeti.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlPredmeti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlLeft.add(pnlPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 90));
+
+        pnlRazred.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRazred.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlRazred.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton1);
+        jRadioButton1.setText("5");
+        pnlRazred.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton3);
+        jRadioButton3.setText("6");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        pnlRazred.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton2);
+        jRadioButton2.setText("7");
+        pnlRazred.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
+        btnRazrediGroup.add(jRadioButton4);
+        jRadioButton4.setText("8");
+        pnlRazred.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
+
+        pnlLeft.add(pnlRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 220, 90));
+
+        pnlOdeljenje.setBackground(new java.awt.Color(255, 255, 255));
+        pnlOdeljenje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        pnlOdeljenje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton5);
+        jRadioButton5.setText("1");
+        pnlOdeljenje.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton7);
+        jRadioButton7.setText("2");
+        pnlOdeljenje.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+
+        jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton8);
+        jRadioButton8.setText("3");
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
+        pnlOdeljenje.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
+        btnOdeljenjeGroup.add(jRadioButton6);
+        jRadioButton6.setText("4");
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
+        pnlOdeljenje.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        btnOdeljenjeGroup.add(svaOdeljenja);
+        svaOdeljenja.setText("all");
+        pnlOdeljenje.add(svaOdeljenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+
+        pnlLeft.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 220, 100));
+
+        jRadioButton9.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton9);
+        jRadioButton9.setText("1");
+
+        jRadioButton10.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton10);
+        jRadioButton10.setText("2");
+
+        jRadioButton11.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton11);
+        jRadioButton11.setText("4");
+        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton11ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton12.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrojTestaGroup.add(jRadioButton12);
+        jRadioButton12.setText("3");
+        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton12ActionPerformed(evt);
+            }
+        });
+
+        btnBrojTestaGroup.add(sviTestovi);
+        sviTestovi.setText("all");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(sviTestovi)
+                .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jRadioButton9)
+                            .addGap(59, 59, 59)
+                            .addComponent(jRadioButton10))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jRadioButton12)
+                            .addGap(59, 59, 59)
+                            .addComponent(jRadioButton11)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 97, Short.MAX_VALUE)
+                .addComponent(sviTestovi))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton9)
+                        .addComponent(jRadioButton10))
+                    .addGap(17, 17, 17)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton12)
+                        .addComponent(jRadioButton11))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pnlLeft.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 120));
+
+        jPanel3.setBackground(new java.awt.Color(0, 255, 0));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("BROJ TESTA");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        pnlLeft.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, -1, 50));
+
+        pnlBackground.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 220, 650));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Ime", "Predmet", "Razred", "Odeljenje", "broj_bodova", "zad1", "zad2", "zad3", "zad4", "zad5"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        pnlBackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 650));
+        pnlBackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 670, 620));
+        pnlBackground.add(filterTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 30));
 
-        btnOcene.setBackground(new java.awt.Color(246, 100, 43));
-        btnOcene.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnOcene.setForeground(new java.awt.Color(255, 255, 255));
-        btnOcene.setText("Sortiraj po ocenama");
-        btnOcene.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnOcene.setFocusPainted(false);
-        btnOcene.setPreferredSize(new java.awt.Dimension(190, 40));
-        btnOcene.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOceneMouseClicked(evt);
-            }
-        });
-        btnOcene.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOceneActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
+        pnlBackground.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 90, 30));
 
-        btnPredmeti.setBackground(new java.awt.Color(246, 100, 43));
-        btnPredmeti.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnPredmeti.setForeground(new java.awt.Color(255, 255, 255));
-        btnPredmeti.setText("Sortiraj po predmetima");
-        btnPredmeti.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnPredmeti.setFocusPainted(false);
-        btnPredmeti.setPreferredSize(new java.awt.Dimension(190, 40));
-        btnPredmeti.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("X");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPredmetiActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, -1, -1));
-
-        btnUcenici.setBackground(new java.awt.Color(246, 100, 43));
-        btnUcenici.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnUcenici.setForeground(new java.awt.Color(255, 255, 255));
-        btnUcenici.setText("Sortiraj po ucenicima");
-        btnUcenici.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnUcenici.setFocusPainted(false);
-        btnUcenici.setPreferredSize(new java.awt.Dimension(190, 40));
-        btnUcenici.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUceniciActionPerformed(evt);
-            }
-        });
-        pnlBackground.add(btnUcenici, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+        pnlBackground.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 60, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -177,42 +419,127 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOceneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOceneActionPerformed
-        // TODO add your handling code here:
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TableRowSorter<TableModel> sorter=new TableRowSorter<TableModel>(((DefaultTableModel)jTable1.getModel()));
+        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText()));
+        jTable1.setRowSorter(sorter);
         
-    }//GEN-LAST:event_btnOceneActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnOceneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOceneMouseClicked
-        // TODO add your handling code here: 
-        this.btnOcene.setBackground(Color.decode("#F77E4E"));
-         this.btnPredmeti.setBackground(Color.decode("#F6642B"));
-         this.btnUcenici.setBackground(Color.decode("#F6642B"));
-        
-    }//GEN-LAST:event_btnOceneMouseClicked
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.filterTable.setText("");
+        this.jButton1.doClick();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPredmetiActionPerformed
-        // TODO add your handling code here:
-        
-        this.btnPredmeti.setBackground(Color.decode("#F77E4E"));
-         this.btnUcenici.setBackground(Color.decode("#F6642B"));
-        this.btnOcene.setBackground(Color.decode("#F6642B"));
-    }//GEN-LAST:event_btnPredmetiActionPerformed
+    private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
+        TestWrapper newTest=new TestWrapper();
+        newTest.setNastavnik(this.trenutniKorisnik.getUsername());
+        for(int i=0;i<4;i++){
+            if(this.RBlistaRazreda.get(i).isSelected()){
+                newTest.setRazred(i+5);
+                break;
+            }
+        }
+        for(int i=0;i<this.listaPredmeta.size();i++){
+            if(this.RBlistaPredmeta.get(i).isSelected()){
+                try {
+                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(),newTest.getRazred()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(this.RBListaOdeljenja.get(i).isSelected()){
+                if(RBListaOdeljenja.get(i).getText().equals("all"))
+                    newTest.setOdeljenje(5);
+                else
+                    newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
+                break;
+            }
+        }
 
-    private void btnUceniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUceniciActionPerformed
-        // TODO add your handling code here:
+        for(int i=0;i<4;i++){
+            if(this.RBlistaBrojTestova.get(i).isSelected()){
+                if(RBlistaBrojTestova.get(i).getText().equals("all"))
+                    newTest.setRedni_broj_testa(5);
+                else
+                    newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
+                break;
+            }
+        }
+        try {
+            frmRezultatiPredmeta f=new frmRezultatiPredmeta(trenutniKorisnik,newTest);
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(pnlRezultatiTesta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        this.btnUcenici.setBackground(Color.decode("#F77E4E"));
-        this.btnOcene.setBackground(Color.decode("#F6642B"));
-        this.btnPredmeti.setBackground(Color.decode("#F6642B"));
-    }//GEN-LAST:event_btnUceniciActionPerformed
+
+    }//GEN-LAST:event_btnPR2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton11ActionPerformed
+
+    private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton12ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOcene;
-    private javax.swing.JButton btnPredmeti;
-    private javax.swing.JButton btnUcenici;
+    private javax.swing.ButtonGroup btnBrojTestaGroup;
+    private javax.swing.ButtonGroup btnOdeljenjeGroup;
+    private javax.swing.JButton btnPR1;
+    private javax.swing.JButton btnPR2;
+    private javax.swing.ButtonGroup btnPredmetiGroup;
+    private javax.swing.ButtonGroup btnRazrediGroup;
+    private javax.swing.JTextField filterTable;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblOdeljenje;
+    private javax.swing.JLabel lblPredmet;
+    private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlLeft;
+    private javax.swing.JPanel pnlOD;
+    private javax.swing.JPanel pnlOdeljenje;
+    private javax.swing.JPanel pnlPR;
+    private javax.swing.JPanel pnlPredmeti;
+    private javax.swing.JPanel pnlRZ;
+    private javax.swing.JPanel pnlRazred;
+    private javax.swing.JRadioButton svaOdeljenja;
+    private javax.swing.JRadioButton sviTestovi;
     // End of variables declaration//GEN-END:variables
 }

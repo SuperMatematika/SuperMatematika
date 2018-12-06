@@ -32,6 +32,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         trenutniKorisnik=tk;
         initComponents();
         listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
+       
         listaPredmeta.forEach(e->{
             System.out.println(e.getNazivPredmeta());  
         });

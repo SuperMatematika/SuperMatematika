@@ -382,6 +382,29 @@ public class DBController {
         
         return testovi;
     }
+
+    ArrayList<RezultatiTesta> statistika(Profesor trenutniKorisnik, TestWrapper newTest) {
+        ArrayList<RezultatiTesta> rt=new ArrayList();
+        
+        try {
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* from rezultati_testa,predmet where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'and rezultati_testa.predmet=predmet.id_predmeta and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' and rezultati_testa.razred='"+newTest.getRazred()+"' and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
+            while(resultSet.next()){
+                     rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getString("naziv"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getInt("broj_bodova"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
+        
+        return rt;
+    }
     
     public class GreskaNemaDovoljnoPitanja extends Exception {
         public GreskaNemaDovoljnoPitanja() {
