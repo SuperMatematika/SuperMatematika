@@ -74,7 +74,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         this.jTable1.setAutoCreateRowSorter(true);
         System.out.println(rt.get(0).getRedni_broj_testa());
         rt.forEach(rezultat-> {
-                Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.isOdgovor1(),rezultat.isOdgovor2(),rezultat.isOdgovor3(),rezultat.isOdgovor4(),rezultat.isOdgovor5() };
+                Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.isOdgovor1(),rezultat.isOdgovor2(),rezultat.isOdgovor3(),rezultat.isOdgovor4(),rezultat.isOdgovor5(),rezultat.getRedni_broj_testa() };
                 ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
             });
     }
@@ -364,14 +364,14 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Ime", "Predmet", "Razred", "Odeljenje", "broj_bodova", "zad1", "zad2", "zad3", "zad4", "zad5"
+                "Ime", "Predmet", "Razred", "Odeljenje", "broj_bodova", "zad1", "zad2", "zad3", "zad4", "zad5", "redni_broj_testa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -450,7 +450,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
                 break;
             }
         }
-        for(int i=0;i<4;i++){
+        for(int i=0;i<5;i++){
             if(this.RBListaOdeljenja.get(i).isSelected()){
                 if(RBListaOdeljenja.get(i).getText().equals("all"))
                     newTest.setOdeljenje(5);
@@ -460,7 +460,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
             }
         }
 
-        for(int i=0;i<4;i++){
+        for(int i=0;i<5;i++){
             if(this.RBlistaBrojTestova.get(i).isSelected()){
                 if(RBlistaBrojTestova.get(i).getText().equals("all"))
                     newTest.setRedni_broj_testa(5);

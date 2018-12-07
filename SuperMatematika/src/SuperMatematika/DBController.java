@@ -388,8 +388,40 @@ public class DBController {
         
         try {
             statement=(Statement)connection.createStatement();
-            resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* from rezultati_testa,predmet where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'and rezultati_testa.predmet=predmet.id_predmeta and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' and rezultati_testa.razred='"+newTest.getRazred()+"' and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
+            if(newTest.getOdeljenje()!=5 && newTest.getRedni_broj_testa()!=5)
+                resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.*"
+                        + " from rezultati_testa,predmet "
+                        + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
+                        + "and rezultati_testa.predmet=predmet.id_predmeta "
+                        + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
+                        + "and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.razred='"+newTest.getRazred()+"' "
+                        + "and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
+            else if(newTest.getOdeljenje()==5 && newTest.getRedni_broj_testa()!=5)
+                resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* "
+                        + "from rezultati_testa,predmet "
+                        + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
+                        + "and rezultati_testa.predmet=predmet.id_predmeta "
+                        + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
+                        + "and rezultati_testa.razred='"+newTest.getRazred()+"' "
+                        + "and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
+            else if(newTest.getOdeljenje()!=5 && newTest.getRedni_broj_testa()==5)
+                resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.*"
+                        + " from rezultati_testa,predmet "
+                        + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
+                        + "and rezultati_testa.predmet=predmet.id_predmeta "
+                        + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
+                        + "and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
+            else
+                resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* "
+                        + "from rezultati_testa,predmet "
+                        + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
+                        + "and rezultati_testa.predmet=predmet.id_predmeta "
+                        + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
+                        + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
             while(resultSet.next()){
+                     System.out.println(resultSet.getString("student"));
                      rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getString("naziv"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getInt("broj_bodova"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5")));
             }
         } catch (SQLException ex) {

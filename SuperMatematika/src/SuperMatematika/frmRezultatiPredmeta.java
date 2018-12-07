@@ -38,6 +38,20 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
                 Object[] row = { rezultat.getStudent(),rezultat.getIme_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getRedni_broj_testa(),rezultat.isOdgovor1(),rezultat.isOdgovor2(),rezultat.isOdgovor3(),rezultat.isOdgovor4(),rezultat.isOdgovor5(),rezultat.getBroj_bodova()};
                 ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
             });
+        float sum=0;
+        int max=0;
+        int index=0;
+        for(int i=0;i<jTable1.getRowCount();i++){
+            sum+=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+            if((Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"))>=max){
+                max=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+                index=i;
+            }
+        }
+        sum/=jTable1.getRowCount();
+        this.jLabel2.setText(String.valueOf(sum));
+        this.jLabel4.setText(String.valueOf(max));
+        this.jLabel6.setText(String.valueOf(this.jTable1.getModel().getValueAt(index, jTable1.getColumnModel().getColumnIndex("Ime"))));
     }
 
     /**
