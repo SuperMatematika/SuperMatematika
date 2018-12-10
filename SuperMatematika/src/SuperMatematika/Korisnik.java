@@ -30,6 +30,14 @@ public class Korisnik {
         this.datumRodjenja = datumRodjenja;
         this.pol = pol;
     }
+    public Korisnik(String username, String Ime, String prezime, Date datumRodjenja, String pol)
+    {
+         this.username = username;
+        this.ime = Ime;
+        this.prezime = prezime;
+        this.datumRodjenja = datumRodjenja;
+        this.pol = pol;
+    }
 
     public void setUserType(String userType) {
         this.userType = userType;

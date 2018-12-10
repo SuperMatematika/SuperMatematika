@@ -25,7 +25,7 @@ public class DBController {
     private Statement statement = null;
     private ResultSet resultSet = null;
     
-    private DBController() throws SQLException{
+    DBController() throws SQLException{
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             String msAccDB = new File("").getAbsolutePath()+"/Supermatematika.accdb";
@@ -106,7 +106,19 @@ public class DBController {
         
         return null;
         }
-
+   /* public Profesor getProfesore(Profesor p) throws SQLException
+    {
+        resultSet=submitQuery("Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username");
+            try {
+            if(resultSet.next())    
+        return new Profesor(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("datumRodjenja"),resultSet.getString("pol"),resultSet.getString("fakultet"));
+            }
+            catch(SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+            return null;
+     }*/
     ArrayList<String> getPutanjeOblasti(String oblast,int idPredmeta) {
         ArrayList<String> listaPutanja=new ArrayList();
         resultSet = submitQuery("SELECT Putanja from "+oblast+" where ID_predmeta='"+idPredmeta+"';");
@@ -456,5 +468,20 @@ public class DBController {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }finally{statement.close();}
          return rt;
+    }
+    //Treba da se poveze sa PanelSviProfesori
+    ArrayList<Profesor> getProfesore(Profesor p) throws SQLException
+    {
+        ArrayList<Profesor> sp=new ArrayList();
+         try {
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username");
+            while(resultSet.next()){
+                sp.add(new Profesor(resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("godina_rodjenja"),resultSet.getString("pol"),resultSet.getString("faku1tet")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{statement.close();}
+         return sp;
     }
 }
