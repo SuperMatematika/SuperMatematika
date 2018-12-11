@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -275,7 +276,90 @@ public class DBController {
         statement=(Statement) connection.createStatement();
         statement.executeUpdate(upit);        
 }
+void DodajKorisnika(String username,String password,String usertype,String ime,String prezime,String datum_rodjenja,String pol) throws SQLException
+{try{
+    String upit="Insert into Users Values('"+username+"','"+password+"','"+usertype+"','"+ime+"','"+prezime+"','"+datum_rodjenja+"','"+pol+"')";
+    statement=(Statement) connection.createStatement();
+    statement.executeUpdate(upit);
+     }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Dati korisnik vec postoji!");
+            e.printStackTrace();
+        }finally{
+            statement.close();
+        }
 
+        
+}
+void DodajProfesora(String username,String fakultet) throws SQLException
+{try{
+    String upit="Insert into Nastavnik Values('"+username+"','"+fakultet+"')";
+    statement=(Statement) connection.createStatement();
+    statement.executeUpdate(upit);
+     }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            statement.close();
+        }
+
+     }
+void DodajStudenta(String username,int Razred,int Odeljenje) throws SQLException
+{
+    try
+    {
+        String upit="Insert into Student Values('"+username+"',"+Razred+","+Odeljenje+")";
+        statement=(Statement) connection.createStatement();
+        statement.executeUpdate(upit);
+    }
+   
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    
+   }
+    
+
+void ProfesorPredaje(String NazivPredmeta,String username,int Razred) throws SQLException
+{
+   int idPredmeta;
+   idPredmeta=getIdPredmeta();
+   idPredmeta++;
+   try
+   { statement.close();
+       String upit="Insert into Predmet Values("+idPredmeta+",'"+NazivPredmeta+"','"+username+"',"+Razred+")";
+        statement=(Statement)connection.createStatement();
+        statement.executeUpdate(upit);
+   }
+   catch(Exception e)
+   {
+        e.printStackTrace();
+   }
+  
+   
+}
+public int getIdPredmeta() throws SQLException
+{
+    try
+    {   statement.close();
+        System.out.println(connection.isClosed()+" i "+statement.isClosed());
+        String upit="Select max(id_predmeta) as dzm FROM Predmet;";
+        statement=(Statement)connection.createStatement();
+        resultSet = statement.executeQuery(upit);
+        System.out.println(resultSet);
+        
+        while(resultSet.next()){
+                return resultSet.getInt("dzm");
+            }
+    }
+    catch(Exception ex)
+    {
+        System.out.println("Ne radi"+ex);
+    }
+        return 0;
+       
+   
+}
+
+    
     ArrayList<Predmet> getProfPredmeti(Profesor trenutniKorisnik) throws SQLException {
         ArrayList<Predmet> listaPredmeta=new ArrayList();
         try{

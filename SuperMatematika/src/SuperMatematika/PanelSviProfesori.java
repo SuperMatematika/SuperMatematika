@@ -5,6 +5,7 @@
  */
 package SuperMatematika;
 
+import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,8 +45,7 @@ public class PanelSviProfesori extends javax.swing.JPanel {
    }
    public void izbrisiIzTabele() throws SQLException
    {
-       String upit="DELETE FROM Users Where Users.username='"+txtUsername.getText()+"'";
-       ResultSet rezultat=DBController.require().submitQuery(upit);
+       
            
       
    }
@@ -58,13 +58,15 @@ public class PanelSviProfesori extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlMainContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnIzbrisi = new javax.swing.JButton();
-        txtUsername = new javax.swing.JTextField();
+        btnDodaj = new javax.swing.JButton();
+        btnPrikazi = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,7 +81,7 @@ public class PanelSviProfesori extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 460));
+        pnlMainContent.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 460));
 
         btnIzbrisi.setText("Izbrisi");
         btnIzbrisi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,18 +94,36 @@ public class PanelSviProfesori extends javax.swing.JPanel {
                 btnIzbrisiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIzbrisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 90, 30));
-        jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 130, 30));
+        pnlMainContent.add(btnIzbrisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, 140, 30));
+
+        btnDodaj.setText("Dodaj ");
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
+        pnlMainContent.add(btnDodaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 140, 30));
+
+        btnPrikazi.setText("Prikazi");
+        btnPrikazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrikaziActionPerformed(evt);
+            }
+        });
+        pnlMainContent.add(btnPrikazi, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 140, 30));
+
+        jButton3.setText("Izmeni");
+        pnlMainContent.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 140, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,13 +141,33 @@ public class PanelSviProfesori extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnIzbrisiClick
 
+    private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
+        // TODO add your handling code here:
+        PanelSviProfesori newPnl = new PanelSviProfesori();
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnPrikaziActionPerformed
+
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        // TODO add your handling code here:
+         PanelDodajProfesora newPnl = new PanelDodajProfesora();
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
+    }//GEN-LAST:event_btnDodajActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnIzbrisi;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnPrikazi;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JPanel pnlMainContent;
     // End of variables declaration//GEN-END:variables
 
     private Object DBController() {

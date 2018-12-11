@@ -51,6 +51,9 @@ public class PanelSviStudenti extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnDodaj = new javax.swing.JButton();
+        btnIzbrisi = new javax.swing.JButton();
+        btnIzmeni = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -67,7 +70,26 @@ public class PanelSviStudenti extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 500));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 500));
+
+        btnDodaj.setText("Dodaj");
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDodaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 170, 30));
+
+        btnIzbrisi.setText("Izbrisi");
+        btnIzbrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzbrisiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnIzbrisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 170, 30));
+
+        btnIzmeni.setText("Izmeni");
+        jPanel1.add(btnIzmeni, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,8 +103,21 @@ public class PanelSviStudenti extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIzbrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzbrisiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIzbrisiActionPerformed
+
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        // TODO add your handling code here:
+        FrameDodajStudenta fds= new FrameDodajStudenta();
+        fds.setVisible(true);
+    }//GEN-LAST:event_btnDodajActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnIzbrisi;
+    private javax.swing.JButton btnIzmeni;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
