@@ -100,7 +100,7 @@ public class DBController {
 
         try {
             if(resultSet.next())
-                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("Godina_rodjenja"),resultSet.getString("pol"));                  
+                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getString("Godina_rodjenja"),resultSet.getString("pol"));                  
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -278,7 +278,7 @@ public class DBController {
 }
 void DodajKorisnika(String username,String password,String usertype,String ime,String prezime,String datum_rodjenja,String pol) throws SQLException
 {try{
-    String upit="Insert into Users Values('"+username+"','"+password+"','"+usertype+"','"+ime+"','"+prezime+"','"+datum_rodjenja+"','"+pol+"')";
+    String upit="Insert into Users(username,password,usertype,ime,prezime,godina_rodjenja,pol) Values('"+username+"','"+password+"','"+usertype+"','"+ime+"','"+prezime+"','"+datum_rodjenja+"','"+pol+"')";
     statement=(Statement) connection.createStatement();
     statement.executeUpdate(upit);
      }catch(Exception e){
@@ -292,7 +292,7 @@ void DodajKorisnika(String username,String password,String usertype,String ime,S
 }
 void DodajProfesora(String username,String fakultet) throws SQLException
 {try{
-    String upit="Insert into Nastavnik Values('"+username+"','"+fakultet+"')";
+    String upit="Insert into Nastavnik(username,fakultet) Values('"+username+"','"+fakultet+"')";
     statement=(Statement) connection.createStatement();
     statement.executeUpdate(upit);
      }catch(Exception e){
@@ -306,7 +306,7 @@ void DodajStudenta(String username,int Razred,int Odeljenje) throws SQLException
 {
     try
     {
-        String upit="Insert into Student Values('"+username+"',"+Razred+","+Odeljenje+")";
+        String upit="Insert into Student(username,razred,odeljenje) Values('"+username+"',"+Razred+","+Odeljenje+")";
         statement=(Statement) connection.createStatement();
         statement.executeUpdate(upit);
     }
@@ -533,6 +533,19 @@ public int getIdPredmeta() throws SQLException
         
         return rt;
     }
+
+    void izbrisiProfesora(Object valueAt) throws SQLException {
+        String user=(String)valueAt;
+        try{
+            statement=(Statement)connection.createStatement();
+            statement.executeUpdate("delete from users where username='"+user+"'");
+            System.out.println("Uspesno izbrisano");
+        }catch(Exception e){
+            System.out.println(e);
+        }finally{
+            statement.close();
+        }
+    }
     
     public class GreskaNemaDovoljnoPitanja extends Exception {
         public GreskaNemaDovoljnoPitanja() {
@@ -561,7 +574,7 @@ public int getIdPredmeta() throws SQLException
             statement=(Statement)connection.createStatement();
             resultSet=statement.executeQuery("Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username");
             while(resultSet.next()){
-                sp.add(new Profesor(resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("godina_rodjenja"),resultSet.getString("pol"),resultSet.getString("faku1tet")));
+                sp.add(new Profesor(resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getString("godina_rodjenja"),resultSet.getString("pol"),resultSet.getString("faku1tet")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);

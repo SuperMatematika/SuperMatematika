@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Profesor extends Korisnik{
     private String Fakultet;
-    public Profesor(String userType, String username, String Ime, String prezime, Date datumRodjenja, String pol,String Fakultet) {
+    public Profesor(String userType, String username, String Ime, String prezime, String datumRodjenja, String pol,String Fakultet) {
         super(userType, username, Ime, prezime, datumRodjenja, pol);
         this.Fakultet=Fakultet;
     }
@@ -23,7 +23,7 @@ public class Profesor extends Korisnik{
         super(tr.getUserType(),tr.getUsername(),tr.getIme(),tr.getPrezime(),tr.getDatumRodjenja(),tr.getPol());
     }
 
-    public Profesor(String username, String ime, String prezime,Date datumRodjenja, String pol, String fakultet) {
+    public Profesor(String username, String ime, String prezime,String datumRodjenja, String pol, String fakultet) {
        super(username,ime,prezime,datumRodjenja,pol);
        this.Fakultet=fakultet;
     }

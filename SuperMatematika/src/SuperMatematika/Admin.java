@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Admin extends Korisnik {
 
-    public Admin(String userType, String username, String Ime, String prezime, Date datumRodjenja, String pol) {
+    public Admin(String userType, String username, String Ime, String prezime, String datumRodjenja, String pol) {
         super(userType, username, Ime, prezime, datumRodjenja, pol);
     }
 
