@@ -72,7 +72,9 @@ public class PanelSviStudenti extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 500));
 
+        btnDodaj.setBackground(new java.awt.Color(153, 153, 153));
         btnDodaj.setText("Dodaj");
+        btnDodaj.setFocusPainted(false);
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDodajActionPerformed(evt);
@@ -80,7 +82,9 @@ public class PanelSviStudenti extends javax.swing.JPanel {
         });
         jPanel1.add(btnDodaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 170, 30));
 
+        btnIzbrisi.setBackground(new java.awt.Color(153, 153, 153));
         btnIzbrisi.setText("Izbrisi");
+        btnIzbrisi.setFocusPainted(false);
         btnIzbrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIzbrisiActionPerformed(evt);
@@ -88,7 +92,9 @@ public class PanelSviStudenti extends javax.swing.JPanel {
         });
         jPanel1.add(btnIzbrisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 170, 30));
 
+        btnIzmeni.setBackground(new java.awt.Color(153, 153, 153));
         btnIzmeni.setText("Izmeni");
+        btnIzmeni.setFocusPainted(false);
         jPanel1.add(btnIzmeni, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -105,6 +111,16 @@ public class PanelSviStudenti extends javax.swing.JPanel {
 
     private void btnIzbrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzbrisiActionPerformed
         // TODO add your handling code here:
+          int niz[]=new int[this.jTable1.getSelectedRowCount()];
+        niz=this.jTable1.getSelectedRows();
+        for(int i=0;i<niz.length;i++){
+            try {
+                DBController.require().izbrisiKorisnika(this.jTable1.getModel().getValueAt(1, 0));
+                ((DefaultTableModel)this.jTable1.getModel()).removeRow(i);
+            } catch (SQLException ex) {
+                Logger.getLogger(PanelSviProfesori.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnIzbrisiActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed

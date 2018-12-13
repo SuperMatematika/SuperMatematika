@@ -53,16 +53,16 @@ public class pnlPredavanja extends javax.swing.JPanel {
     }
 
     private void createForm() {
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new GridLayout(2,2,4,2));
+        this.MainPanel.removeAll();
+        this.MainPanel.revalidate();
+        this.MainPanel.setLayout(new GridLayout(3,2,4,2));
         System.out.println(listaLekcija.size());
         Font f = new Font("Century Gothic", Font.PLAIN, 24);
         for (int i = 0; i < listaLekcija.size(); i++) {
             JButton b = new JButton(listaLekcija.get(i));
-            b.setBackground(Color.decode("#FFCC42"));
-            b.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
-            b.setForeground(Color.white);
+            b.setBackground(Color.white);
+            b.setBorder(BorderFactory.createLineBorder(Color.decode("#999999"), 1, false));
+            b.setForeground(Color.GRAY);
             b.setFont(f);
 
             b.setFocusPainted(false);
@@ -76,8 +76,8 @@ public class pnlPredavanja extends javax.swing.JPanel {
             );
 
             listaButtona.add(b);
-            this.add(b);
-            this.setVisible(true);
+            this.MainPanel.add(b);
+            this.MainPanel.setVisible(true);
         }
 
     }
@@ -92,33 +92,12 @@ public class pnlPredavanja extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBaack = new javax.swing.JButton();
+        MainPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnBaack.setBackground(new java.awt.Color(102, 102, 102));
-        btnBaack.setText("Back");
-        btnBaack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBaackActionPerformed(evt);
-            }
-        });
-        add(btnBaack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 80, 50));
+        add(MainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 896, 620));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBaackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaackActionPerformed
-        pnlBirajPredmet main;
-        try {
-            main = new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniPredmet.getRazred()),"predavanja");
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
-        } catch (Exception ex) {
-
-        } // TODO add your handling code here:
-    }//GEN-LAST:event_btnBaackActionPerformed
 
     private void showPdf(java.awt.event.ActionEvent evt) {
         String putanja = null;
@@ -135,6 +114,6 @@ public class pnlPredavanja extends javax.swing.JPanel {
         this.add(newPnl);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBaack;
+    private javax.swing.JPanel MainPanel;
     // End of variables declaration//GEN-END:variables
 }

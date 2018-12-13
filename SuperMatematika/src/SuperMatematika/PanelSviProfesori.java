@@ -132,7 +132,7 @@ public class PanelSviProfesori extends javax.swing.JPanel {
         niz=this.jTable1.getSelectedRows();
         for(int i=0;i<niz.length;i++){
             try {
-                DBController.require().izbrisiProfesora(this.jTable1.getModel().getValueAt(1, 0));
+                DBController.require().izbrisiKorisnika(this.jTable1.getModel().getValueAt(1, 0));
                 ((DefaultTableModel)this.jTable1.getModel()).removeRow(i);
             } catch (SQLException ex) {
                 Logger.getLogger(PanelSviProfesori.class.getName()).log(Level.SEVERE, null, ex);

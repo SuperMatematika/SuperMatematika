@@ -68,6 +68,16 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
         txtRazred = new javax.swing.JTextField();
         txtOdeljenje = new javax.swing.JTextField();
         btnSacuvaj = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,13 +86,7 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridLayout(10, 0, 5, 8));
 
-        txtUsername.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsername.setText("username");
-        txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsernameMouseClicked(evt);
-            }
-        });
+        txtUsername.setForeground(new java.awt.Color(102, 102, 102));
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
@@ -90,76 +94,30 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
         });
         jPanel1.add(txtUsername);
 
-        txtPassword.setForeground(new java.awt.Color(153, 153, 153));
-        txtPassword.setText("lozinka");
-        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtPasswordMouseClicked(evt);
-            }
-        });
+        txtPassword.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtPassword);
 
         txtUsertype.setForeground(new java.awt.Color(153, 153, 153));
         txtUsertype.setText("student");
-        txtUsertype.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsertypeMouseClicked(evt);
-            }
-        });
+        txtUsertype.setEnabled(false);
         jPanel1.add(txtUsertype);
 
-        txtIme.setForeground(new java.awt.Color(153, 153, 153));
-        txtIme.setText("ime");
-        txtIme.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtImeMouseClicked(evt);
-            }
-        });
+        txtIme.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtIme);
 
-        txtPrezime.setForeground(new java.awt.Color(153, 153, 153));
-        txtPrezime.setText("prezime");
-        txtPrezime.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtPrezimeMouseClicked(evt);
-            }
-        });
+        txtPrezime.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtPrezime);
 
-        txtDatumRodj.setForeground(new java.awt.Color(153, 153, 153));
-        txtDatumRodj.setText("datum rodjenja");
-        txtDatumRodj.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtDatumRodjMouseClicked(evt);
-            }
-        });
+        txtDatumRodj.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtDatumRodj);
 
-        txtPol.setForeground(new java.awt.Color(153, 153, 153));
-        txtPol.setText("pol");
-        txtPol.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtPolMouseClicked(evt);
-            }
-        });
+        txtPol.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtPol);
 
-        txtRazred.setForeground(new java.awt.Color(153, 153, 153));
-        txtRazred.setText("razred");
-        txtRazred.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtRazredMouseClicked(evt);
-            }
-        });
+        txtRazred.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtRazred);
 
-        txtOdeljenje.setForeground(new java.awt.Color(153, 153, 153));
-        txtOdeljenje.setText("odeljenje");
-        txtOdeljenje.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtOdeljenjeMouseClicked(evt);
-            }
-        });
+        txtOdeljenje.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtOdeljenje);
 
         btnSacuvaj.setBackground(new java.awt.Color(204, 255, 153));
@@ -171,22 +129,66 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new java.awt.GridLayout(10, 0, 5, 8));
+
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Username:");
+        jPanel3.add(jLabel1);
+
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Lozinka:");
+        jPanel3.add(jLabel2);
+
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("Tip korisnika:");
+        jPanel3.add(jLabel3);
+
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Ime:");
+        jPanel3.add(jLabel4);
+
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Prezime:");
+        jPanel3.add(jLabel5);
+
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Datum rodjenja:");
+        jPanel3.add(jLabel6);
+
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Pol:");
+        jPanel3.add(jLabel7);
+
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Razred:");
+        jPanel3.add(jLabel8);
+
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Odeljenje:");
+        jPanel3.add(jLabel9);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
-                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(104, 104, 104))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -196,7 +198,7 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,60 +221,6 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
             Logger.getLogger(FrameDodajStudenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSacuvajActionPerformed
-
-    private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
-        // TODO add your handling code here:
-        this.txtUsername.setText("");
-        this.txtUsername.setForeground(Color.black);
-    }//GEN-LAST:event_txtUsernameMouseClicked
-
-    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
-        // TODO add your handling code here:
-        this.txtPassword.setText("");
-        this.txtPassword.setForeground(Color.black);
-    }//GEN-LAST:event_txtPasswordMouseClicked
-
-    private void txtUsertypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsertypeMouseClicked
-        // TODO add your handling code here:
-        this.txtUsertype.setText("");
-        this.txtUsertype.setForeground(Color.black);
-    }//GEN-LAST:event_txtUsertypeMouseClicked
-
-    private void txtImeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtImeMouseClicked
-        // TODO add your handling code here:
-        this.txtIme.setText("");
-        this.txtIme.setForeground(Color.black);
-    }//GEN-LAST:event_txtImeMouseClicked
-
-    private void txtPrezimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrezimeMouseClicked
-        // TODO add your handling code here:
-        this.txtPrezime.setText("");
-        this.txtPrezime.setForeground(Color.black);
-    }//GEN-LAST:event_txtPrezimeMouseClicked
-
-    private void txtDatumRodjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDatumRodjMouseClicked
-        // TODO add your handling code here:
-        this.txtDatumRodj.setText("");
-        this.txtDatumRodj.setForeground(Color.black);
-    }//GEN-LAST:event_txtDatumRodjMouseClicked
-
-    private void txtPolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPolMouseClicked
-        // TODO add your handling code here:
-        this.txtPol.setText("");
-        this.txtPol.setForeground(Color.black);
-    }//GEN-LAST:event_txtPolMouseClicked
-
-    private void txtRazredMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRazredMouseClicked
-        // TODO add your handling code here:
-        this.txtRazred.setText("");
-        this.txtPol.setForeground(Color.black);
-    }//GEN-LAST:event_txtRazredMouseClicked
-
-    private void txtOdeljenjeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtOdeljenjeMouseClicked
-        // TODO add your handling code here:
-        this.txtOdeljenje.setText("");
-        this.txtOdeljenje.setForeground(Color.black);
-    }//GEN-LAST:event_txtOdeljenjeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,8 +259,18 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSacuvaj;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtDatumRodj;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtOdeljenje;

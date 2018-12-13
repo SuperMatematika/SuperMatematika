@@ -27,11 +27,11 @@ public class ProfilPanel extends javax.swing.JPanel {
     public ProfilPanel(Student tk) {
         trenutniKorisnik=tk;
         initComponents();
-        UcenikPodaciPanel newPnl = new UcenikPodaciPanel(trenutniKorisnik);
+       /* UcenikPodaciPanel newPnl = new UcenikPodaciPanel(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        this.pnlMainContent.add(newPnl);*/
         
     }
     

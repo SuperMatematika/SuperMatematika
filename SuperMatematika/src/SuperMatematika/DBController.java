@@ -534,11 +534,12 @@ public int getIdPredmeta() throws SQLException
         return rt;
     }
 
-    void izbrisiProfesora(Object valueAt) throws SQLException {
+    void izbrisiKorisnika(Object valueAt) throws SQLException {
         String user=(String)valueAt;
         try{
+            String upit="delete from Users where username='"+user+"'";
             statement=(Statement)connection.createStatement();
-            statement.executeUpdate("delete from users where username='"+user+"'");
+            statement.executeUpdate(upit);
             System.out.println("Uspesno izbrisano");
         }catch(Exception e){
             System.out.println(e);
