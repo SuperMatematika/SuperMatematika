@@ -537,7 +537,7 @@ public int getIdPredmeta() throws SQLException
     void izbrisiKorisnika(Object valueAt) throws SQLException {
         String user=(String)valueAt;
         try{
-            String upit="delete from Users where username='"+user+"'";
+            String upit="delete * from test where nastavnik='"+user+"';delete * from predmet where username_nastavnika='"+user+"';delete * from nastavnik where username='"+user+"' delete * from users where username='"+user+"'"; //'; delete from Users where username='"+user+"'"
             statement=(Statement)connection.createStatement();
             statement.executeUpdate(upit);
             System.out.println("Uspesno izbrisano");

@@ -7,8 +7,12 @@ package SuperMatematika;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,6 +29,7 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
     ArrayList<Predmet> listaPredmeta;
     public frmRezultatiPredmeta(){
         initComponents();
+      
     }
 
 
@@ -32,12 +37,22 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
         this.trenutniKorisnik=trenutniKorisnik;
         izabraniPodaci=newTest;
         initComponents();
+           filterby.removeAllItems();
+        filterby.addItem("Ime");
+        filterby.addItem("Predmet");
+        filterby.addItem("Razred");
+        filterby.addItem("Odeljenje");
+        filterby.addItem("redni_broj_testa");
+        filterby.addItem("broj_bodova");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         rez=DBController.require().statistika(trenutniKorisnik,newTest);
+        System.out.println(rez.size());
+        if(rez.size()>0){
         rez.forEach(rezultat-> {
-                Object[] row = { rezultat.getStudent(),rezultat.getIme_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getRedni_broj_testa(),rezultat.isOdgovor1(),rezultat.isOdgovor2(),rezultat.isOdgovor3(),rezultat.isOdgovor4(),rezultat.isOdgovor5(),rezultat.getBroj_bodova()};
+                Object[] row = { rezultat.getStudent(),rezultat.getIme_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getRedni_broj_testa(),rezultat.getBroj_bodova(),!rezultat.isOdgovor1(),!rezultat.isOdgovor2(),!rezultat.isOdgovor3(),!rezultat.isOdgovor4(),!rezultat.isOdgovor5()};
                 ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
             });
+        
         float sum=0;
         int max=0;
         int index=0;
@@ -52,6 +67,13 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
         this.jLabel2.setText(String.valueOf(sum));
         this.jLabel4.setText(String.valueOf(max));
         this.jLabel6.setText(String.valueOf(this.jTable1.getModel().getValueAt(index, jTable1.getColumnModel().getColumnIndex("Ime"))));
+        }else{
+            JOptionPane.showMessageDialog(null, "Nema trazenih podataka.");
+            
+        this.jLabel2.setText(String.valueOf(0));
+        this.jLabel4.setText(String.valueOf(0));
+        this.jLabel6.setText("");
+        }
     }
 
     /**
@@ -71,6 +93,10 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        filterTable = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        filterby = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -87,14 +113,14 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Ime", "Predmet", "Razred", "Odeljenje", "Broj bodova", "zad1", "zad2", "zad3", "zad4", "zad5", "broj_bodova"
+                "Ime", "Predmet", "Razred", "Odeljenje", "redni_broj_testa", "broj_bodova", "zad1", "zad2", "zad3", "zad4", "zad5"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, false, false
+                false, false, false, false, false, false, false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,6 +145,22 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
 
         jLabel6.setText("iu");
 
+        jButton2.setText("X");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        filterby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,11 +184,26 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(filterTable, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filterby, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterTable, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)
+                    .addComponent(filterby, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -173,6 +230,32 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
          evt.getWindow().setVisible(false);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         this.filterTable.setText("");
+        this.jButton1.doClick();
+   
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TableRowSorter<TableModel> sorter=new TableRowSorter<TableModel>(((DefaultTableModel)jTable1.getModel()));
+        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText(),filterby.getSelectedIndex()));
+        jTable1.setRowSorter(sorter);
+         float sum=0;
+        int max=0;
+        int index=0;
+        for(int i=0;i<jTable1.getRowCount();i++){
+            sum+=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+            if((Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"))>=max){
+                max=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+                index=i;
+            }
+        }
+        sum/=jTable1.getRowCount();
+        this.jLabel2.setText(String.valueOf(sum));
+        this.jLabel4.setText(String.valueOf(max));
+        this.jLabel6.setText(String.valueOf(this.jTable1.getModel().getValueAt(index, jTable1.getColumnModel().getColumnIndex("Ime"))));
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +293,10 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField filterTable;
+    private javax.swing.JComboBox<String> filterby;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

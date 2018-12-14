@@ -130,10 +130,12 @@ public class PanelSviProfesori extends javax.swing.JPanel {
     private void btnIzbrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzbrisiActionPerformed
         int niz[]=new int[this.jTable1.getSelectedRowCount()];
         niz=this.jTable1.getSelectedRows();
+        
         for(int i=0;i<niz.length;i++){
             try {
-                DBController.require().izbrisiKorisnika(this.jTable1.getModel().getValueAt(1, 0));
-                ((DefaultTableModel)this.jTable1.getModel()).removeRow(i);
+                System.out.println(this.jTable1.getModel().getValueAt(niz[i], 0));
+                DBController.require().izbrisiKorisnika(this.jTable1.getModel().getValueAt(niz[i], 0));
+                ((DefaultTableModel)this.jTable1.getModel()).removeRow(niz[i]);
             } catch (SQLException ex) {
                 Logger.getLogger(PanelSviProfesori.class.getName()).log(Level.SEVERE, null, ex);
             }

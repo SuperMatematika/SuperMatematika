@@ -121,7 +121,6 @@ public class pnlTest extends javax.swing.JPanel {
         pnlZadaci = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,15 +131,12 @@ public class pnlTest extends javax.swing.JPanel {
         timer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(timer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 60, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 95, 40));
-
         bNoviTest.setText("Novi test");
         bNoviTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNoviTestActionPerformed(evt);
             }
         });
-        add(bNoviTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 117, 40));
 
         bProverResenja.setBackground(new java.awt.Color(0, 161, 241));
         bProverResenja.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,7 +146,6 @@ public class pnlTest extends javax.swing.JPanel {
                 bProverResenjaActionPerformed(evt);
             }
         });
-        add(bProverResenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 150, 40));
 
         btnPrethodni.setBackground(new java.awt.Color(0, 161, 241));
         btnPrethodni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/arrow-left-drop-circle-outline.png"))); // NOI18N
@@ -160,7 +155,6 @@ public class pnlTest extends javax.swing.JPanel {
                 btnPrethodniActionPerformed(evt);
             }
         });
-        add(btnPrethodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 50, 60));
 
         btnSledeci.setBackground(new java.awt.Color(0, 161, 241));
         btnSledeci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/arrow-right-drop-circle-outline.png"))); // NOI18N
@@ -170,11 +164,9 @@ public class pnlTest extends javax.swing.JPanel {
                 btnSledeciActionPerformed(evt);
             }
         });
-        add(btnSledeci, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 270, 50, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(730, 620));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlZadaci.setBackground(new java.awt.Color(255, 255, 255));
         pnlZadaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -191,21 +183,63 @@ public class pnlTest extends javax.swing.JPanel {
             .addGap(0, 568, Short.MAX_VALUE)
         );
 
-        jPanel2.add(pnlZadaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 570));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlZadaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlZadaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 750, 580));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(375, 375, 375)
+                        .addComponent(bProverResenja, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(bNoviTest, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPrethodni, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSledeci, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(70, 70, 70))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bProverResenja, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bNoviTest, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(btnPrethodni, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnSledeci))))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrethodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrethodniActionPerformed
-         
+
        this.pnlZadaci.removeAll();
           this.pnlZadaci.revalidate();
-        
           this.pnlZadaci.setLayout(new GridLayout(1,0,1,0));
-           // for (Zadatak z: zadaci)
            trenutni--;
-            this.pnlZadaci.add(resenjaZadataka.get(trenutni));
-       //     jPanel1.setViewportView(mainPanel);
+           this.pnlZadaci.add(resenjaZadataka.get(trenutni));
        
            this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
            this.btnPrethodni.setEnabled(trenutni!=0);
@@ -251,6 +285,10 @@ public class pnlTest extends javax.swing.JPanel {
                             Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }else{
+                        resenjaZadataka.forEach(er->{
+                            System.out.println("D"+ er);
+                        });
+                        System.out.println();
                         timerDuration--;
                         timer.setText(sekundeUMinute(timerDuration));
                       //  timer.setText(String.valueOf(timerDuration));
@@ -299,12 +337,9 @@ public class pnlTest extends javax.swing.JPanel {
     private void btnSledeciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSledeciActionPerformed
         this.pnlZadaci.removeAll();
         this.pnlZadaci.revalidate();
-        this.pnlZadaci.setLayout(new GridLayout(1,0,1,0));      
-           // for (Zadatak z: zadaci)
-                trenutni++;
-                
+        this.pnlZadaci.setLayout(new GridLayout(1,0,1,0));  
+           trenutni++;
         this.pnlZadaci.add(resenjaZadataka.get(trenutni));
-       //     jPanel1.setViewportView(mainPanel);
         this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
         this.btnPrethodni.setEnabled(trenutni!=0);
         
