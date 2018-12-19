@@ -190,7 +190,7 @@ public class DBController {
                             " AND Test.redni_broj_testa = " + redniBrojTesta +
                             " AND Test.predmet = " + ID_predmeta +
                             " AND Test.razred = " + razred +
-                            " AND Test.odeljenje = " + odeljenje + ";";
+                            " AND Test.tromesecje = " + odeljenje + ";";
             resultSet = submitQuery(upit);
             
         try {
@@ -459,13 +459,13 @@ public int getIdPredmeta() throws SQLException
         
         try{
             statement=(Statement)connection.createStatement();
-            resultSet=statement.executeQuery("SELECT predmet,razred,odeljenje,redni_broj_testa FROM test where nastavnik='"+trenutniKorisnik.getUsername()+"'");
+            resultSet=statement.executeQuery("SELECT predmet,razred,tromesecje,redni_broj_testa FROM test where nastavnik='"+trenutniKorisnik.getUsername()+"'");
             int i=0;
             while(resultSet.next()){
                 testovi.add(new TestWrapper());
                 testovi.get(i).setId_predmeta(resultSet.getInt("predmet"));
                 testovi.get(i).setRazred(resultSet.getInt("razred"));
-                testovi.get(i).setOdeljenje(resultSet.getInt("odeljenje"));
+                testovi.get(i).setOdeljenje(resultSet.getInt("tromesecje"));
                 testovi.get(i).setRedni_broj_testa(resultSet.getInt("redni_broj_testa"));
                 i++;
             }
@@ -490,7 +490,7 @@ public int getIdPredmeta() throws SQLException
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
                         + "and rezultati_testa.predmet=predmet.id_predmeta "
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
-                        + "and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.tromesecje='"+newTest.getOdeljenje()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"' "
                         + "and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
             else if(newTest.getOdeljenje()==5 && newTest.getRedni_broj_testa()!=5)
@@ -507,7 +507,7 @@ public int getIdPredmeta() throws SQLException
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
                         + "and rezultati_testa.predmet=predmet.id_predmeta "
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
-                        + "and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.tromesecje='"+newTest.getOdeljenje()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
             else
                 resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* "
@@ -518,7 +518,7 @@ public int getIdPredmeta() throws SQLException
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
             while(resultSet.next()){
                      System.out.println(resultSet.getString("student"));
-                     rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getString("naziv"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getInt("broj_bodova"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5")));
+                     rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getString("naziv"),resultSet.getInt("tromesecje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getInt("broj_bodova"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
@@ -561,7 +561,7 @@ public int getIdPredmeta() throws SQLException
             statement=(Statement)connection.createStatement();
             resultSet=statement.executeQuery("select rezultati_testa.* from rezultati_testa,nastavnik,predmet where nastavnik.username=predmet.username_nastavnika and nastavnik.username='"+trenutniKorisnik.getUsername()+"' and predmet.id_predmeta=rezultati_testa.predmet");
             while(resultSet.next()){
-                rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getInt("predmet"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5"),resultSet.getInt("broj_bodova")));
+                rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getInt("predmet"),resultSet.getInt("tromesecje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5"),resultSet.getInt("broj_bodova")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);

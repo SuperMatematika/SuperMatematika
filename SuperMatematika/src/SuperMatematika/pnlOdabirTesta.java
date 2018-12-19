@@ -121,8 +121,7 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
         cbRedniBrojTesta.removeAllItems();
         
         String upit =  "SELECT redni_broj_testa FROM Test WHERE predmet = " + ((ComboItem)cbPredmet.getSelectedItem()).getValue() +
-                " AND razred = " + trenutniKorisnik.getRazred() + 
-                " AND odeljenje = " + trenutniKorisnik.getOdeljenje() + ";";
+                " AND razred = " + trenutniKorisnik.getRazred() + ";";
         
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
