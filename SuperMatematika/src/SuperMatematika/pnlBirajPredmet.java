@@ -39,20 +39,20 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
     private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
-        this.MainPanel.setLayout(new GridLayout(6,2,6,2));
+        this.MainPanel.setLayout(new GridLayout(5,4,3,2));
         
         Font f = new Font("Century Gothic", Font.PLAIN, 24);
         listaPredmeta.forEach(elemn->{
             JButton b = new JButton(elemn.getNazivPredmeta());
+           
+            b.setBorder(BorderFactory.createLineBorder(Color.decode("#999999"), 1, false));
             b.setBackground(Color.white);
-            b.setBorder(BorderFactory.createLineBorder(Color.white, 1, true));
-            b.setBackground(Color.decode("#FFCC42"));
-            b.setForeground(Color.white);
+            b.setForeground(Color.GRAY);
             b.setFont(f);
             
             b.setFocusPainted(false);
             b.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                     prikaziOblasti(elemn);
                 }
 
@@ -111,11 +111,11 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 759, Short.MAX_VALUE)
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -126,9 +126,7 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

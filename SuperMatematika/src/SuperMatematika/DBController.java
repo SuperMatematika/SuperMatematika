@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ public class DBController {
     private Statement statement = null;
     private ResultSet resultSet = null;
     
-    private DBController() throws SQLException{
+    DBController() throws SQLException{
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             String msAccDB = new File("").getAbsolutePath()+"/Supermatematika.accdb";
@@ -99,14 +100,26 @@ public class DBController {
 
         try {
             if(resultSet.next())
-                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("Godina_rodjenja"),resultSet.getString("pol"));                  
+                return new Korisnik(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getString("Godina_rodjenja"),resultSet.getString("pol"));                  
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         
         return null;
         }
-
+   /* public Profesor getProfesore(Profesor p) throws SQLException
+    {
+        resultSet=submitQuery("Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username");
+            try {
+            if(resultSet.next())    
+        return new Profesor(resultSet.getString("usertype"),resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getDate("datumRodjenja"),resultSet.getString("pol"),resultSet.getString("fakultet"));
+            }
+            catch(SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+            return null;
+     }*/
     ArrayList<String> getPutanjeOblasti(String oblast,int idPredmeta) {
         ArrayList<String> listaPutanja=new ArrayList();
         resultSet = submitQuery("SELECT Putanja from "+oblast+" where ID_predmeta='"+idPredmeta+"';");
@@ -177,7 +190,7 @@ public class DBController {
                             " AND Test.redni_broj_testa = " + redniBrojTesta +
                             " AND Test.predmet = " + ID_predmeta +
                             " AND Test.razred = " + razred +
-                            " AND Test.odeljenje = " + odeljenje + ";";
+                            " AND Test.tromesecje = " + odeljenje + ";";
             resultSet = submitQuery(upit);
             
         try {
@@ -263,7 +276,90 @@ public class DBController {
         statement=(Statement) connection.createStatement();
         statement.executeUpdate(upit);        
 }
+void DodajKorisnika(String username,String password,String usertype,String ime,String prezime,String datum_rodjenja,String pol) throws SQLException
+{try{
+    String upit="Insert into Users(username,password,usertype,ime,prezime,godina_rodjenja,pol) Values('"+username+"','"+password+"','"+usertype+"','"+ime+"','"+prezime+"','"+datum_rodjenja+"','"+pol+"')";
+    statement=(Statement) connection.createStatement();
+    statement.executeUpdate(upit);
+     }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Dati korisnik vec postoji!");
+            e.printStackTrace();
+        }finally{
+            statement.close();
+        }
 
+        
+}
+void DodajProfesora(String username,String fakultet) throws SQLException
+{try{
+    String upit="Insert into Nastavnik(username,fakultet) Values('"+username+"','"+fakultet+"')";
+    statement=(Statement) connection.createStatement();
+    statement.executeUpdate(upit);
+     }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            statement.close();
+        }
+
+     }
+void DodajStudenta(String username,int Razred,int Odeljenje) throws SQLException
+{
+    try
+    {
+        String upit="Insert into Student(username,razred,odeljenje) Values('"+username+"',"+Razred+","+Odeljenje+")";
+        statement=(Statement) connection.createStatement();
+        statement.executeUpdate(upit);
+    }
+   
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    
+   }
+    
+
+void ProfesorPredaje(String NazivPredmeta,String username,int Razred) throws SQLException
+{
+   int idPredmeta;
+   idPredmeta=getIdPredmeta();
+   idPredmeta++;
+   try
+   { statement.close();
+       String upit="Insert into Predmet Values("+idPredmeta+",'"+NazivPredmeta+"','"+username+"',"+Razred+")";
+        statement=(Statement)connection.createStatement();
+        statement.executeUpdate(upit);
+   }
+   catch(Exception e)
+   {
+        e.printStackTrace();
+   }
+  
+   
+}
+public int getIdPredmeta() throws SQLException
+{
+    try
+    {   statement.close();
+        System.out.println(connection.isClosed()+" i "+statement.isClosed());
+        String upit="Select max(id_predmeta) as dzm FROM Predmet;";
+        statement=(Statement)connection.createStatement();
+        resultSet = statement.executeQuery(upit);
+        System.out.println(resultSet);
+        
+        while(resultSet.next()){
+                return resultSet.getInt("dzm");
+            }
+    }
+    catch(Exception ex)
+    {
+        System.out.println("Ne radi"+ex);
+    }
+        return 0;
+       
+   
+}
+
+    
     ArrayList<Predmet> getProfPredmeti(Profesor trenutniKorisnik) throws SQLException {
         ArrayList<Predmet> listaPredmeta=new ArrayList();
         try{
@@ -363,13 +459,13 @@ public class DBController {
         
         try{
             statement=(Statement)connection.createStatement();
-            resultSet=statement.executeQuery("SELECT predmet,razred,odeljenje,redni_broj_testa FROM test where nastavnik='"+trenutniKorisnik.getUsername()+"'");
+            resultSet=statement.executeQuery("SELECT predmet,razred,tromesecje,redni_broj_testa FROM test where nastavnik='"+trenutniKorisnik.getUsername()+"'");
             int i=0;
             while(resultSet.next()){
                 testovi.add(new TestWrapper());
                 testovi.get(i).setId_predmeta(resultSet.getInt("predmet"));
                 testovi.get(i).setRazred(resultSet.getInt("razred"));
-                testovi.get(i).setOdeljenje(resultSet.getInt("odeljenje"));
+                testovi.get(i).setOdeljenje(resultSet.getInt("tromesecje"));
                 testovi.get(i).setRedni_broj_testa(resultSet.getInt("redni_broj_testa"));
                 i++;
             }
@@ -394,7 +490,7 @@ public class DBController {
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
                         + "and rezultati_testa.predmet=predmet.id_predmeta "
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
-                        + "and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.tromesecje='"+newTest.getOdeljenje()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"' "
                         + "and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
             else if(newTest.getOdeljenje()==5 && newTest.getRedni_broj_testa()!=5)
@@ -411,7 +507,7 @@ public class DBController {
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
                         + "and rezultati_testa.predmet=predmet.id_predmeta "
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
-                        + "and rezultati_testa.odeljenje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.tromesecje='"+newTest.getOdeljenje()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
             else
                 resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* "
@@ -422,7 +518,7 @@ public class DBController {
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
             while(resultSet.next()){
                      System.out.println(resultSet.getString("student"));
-                     rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getString("naziv"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getInt("broj_bodova"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5")));
+                     rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getString("naziv"),resultSet.getInt("tromesecje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getInt("broj_bodova"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
@@ -437,6 +533,21 @@ public class DBController {
         
         return rt;
     }
+
+    void izbrisiKorisnika(Object valueAt) throws SQLException {
+        String user=(String)valueAt;
+        try{
+             String upit="delete * from test where nastavnik='"+user+"';delete * from predmet where username_nastavnika='"+user+"';delete * from nastavnik where username='"+user+"' delete * from users where username='"+user+"'"; //'; delete from Users where username='"+user+"'"
+           // String upit="delete * from users where username='"+user+"'";
+            statement=(Statement)connection.createStatement();
+            statement.executeUpdate(upit);
+            System.out.println("Uspesno izbrisano");
+        }catch(Exception e){
+            System.out.println(e);
+        }finally{
+            statement.close();
+        }
+    }
     
     public class GreskaNemaDovoljnoPitanja extends Exception {
         public GreskaNemaDovoljnoPitanja() {
@@ -450,11 +561,26 @@ public class DBController {
             statement=(Statement)connection.createStatement();
             resultSet=statement.executeQuery("select rezultati_testa.* from rezultati_testa,nastavnik,predmet where nastavnik.username=predmet.username_nastavnika and nastavnik.username='"+trenutniKorisnik.getUsername()+"' and predmet.id_predmeta=rezultati_testa.predmet");
             while(resultSet.next()){
-                rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getInt("predmet"),resultSet.getInt("odeljenje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5"),resultSet.getInt("broj_bodova")));
+                rt.add(new RezultatiTesta(resultSet.getString("student"),resultSet.getInt("predmet"),resultSet.getInt("tromesecje"),resultSet.getInt("razred"),resultSet.getInt("redni_broj_testa"),resultSet.getBoolean("odgovor1"),resultSet.getBoolean("odgovor2"),resultSet.getBoolean("odgovor3"),resultSet.getBoolean("odgovor4"),resultSet.getBoolean("odgovor5"),resultSet.getInt("broj_bodova")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }finally{statement.close();}
          return rt;
+    }
+    //Treba da se poveze sa PanelSviProfesori
+    ArrayList<Profesor> getProfesore(Profesor p) throws SQLException
+    {
+        ArrayList<Profesor> sp=new ArrayList();
+         try {
+            statement=(Statement)connection.createStatement();
+            resultSet=statement.executeQuery("Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username");
+            while(resultSet.next()){
+                sp.add(new Profesor(resultSet.getString("username"),resultSet.getString("ime"),resultSet.getString("prezime"),resultSet.getString("godina_rodjenja"),resultSet.getString("pol"),resultSet.getString("faku1tet")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{statement.close();}
+         return sp;
     }
 }

@@ -43,6 +43,15 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         rt=DBController.require().getRezultati(trenutniKorisnik);
         initComponents();
         
+        /* ovo dole */
+        filterby.removeAllItems();
+        filterby.addItem("Ime");
+        filterby.addItem("Predmet");
+        filterby.addItem("Razred");
+        filterby.addItem("Odeljenje");
+        filterby.addItem("broj_bodova");
+        filterby.addItem("redni_broj_testa");
+        /*   OVO IZNAD */
         
         RBlistaRazreda.add(this.jRadioButton1);
         RBlistaRazreda.add(this.jRadioButton3);
@@ -74,7 +83,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         this.jTable1.setAutoCreateRowSorter(true);
         System.out.println(rt.get(0).getRedni_broj_testa());
         rt.forEach(rezultat-> {
-                Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.isOdgovor1(),rezultat.isOdgovor2(),rezultat.isOdgovor3(),rezultat.isOdgovor4(),rezultat.isOdgovor5(),rezultat.getRedni_broj_testa() };
+                Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.getRedni_broj_testa(), !rezultat.isOdgovor1(),!rezultat.isOdgovor2(),!rezultat.isOdgovor3(),!rezultat.isOdgovor4(),!rezultat.isOdgovor5()};
                 ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
             });
     }
@@ -101,7 +110,6 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         pnlOD = new javax.swing.JPanel();
         lblOdeljenje = new javax.swing.JLabel();
         btnPR2 = new javax.swing.JButton();
-        btnPR1 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         pnlPredmeti = new javax.swing.JPanel();
         pnlRazred = new javax.swing.JPanel();
@@ -128,6 +136,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         filterTable = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        filterby = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(890, 650));
 
@@ -173,19 +182,13 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         btnPR2.setBackground(new java.awt.Color(124, 187, 0));
         btnPR2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPR2.setForeground(new java.awt.Color(255, 255, 255));
-        btnPR2.setText("SACUVAJ");
+        btnPR2.setText("PRIKAZI");
         btnPR2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPR2ActionPerformed(evt);
             }
         });
         pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 220, 40));
-
-        btnPR1.setBackground(new java.awt.Color(204, 204, 204));
-        btnPR1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnPR1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPR1.setText("IZMENI");
-        pnlLeft.add(btnPR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 220, 40));
         pnlLeft.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 10));
 
         pnlPredmeti.setBackground(new java.awt.Color(255, 255, 255));
@@ -364,14 +367,14 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Ime", "Predmet", "Razred", "Odeljenje", "broj_bodova", "zad1", "zad2", "zad3", "zad4", "zad5", "redni_broj_testa"
+                "Ime", "Predmet", "Razred", "Odeljenje", "broj_bodova", "redni_broj_testa", "zad1", "zad2", "zad3", "zad4", "zad5"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -403,6 +406,9 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         });
         pnlBackground.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 60, 30));
 
+        filterby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlBackground.add(filterby, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 80, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -421,7 +427,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TableRowSorter<TableModel> sorter=new TableRowSorter<TableModel>(((DefaultTableModel)jTable1.getModel()));
-        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText()));
+        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText(),filterby.getSelectedIndex()));
         jTable1.setRowSorter(sorter);
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -433,6 +439,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
     private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
         TestWrapper newTest=new TestWrapper();
+       
         newTest.setNastavnik(this.trenutniKorisnik.getUsername());
         for(int i=0;i<4;i++){
             if(this.RBlistaRazreda.get(i).isSelected()){
@@ -440,6 +447,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
                 break;
             }
         }
+        System.out.println("PRE"+newTest.getRazred()); 
         for(int i=0;i<this.listaPredmeta.size();i++){
             if(this.RBlistaPredmeta.get(i).isSelected()){
                 try {
@@ -469,11 +477,17 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
                 break;
             }
         }
+        try{
         try {
             frmRezultatiPredmeta f=new frmRezultatiPredmeta(trenutniKorisnik,newTest);
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(pnlRezultatiTesta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        catch(Exception e){
+        System.out.println(newTest.getRazred());
+            System.out.println(e);
         }
         
 
@@ -503,11 +517,11 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnBrojTestaGroup;
     private javax.swing.ButtonGroup btnOdeljenjeGroup;
-    private javax.swing.JButton btnPR1;
     private javax.swing.JButton btnPR2;
     private javax.swing.ButtonGroup btnPredmetiGroup;
     private javax.swing.ButtonGroup btnRazrediGroup;
     private javax.swing.JTextField filterTable;
+    private javax.swing.JComboBox<String> filterby;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel19;

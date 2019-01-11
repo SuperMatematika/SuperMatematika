@@ -15,13 +15,12 @@ import java.util.Date;
 public class Student extends Korisnik {
     private int razred;
     private int odeljenje;
-    public Student(String userType, String username, String Ime, String prezime, Date datumRodjenja, String pol,int razred, int odeljenje) {
+    public Student(String userType, String username, String Ime, String prezime, String datumRodjenja, String pol,int razred, int odeljenje) {
         super(userType, username, Ime, prezime, datumRodjenja, pol);
         this.razred=razred;
         this.odeljenje = odeljenje;
     }
     
-
     Student(Korisnik tr) {
         super(tr.getUserType(),tr.getUsername(),tr.getIme(),tr.getPrezime(),tr.getDatumRodjenja(),tr.getPol());
     }
