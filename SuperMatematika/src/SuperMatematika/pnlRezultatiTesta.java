@@ -53,32 +53,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         filterby.addItem("redni_broj_testa");
         /*   OVO IZNAD */
         
-        RBlistaRazreda.add(this.jRadioButton1);
-        RBlistaRazreda.add(this.jRadioButton3);
-        RBlistaRazreda.add(this.jRadioButton2);
-        RBlistaRazreda.add(this.jRadioButton4);
-        
-        RBListaOdeljenja.add(this.jRadioButton5);
-        RBListaOdeljenja.add(this.jRadioButton7);
-        RBListaOdeljenja.add(this.jRadioButton6);
-        RBListaOdeljenja.add(this.jRadioButton8);
-        RBListaOdeljenja.add(this.svaOdeljenja);
-        RBlistaBrojTestova.add(this.jRadioButton9);
-        RBlistaBrojTestova.add(this.jRadioButton10);
-        RBlistaBrojTestova.add(this.jRadioButton11);
-        RBlistaBrojTestova.add(this.jRadioButton12);
-        RBlistaBrojTestova.add(this.sviTestovi);
-        listaPredmeta.forEach(e->{
-            RBlistaPredmeta.add(new JRadioButton(e.getNazivPredmeta()));
-        });
-        this.pnlPredmeti.removeAll();
-        this.pnlPredmeti.revalidate();
-        this.pnlPredmeti.setLayout(new FlowLayout());
-        RBlistaPredmeta.forEach(e->{
-            System.out.println(e.getText());
-            this.btnPredmetiGroup.add(e);
-            this.pnlPredmeti.add(e);
-        });
+      
         
         this.jTable1.setAutoCreateRowSorter(true);
         System.out.println(rt.get(0).getRedni_broj_testa());
@@ -102,35 +77,6 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         btnBrojTestaGroup = new javax.swing.ButtonGroup();
         btnPredmetiGroup = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
-        pnlLeft = new javax.swing.JPanel();
-        pnlRZ = new javax.swing.JPanel();
-        lblRazred = new javax.swing.JLabel();
-        pnlPR = new javax.swing.JPanel();
-        lblPredmet = new javax.swing.JLabel();
-        pnlOD = new javax.swing.JPanel();
-        lblOdeljenje = new javax.swing.JLabel();
-        btnPR2 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        pnlPredmeti = new javax.swing.JPanel();
-        pnlRazred = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        pnlOdeljenje = new javax.swing.JPanel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        svaOdeljenja = new javax.swing.JRadioButton();
-        jPanel2 = new javax.swing.JPanel();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
-        sviTestovi = new javax.swing.JRadioButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         filterTable = new javax.swing.JTextField();
@@ -142,226 +88,6 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setPreferredSize(new java.awt.Dimension(890, 650));
-
-        pnlLeft.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLeft.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        pnlRZ.setBackground(new java.awt.Color(0, 161, 241));
-        pnlRZ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblRazred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblRazred.setForeground(new java.awt.Color(255, 255, 255));
-        lblRazred.setText("RAZRED");
-        pnlRZ.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 70, 20));
-
-        pnlLeft.add(pnlRZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 220, 40));
-
-        pnlPR.setBackground(new java.awt.Color(246, 83, 20));
-        pnlPR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblPredmet.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblPredmet.setForeground(new java.awt.Color(255, 255, 255));
-        lblPredmet.setText("PREDMET");
-        pnlPR.add(lblPredmet, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, 20));
-
-        pnlLeft.add(pnlPR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
-
-        pnlOD.setBackground(new java.awt.Color(255, 187, 0));
-        pnlOD.setPreferredSize(new java.awt.Dimension(220, 40));
-        pnlOD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblOdeljenje.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblOdeljenje.setForeground(new java.awt.Color(255, 255, 255));
-        lblOdeljenje.setText("ODELJENJE");
-        pnlOD.add(lblOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 100, 20));
-
-        pnlLeft.add(pnlOD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
-
-        btnPR2.setBackground(new java.awt.Color(124, 187, 0));
-        btnPR2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnPR2.setForeground(new java.awt.Color(255, 255, 255));
-        btnPR2.setText("PRIKAZI");
-        btnPR2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPR2ActionPerformed(evt);
-            }
-        });
-        pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 220, 40));
-        pnlLeft.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 10));
-
-        pnlPredmeti.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPredmeti.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlPredmeti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlLeft.add(pnlPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 90));
-
-        pnlRazred.setBackground(new java.awt.Color(255, 255, 255));
-        pnlRazred.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlRazred.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        btnRazrediGroup.add(jRadioButton1);
-        jRadioButton1.setText("5");
-        pnlRazred.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        btnRazrediGroup.add(jRadioButton3);
-        jRadioButton3.setText("6");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-        pnlRazred.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
-
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        btnRazrediGroup.add(jRadioButton2);
-        jRadioButton2.setText("7");
-        pnlRazred.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
-        btnRazrediGroup.add(jRadioButton4);
-        jRadioButton4.setText("8");
-        pnlRazred.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
-
-        pnlLeft.add(pnlRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 220, 90));
-
-        pnlOdeljenje.setBackground(new java.awt.Color(255, 255, 255));
-        pnlOdeljenje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlOdeljenje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton5);
-        jRadioButton5.setText("1");
-        pnlOdeljenje.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton7);
-        jRadioButton7.setText("2");
-        pnlOdeljenje.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
-
-        jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton8);
-        jRadioButton8.setText("3");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
-            }
-        });
-        pnlOdeljenje.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton6);
-        jRadioButton6.setText("4");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
-            }
-        });
-        pnlOdeljenje.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
-
-        svaOdeljenja.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(svaOdeljenja);
-        svaOdeljenja.setText("all");
-        pnlOdeljenje.add(svaOdeljenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
-
-        pnlLeft.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 220, 100));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jRadioButton9.setBackground(new java.awt.Color(255, 255, 255));
-        btnBrojTestaGroup.add(jRadioButton9);
-        jRadioButton9.setText("1");
-
-        jRadioButton10.setBackground(new java.awt.Color(255, 255, 255));
-        btnBrojTestaGroup.add(jRadioButton10);
-        jRadioButton10.setText("2");
-
-        jRadioButton11.setBackground(new java.awt.Color(255, 255, 255));
-        btnBrojTestaGroup.add(jRadioButton11);
-        jRadioButton11.setText("4");
-        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton11ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton12.setBackground(new java.awt.Color(255, 255, 255));
-        btnBrojTestaGroup.add(jRadioButton12);
-        jRadioButton12.setText("3");
-        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton12ActionPerformed(evt);
-            }
-        });
-
-        sviTestovi.setBackground(new java.awt.Color(255, 255, 255));
-        btnBrojTestaGroup.add(sviTestovi);
-        sviTestovi.setText("all");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(sviTestovi)
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jRadioButton9)
-                            .addGap(59, 59, 59)
-                            .addComponent(jRadioButton10))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jRadioButton12)
-                            .addGap(59, 59, 59)
-                            .addComponent(jRadioButton11)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 97, Short.MAX_VALUE)
-                .addComponent(sviTestovi))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButton9)
-                        .addComponent(jRadioButton10))
-                    .addGap(17, 17, 17)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButton12)
-                        .addComponent(jRadioButton11))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        pnlLeft.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 120));
-
-        jPanel3.setBackground(new java.awt.Color(0, 255, 0));
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("BROJ TESTA");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        pnlLeft.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, -1, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -390,6 +116,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Filter");
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -399,6 +126,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(246, 83, 20));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("X");
+        jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -418,20 +146,15 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addComponent(filterTable)
-                        .addGap(0, 0, 0)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filterby, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE))
+                .addComponent(filterTable, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(filterby, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(439, 439, 439))
+            .addComponent(jScrollPane1)
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,9 +165,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
                     .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(filterby, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -452,7 +173,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -559,43 +280,14 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnBrojTestaGroup;
     private javax.swing.ButtonGroup btnOdeljenjeGroup;
-    private javax.swing.JButton btnPR2;
     private javax.swing.ButtonGroup btnPredmetiGroup;
     private javax.swing.ButtonGroup btnRazrediGroup;
     private javax.swing.JTextField filterTable;
     private javax.swing.JComboBox<String> filterby;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblOdeljenje;
-    private javax.swing.JLabel lblPredmet;
-    private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlLeft;
-    private javax.swing.JPanel pnlOD;
-    private javax.swing.JPanel pnlOdeljenje;
-    private javax.swing.JPanel pnlPR;
-    private javax.swing.JPanel pnlPredmeti;
-    private javax.swing.JPanel pnlRZ;
-    private javax.swing.JPanel pnlRazred;
-    private javax.swing.JRadioButton svaOdeljenja;
-    private javax.swing.JRadioButton sviTestovi;
     // End of variables declaration//GEN-END:variables
 }

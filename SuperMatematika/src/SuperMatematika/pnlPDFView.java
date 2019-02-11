@@ -89,29 +89,57 @@ public class pnlPDFView extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(800, 650));
         setPreferredSize(new java.awt.Dimension(800, 650));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         contain.setBackground(new java.awt.Color(255, 255, 255));
         contain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         contain.setPreferredSize(new java.awt.Dimension(800, 650));
-        contain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.darkGray));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 650));
-        contain.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 730, 650));
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/backIcon.png"))); // NOI18N
+        btnBack.setText("Nazad");
         btnBack.setBorder(null);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        contain.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 70));
 
-        add(contain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 660));
+        javax.swing.GroupLayout containLayout = new javax.swing.GroupLayout(contain);
+        contain.setLayout(containLayout);
+        containLayout.setHorizontalGroup(
+            containLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addGap(67, 67, 67))
+        );
+        containLayout.setVerticalGroup(
+            containLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(containLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(contain, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

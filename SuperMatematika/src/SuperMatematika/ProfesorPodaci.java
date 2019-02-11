@@ -54,87 +54,135 @@ private void popuniLabele() {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         pnlUcenikPodaci.setBackground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUsername.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(153, 153, 153));
         lblUsername.setText("Username");
-        pnlUcenikPodaci.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 53, 70, 20));
 
         lblIme.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblIme.setForeground(new java.awt.Color(153, 153, 153));
         lblIme.setText("Ime i prezime");
-        pnlUcenikPodaci.add(lblIme, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 13, 90, -1));
 
         lblDatumRodjenja.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblDatumRodjenja.setForeground(new java.awt.Color(153, 153, 153));
         lblDatumRodjenja.setText("Datum rodjenja");
-        pnlUcenikPodaci.add(lblDatumRodjenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 97, -1, -1));
 
         lblPol.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblPol.setForeground(new java.awt.Color(153, 153, 153));
         lblPol.setText("Pol");
-        pnlUcenikPodaci.add(lblPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 30, -1));
 
         lUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lUsername.setForeground(new java.awt.Color(153, 153, 153));
         lUsername.setText("username");
-        pnlUcenikPodaci.add(lUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 53, 90, 20));
 
         lIme.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lIme.setForeground(new java.awt.Color(153, 153, 153));
         lIme.setText("ime");
-        pnlUcenikPodaci.add(lIme, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 13, 90, -1));
 
         lPrezime.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lPrezime.setForeground(new java.awt.Color(153, 153, 153));
         lPrezime.setText("pprezime");
-        pnlUcenikPodaci.add(lPrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 13, 170, -1));
 
         lDatumRodjenja.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lDatumRodjenja.setForeground(new java.awt.Color(153, 153, 153));
         lDatumRodjenja.setText("datum");
-        pnlUcenikPodaci.add(lDatumRodjenja, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 97, 130, -1));
 
         lPol.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lPol.setForeground(new java.awt.Color(153, 153, 153));
         lPol.setText("pol");
-        pnlUcenikPodaci.add(lPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 80, -1));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 681, 10));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 84, 681, 10));
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 126, 681, 10));
-        pnlUcenikPodaci.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
 
         jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        pnlUcenikPodaci.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 681, 10));
+
+        javax.swing.GroupLayout pnlUcenikPodaciLayout = new javax.swing.GroupLayout(pnlUcenikPodaci);
+        pnlUcenikPodaci.setLayout(pnlUcenikPodaciLayout);
+        pnlUcenikPodaciLayout.setHorizontalGroup(
+            pnlUcenikPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUcenikPodaciLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblIme)
+                .addGap(70, 70, 70)
+                .addComponent(lIme, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator1)
+            .addGroup(pnlUcenikPodaciLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(lUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator2)
+            .addGroup(pnlUcenikPodaciLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblDatumRodjenja)
+                .addGap(52, 52, 52)
+                .addComponent(lDatumRodjenja, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator4)
+            .addGroup(pnlUcenikPodaciLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblPol, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130)
+                .addComponent(lPol, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlUcenikPodaciLayout.createSequentialGroup()
+                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
+        );
+        pnlUcenikPodaciLayout.setVerticalGroup(
+            pnlUcenikPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUcenikPodaciLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(pnlUcenikPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIme)
+                    .addComponent(lIme)
+                    .addComponent(lPrezime))
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addGroup(pnlUcenikPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(pnlUcenikPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDatumRodjenja)
+                    .addComponent(lDatumRodjenja))
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(pnlUcenikPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPol)
+                    .addComponent(lPol))
+                .addGap(11, 11, 11)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlUcenikPodaci, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlUcenikPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pnlUcenikPodaci, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlUcenikPodaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 342, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -143,7 +191,6 @@ private void popuniLabele() {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lDatumRodjenja;
     private javax.swing.JLabel lIme;
