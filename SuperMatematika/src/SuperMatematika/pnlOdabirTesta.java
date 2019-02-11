@@ -46,6 +46,7 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnZapocniTest = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         jLabel3.setText("jLabel3");
 
@@ -55,30 +56,28 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cbRedniBrojTesta.setBackground(new java.awt.Color(204, 204, 204));
-        cbRedniBrojTesta.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(cbRedniBrojTesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 322, 34));
+        cbRedniBrojTesta.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(cbRedniBrojTesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 322, 34));
 
-        cbPredmet.setBackground(new java.awt.Color(204, 204, 204));
-        cbPredmet.setForeground(new java.awt.Color(255, 255, 255));
+        cbPredmet.setForeground(new java.awt.Color(102, 102, 102));
         cbPredmet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPredmetActionPerformed(evt);
             }
         });
-        jPanel1.add(cbPredmet, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 322, 33));
+        jPanel1.add(cbPredmet, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 322, 33));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Predmet:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Redni broj testa:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        btnZapocniTest.setBackground(new java.awt.Color(204, 204, 204));
+        btnZapocniTest.setBackground(new java.awt.Color(124, 187, 0));
         btnZapocniTest.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         btnZapocniTest.setForeground(new java.awt.Color(255, 255, 255));
         btnZapocniTest.setText("Zapocni test");
@@ -87,19 +86,38 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
                 btnZapocniTestActionPerformed(evt);
             }
         });
-        jPanel1.add(btnZapocniTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 321, 34));
+        jPanel1.add(btnZapocniTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 321, 34));
+
+        jPanel2.setBackground(new java.awt.Color(0, 161, 241));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1255, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 252, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 134, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,6 +162,7 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
     private void popuniCBPredmeti() {

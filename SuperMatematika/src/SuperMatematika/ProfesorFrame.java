@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 
 /**
  *
@@ -40,6 +41,15 @@ public class ProfesorFrame extends javax.swing.JFrame {
         this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
        
     }
+    public void hoverButton(JButton b) {
+        b.setBackground(Color.decode("#00A1F1"));
+        
+    }
+
+    public void hoverButtonExit(JButton b) {
+        b.setBackground(Color.decode("#0073AD"));
+       
+    }
 
     private ProfesorFrame() {
     }
@@ -60,7 +70,6 @@ public class ProfesorFrame extends javax.swing.JFrame {
         ProfesorViewLeft = new javax.swing.JPanel();
         imePrezime = new javax.swing.JLabel();
         btnProfil = new javax.swing.JButton();
-        btnIzvestaj = new javax.swing.JButton();
         btnSastaviTest = new javax.swing.JButton();
         btnRezultatiTesta = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
@@ -94,11 +103,9 @@ public class ProfesorFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlBackground.setPreferredSize(new java.awt.Dimension(1140, 710));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHeader.setBackground(new java.awt.Color(0, 161, 241));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 890, 60));
 
         ProfesorViewLeft.setBackground(new java.awt.Color(0, 115, 173));
         ProfesorViewLeft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -107,7 +114,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         imePrezime.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         imePrezime.setForeground(new java.awt.Color(255, 255, 255));
         imePrezime.setText("IME I PREZIME");
-        ProfesorViewLeft.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, 40));
+        ProfesorViewLeft.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 180, 40));
 
         btnProfil.setBackground(new java.awt.Color(0, 115, 173));
         btnProfil.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -125,36 +132,26 @@ public class ProfesorFrame extends javax.swing.JFrame {
                 btnProfilActionPerformed(evt);
             }
         });
-        ProfesorViewLeft.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 130, 90));
-
-        btnIzvestaj.setBackground(new java.awt.Color(0, 115, 173));
-        btnIzvestaj.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        btnIzvestaj.setForeground(new java.awt.Color(255, 255, 255));
-        btnIzvestaj.setText("Izvestaj");
-        btnIzvestaj.setToolTipText("");
-        btnIzvestaj.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnIzvestaj.setFocusPainted(false);
-        btnIzvestaj.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnIzvestajMouseClicked(evt);
-            }
-        });
-        btnIzvestaj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIzvestajActionPerformed(evt);
-            }
-        });
-        ProfesorViewLeft.add(btnIzvestaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 210, 50));
+        ProfesorViewLeft.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 130, 90));
 
         btnSastaviTest.setBackground(new java.awt.Color(0, 115, 173));
         btnSastaviTest.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         btnSastaviTest.setForeground(new java.awt.Color(255, 255, 255));
+        btnSastaviTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/Test.png"))); // NOI18N
         btnSastaviTest.setText("Sastavi test");
-        btnSastaviTest.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnSastaviTest.setBorder(null);
         btnSastaviTest.setFocusPainted(false);
+        btnSastaviTest.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSastaviTest.setIconTextGap(17);
         btnSastaviTest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSastaviTestMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HoverHandler(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HoverLeave(evt);
             }
         });
         btnSastaviTest.addActionListener(new java.awt.event.ActionListener() {
@@ -162,19 +159,27 @@ public class ProfesorFrame extends javax.swing.JFrame {
                 btnSastaviTestActionPerformed(evt);
             }
         });
-        ProfesorViewLeft.add(btnSastaviTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 210, 50));
+        ProfesorViewLeft.add(btnSastaviTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 240, 50));
 
         btnRezultatiTesta.setBackground(new java.awt.Color(0, 115, 173));
         btnRezultatiTesta.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         btnRezultatiTesta.setForeground(new java.awt.Color(255, 255, 255));
-        btnRezultatiTesta.setText("Rezultati testa");
+        btnRezultatiTesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/OceneIcon.png"))); // NOI18N
+        btnRezultatiTesta.setText("Rezultati");
         btnRezultatiTesta.setAlignmentY(0.0F);
-        btnRezultatiTesta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnRezultatiTesta.setBorder(null);
         btnRezultatiTesta.setFocusPainted(false);
-        btnRezultatiTesta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRezultatiTesta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRezultatiTesta.setIconTextGap(30);
         btnRezultatiTesta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRezultatiTestaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HoverHandler(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HoverLeave(evt);
             }
         });
         btnRezultatiTesta.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +187,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
                 btnRezultatiTestaActionPerformed(evt);
             }
         });
-        ProfesorViewLeft.add(btnRezultatiTesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 210, 50));
+        ProfesorViewLeft.add(btnRezultatiTesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 240, 50));
 
         btnLogOut.setBackground(new java.awt.Color(0, 115, 173));
         btnLogOut.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -199,11 +204,8 @@ public class ProfesorFrame extends javax.swing.JFrame {
         });
         ProfesorViewLeft.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 70, 50));
 
-        pnlBackground.add(ProfesorViewLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 710));
-
         pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
         pnlMainContent.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 204, 102));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -216,7 +218,6 @@ public class ProfesorFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 200, 180));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 102));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -229,7 +230,6 @@ public class ProfesorFrame extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        pnlMainContent.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 180));
 
         jButton4.setBackground(new java.awt.Color(255, 204, 102));
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -237,21 +237,61 @@ public class ProfesorFrame extends javax.swing.JFrame {
         jButton4.setText("ZADACI");
         jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton4.setFocusPainted(false);
-        pnlMainContent.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 200, 180));
 
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 890, 650));
+        javax.swing.GroupLayout pnlMainContentLayout = new javax.swing.GroupLayout(pnlMainContent);
+        pnlMainContent.setLayout(pnlMainContentLayout);
+        pnlMainContentLayout.setHorizontalGroup(
+            pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainContentLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlMainContentLayout.setVerticalGroup(
+            pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainContentLayout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(397, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
+        pnlBackground.setLayout(pnlBackgroundLayout);
+        pnlBackgroundLayout.setHorizontalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addComponent(ProfesorViewLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
+        );
+        pnlBackgroundLayout.setVerticalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProfesorViewLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 1171, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 1171, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE))
         );
 
         pack();
@@ -309,7 +349,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          this.btnSastaviTest.setBackground(Color.decode("#00A1F1"));
         this.btnRezultatiTesta.setBackground(Color.decode("#0073AD"));
-        this.btnIzvestaj.setBackground(Color.decode("#0073AD"));
+       
         this.btnProfil.setBackground(Color.decode("#0073AD"));
         
     }//GEN-LAST:event_btnSastaviTestMouseClicked
@@ -318,19 +358,10 @@ public class ProfesorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.btnRezultatiTesta.setBackground(Color.decode("#00A1F1"));
         this.btnSastaviTest.setBackground(Color.decode("#0073AD"));
-         this.btnIzvestaj.setBackground(Color.decode("#0073AD"));
+         
         this.btnProfil.setBackground(Color.decode("#0073AD"));
         
     }//GEN-LAST:event_btnRezultatiTestaMouseClicked
-
-    private void btnIzvestajMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIzvestajMouseClicked
-        // TODO add your handling code here:
-         this.btnRezultatiTesta.setBackground(Color.decode("#0073AD"));
-        this.btnSastaviTest.setBackground(Color.decode("#0073AD"));
-         this.btnIzvestaj.setBackground(Color.decode("#00A1F1"));
-         this.btnProfil.setBackground(Color.decode("#0073AD"));
-        
-    }//GEN-LAST:event_btnIzvestajMouseClicked
 
     private void btnProfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfilMouseClicked
         // TODO add your handling code here:
@@ -338,12 +369,8 @@ public class ProfesorFrame extends javax.swing.JFrame {
         this.btnSastaviTest.setBackground(Color.decode("#0073AD"));
         
         this.btnRezultatiTesta.setBackground(Color.decode("#0073AD"));
-        this.btnIzvestaj.setBackground(Color.decode("#0073AD"));
+        
     }//GEN-LAST:event_btnProfilMouseClicked
-
-    private void btnIzvestajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzvestajActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIzvestajActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -352,6 +379,18 @@ public class ProfesorFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
+        // TODO add your handling code here:
+         hoverButton((JButton) evt.getSource());
+    }//GEN-LAST:event_HoverHandler
+
+    private void HoverLeave(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverLeave
+        // TODO add your handling code here:
+        hoverButtonExit((JButton) evt.getSource());
+    }//GEN-LAST:event_HoverLeave
+
+                                           
 
     /**
      * @param args the command line arguments
@@ -390,7 +429,6 @@ public class ProfesorFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ProfesorViewLeft;
-    private javax.swing.JButton btnIzvestaj;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnRezultatiTesta;

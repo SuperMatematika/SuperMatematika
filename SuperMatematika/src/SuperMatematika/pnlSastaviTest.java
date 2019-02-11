@@ -182,6 +182,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
         btnPrikaziZadatke = new javax.swing.JButton();
         pnlZADACI = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -217,11 +218,9 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setPreferredSize(new java.awt.Dimension(890, 650));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlLeft.setBackground(new java.awt.Color(255, 255, 255));
         pnlLeft.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlRZ.setBackground(new java.awt.Color(0, 161, 241));
         pnlRZ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -231,8 +230,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         lblRazred.setText("RAZRED");
         pnlRZ.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 70, 20));
 
-        pnlLeft.add(pnlRZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 200, 40));
-
         pnlPR.setBackground(new java.awt.Color(246, 83, 20));
         pnlPR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -240,8 +237,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         lblPredmet.setForeground(new java.awt.Color(255, 255, 255));
         lblPredmet.setText("PREDMET");
         pnlPR.add(lblPredmet, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, 20));
-
-        pnlLeft.add(pnlPR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 40));
 
         pnlOD.setBackground(new java.awt.Color(255, 187, 0));
         pnlOD.setPreferredSize(new java.awt.Dimension(220, 40));
@@ -252,8 +247,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         lblOdeljenje.setText("ODELJENJE");
         pnlOD.add(lblOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 100, 20));
 
-        pnlLeft.add(pnlOD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 200, -1));
-
         btnPR2.setBackground(new java.awt.Color(124, 187, 0));
         btnPR2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPR2.setForeground(new java.awt.Color(255, 255, 255));
@@ -263,14 +256,11 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnPR2ActionPerformed(evt);
             }
         });
-        pnlLeft.add(btnPR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 200, 40));
 
         btnPR1.setBackground(new java.awt.Color(204, 204, 204));
         btnPR1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPR1.setForeground(new java.awt.Color(255, 255, 255));
         btnPR1.setText("IZMENI");
-        pnlLeft.add(btnPR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 200, 40));
-        pnlLeft.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 10));
 
         pnlPredmeti.setBackground(new java.awt.Color(255, 255, 255));
         pnlPredmeti.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
@@ -285,8 +275,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         btnPredmetiGroup.add(btnFizika);
         btnFizika.setText("Fizika");
         pnlPredmeti.add(btnFizika, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, -1));
-
-        pnlLeft.add(pnlPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, 90));
 
         pnlRazred.setBackground(new java.awt.Color(255, 255, 255));
         pnlRazred.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
@@ -316,8 +304,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         btnRazrediGroup.add(jRadioButton4);
         jRadioButton4.setText("8");
         pnlRazred.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
-
-        pnlLeft.add(pnlRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 90));
 
         pnlOdeljenje.setBackground(new java.awt.Color(255, 255, 255));
         pnlOdeljenje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
@@ -353,7 +339,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         });
         pnlOdeljenje.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
-        pnlLeft.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 200, 100));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jRadioButton9.setBackground(new java.awt.Color(255, 255, 255));
         btnBrojTestaGroup.add(jRadioButton9);
@@ -416,8 +402,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        pnlLeft.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 200, -1));
-
         jPanel3.setBackground(new java.awt.Color(0, 255, 0));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -436,9 +420,45 @@ public class pnlSastaviTest extends javax.swing.JPanel {
             .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        pnlLeft.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 200, 50));
-
-        pnlBackground.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 630));
+        javax.swing.GroupLayout pnlLeftLayout = new javax.swing.GroupLayout(pnlLeft);
+        pnlLeft.setLayout(pnlLeftLayout);
+        pnlLeftLayout.setHorizontalGroup(
+            pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlPR, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlRZ, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlRazred, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlOD, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlOdeljenje, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnPR2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnPR1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        pnlLeftLayout.setVerticalGroup(
+            pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLeftLayout.createSequentialGroup()
+                .addComponent(pnlPR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlRZ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlRazred, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlOdeljenje, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnPR2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnPR1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         TabPanel.setBackground(new java.awt.Color(246, 83, 20));
         TabPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
@@ -446,11 +466,9 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         TabPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         pnlOBLASTI.setBackground(new java.awt.Color(255, 255, 255));
-        pnlOBLASTI.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlOblasti.setBackground(new java.awt.Color(255, 255, 255));
         pnlOblasti.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        pnlOblasti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSkupovi.setBackground(new java.awt.Color(255, 255, 255));
         btnSkupovi.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -466,7 +484,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnSkupoviActionPerformed(evt);
             }
         });
-        pnlOblasti.add(btnSkupovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         btnOsnaSimetrija.setBackground(new java.awt.Color(255, 255, 255));
         btnOsnaSimetrija.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -477,7 +494,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnOsnaSimetrijaActionPerformed(evt);
             }
         });
-        pnlOblasti.add(btnOsnaSimetrija, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, -1));
 
         btnGeoObjekti1.setBackground(new java.awt.Color(255, 255, 255));
         btnGeoObjekti1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -488,7 +504,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnGeoObjekti1ActionPerformed(evt);
             }
         });
-        pnlOblasti.add(btnGeoObjekti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
         btnDeljivost.setBackground(new java.awt.Color(255, 255, 255));
         btnDeljivost.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -499,7 +514,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnDeljivostActionPerformed(evt);
             }
         });
-        pnlOblasti.add(btnDeljivost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         btnUgao.setBackground(new java.awt.Color(255, 255, 255));
         btnUgao.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -510,7 +524,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnUgaoActionPerformed(evt);
             }
         });
-        pnlOblasti.add(btnUgao, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
 
         btnRazlomci.setBackground(new java.awt.Color(255, 255, 255));
         btnRazlomci.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -521,104 +534,240 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnRazlomciActionPerformed(evt);
             }
         });
-        pnlOblasti.add(btnRazlomci, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Prosti i slozeni brojevi");
-        pnlOblasti.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Operacije sa skupovima");
-        pnlOblasti.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Skup prirodnih brojeva");
-        pnlOblasti.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Pojam skupa");
-        pnlOblasti.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Osnovni geometrijski pojmovi");
-        pnlOblasti.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Delovi prave i ravni");
-        pnlOblasti.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Kruznice i krugovi");
-        pnlOblasti.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Simetrala duzi i ugla");
-        pnlOblasti.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Deljivost nekim brojevima");
-        pnlOblasti.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Pojam deljivosti");
-        pnlOblasti.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Pojam ugla");
-        pnlOblasti.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Uporedjivanje uglova");
-        pnlOblasti.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Vrste uglova");
-        pnlOblasti.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Pojam razlomka");
-        pnlOblasti.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, 20));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 102, 102));
         jLabel15.setText("Vrste razlomka");
-        pnlOblasti.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(102, 102, 102));
         jLabel16.setText("Mnozenje i deljenje");
-        pnlOblasti.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(102, 102, 102));
         jLabel17.setText("Pojam osne sitmetrije");
-        pnlOblasti.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(102, 102, 102));
         jLabel18.setText("Osna simetricnost");
-        pnlOblasti.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        pnlOblasti.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 30, 520));
-        pnlOblasti.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 640, 30));
-        pnlOblasti.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 640, 30));
 
-        pnlOBLASTI.add(pnlOblasti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 520));
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout pnlOblastiLayout = new javax.swing.GroupLayout(pnlOblasti);
+        pnlOblasti.setLayout(pnlOblastiLayout);
+        pnlOblastiLayout.setHorizontalGroup(
+            pnlOblastiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+            .addComponent(jSeparator4)
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(btnGeoObjekti1))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel4))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel2))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel3))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel10))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(jLabel12))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel1)
+                .addGap(171, 171, 171)
+                .addComponent(jLabel13))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnRazlomci)
+                .addGap(185, 185, 185)
+                .addComponent(btnOsnaSimetrija))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel15))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(jLabel5))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(jLabel6))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(btnUgao))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnSkupovi))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel9))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(jLabel18))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(jLabel11))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(jLabel8))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(jLabel7))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel14))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(jLabel17))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnDeljivost))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel16))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(610, 610, 610)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlOblastiLayout.setVerticalGroup(
+            pnlOblastiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnGeoObjekti1)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel4)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel2)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel3)
+                .addGap(73, 73, 73)
+                .addComponent(jLabel10)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel12)
+                .addGap(13, 13, 13)
+                .addGroup(pnlOblastiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel13))
+                .addGap(43, 43, 43)
+                .addGroup(pnlOblastiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlOblastiLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(pnlOblastiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRazlomci)
+                            .addComponent(btnOsnaSimetrija))))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel15))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel5))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel6))
+            .addComponent(jSeparator1)
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(btnUgao))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnSkupovi))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jLabel9))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(jLabel18))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(jLabel11))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(jLabel8))
+            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel7))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(jLabel17))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(btnDeljivost))
+            .addGroup(pnlOblastiLayout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(jLabel16))
+        );
 
         btnPrikaziZadatke.setBackground(new java.awt.Color(124, 187, 0));
         btnPrikaziZadatke.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -629,15 +778,30 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 btnPrikaziZadatkeActionPerformed(evt);
             }
         });
-        pnlOBLASTI.add(btnPrikaziZadatke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 630, 70));
+
+        javax.swing.GroupLayout pnlOBLASTILayout = new javax.swing.GroupLayout(pnlOBLASTI);
+        pnlOBLASTI.setLayout(pnlOBLASTILayout);
+        pnlOBLASTILayout.setHorizontalGroup(
+            pnlOBLASTILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlOblasti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPrikaziZadatke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlOBLASTILayout.setVerticalGroup(
+            pnlOBLASTILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOBLASTILayout.createSequentialGroup()
+                .addComponent(pnlOblasti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
+                .addComponent(btnPrikaziZadatke, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         btnPrikaziZadatke.getAccessibleContext().setAccessibleName("NASTAVI");
 
         TabPanel.addTab("OBLASTI", pnlOBLASTI);
 
         pnlZADACI.setBackground(new java.awt.Color(255, 255, 255));
-        pnlZADACI.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         zadaciTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        zadaciTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         zadaciTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
@@ -661,6 +825,8 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        zadaciTable.setGridColor(new java.awt.Color(204, 204, 204));
+        zadaciTable.setRowHeight(30);
         zadaciTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 zadaciTableMouseClicked(evt);
@@ -672,77 +838,105 @@ public class pnlSastaviTest extends javax.swing.JPanel {
             zadaciTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        pnlZADACI.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 290, 510));
+        jPanel4.setBackground(new java.awt.Color(0, 115, 173));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Izabrani zadaci");
 
+        pnlIzabraniZadaci.setBackground(new java.awt.Color(255, 255, 255));
+        pnlIzabraniZadaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
         zad1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        zad1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         zad3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        zad3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         zad4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        zad4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         zad2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        zad2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         zad5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        zad5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
+        rmButton1.setBackground(new java.awt.Color(246, 83, 20));
+        rmButton1.setForeground(new java.awt.Color(255, 255, 255));
         rmButton1.setText("X");
+        rmButton1.setFocusPainted(false);
 
+        rmButton2.setBackground(new java.awt.Color(246, 83, 20));
+        rmButton2.setForeground(new java.awt.Color(255, 255, 255));
         rmButton2.setText("X");
+        rmButton2.setFocusPainted(false);
 
+        rmButton3.setBackground(new java.awt.Color(246, 83, 20));
+        rmButton3.setForeground(new java.awt.Color(255, 255, 255));
         rmButton3.setText("X");
+        rmButton3.setFocusPainted(false);
 
+        rmButton4.setBackground(new java.awt.Color(246, 83, 20));
+        rmButton4.setForeground(new java.awt.Color(255, 255, 255));
         rmButton4.setText("X");
+        rmButton4.setFocusPainted(false);
 
+        rmButton5.setBackground(new java.awt.Color(246, 83, 20));
+        rmButton5.setForeground(new java.awt.Color(255, 255, 255));
         rmButton5.setText("X");
+        rmButton5.setFocusPainted(false);
 
         javax.swing.GroupLayout pnlIzabraniZadaciLayout = new javax.swing.GroupLayout(pnlIzabraniZadaci);
         pnlIzabraniZadaci.setLayout(pnlIzabraniZadaciLayout);
         pnlIzabraniZadaciLayout.setHorizontalGroup(
             pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlIzabraniZadaciLayout.createSequentialGroup()
-                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(zad5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(zad4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(zad3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(zad2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(zad1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(zad4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(zad3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(zad2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(zad1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
                 .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rmButton1)
-                    .addComponent(rmButton2)
-                    .addComponent(rmButton3)
-                    .addComponent(rmButton4)
-                    .addComponent(rmButton5))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(rmButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rmButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(rmButton3)
+                        .addComponent(rmButton4)
+                        .addComponent(rmButton5))))
         );
         pnlIzabraniZadaciLayout.setVerticalGroup(
             pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlIzabraniZadaciLayout.createSequentialGroup()
                 .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(zad1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(zad1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(rmButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(zad2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(zad2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(rmButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(zad3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(zad3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(rmButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(zad4, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(zad4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(rmButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIzabraniZadaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(zad5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(zad5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(rmButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 147, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        submitTest.setBackground(new java.awt.Color(124, 187, 0));
+        submitTest.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        submitTest.setForeground(new java.awt.Color(255, 255, 255));
         submitTest.setText("Submit");
         submitTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -754,65 +948,110 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlIzabraniZadaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(submitTest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(submitTest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlIzabraniZadaci, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(pnlIzabraniZadaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitTest)
+                .addGap(79, 79, 79)
+                .addComponent(submitTest, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        pnlZADACI.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 330, 510));
+        javax.swing.GroupLayout pnlZADACILayout = new javax.swing.GroupLayout(pnlZADACI);
+        pnlZADACI.setLayout(pnlZADACILayout);
+        pnlZADACILayout.setHorizontalGroup(
+            pnlZADACILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlZADACILayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(60, 60, 60))
+        );
+        pnlZADACILayout.setVerticalGroup(
+            pnlZADACILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlZADACILayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlZADACILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64))
+        );
 
         TabPanel.addTab("ZADACI", pnlZADACI);
 
         tabelaTestova.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Predmet", "Razred", "Odeljenje", "Broj testa"
             }
         ));
+        tabelaTestova.setGridColor(new java.awt.Color(204, 204, 204));
+        tabelaTestova.setRowHeight(30);
         jScrollPane2.setViewportView(tabelaTestova);
 
         javax.swing.GroupLayout pnlTestoviLayout = new javax.swing.GroupLayout(pnlTestovi);
         pnlTestovi.setLayout(pnlTestoviLayout);
         pnlTestoviLayout.setHorizontalGroup(
             pnlTestoviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
         );
         pnlTestoviLayout.setVerticalGroup(
             pnlTestoviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
         );
 
         TabPanel.addTab("TESTOVI", pnlTestovi);
 
-        pnlBackground.add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 640, 630));
+        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
+        pnlBackground.setLayout(pnlBackgroundLayout);
+        pnlBackgroundLayout.setHorizontalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(TabPanel))
+        );
+        pnlBackgroundLayout.setVerticalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addComponent(TabPanel)
+                        .addGap(2, 2, 2)))
+                .addGap(38, 38, 38))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1032,6 +1271,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel lblOdeljenje;
     private javax.swing.JLabel lblPredmet;
     private javax.swing.JLabel lblRazred;
