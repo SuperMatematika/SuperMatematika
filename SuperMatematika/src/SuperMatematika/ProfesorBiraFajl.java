@@ -177,7 +177,7 @@ public class ProfesorBiraFajl extends javax.swing.JFrame {
                 id_predmeta=item.getId();
             });
             
-            DBController.require().addToDbFile(id_predmeta,this.jTextField2.getName(),jTextField3.getName(),selectedFile.getName(),predzad);
+            DBController.require().addToDbFile(id_predmeta,this.jTextField2.getText(),jTextField3.getText(),selectedFile.getName(),predzad);
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorBiraFajl.class.getName()).log(Level.SEVERE, null, ex);
         }

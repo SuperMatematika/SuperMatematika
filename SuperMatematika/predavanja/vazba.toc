@@ -1,0 +1,5 @@
+\babel@toc {serbian}{}
+\contentsline {section}{\numberline {1}uvod}{2}% 
+\contentsline {section}{\numberline {2}razred}{2}% 
+\contentsline {subsection}{\numberline {2.1}nesto}{2}% 
+\contentsline {section}{\numberline {3}zakljucak}{2}% 
