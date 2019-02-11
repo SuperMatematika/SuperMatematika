@@ -14,10 +14,14 @@ import javax.swing.JOptionPane;
 public class UcenikNalogPanel extends javax.swing.JPanel {
 
     Student trenutniKorisnik;
+    
     public UcenikNalogPanel(Student tk) {
         trenutniKorisnik = tk;
         initComponents();
     }
+
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +76,7 @@ public class UcenikNalogPanel extends javax.swing.JPanel {
         jPanel1.add(txtNovaLozinka2);
         jPanel1.add(jLabel4);
 
-        bPromeniLozinku.setBackground(new java.awt.Color(153, 153, 153));
+        bPromeniLozinku.setBackground(new java.awt.Color(124, 187, 0));
         bPromeniLozinku.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         bPromeniLozinku.setForeground(new java.awt.Color(255, 255, 255));
         bPromeniLozinku.setText("Sacuvaj");

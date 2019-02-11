@@ -40,71 +40,39 @@ public class ProfesorPanel extends javax.swing.JPanel {
 
         pnlGlavni = new javax.swing.JPanel();
         pnlMainContent = new javax.swing.JPanel();
-        pnlUserInfo = new javax.swing.JPanel();
-        btnOpste = new javax.swing.JButton();
-        btnMojiPredmeti = new javax.swing.JButton();
-        btnNalog = new javax.swing.JButton();
 
         pnlGlavni.setBackground(new java.awt.Color(255, 255, 255));
-        pnlGlavni.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlMainContent.setBackground(new java.awt.Color(0, 153, 204));
         pnlMainContent.setPreferredSize(new java.awt.Dimension(682, 650));
-        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlGlavni.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pnlUserInfo.setBackground(new java.awt.Color(255, 255, 255));
-        pnlUserInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        pnlUserInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout pnlMainContentLayout = new javax.swing.GroupLayout(pnlMainContent);
+        pnlMainContent.setLayout(pnlMainContentLayout);
+        pnlMainContentLayout.setHorizontalGroup(
+            pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 890, Short.MAX_VALUE)
+        );
+        pnlMainContentLayout.setVerticalGroup(
+            pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
 
-        btnOpste.setBackground(new java.awt.Color(247, 126, 78));
-        btnOpste.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnOpste.setForeground(new java.awt.Color(255, 255, 255));
-        btnOpste.setText("OPSTE");
-        btnOpste.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnOpste.setFocusPainted(false);
-        btnOpste.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpsteActionPerformed(evt);
-            }
-        });
-        pnlUserInfo.add(btnOpste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 40));
-
-        btnMojiPredmeti.setBackground(new java.awt.Color(246, 100, 43));
-        btnMojiPredmeti.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnMojiPredmeti.setForeground(new java.awt.Color(255, 255, 255));
-        btnMojiPredmeti.setText("MOJI PREDMETI");
-        btnMojiPredmeti.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnMojiPredmeti.setFocusPainted(false);
-        btnMojiPredmeti.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnMojiPredmeti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMojiPredmetiActionPerformed(evt);
-            }
-        });
-        pnlUserInfo.add(btnMojiPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 40));
-
-        btnNalog.setBackground(new java.awt.Color(246, 100, 43));
-        btnNalog.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnNalog.setForeground(new java.awt.Color(255, 255, 255));
-        btnNalog.setText("NALOG");
-        btnNalog.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        btnNalog.setFocusPainted(false);
-        btnNalog.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNalog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNalogActionPerformed(evt);
-            }
-        });
-        pnlUserInfo.add(btnNalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 210, 40));
-
-        pnlGlavni.add(pnlUserInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 210, 150));
+        javax.swing.GroupLayout pnlGlavniLayout = new javax.swing.GroupLayout(pnlGlavni);
+        pnlGlavni.setLayout(pnlGlavniLayout);
+        pnlGlavniLayout.setHorizontalGroup(
+            pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
+        );
+        pnlGlavniLayout.setVerticalGroup(
+            pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,46 +80,9 @@ public class ProfesorPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOpsteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpsteActionPerformed
-        // TODO add your handling code here:
-        ProfesorPodaci newPnl = new ProfesorPodaci(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
-         this.btnOpste.setBackground(Color.decode("#F77E4E"));
-        this.btnMojiPredmeti.setBackground(Color.decode("#F6642B"));
-        this.btnNalog.setBackground(Color.decode("#F6624B"));
-        
-        
-    }//GEN-LAST:event_btnOpsteActionPerformed
-
-    private void btnMojiPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMojiPredmetiActionPerformed
-        // TODO add your handling code here:
-           this.btnOpste.setBackground(Color.decode("#F6624B"));
-        this.btnMojiPredmeti.setBackground(Color.decode("#F77E4E"));
-        
-        this.btnNalog.setBackground(Color.decode("#F6624B"));
-
-    }//GEN-LAST:event_btnMojiPredmetiActionPerformed
-
-    private void btnNalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNalogActionPerformed
-        // TODO add your handling code here:
-        
-        this.btnOpste.setBackground(Color.decode("#F6624B"));
-        this.btnMojiPredmeti.setBackground(Color.decode("#F6624B"));
-        
-        this.btnNalog.setBackground(Color.decode("#F77E4E"));
-        
-    }//GEN-LAST:event_btnNalogActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMojiPredmeti;
-    private javax.swing.JButton btnNalog;
-    private javax.swing.JButton btnOpste;
     private javax.swing.JPanel pnlGlavni;
     private javax.swing.JPanel pnlMainContent;
-    private javax.swing.JPanel pnlUserInfo;
     // End of variables declaration//GEN-END:variables
 }
