@@ -198,6 +198,11 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void btnRezultatiTesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTesta1ActionPerformed
         // TODO add your handling code here:
+        AdminRezultatiTesta newPnl = new AdminRezultatiTesta();
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnRezultatiTesta1ActionPerformed
 
     private void btnProfesoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoriMouseClicked

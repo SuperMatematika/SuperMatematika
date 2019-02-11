@@ -43,7 +43,7 @@ public class OcenePanel extends javax.swing.JPanel {
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
             while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Naziv"), rezultat.getInt("redni_broj_testa"), rezultat.getInt("broj_bodova") };
+                Object[] row = { rezultat.getString("Naziv"), rezultat.getInt("redni_broj_testa"), rezultat.getInt("broj_bodova") / 20 + 1 };
                 ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
             }
         } catch (SQLException ex) {
@@ -100,7 +100,7 @@ public class OcenePanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Predmet", "Redni broj testa", "Broj bodova"
+                "Predmet", "Redni broj testa", "Ocena"
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
