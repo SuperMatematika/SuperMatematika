@@ -21,7 +21,6 @@ public class Student extends Korisnik {
         this.odeljenje = odeljenje;
     }
     
-
     Student(Korisnik tr) {
         super(tr.getUserType(),tr.getUsername(),tr.getIme(),tr.getPrezime(),tr.getDatumRodjenja(),tr.getPol());
     }
