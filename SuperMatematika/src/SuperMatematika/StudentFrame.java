@@ -103,8 +103,6 @@ public class StudentFrame extends javax.swing.JFrame {
         btnPredmeti = new javax.swing.JButton();
         btnOcene = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        pnlHeader = new javax.swing.JPanel();
-        lblNavigacija = new javax.swing.JLabel();
         lblRazred = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,15 +110,22 @@ public class StudentFrame extends javax.swing.JFrame {
 
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMainContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlBackground.add(pnlMainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 860, 650));
+
+        javax.swing.GroupLayout pnlMainContentLayout = new javax.swing.GroupLayout(pnlMainContent);
+        pnlMainContent.setLayout(pnlMainContentLayout);
+        pnlMainContentLayout.setHorizontalGroup(
+            pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 869, Short.MAX_VALUE)
+        );
+        pnlMainContentLayout.setVerticalGroup(
+            pnlMainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         jPanel1.setBackground(new java.awt.Color(0, 115, 173));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnProfil.setBackground(new java.awt.Color(0, 161, 241));
         btnProfil.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -134,13 +139,12 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnProfilActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 110, 90));
 
         btnOdjava.setBackground(new java.awt.Color(0, 115, 173));
         btnOdjava.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         btnOdjava.setForeground(new java.awt.Color(255, 255, 255));
         btnOdjava.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/logout.png"))); // NOI18N
-        btnOdjava.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnOdjava.setBorder(null);
         btnOdjava.setFocusPainted(false);
         btnOdjava.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnOdjava.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,17 +160,15 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnOdjavaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOdjava, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, 60, 50));
 
         imePrezime.setBackground(new java.awt.Color(255, 255, 255));
         imePrezime.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         imePrezime.setForeground(new java.awt.Color(255, 255, 255));
         imePrezime.setText("Ime Prezime");
-        jPanel1.add(imePrezime, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         btnPodesavanja.setBackground(new java.awt.Color(0, 115, 173));
         btnPodesavanja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/PodesavanjaIcon.png"))); // NOI18N
-        btnPodesavanja.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnPodesavanja.setBorder(null);
         btnPodesavanja.setFocusPainted(false);
         btnPodesavanja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -181,8 +183,6 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnPodesavanjaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPodesavanja, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 60, 50));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 280, 20));
 
         btnTest.setBackground(new java.awt.Color(0, 115, 173));
         btnTest.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -205,8 +205,6 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnTestActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 240, 50));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 280, 20));
 
         btnTest3.setBackground(new java.awt.Color(0, 115, 173));
         btnTest3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -229,7 +227,6 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnTest3ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTest3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 240, 50));
 
         btnPredmeti.setBackground(new java.awt.Color(0, 115, 173));
         btnPredmeti.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -252,7 +249,6 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnPredmetiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPredmeti, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 240, -1));
 
         btnOcene.setBackground(new java.awt.Color(0, 115, 173));
         btnOcene.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -276,7 +272,6 @@ public class StudentFrame extends javax.swing.JFrame {
                 btnOceneActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOcene, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 240, 50));
 
         jButton1.setBackground(new java.awt.Color(0, 115, 173));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -299,35 +294,103 @@ public class StudentFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 240, -1));
-
-        pnlBackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 710));
-
-        pnlHeader.setBackground(new java.awt.Color(0, 161, 241));
-        pnlHeader.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblNavigacija.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        lblNavigacija.setForeground(new java.awt.Color(255, 255, 255));
-        lblNavigacija.setText("Pocetna ");
-        pnlHeader.add(lblNavigacija, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 230, -1));
 
         lblRazred.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         lblRazred.setForeground(new java.awt.Color(255, 255, 255));
         lblRazred.setText("-");
-        pnlHeader.add(lblRazred, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 30, 40));
 
-        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 860, 60));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblRazred, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(imePrezime))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnOcene, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnTest3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnTest, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnPodesavanja, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(btnOdjava, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(lblRazred, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(imePrezime)
+                .addGap(59, 59, 59)
+                .addComponent(jButton1)
+                .addGap(22, 22, 22)
+                .addComponent(btnPredmeti)
+                .addGap(22, 22, 22)
+                .addComponent(btnOcene, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnTest3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnTest, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPodesavanja)
+                            .addComponent(btnOdjava)))))
+        );
+
+        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
+        pnlBackground.setLayout(pnlBackgroundLayout);
+        pnlBackgroundLayout.setHorizontalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlBackgroundLayout.setVerticalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMainContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -339,7 +402,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.lblNavigacija.setText("Licni podaci");
+        
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
@@ -370,7 +433,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.lblNavigacija.setText("Ocene");
+   
     }//GEN-LAST:event_btnOceneActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -382,7 +445,7 @@ public class StudentFrame extends javax.swing.JFrame {
             this.pnlMainContent.revalidate();
             this.pnlMainContent.setLayout(new BorderLayout());
             this.pnlMainContent.add(main);
-            this.lblNavigacija.setText("Pocetna");
+            
             
         } catch (Exception ex) {
 
@@ -397,7 +460,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.lblNavigacija.setText("Predmeti");
+        
     }//GEN-LAST:event_btnPredmetiActionPerformed
 
     private void btnPodesavanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodesavanjaActionPerformed
@@ -407,7 +470,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.lblNavigacija.setText("Promena lozinke");
+        
     }//GEN-LAST:event_btnPodesavanjaActionPerformed
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
@@ -417,7 +480,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        this.lblNavigacija.setText("Biranje predmeta");
+      
     }//GEN-LAST:event_btnTestActionPerformed
 
     private void btnTest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest3ActionPerformed
@@ -474,10 +537,8 @@ public class StudentFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblNavigacija;
     private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMainContent;
     // End of variables declaration//GEN-END:variables
 }

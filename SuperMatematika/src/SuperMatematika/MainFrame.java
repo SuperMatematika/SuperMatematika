@@ -6,7 +6,9 @@
 package SuperMatematika;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,6 +36,12 @@ public class MainFrame extends javax.swing.JFrame {
         // To increase speed later on, is not required
         DBController startConnection=DBController.require();
         initComponents();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
+        
+        pnlPozadina.setSize(width, height);
+        
     }
 
     /**
@@ -76,11 +84,9 @@ public class MainFrame extends javax.swing.JFrame {
         pnlPozadina.setBackground(new java.awt.Color(255, 255, 255));
         pnlPozadina.setMinimumSize(new java.awt.Dimension(1110, 700));
         pnlPozadina.setPreferredSize(new java.awt.Dimension(1140, 710));
-        pnlPozadina.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
         pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        pnlLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtUser.setForeground(new java.awt.Color(102, 102, 102));
@@ -107,7 +113,6 @@ public class MainFrame extends javax.swing.JFrame {
                 enterHandle(evt);
             }
         });
-        pnlLogin.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 300, 30));
 
         btnLogin.setBackground(new java.awt.Color(124, 187, 0));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +151,6 @@ public class MainFrame extends javax.swing.JFrame {
                 enterHandle(evt);
             }
         });
-        pnlLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 170, 40));
 
         txtPass.setForeground(new java.awt.Color(153, 153, 153));
         txtPass.setBorder(null);
@@ -166,31 +170,25 @@ public class MainFrame extends javax.swing.JFrame {
                 enterHandle(evt);
             }
         });
-        pnlLogin.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 300, 30));
 
         lblWrongUser.setForeground(new java.awt.Color(255, 0, 0));
-        pnlLogin.add(lblWrongUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 180, 20));
-        pnlLogin.add(lblDangerIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 20, 20));
 
         jLabel1.setBackground(new java.awt.Color(34, 31, 31));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(34, 31, 31));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Password");
-        pnlLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 90, 30));
+        jLabel1.setText("Lozinka");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel2.setBackground(new java.awt.Color(34, 31, 31));
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(34, 31, 31));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Username");
-        pnlLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 90, 30));
+        jLabel2.setText("Korisnicko ime");
 
         jSeparator2.setBackground(new java.awt.Color(34, 31, 31));
-        pnlLogin.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 320, 20));
 
         jSeparator3.setBackground(new java.awt.Color(34, 31, 31));
-        pnlLogin.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 320, 10));
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
@@ -215,9 +213,59 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        pnlLogin.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, -1));
-
-        pnlPozadina.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 410, 650));
+        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
+        pnlLogin.setLayout(pnlLoginLayout);
+        pnlLoginLayout.setHorizontalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(lblDangerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblWrongUser, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        pnlLoginLayout.setVerticalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDangerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWrongUser, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel1.setBackground(new java.awt.Color(0, 115, 173));
 
@@ -232,7 +280,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(817, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,24 +290,17 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlPozadina.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 60));
-
         lblSlika6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj6Icon.png"))); // NOI18N
-        pnlPozadina.add(lblSlika6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, 230));
 
         lblSlika7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj7Icon.png"))); // NOI18N
-        pnlPozadina.add(lblSlika7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, 230));
 
         lblSlika5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj5Icon.png"))); // NOI18N
-        pnlPozadina.add(lblSlika5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, 220));
 
         lblSlika8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/broj8Icon.png"))); // NOI18N
-        pnlPozadina.add(lblSlika8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, 230));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("DOBRODOSLI NA SUPERMATEMATIKU");
-        pnlPozadina.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 115, 173));
 
@@ -267,24 +308,81 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 728, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        pnlPozadina.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 750, 30));
+        javax.swing.GroupLayout pnlPozadinaLayout = new javax.swing.GroupLayout(pnlPozadina);
+        pnlPozadina.setLayout(pnlPozadinaLayout);
+        pnlPozadinaLayout.setHorizontalGroup(
+            pnlPozadinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                .addGroup(pnlPozadinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel5))
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(lblSlika7))
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(lblSlika6))
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(lblSlika5))
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(lblSlika8))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlPozadinaLayout.setVerticalGroup(
+            pnlPozadinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlPozadinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel5)
+                        .addGroup(pnlPozadinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(pnlPozadinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(lblSlika7, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblSlika6, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                                        .addGap(200, 200, 200)
+                                        .addComponent(lblSlika5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(lblSlika8, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                                .addGap(225, 225, 225)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(100, Short.MAX_VALUE))
+                    .addGroup(pnlPozadinaLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPozadina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlPozadina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPozadina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlPozadina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
