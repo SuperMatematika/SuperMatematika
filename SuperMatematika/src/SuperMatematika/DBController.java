@@ -548,6 +548,10 @@ public int getIdPredmeta() throws SQLException
             statement.close();
         }
     }
+
+    void addToDbFile(String fileName) {
+    System.out.println(new File("").getAbsolutePath()+"\\predavanja");
+    }
     
     public class GreskaNemaDovoljnoPitanja extends Exception {
         public GreskaNemaDovoljnoPitanja() {
