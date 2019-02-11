@@ -549,8 +549,20 @@ public int getIdPredmeta() throws SQLException
         }
     }
 
-    void addToDbFile(String fileName) {
+    void addToDbFile(int id_predmeta,String oblast,String naslocLekcije,String fileName,String type) throws SQLException {
     System.out.println(new File("").getAbsolutePath()+"\\predavanja");
+    
+     try {
+            statement=(Statement)connection.createStatement();
+            String s="\\predavanja\\"+fileName;
+            statement.executeUpdate("insert into "+type+"(ID_predmeta,oblast,naslovlekcije,putanja) values("+id_predmeta+",'"+oblast+"','"+naslocLekcije+"','"+s+"');");
+            JOptionPane.showMessageDialog(null, "Uspesno!");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }finally{
+            statement.close();
+        }
+    
     }
     
     public class GreskaNemaDovoljnoPitanja extends Exception {

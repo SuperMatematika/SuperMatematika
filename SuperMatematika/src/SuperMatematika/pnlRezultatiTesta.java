@@ -407,6 +407,11 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
 
         filterby.setBackground(new java.awt.Color(204, 204, 204));
         filterby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filterby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterbyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -447,7 +452,7 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 1065, Short.MAX_VALUE)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -545,6 +550,10 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
     private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton12ActionPerformed
+
+    private void filterbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterbyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filterbyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

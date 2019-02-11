@@ -237,6 +237,11 @@ public class ProfesorFrame extends javax.swing.JFrame {
         jButton4.setText("ZADACI");
         jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton4.setFocusPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMainContentLayout = new javax.swing.GroupLayout(pnlMainContent);
         pnlMainContent.setLayout(pnlMainContentLayout);
@@ -377,7 +382,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-          ProfesorBiraFajl pbf=new ProfesorBiraFajl();
+          ProfesorBiraFajl pbf=new ProfesorBiraFajl(this.listaPredmeta,"lekcija");
           pbf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -390,6 +395,11 @@ public class ProfesorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         hoverButtonExit((JButton) evt.getSource());
     }//GEN-LAST:event_HoverLeave
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ProfesorBiraFajl pbf=new ProfesorBiraFajl(this.listaPredmeta,"vezbe");
+          pbf.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
                                            
 
