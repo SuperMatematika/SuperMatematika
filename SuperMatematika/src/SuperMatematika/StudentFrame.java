@@ -35,7 +35,8 @@ public class StudentFrame extends javax.swing.JFrame {
         System.out.println(trenutniKorisnik);
         trenutniKorisnik.setRazred(DBController.require().getRazred(trenutniKorisnik));
         trenutniKorisnik.setOdeljenje(DBController.require().getOdeljenje(trenutniKorisnik));
-        this.lblRazred.setText(trenutniKorisnik.getRazred() + ".");
+        
+        
         System.out.println(trenutniKorisnik.getIme());
         this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
         
@@ -103,7 +104,6 @@ public class StudentFrame extends javax.swing.JFrame {
         btnPredmeti = new javax.swing.JButton();
         btnOcene = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        lblRazred = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -127,11 +127,11 @@ public class StudentFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 115, 173));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        btnProfil.setBackground(new java.awt.Color(0, 161, 241));
+        btnProfil.setBackground(new java.awt.Color(124, 187, 0));
         btnProfil.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         btnProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/ProfilIcon.png"))); // NOI18N
-        btnProfil.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnProfil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         btnProfil.setFocusPainted(false);
         btnProfil.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnProfil.addActionListener(new java.awt.event.ActionListener() {
@@ -295,22 +295,10 @@ public class StudentFrame extends javax.swing.JFrame {
             }
         });
 
-        lblRazred.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        lblRazred.setForeground(new java.awt.Color(255, 255, 255));
-        lblRazred.setText("-");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblRazred, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(imePrezime))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -333,18 +321,19 @@ public class StudentFrame extends javax.swing.JFrame {
                 .addGap(140, 140, 140)
                 .addComponent(btnOdjava, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(imePrezime))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblRazred, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
+                .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(imePrezime)
                 .addGap(59, 59, 59)
                 .addComponent(jButton1)
@@ -374,6 +363,7 @@ public class StudentFrame extends javax.swing.JFrame {
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(pnlMainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBackgroundLayout.setVerticalGroup(
@@ -537,7 +527,6 @@ public class StudentFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblRazred;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlMainContent;
     // End of variables declaration//GEN-END:variables

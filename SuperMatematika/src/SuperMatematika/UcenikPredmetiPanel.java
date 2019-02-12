@@ -100,6 +100,8 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
         MainPanel.setPreferredSize(new java.awt.Dimension(300, 300));
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(102, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -124,7 +126,7 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
             }
         ));
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable1.setRowHeight(39);
+        jTable1.setRowHeight(30);
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(jTable1);
 
@@ -168,7 +170,7 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

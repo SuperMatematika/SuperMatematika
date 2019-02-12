@@ -69,6 +69,7 @@ public class PanelSviProfesori extends javax.swing.JPanel {
         pnlMainContent.setBackground(new java.awt.Color(255, 255, 255));
         pnlMainContent.setForeground(new java.awt.Color(255, 255, 255));
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setForeground(new java.awt.Color(102, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -210,11 +211,14 @@ public class PanelSviProfesori extends javax.swing.JPanel {
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         // TODO add your handling code here:
-         PanelDodajProfesora newPnl = new PanelDodajProfesora();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+       FrameDodajProfesora fds;
+        try {
+            fds = new FrameDodajProfesora();
+              fds.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSviProfesori.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -72,6 +72,7 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
         jSeparator7 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         pnlUcenikPodaci1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,7 +132,7 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
             .addComponent(jSeparator2)
             .addComponent(jSeparator4)
             .addGroup(pnlUcenikPodaci1Layout.createSequentialGroup()
-                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
             .addGroup(pnlUcenikPodaci1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -196,7 +197,7 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlUcenikPodaci1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 370, Short.MAX_VALUE))
+                .addGap(0, 368, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
