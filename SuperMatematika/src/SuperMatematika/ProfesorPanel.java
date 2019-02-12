@@ -23,11 +23,7 @@ public class ProfesorPanel extends javax.swing.JPanel {
         initComponents();
         trenutniKorisnik = tk;
         initComponents();
-        ProfesorPodaci newPnl = new ProfesorPodaci(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent,new ProfesorPodaci(trenutniKorisnik));
     }
 
     /**

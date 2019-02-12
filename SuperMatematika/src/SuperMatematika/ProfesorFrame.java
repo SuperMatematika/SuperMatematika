@@ -35,11 +35,8 @@ public class ProfesorFrame extends javax.swing.JFrame {
         });
 
         this.imePrezime.setText(trenutniKorisnik.getIme() + " " + trenutniKorisnik.getPrezime());
-        ProfesorMainChoiceView newPnl = new ProfesorMainChoiceView(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+
+        Navigacija.PromeniPanel(this.pnlMainContent, new ProfesorMainChoiceView(trenutniKorisnik));
 
     }
 
@@ -408,12 +405,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
-        // TODO add your handling code here:
-        ProfesorPanel newPnl = new ProfesorPanel(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new ProfesorPanel(trenutniKorisnik));
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -429,11 +421,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     private void btnSastaviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSastaviTestActionPerformed
         pnlSastaviTest newPnl;
         try {
-            newPnl = new pnlSastaviTest(trenutniKorisnik, listaPredmeta);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
+            Navigacija.PromeniPanel(this.pnlMainContent, new pnlSastaviTest(trenutniKorisnik, listaPredmeta));
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -442,11 +430,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     private void btnRezultatiTestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTestaActionPerformed
         pnlRezultatiTesta newPnl;
         try {
-            newPnl = new pnlRezultatiTesta(trenutniKorisnik);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
+            Navigacija.PromeniPanel(this.pnlMainContent, new pnlRezultatiTesta(trenutniKorisnik));
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -464,25 +448,14 @@ public class ProfesorFrame extends javax.swing.JFrame {
         pnlIzvestaj newPnl;
 
         try {
-            newPnl = new pnlIzvestaj(trenutniKorisnik);
-
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
+            Navigacija.PromeniPanel(this.pnlMainContent, new pnlIzvestaj(trenutniKorisnik));
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnIzvestajActionPerformed
 
     private void btnPodesavanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodesavanjaActionPerformed
-        PanelPromenaLozinke newPnl;
-
-        newPnl = new PanelPromenaLozinke(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelPromenaLozinke(trenutniKorisnik));
     }//GEN-LAST:event_btnPodesavanjaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -499,11 +472,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         ProfesorMainChoiceView newPnl;
 
         try {
-            newPnl = new ProfesorMainChoiceView(trenutniKorisnik);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(newPnl);
+            Navigacija.PromeniPanel(this.pnlMainContent, new ProfesorMainChoiceView(trenutniKorisnik));
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

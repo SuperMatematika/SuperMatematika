@@ -123,11 +123,7 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
         if (cbRedniBrojTesta.getItemCount() != 0) {
             int ID_predmeta = Integer.parseInt(((ComboItem) cbPredmet.getSelectedItem()).getValue());
             int redniBrojTesta = Integer.parseInt(cbRedniBrojTesta.getSelectedItem().toString());
-            pnlTest newPnl = new pnlTest(trenutniKorisnik, ID_predmeta, redniBrojTesta);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(newPnl);
+            Navigacija.PromeniPanel(this, new pnlTest(trenutniKorisnik, ID_predmeta, redniBrojTesta));
         } else
             JOptionPane.showMessageDialog(this, "Nema testova za dati predmet");
     }//GEN-LAST:event_btnZapocniTestActionPerformed

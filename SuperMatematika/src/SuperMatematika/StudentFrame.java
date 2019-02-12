@@ -40,11 +40,7 @@ public class StudentFrame extends javax.swing.JFrame {
         System.out.println(trenutniKorisnik.getIme());
         this.imePrezime.setText(trenutniKorisnik.getIme() + " " + trenutniKorisnik.getPrezime());
 
-        mainChoiceView newPnl = new mainChoiceView(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new mainChoiceView(trenutniKorisnik));
 
         setNav();
 
@@ -383,11 +379,7 @@ public class StudentFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
-        UcenikPodaciPanel newPnl = new UcenikPodaciPanel(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new UcenikPodaciPanel(trenutniKorisnik));
 
     }//GEN-LAST:event_btnProfilActionPerformed
 
@@ -411,23 +403,12 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void btnOceneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOceneActionPerformed
-        OcenePanel newPnl = new OcenePanel(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
-
+        Navigacija.PromeniPanel(this.pnlMainContent, new OcenePanel(trenutniKorisnik));
     }//GEN-LAST:event_btnOceneActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainChoiceView main;
         try {
-            main = new mainChoiceView(trenutniKorisnik);
-            this.pnlMainContent.removeAll();
-            this.pnlMainContent.revalidate();
-            this.pnlMainContent.setLayout(new BorderLayout());
-            this.pnlMainContent.add(main);
-
+            Navigacija.PromeniPanel(this.pnlMainContent, new mainChoiceView(trenutniKorisnik));
         } catch (Exception ex) {
 
         }
@@ -435,29 +416,17 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPredmetiActionPerformed
-        UcenikPredmetiPanel newPnl = new UcenikPredmetiPanel(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new UcenikPredmetiPanel(trenutniKorisnik));
 
     }//GEN-LAST:event_btnPredmetiActionPerformed
 
     private void btnPodesavanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodesavanjaActionPerformed
-        PanelPromenaLozinke newPnl = new PanelPromenaLozinke(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelPromenaLozinke(trenutniKorisnik));
 
     }//GEN-LAST:event_btnPodesavanjaActionPerformed
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
-        pnlOdabirTesta newPnl = new pnlOdabirTesta(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new pnlOdabirTesta(trenutniKorisnik));
 
     }//GEN-LAST:event_btnTestActionPerformed
 

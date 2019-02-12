@@ -123,11 +123,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
         pnlBirajPredmet newPnl;
         try {
             newPnl = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(trenutniKorisnik.getRazred()), "predavanja");
-//            newPnl = new pnlBirajRazred(trenutniKorisnik,"predavanja");
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(newPnl);
+            Navigacija.PromeniPanel(this, newPnl);
 
         } catch (Exception ex) {
             Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -142,11 +138,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                 break;
             }
         }
-        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik, trenutniPredmet, putanja, "predavanja");
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
+        Navigacija.PromeniPanel(this, new pnlPDFView(trenutniKorisnik, trenutniPredmet, putanja, "predavanja"));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;

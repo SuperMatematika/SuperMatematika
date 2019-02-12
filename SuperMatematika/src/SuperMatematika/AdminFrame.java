@@ -29,11 +29,7 @@ public class AdminFrame extends javax.swing.JFrame {
     public AdminFrame(Admin admin) {
         trenutniKorisnik=admin;
         initComponents();
-        AdminMainChoiceView newPnl = new AdminMainChoiceView();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new AdminMainChoiceView());
     }
     
     public void hoverButton(JButton b) {
@@ -302,19 +298,11 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRezultatiTesta1MouseClicked
 
     private void btnRezultatiTesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTesta1ActionPerformed
-        AdminRezultatiTesta newPnl = new AdminRezultatiTesta();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new AdminRezultatiTesta());
     }//GEN-LAST:event_btnRezultatiTesta1ActionPerformed
 
     private void btnProfesoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoriMouseClicked
-        PanelSviProfesori newPnl = new PanelSviProfesori();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelSviProfesori());
     }//GEN-LAST:event_btnProfesoriMouseClicked
 
     private void btnProfesoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfesoriActionPerformed
@@ -323,19 +311,11 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProfesoriActionPerformed
 
     private void btnUceniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUceniciActionPerformed
-        PanelSviStudenti newPnl = new PanelSviStudenti();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelSviStudenti());
     }//GEN-LAST:event_btnUceniciActionPerformed
 
     private void btnPocetnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPocetnaActionPerformed
-        AdminMainChoiceView newPnl = new AdminMainChoiceView();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new AdminMainChoiceView());
     }//GEN-LAST:event_btnPocetnaActionPerformed
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
@@ -349,11 +329,7 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HoverLeave
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PanelPromenaLozinke newPnl= new PanelPromenaLozinke(trenutniKorisnik);
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelPromenaLozinke(trenutniKorisnik));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

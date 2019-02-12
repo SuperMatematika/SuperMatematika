@@ -70,18 +70,10 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
         try {
             switch (this.prethodnik) {
                 case "predavanja":
-                    pnlPredavanja main = new pnlPredavanja(trenutniKorisnik, p);
-                    this.removeAll();
-                    this.revalidate();
-                    this.setLayout(new BorderLayout());
-                    this.add(main);
+                    Navigacija.PromeniPanel(this, new pnlPredavanja(trenutniKorisnik, p));
                     break;
                 case "zadaci":
-                    pnlZadaci main2 = new pnlZadaci(trenutniKorisnik, p);
-                    this.removeAll();
-                    this.revalidate();
-                    this.setLayout(new BorderLayout());
-                    this.add(main2);
+                    Navigacija.PromeniPanel(this, new pnlZadaci(trenutniKorisnik, p));
                     break;
             }
         } catch (Exception ex) {

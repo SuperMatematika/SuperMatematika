@@ -66,10 +66,7 @@ public class pnlBirajRazred extends javax.swing.JPanel {
         pnlBirajPredmet main;
         try {
             main = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(razred), prethodnik);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
+            Navigacija.PromeniPanel(this, main);
         } catch (Exception ex) {
 
         }
@@ -110,13 +107,8 @@ public class pnlBirajRazred extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainChoiceView main;
         try {
-            main = new mainChoiceView(trenutniKorisnik);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
+            Navigacija.PromeniPanel(this, new mainChoiceView(trenutniKorisnik));
         } catch (Exception ex) {
 
         }

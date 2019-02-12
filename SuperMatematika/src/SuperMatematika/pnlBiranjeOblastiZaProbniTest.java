@@ -155,13 +155,8 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainChoiceView main;
         try {
-            main = new mainChoiceView(trenutniKorisnik);
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
+            Navigacija.PromeniPanel(this, new mainChoiceView(trenutniKorisnik));
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -196,11 +191,7 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSkupoviActionPerformed
 
     private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
-        pnlTest newPnl = new pnlTest(trenutniKorisnik, selektovaneOblasti());
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
+        Navigacija.PromeniPanel(this, new pnlTest(trenutniKorisnik, selektovaneOblasti()));
     }//GEN-LAST:event_btnStartMouseClicked
 
     // Vraca listu od svih oblasti koje se selektovane, one se nalaze u podpanelima panela pnlOblasti

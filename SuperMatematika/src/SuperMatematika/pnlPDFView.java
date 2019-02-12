@@ -134,16 +134,13 @@ public class pnlPDFView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
         try {
             switch (goBack) {
                 case "zadaci":
-                    this.add(new pnlZadaci(trenutniKorisnik, trenutniPredmet));
+                    Navigacija.PromeniPanel(this, new pnlZadaci(trenutniKorisnik, trenutniPredmet));
                     break;
                 case "predavanja":
-                    this.add(new pnlPredavanja(trenutniKorisnik, trenutniPredmet));
+                    Navigacija.PromeniPanel(this, new pnlPredavanja(trenutniKorisnik, trenutniPredmet));
                     break;
             }
         } catch (SQLException ex) {

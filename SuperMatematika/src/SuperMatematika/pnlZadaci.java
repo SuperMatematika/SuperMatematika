@@ -80,11 +80,7 @@ public class pnlZadaci extends javax.swing.JPanel {
                 break;
             }
         }
-        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik, trenutniPredmet, putanja, "zadaci");
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
+        Navigacija.PromeniPanel(this, new pnlPDFView(trenutniKorisnik, trenutniPredmet, putanja, "zadaci"));
     }
 
     /**
@@ -134,10 +130,7 @@ public class pnlZadaci extends javax.swing.JPanel {
         pnlBirajPredmet main;
         try {
             main = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(trenutniPredmet.getRazred()), "zadaci");
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(main);
+            Navigacija.PromeniPanel(this, main);
         } catch (Exception ex) {
 
         }

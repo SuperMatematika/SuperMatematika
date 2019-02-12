@@ -197,11 +197,7 @@ public class PanelSviProfesori extends javax.swing.JPanel {
     }//GEN-LAST:event_btnIzbrisiClick
 
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
-        PanelSviProfesori newPnl = new PanelSviProfesori();
-        this.pnlMainContent.removeAll();
-        this.pnlMainContent.revalidate();
-        this.pnlMainContent.setLayout(new BorderLayout());
-        this.pnlMainContent.add(newPnl);
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelSviProfesori());
     }//GEN-LAST:event_btnPrikaziActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed

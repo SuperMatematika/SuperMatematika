@@ -270,11 +270,7 @@ public class mainChoiceView extends javax.swing.JPanel {
     pnlBirajPredmet newPnl;
     try {
         newPnl = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(trenutniKorisnik.getRazred()), "predavanja");
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
-
+        Navigacija.PromeniPanel(this, newPnl);
     } catch (Exception ex) {
         Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -284,10 +280,7 @@ public class mainChoiceView extends javax.swing.JPanel {
         pnlBirajPredmet newPnl;
         try {
             newPnl = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(trenutniKorisnik.getRazred()), "zadaci");
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(newPnl);
+            Navigacija.PromeniPanel(this, newPnl);
         } catch (Exception ex) {
             Logger.getLogger(mainChoiceView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -295,19 +288,11 @@ public class mainChoiceView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnZadaciActionPerformed
 
     private void btnProbniTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbniTestActionPerformed
-        pnlBiranjeOblastiZaProbniTest newPnl = new pnlBiranjeOblastiZaProbniTest(trenutniKorisnik);
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
+        Navigacija.PromeniPanel(this, new pnlBiranjeOblastiZaProbniTest(trenutniKorisnik));
     }//GEN-LAST:event_btnProbniTestActionPerformed
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
-        pnlOdabirTesta newPnl = new pnlOdabirTesta(trenutniKorisnik);
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(newPnl);
+        Navigacija.PromeniPanel(this, new pnlOdabirTesta(trenutniKorisnik));
     }//GEN-LAST:event_btnTestActionPerformed
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
