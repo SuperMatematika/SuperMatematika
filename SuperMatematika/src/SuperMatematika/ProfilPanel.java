@@ -169,7 +169,7 @@ public class ProfilPanel extends javax.swing.JPanel {
 
     private void btnNalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNalogActionPerformed
         // TODO add your handling code here:
-        UcenikNalogPanel newPn1= new UcenikNalogPanel(trenutniKorisnik);
+        PanelPromenaLozinke newPn1= new PanelPromenaLozinke(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
