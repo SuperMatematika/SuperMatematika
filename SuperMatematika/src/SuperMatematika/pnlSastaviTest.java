@@ -26,9 +26,8 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     Profesor trenutniKorisnik;
     ArrayList<Predmet> listaPredmeta;
     ArrayList<JRadioButton> RBlistaRazreda = new ArrayList();
-    ArrayList<JRadioButton> RBListaOdeljenja = new ArrayList();
     ArrayList<JRadioButton> RBlistaPredmeta = new ArrayList();
-    ArrayList<JRadioButton> RBlistaBrojTestova = new ArrayList();
+    ArrayList<JRadioButton> RBlistaTromesecja = new ArrayList();
     ArrayList<JCheckBox> CBlistaZadataka = new ArrayList();
     ArrayList<JLabel> zadaciLabele = new ArrayList();
     ArrayList<JButton> brisiButtoni = new ArrayList();
@@ -71,15 +70,10 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         RBlistaRazreda.add(this.jRadioButton2);
         RBlistaRazreda.add(this.jRadioButton4);
 
-        RBListaOdeljenja.add(this.jRadioButton5);
-        RBListaOdeljenja.add(this.jRadioButton7);
-        RBListaOdeljenja.add(this.jRadioButton6);
-        RBListaOdeljenja.add(this.jRadioButton8);
-
-        RBlistaBrojTestova.add(this.jRadioButton9);
-        RBlistaBrojTestova.add(this.jRadioButton10);
-        RBlistaBrojTestova.add(this.jRadioButton11);
-        RBlistaBrojTestova.add(this.jRadioButton12);
+        RBlistaTromesecja.add(this.jRadioButton9);
+        RBlistaTromesecja.add(this.jRadioButton10);
+        RBlistaTromesecja.add(this.jRadioButton11);
+        RBlistaTromesecja.add(this.jRadioButton12);
 
         CBlistaZadataka.add(this.btnSkupovi);
         CBlistaZadataka.add(this.btnDeljivost);
@@ -137,10 +131,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         pnlOdeljenje = new javax.swing.JPanel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        txtBrojTesta = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jRadioButton9 = new javax.swing.JRadioButton();
         jRadioButton10 = new javax.swing.JRadioButton();
@@ -320,36 +311,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         pnlOdeljenje.setBackground(new java.awt.Color(255, 255, 255));
         pnlOdeljenje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
         pnlOdeljenje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton5);
-        jRadioButton5.setText("1");
-        pnlOdeljenje.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton7);
-        jRadioButton7.setText("2");
-        pnlOdeljenje.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
-
-        jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton8);
-        jRadioButton8.setText("3");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
-            }
-        });
-        pnlOdeljenje.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
-        btnOdeljenjeGroup.add(jRadioButton6);
-        jRadioButton6.setText("4");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
-            }
-        });
-        pnlOdeljenje.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        pnlOdeljenje.add(txtBrojTesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 160, 20));
 
         pnlLeft.add(pnlOdeljenje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 301, 200, 100));
 
@@ -393,13 +355,10 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 .addContainerGap(137, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(90, 129, Short.MAX_VALUE)
-                            .addComponent(jRadioButton10))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jRadioButton11)))
+                        .addComponent(jRadioButton10, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jRadioButton11, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addGap(0, 40, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -1035,17 +994,9 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
-
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void btnRazlomciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRazlomciActionPerformed
         // TODO add your handling code here:
@@ -1082,13 +1033,20 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
     private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
 
+        if (ImaPraznihPolja()){
+            JOptionPane.showMessageDialog(null, "Niste uneli potrebne podatke");
+            return;
+        }
+        
         newTest.setNastavnik(this.trenutniKorisnik.getUsername());
+        
         for (int i = 0; i < 4; i++) {
             if (this.RBlistaRazreda.get(i).isSelected()) {
                 newTest.setRazred(i + 5);
                 break;
             }
         }
+        
         for (int i = 0; i < this.listaPredmeta.size(); i++) {
             if (this.RBlistaPredmeta.get(i).isSelected()) {
                 try {
@@ -1099,17 +1057,13 @@ public class pnlSastaviTest extends javax.swing.JPanel {
                 break;
             }
         }
-        for (int i = 0; i < 4; i++) {
-            if (this.RBListaOdeljenja.get(i).isSelected()) {
-                newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
-                break;
-            }
-        }
+        
+        newTest.setRedni_broj_testa(Integer.parseInt(txtBrojTesta.getText()));
 
         for (int i = 0; i < 4; i++) {
-            if (this.RBlistaBrojTestova.get(i).isSelected()) {
-                System.out.println(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
-                newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
+            if (this.RBlistaTromesecja.get(i).isSelected()) {
+                System.out.println(Integer.parseInt(RBlistaTromesecja.get(i).getText()));
+                newTest.setTromesecje(Integer.parseInt(RBlistaTromesecja.get(i).getText()));
                 break;
             }
         }
@@ -1117,6 +1071,10 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnPR2ActionPerformed
 
+    private boolean ImaPraznihPolja() {
+        return txtBrojTesta.getText().equals(""); // i jos toga treba ali ovo samo za sad
+    }
+    
     String getSelected(ArrayList<JRadioButton> j) {
         for (int i = 0; i < j.size(); i++) {
             if (j.get(i).isSelected()) {
@@ -1240,10 +1198,6 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1277,6 +1231,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     private javax.swing.JButton rmButton5;
     private javax.swing.JButton submitTest;
     private javax.swing.JTable tabelaTestova;
+    private javax.swing.JTextField txtBrojTesta;
     private javax.swing.JLabel zad1;
     private javax.swing.JLabel zad2;
     private javax.swing.JLabel zad3;
@@ -1293,11 +1248,12 @@ public class pnlSastaviTest extends javax.swing.JPanel {
             System.out.println(testovi.size());
             testovi.forEach(z -> {
                 System.out.println(z.getId_predmeta());
-                Object[] row = {z.getId_predmeta(), z.getRazred(), z.getOdeljenje(), z.getRedni_broj_testa()};
+                Object[] row = {z.getId_predmeta(), z.getRazred(), z.getTromesecje(), z.getRedni_broj_testa()};
                 ((DefaultTableModel) this.tabelaTestova.getModel()).insertRow(0, row);
             });
         } catch (SQLException ex) {
             Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

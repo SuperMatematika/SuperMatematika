@@ -454,9 +454,9 @@ public class pnlIzvestaj extends javax.swing.JPanel {
         for (int i = 0; i < 5; i++) {
             if (this.RBListaOdeljenja.get(i).isSelected()) {
                 if (RBListaOdeljenja.get(i).getText().equals("all")) {
-                    newTest.setOdeljenje(5);
+                    newTest.setTromesecje(5);
                 } else {
-                    newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
+                    newTest.setTromesecje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
                 }
                 break;
             }

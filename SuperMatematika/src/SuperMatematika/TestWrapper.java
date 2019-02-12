@@ -14,7 +14,7 @@ public class TestWrapper {
     private String nastavnik;
     private int id_predmeta;
     private int razred;
-    private int odeljenje;
+    private int tromesecje;
     private int redni_broj_testa;
     private int[] zadaci;
 
@@ -37,8 +37,8 @@ public class TestWrapper {
         return id_predmeta;
     }
 
-    public void setOdeljenje(int odeljenje) {
-        this.odeljenje = odeljenje;
+    public void setTromesecje(int odeljenje) {
+        this.tromesecje = odeljenje;
     }
 
     public void setRedni_broj_testa(int redni_broj_testa) {
@@ -57,8 +57,8 @@ public class TestWrapper {
         return razred;
     }
 
-    public int getOdeljenje() {
-        return odeljenje;
+    public int getTromesecje() {
+        return tromesecje;
     }
 
     public int getRedni_broj_testa() {
@@ -73,7 +73,7 @@ public class TestWrapper {
         this.nastavnik = nastavnik;
         this.id_predmeta = id_predmeta;
         this.razred = razred;
-        this.odeljenje = odeljenje;
+        this.tromesecje = odeljenje;
         this.redni_broj_testa = redni_broj_testa;
         this.zadaci = zadaci;
     }

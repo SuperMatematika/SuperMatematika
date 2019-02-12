@@ -381,13 +381,16 @@ public int getIdPredmeta() throws SQLException
 
     void kreirajTest(Profesor p,TestWrapper newTest, ArrayList<Integer> izabraniZadaci) throws SQLException {
         try {
+            String upit = "insert into Test"
+                    + " (nastavnik, predmet, razred, tromesecje, redni_broj_testa, zad1, zad2, zad3, zad4, zad5) "
+                    + " values('"+p.getUsername()+"',"+newTest.getId_predmeta()+","+newTest.getRazred()+","+newTest.getTromesecje()+","+newTest.getRedni_broj_testa()+","+izabraniZadaci.get(0)+","+izabraniZadaci.get(1)+","+izabraniZadaci.get(2)+","+izabraniZadaci.get(3)+","+izabraniZadaci.get(4)+");";
+            System.out.println(upit);
             statement=(Statement)connection.createStatement();
-            
-            System.out.println("test"+newTest.getRedni_broj_testa());
-            System.out.println("REDNIBROJ:"+newTest.getRedni_broj_testa());
-            statement.executeUpdate("insert into test values('"+p.getUsername()+"','"+newTest.getId_predmeta()+"','"+newTest.getRazred()+"','"+newTest.getOdeljenje()+"','"+izabraniZadaci.get(0)+"','"+izabraniZadaci.get(1)+"','"+izabraniZadaci.get(2)+"','"+izabraniZadaci.get(3)+"','"+izabraniZadaci.get(4)+"','"+newTest.getRedni_broj_testa()+"');");
+            statement.executeUpdate(upit);
+
             JOptionPane.showMessageDialog(null, "Uspesno!");
         } catch (SQLException ex) {
+            ex.printStackTrace();
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Dati test vec postoji. Kliknite YES ako zelite da ga izmenite, NO ako zelite da ostane isti.", "Test vec postoji", dialogButton);
             if(dialogResult == 0) {
@@ -414,7 +417,7 @@ public int getIdPredmeta() throws SQLException
         });
         try{
             statement=(Statement)connection.createStatement();
-            resultSet=statement.executeQuery("SELECT id_zadatka,oblast,putanja from zadatak,predmet where predmet.razred='"+selectedRazred+"' and predmet.id_predmeta=zadatak.id_predmeta and predmet.naziv='"+selectedPredmet+"' and zadatak.oblast in ("+prebaci(izabObl)+");");
+            resultSet=statement.executeQuery("SELECT id_zadatka,oblast,putanja from zadatak,predmet where predmet.razred="+selectedRazred+" and predmet.id_predmeta=zadatak.id_predmeta and predmet.naziv='"+selectedPredmet+"' and zadatak.oblast in ("+prebaci(izabObl)+");");
             while(resultSet.next()){
                 System.out.println(resultSet.getInt("id_zadatka"));
                 iza.add(new Zadatak(resultSet.getInt("id_zadatka"),resultSet.getString("oblast"),resultSet.getString("putanja")));
@@ -465,7 +468,7 @@ public int getIdPredmeta() throws SQLException
                 testovi.add(new TestWrapper());
                 testovi.get(i).setId_predmeta(resultSet.getInt("predmet"));
                 testovi.get(i).setRazred(resultSet.getInt("razred"));
-                testovi.get(i).setOdeljenje(resultSet.getInt("tromesecje"));
+                testovi.get(i).setTromesecje(resultSet.getInt("tromesecje"));
                 testovi.get(i).setRedni_broj_testa(resultSet.getInt("redni_broj_testa"));
                 i++;
             }
@@ -484,16 +487,16 @@ public int getIdPredmeta() throws SQLException
         
         try {
             statement=(Statement)connection.createStatement();
-            if(newTest.getOdeljenje()!=5 && newTest.getRedni_broj_testa()!=5)
+            if(newTest.getTromesecje()!=5 && newTest.getRedni_broj_testa()!=5)
                 resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.*"
                         + " from rezultati_testa,predmet "
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
                         + "and rezultati_testa.predmet=predmet.id_predmeta "
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
-                        + "and rezultati_testa.tromesecje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.tromesecje='"+newTest.getTromesecje()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"' "
                         + "and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
-            else if(newTest.getOdeljenje()==5 && newTest.getRedni_broj_testa()!=5)
+            else if(newTest.getTromesecje()==5 && newTest.getRedni_broj_testa()!=5)
                 resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* "
                         + "from rezultati_testa,predmet "
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
@@ -501,13 +504,13 @@ public int getIdPredmeta() throws SQLException
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"' "
                         + "and rezultati_testa.redni_broj_testa='"+newTest.getRedni_broj_testa()+"'");
-            else if(newTest.getOdeljenje()!=5 && newTest.getRedni_broj_testa()==5)
+            else if(newTest.getTromesecje()!=5 && newTest.getRedni_broj_testa()==5)
                 resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.*"
                         + " from rezultati_testa,predmet "
                         + "where predmet.username_nastavnika='"+trenutniKorisnik.getUsername()+"'"
                         + "and rezultati_testa.predmet=predmet.id_predmeta "
                         + "and rezultati_testa.predmet='"+newTest.getId_predmeta()+"' "
-                        + "and rezultati_testa.tromesecje='"+newTest.getOdeljenje()+"' "
+                        + "and rezultati_testa.tromesecje='"+newTest.getTromesecje()+"' "
                         + "and rezultati_testa.razred='"+newTest.getRazred()+"';");
             else
                 resultSet=statement.executeQuery("SELECT predmet.naziv,rezultati_testa.* "
