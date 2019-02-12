@@ -486,9 +486,9 @@ public class ProfesorFrame extends javax.swing.JFrame {
 
     private void btnPodesavanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodesavanjaActionPerformed
         // TODO add your handling code here:
-         ProfesorNalog newPnl;
+         PanelPromenaLozinke newPnl;
        
-         newPnl = new ProfesorNalog(trenutniKorisnik);
+         newPnl = new PanelPromenaLozinke(trenutniKorisnik);
          this.pnlMainContent.removeAll();
          this.pnlMainContent.revalidate();
          this.pnlMainContent.setLayout(new BorderLayout());

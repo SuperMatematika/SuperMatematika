@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author Melida
  */
-public class ProfesorNalog extends javax.swing.JPanel {
+public class PanelPromenaLozinke extends javax.swing.JPanel {
 
     /**
      * Creates new form ProfesorNalog
      */
-    Profesor trenutniKorisnik;
-    public ProfesorNalog(Profesor tk) {
+    Korisnik trenutniKorisnik;
+    public PanelPromenaLozinke(Korisnik tk) {
         trenutniKorisnik=tk;
         initComponents();
     }
