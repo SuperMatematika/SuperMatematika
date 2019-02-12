@@ -9,6 +9,8 @@ import SuperMatematika.Model.Student;
 import SuperMatematika.Model.Zadatak;
 import SuperMatematika.Model.Korisnik;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,6 +25,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -103,13 +112,13 @@ public class DBController {
 
     // Proverava da li je login ispravan
     public Korisnik loginValid(String username, String password) {
-        resultSet = submitQuery("SELECT username,usertype,ime,prezime,godina_rodjenja,pol from Users where username='" + username + "' and password='" + password + "';");
-
+        
         try {
+            resultSet = submitQuery("SELECT username,usertype,ime,prezime,godina_rodjenja,pol from Users where username='" + username + "' and password='" + encrypt(password) + "';");
             if (resultSet.next()) {
                 return new Korisnik(resultSet.getString("usertype"), resultSet.getString("username"), resultSet.getString("ime"), resultSet.getString("prezime"), resultSet.getString("Godina_rodjenja"), resultSet.getString("pol"));
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
@@ -285,14 +294,14 @@ public class DBController {
             throw new Exception("Neispravna stara lozinka!");
         }
 
-        String upit = "UPDATE Users SET Password = '" + novaLozinka + "' WHERE Username = '" + username + "';";
+        String upit = "UPDATE Users SET Password = '" + encrypt(novaLozinka) + "' WHERE Username = '" + username + "';";
         statement = (Statement) connection.createStatement();
         statement.executeUpdate(upit);
     }
 
     public void DodajKorisnika(String username, String password, String usertype, String ime, String prezime, String datum_rodjenja, String pol) throws SQLException {
         try {
-            String upit = "Insert into Users(username,password,usertype,ime,prezime,godina_rodjenja,pol) Values('" + username + "','" + password + "','" + usertype + "','" + ime + "','" + prezime + "','" + datum_rodjenja + "','" + pol + "')";
+            String upit = "Insert into Users(username,password,usertype,ime,prezime,godina_rodjenja,pol) Values('" + username + "','" + encrypt(password) + "','" + usertype + "','" + ime + "','" + prezime + "','" + datum_rodjenja + "','" + pol + "')";
             statement = (Statement) connection.createStatement();
             statement.executeUpdate(upit);
         } catch (Exception e) {
@@ -625,4 +634,15 @@ public class DBController {
         }
         return sp;
     }
+    
+    // Ova funkcija ni slucajno ne sme da se dira vise
+    private static String encrypt(String text) throws InvalidKeyException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, UnsupportedEncodingException {
+        String key = "Bar12345Bar12345"; // 128 bit key
+        Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+        byte[] encrypted = cipher.doFinal(text.getBytes());
+        return new String(encrypted,"UTF-8").replace("'", "X");
+    }
+  
 }

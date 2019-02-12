@@ -34,7 +34,7 @@ public class PanelProfesorMainChoice extends javax.swing.JPanel {
         });
 
         this.jTable1.setAutoCreateRowSorter(true);
-        System.out.println(rt.get(0).getRedni_broj_testa());
+        //System.out.println(rt.get(0).getRedni_broj_testa());
         rt.forEach(rezultat -> {
             Object[] row = {rezultat.getStudent(), rezultat.getId_predmeta(), rezultat.getRazred(), rezultat.getOdeljenje(), rezultat.getBroj_bodova(), rezultat.getRedni_broj_testa(), !rezultat.isOdgovor1(), !rezultat.isOdgovor2(), !rezultat.isOdgovor3(), !rezultat.isOdgovor4(), !rezultat.isOdgovor5()};
             ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);

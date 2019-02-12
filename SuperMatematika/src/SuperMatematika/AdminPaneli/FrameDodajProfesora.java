@@ -130,7 +130,7 @@ public class FrameDodajProfesora extends javax.swing.JFrame {
         jPanel1.add(txtPassword);
 
         txtUsertype.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsertype.setText("profesor");
+        txtUsertype.setText("nastavnik");
         txtUsertype.setEnabled(false);
         jPanel1.add(txtUsertype);
 

@@ -49,7 +49,6 @@ public class MainFrame extends javax.swing.JFrame {
         int height = (int) screenSize.getHeight();
         
         pnlPozadina.setSize(width, height);
-        
     }
 
     /**
