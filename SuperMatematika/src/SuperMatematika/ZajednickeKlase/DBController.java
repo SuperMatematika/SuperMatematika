@@ -540,10 +540,25 @@ public class DBController {
         return rt;
     }
 
-    public void izbrisiKorisnika(Object valueAt) throws SQLException {
+    public void izbrisiNastavnika(Object valueAt) throws SQLException {
         String user = (String) valueAt;
         try {
             String upit = "delete * from test where nastavnik='" + user + "';delete * from predmet where username_nastavnika='" + user + "';delete * from nastavnik where username='" + user + "' delete * from users where username='" + user + "'"; //'; delete from Users where username='"+user+"'"
+            // String upit="delete * from users where username='"+user+"'";
+            statement = (Statement) connection.createStatement();
+            statement.executeUpdate(upit);
+            System.out.println("Uspesno izbrisano");
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            statement.close();
+        }
+    }
+    
+    public void izbrisiUcenika(Object valueAt) throws SQLException {
+        String user = (String) valueAt;
+        try {
+            String upit = "delete * from Ocena where Username_ucenika='" + user + "'; delete * from SlusaPredmet where Username_ucenik='" + user + "';delete * from Student where Username='" + user + "' delete * from Users where username='" + user + "'"; //'; delete from Users where username='"+user+"'"
             // String upit="delete * from users where username='"+user+"'";
             statement = (Statement) connection.createStatement();
             statement.executeUpdate(upit);
