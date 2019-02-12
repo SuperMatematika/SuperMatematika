@@ -57,16 +57,13 @@ public class pnlPredavanja extends javax.swing.JPanel {
         this.MainPanel.revalidate();
         this.MainPanel.setLayout(new GridLayout(3,2,4,2));
         System.out.println(listaLekcija.size());
-        Font f = new Font("Century Gothic", Font.PLAIN, 24);
+        Font f = new Font("Century Gothic", Font.PLAIN, 30);
         for (int i = 0; i < listaLekcija.size(); i++) {
             JButton b = new JButton(listaLekcija.get(i));
-            b.setBackground(Color.white);
-            b.setBorder(BorderFactory.createLineBorder(Color.decode("#999999"), 1, false));
-            b.setForeground(Color.GRAY);
-            b.setFont(f);
-
+            b.setBackground(Color.decode("#7CBB00"));
             b.setFocusPainted(false);
-
+             b.setForeground(Color.white);
+        b.setFont(f);
             b.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     showPdf(evt);
@@ -105,13 +102,13 @@ public class pnlPredavanja extends javax.swing.JPanel {
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGap(0, 552, Short.MAX_VALUE)
         );
 
         jButton1.setBackground(new java.awt.Color(124, 187, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Nazad na predmete");
+        jButton1.setText("NAZAD NA PREDMETE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -132,7 +129,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

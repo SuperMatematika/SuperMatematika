@@ -41,13 +41,13 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
         this.MainPanel.revalidate();
         this.MainPanel.setLayout(new GridLayout(5,4,3,2));
         
-        Font f = new Font("Century Gothic", Font.PLAIN, 24);
+        Font f = new Font("Century Gothic", Font.PLAIN, 30);
         listaPredmeta.forEach(elemn->{
             JButton b = new JButton(elemn.getNazivPredmeta());
            
             b.setBorder(BorderFactory.createLineBorder(Color.decode("#999999"), 1, false));
-            b.setBackground(Color.white);
-            b.setForeground(Color.GRAY);
+           b.setBackground(Color.decode("#7CBB00"));
+            b.setForeground(Color.white);
             b.setFont(f);
             
             b.setFocusPainted(false);
