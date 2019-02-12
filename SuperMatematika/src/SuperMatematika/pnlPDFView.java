@@ -6,19 +6,14 @@
 package SuperMatematika;
 
 import java.awt.BorderLayout;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.lang.SerializationUtils;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -28,50 +23,51 @@ import org.icepdf.ri.common.SwingViewBuilder;
  * @author 1
  */
 public class pnlPDFView extends javax.swing.JPanel {
+
     private JPanel previousPanel;
     private JFrame mainFrame;
-    
-   
+
     String file;
     Student trenutniKorisnik;
     Predmet trenutniPredmet;
     String goBack;
-    SwingController control=new SwingController();
-    String path=new File("").getAbsolutePath();
+    SwingController control = new SwingController();
+    String path = new File("").getAbsolutePath();
+
     /**
      * Creates new form pnlPDFView
      */
-    public pnlPDFView(Student tr,Predmet pk,String putanja,String previous) {
-        trenutniKorisnik=tr;
-        trenutniPredmet=pk;
-        file=putanja;
-        goBack=previous;
+    public pnlPDFView(Student tr, Predmet pk, String putanja, String previous) {
+        trenutniKorisnik = tr;
+        trenutniPredmet = pk;
+        file = putanja;
+        goBack = previous;
         initComponents();
         openpdf(file);
-        }
-  
-    void openpdf(String file){
-  
-    try {
-            SwingViewBuilder factry=new SwingViewBuilder(control);
-            JPanel veiwerCompntpnl=factry.buildViewerPanel();
+    }
+
+    void openpdf(String file) {
+
+        try {
+            SwingViewBuilder factry = new SwingViewBuilder(control);
+            JPanel veiwerCompntpnl = factry.buildViewerPanel();
             ComponentKeyBinding.install(control, veiwerCompntpnl);
             control.getDocumentViewController().setAnnotationCallback(
                     new org.icepdf.ri.common.MyAnnotationCallback(
-                    control.getDocumentViewController()));
-           control.openDocument(path+file);
-        
-        this.jScrollPane1.setViewportView(veiwerCompntpnl); 
-       
-        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
-        public void adjustmentValueChanged(AdjustmentEvent e) {  
-            e.getAdjustable().setValue(50);
-        }
-    });
+                            control.getDocumentViewController()));
+            control.openDocument(path + file);
+
+            this.jScrollPane1.setViewportView(veiwerCompntpnl);
+
+            jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+                public void adjustmentValueChanged(AdjustmentEvent e) {
+                    e.getAdjustable().setValue(50);
+                }
+            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,12 +138,12 @@ public class pnlPDFView extends javax.swing.JPanel {
         this.revalidate();
         this.setLayout(new BorderLayout());
         try {
-            switch(goBack){
+            switch (goBack) {
                 case "zadaci":
-                    this.add(new pnlZadaci(trenutniKorisnik,trenutniPredmet));
+                    this.add(new pnlZadaci(trenutniKorisnik, trenutniPredmet));
                     break;
                 case "predavanja":
-                    this.add(new pnlPredavanja(trenutniKorisnik,trenutniPredmet));
+                    this.add(new pnlPredavanja(trenutniKorisnik, trenutniPredmet));
                     break;
             }
         } catch (SQLException ex) {

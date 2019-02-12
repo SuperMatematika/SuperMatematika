@@ -10,10 +10,11 @@ package SuperMatematika;
  * @author 1
  */
 public class RezultatiTesta {
-        private String student;
-        private int id_predmeta;
 
-    public RezultatiTesta(String student, String ime_predmeta, int odeljenje, int razred, int redni_broj_testa,int broj_bodova, boolean odgovor1, boolean odgovor2, boolean odgovor3, boolean odgovor4, boolean odgovor5) {
+    private String student;
+    private int id_predmeta;
+
+    public RezultatiTesta(String student, String ime_predmeta, int odeljenje, int razred, int redni_broj_testa, int broj_bodova, boolean odgovor1, boolean odgovor2, boolean odgovor3, boolean odgovor4, boolean odgovor5) {
         this.student = student;
         this.odeljenje = odeljenje;
         this.razred = razred;
@@ -26,16 +27,16 @@ public class RezultatiTesta {
         this.broj_bodova = broj_bodova;
         this.ime_predmeta = ime_predmeta;
     }
-        private int odeljenje;
-        private int razred;
-        private int redni_broj_testa;
-        private boolean odgovor1;
-        private boolean odgovor2;
-        private boolean odgovor3;
-        private boolean odgovor4;
-        private boolean odgovor5;
-        private int broj_bodova;
-        private String ime_predmeta;
+    private int odeljenje;
+    private int razred;
+    private int redni_broj_testa;
+    private boolean odgovor1;
+    private boolean odgovor2;
+    private boolean odgovor3;
+    private boolean odgovor4;
+    private boolean odgovor5;
+    private int broj_bodova;
+    private String ime_predmeta;
 
     public void setIme_predmeta(String ime_predmeta) {
         this.ime_predmeta = ime_predmeta;
@@ -44,13 +45,14 @@ public class RezultatiTesta {
     public String getIme_predmeta() {
         return ime_predmeta;
     }
+
     RezultatiTesta(String string, String aInt, int aInt0, int aInt1, int aInt2, int aInt3) {
-        student=string;
-        ime_predmeta=aInt;
-        odeljenje=aInt0;
-        razred=aInt1;
-        redni_broj_testa=aInt2;
-        broj_bodova=aInt3;
+        student = string;
+        ime_predmeta = aInt;
+        odeljenje = aInt0;
+        razred = aInt1;
+        redni_broj_testa = aInt2;
+        broj_bodova = aInt3;
     }
 
     public void setStudent(String student) {
@@ -72,8 +74,6 @@ public class RezultatiTesta {
     public void setRedni_broj_testa(int redni_broj_testa) {
         this.redni_broj_testa = redni_broj_testa;
     }
-
-   
 
     public void setBroj_bodova(int broj_bodova) {
         this.broj_bodova = broj_bodova;

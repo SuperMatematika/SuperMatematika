@@ -14,16 +14,15 @@ import java.sql.SQLException;
  */
 public class UcenikPodaciPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form UcenikPodaciPanel
-     */
     Student trenutniKorisnik;
+
     public UcenikPodaciPanel(Student tk) {
-        trenutniKorisnik=tk;
+        trenutniKorisnik = tk;
         initComponents();
         popuniLabele();
     }
-      /*private void popuniLabele() {
+
+    /*private void popuniLabele() {
         lUsername.setText(trenutniKorisnik.username);
         lIme.setText(trenutniKorisnik.ime);
         lPrezime.setText(trenutniKorisnik.prezime);
@@ -34,18 +33,16 @@ public class UcenikPodaciPanel extends javax.swing.JPanel {
             lRazredIliFakultet.setText(((Student)trenutniKorisnik).getRazred() + "");
             // Umesto razred treba da pise fakultet
           
-      */  
+     */
     private void popuniLabele() {
         lUsername1.setText(trenutniKorisnik.username);
         lIme1.setText(trenutniKorisnik.ime);
         lPrezime1.setText(trenutniKorisnik.prezime);
         lDatumRodjenja1.setText(trenutniKorisnik.datumRodjenja.toString());
         lPol1.setText(trenutniKorisnik.pol);
-        
+
         // Za student se pamti razred dok se za nastavnika pamti njegov fakultet
-           
-          
-        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

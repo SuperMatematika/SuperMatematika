@@ -22,50 +22,49 @@ public class AdminMainChoiceView extends javax.swing.JPanel {
      */
     public AdminMainChoiceView() {
         initComponents();
-         popuniTabeluProfesor();
+        popuniTabeluProfesor();
         popuniTabeluStudenti();
         popuniTabeluTestovi();
     }
-   public void popuniTabeluProfesor()
-   {
-       
-       String upit="Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username";
-         try {
+
+    public void popuniTabeluProfesor() {
+
+        String upit = "Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Nastavnik.fakultet from Users,Nastavnik where Users.username=Nastavnik.username";
+        try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Username"), rezultat.getString("Ime"), rezultat.getString("Prezime"),rezultat.getString("Godina_rodjenja"),rezultat.getString("Pol"),rezultat.getString("fakultet")}
-                        ;
+            while (rezultat.next()) {
+                Object[] row = {rezultat.getString("Username"), rezultat.getString("Ime"), rezultat.getString("Prezime"), rezultat.getString("Godina_rodjenja"), rezultat.getString("Pol"), rezultat.getString("fakultet")};
                 ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
             }
         } catch (SQLException ex) {
             System.out.println(ex);
             Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-   }
-       public void popuniTabeluStudenti()
-   {
-        String upit="Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Student.Razred,Student.Odeljenje from Users,Student where Users.username=Student.username";
-         try {
+    }
+
+    public void popuniTabeluStudenti() {
+        String upit = "Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Student.Razred,Student.Odeljenje from Users,Student where Users.username=Student.username";
+        try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Username"), rezultat.getString("Ime"), rezultat.getString("Prezime"),rezultat.getString("Godina_rodjenja"),rezultat.getString("Pol"),rezultat.getString("Razred"),rezultat.getString("Odeljenje")}
-                        ;
+            while (rezultat.next()) {
+                Object[] row = {rezultat.getString("Username"), rezultat.getString("Ime"), rezultat.getString("Prezime"), rezultat.getString("Godina_rodjenja"), rezultat.getString("Pol"), rezultat.getString("Razred"), rezultat.getString("Odeljenje")};
                 ((DefaultTableModel) jTable2.getModel()).insertRow(0, row);
             }
         } catch (SQLException ex) {
             System.out.println(ex);
             Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-   }
-        private void popuniTabeluTestovi() {
-      
+    }
+
+    private void popuniTabeluTestovi() {
+
         String upit = "SELECT *FROM Predmet INNER JOIN (Student INNER JOIN Rezultati_testa ON Student.username = Rezultati_testa.student) ON Predmet.id_predmeta = Rezultati_testa.predmet;";
-        
+
         System.out.println(upit);
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Username"), rezultat.getString("Naziv"), rezultat.getInt("Razred"), rezultat.getInt("Odeljenje"),
+            while (rezultat.next()) {
+                Object[] row = {rezultat.getString("Username"), rezultat.getString("Naziv"), rezultat.getInt("Razred"), rezultat.getInt("Odeljenje"),
                     rezultat.getInt("broj_bodova"), rezultat.getBoolean("odgovor1"), rezultat.getBoolean("odgovor2"), rezultat.getBoolean("odgovor3"),
                     rezultat.getBoolean("odgovor4"), rezultat.getBoolean("odgovor5"), rezultat.getInt("redni_broj_testa")};
                 ((DefaultTableModel) jTable3.getModel()).insertRow(0, row);
@@ -75,6 +74,7 @@ public class AdminMainChoiceView extends javax.swing.JPanel {
             Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -17,27 +17,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelSviStudenti extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelSviStudenti
-     */
     public PanelSviStudenti() {
         initComponents();
         popuniTabelu();
     }
    public void popuniTabelu()
    {
-        String upit="Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Student.Razred,Student.Odeljenje from Users,Student where Users.username=Student.username";
-         try {
-            ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Username"), rezultat.getString("Ime"), rezultat.getString("Prezime"),rezultat.getString("Godina_rodjenja"),rezultat.getString("Pol"),rezultat.getString("Razred"),rezultat.getString("Odeljenje")}
-                        ;
-                ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       String upit = "Select Users.username,Users.ime,Users.prezime,Users.godina_rodjenja,Users.pol,Student.Razred,Student.Odeljenje from Users,Student where Users.username=Student.username";
+       try {
+           ResultSet rezultat = DBController.require().submitQuery(upit);
+           while (rezultat.next()) {
+               Object[] row = {rezultat.getString("Username"), rezultat.getString("Ime"), rezultat.getString("Prezime"), rezultat.getString("Godina_rodjenja"), rezultat.getString("Pol"), rezultat.getString("Razred"), rezultat.getString("Odeljenje")};
+               ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
+           }
+       } catch (SQLException ex) {
+           System.out.println(ex);
+           Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
+       }
    }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,8 +136,7 @@ public class PanelSviStudenti extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIzbrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzbrisiActionPerformed
-        // TODO add your handling code here:
-          int niz[]=new int[this.jTable1.getSelectedRowCount()];
+        int niz[]=new int[this.jTable1.getSelectedRowCount()];
         niz=this.jTable1.getSelectedRows();
         for(int i=0;i<niz.length;i++){
             try {
@@ -154,7 +149,6 @@ public class PanelSviStudenti extends javax.swing.JPanel {
     }//GEN-LAST:event_btnIzbrisiActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        // TODO add your handling code here:
         FrameDodajStudenta fds= new FrameDodajStudenta();
         fds.setVisible(true);
     }//GEN-LAST:event_btnDodajActionPerformed

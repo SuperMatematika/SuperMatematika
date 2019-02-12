@@ -8,12 +8,9 @@ package SuperMatematika;
 import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,12 +19,13 @@ import javax.swing.table.DefaultTableModel;
 public class pnlOdabirTesta extends javax.swing.JPanel {
 
     private Student trenutniKorisnik;
+
     public pnlOdabirTesta(Student k) {
         trenutniKorisnik = k;
-        
+
         initComponents();
         popuniCBPredmeti();
-         
+
     }
 
     /**
@@ -123,27 +121,26 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
 
     private void btnZapocniTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZapocniTestActionPerformed
         if (cbRedniBrojTesta.getItemCount() != 0) {
-            int ID_predmeta = Integer.parseInt(((ComboItem)cbPredmet.getSelectedItem()).getValue());
+            int ID_predmeta = Integer.parseInt(((ComboItem) cbPredmet.getSelectedItem()).getValue());
             int redniBrojTesta = Integer.parseInt(cbRedniBrojTesta.getSelectedItem().toString());
-            pnlTest newPnl=new pnlTest(trenutniKorisnik, ID_predmeta, redniBrojTesta);
+            pnlTest newPnl = new pnlTest(trenutniKorisnik, ID_predmeta, redniBrojTesta);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
             this.add(newPnl);
-        }
-        else
-            JOptionPane.showMessageDialog(this, "Nema testova za dati predmet");         
+        } else
+            JOptionPane.showMessageDialog(this, "Nema testova za dati predmet");
     }//GEN-LAST:event_btnZapocniTestActionPerformed
 
     private void cbPredmetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPredmetActionPerformed
         cbRedniBrojTesta.removeAllItems();
-        
-        String upit =  "SELECT redni_broj_testa FROM Test WHERE predmet = " + ((ComboItem)cbPredmet.getSelectedItem()).getValue() +
-                " AND razred = " + trenutniKorisnik.getRazred() + ";";
-        
+
+        String upit = "SELECT redni_broj_testa FROM Test WHERE predmet = " + ((ComboItem) cbPredmet.getSelectedItem()).getValue()
+                + " AND razred = " + trenutniKorisnik.getRazred() + ";";
+
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
+            while (rezultat.next()) {
                 cbRedniBrojTesta.addItem(rezultat.getString("redni_broj_testa"));
             }
         } catch (SQLException ex) {
@@ -165,12 +162,12 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void popuniCBPredmeti() {
-        String upit = "SELECT Predmet.Naziv, Predmet.ID_predmeta " +
-                      "FROM Users INNER JOIN ((Nastavnik INNER JOIN Predmet ON Nastavnik.username = Predmet.Username_nastavnika) INNER JOIN SlusaPredmet ON Predmet.ID_predmeta = SlusaPredmet.ID_predmeta) ON Users.Username = Nastavnik.username\n" +
-                      "WHERE SlusaPredmet.Username_ucenik=\"" + trenutniKorisnik.getUsername() + "\";";
-         try {
+        String upit = "SELECT Predmet.Naziv, Predmet.ID_predmeta "
+                + "FROM Users INNER JOIN ((Nastavnik INNER JOIN Predmet ON Nastavnik.username = Predmet.Username_nastavnika) INNER JOIN SlusaPredmet ON Predmet.ID_predmeta = SlusaPredmet.ID_predmeta) ON Users.Username = Nastavnik.username\n"
+                + "WHERE SlusaPredmet.Username_ucenik=\"" + trenutniKorisnik.getUsername() + "\";";
+        try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
+            while (rezultat.next()) {
                 cbPredmet.addItem(new ComboItem(rezultat.getString("Naziv"), rezultat.getString("ID_predmeta")));
             }
         } catch (SQLException ex) {
@@ -178,33 +175,28 @@ public class pnlOdabirTesta extends javax.swing.JPanel {
             Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     // Mala pomocna klasa, mozda bolje da je u posebnom fajlu
-    class ComboItem
-    {
+    class ComboItem {
+
         private String key;
         private String value;
 
-        public ComboItem(String key, String value)
-        {
+        public ComboItem(String key, String value) {
             this.key = key;
             this.value = value;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return key;
         }
 
-        public String getKey()
-        {
+        public String getKey() {
             return key;
         }
 
-        public String getValue()
-        {
+        public String getValue() {
             return value;
         }
     }

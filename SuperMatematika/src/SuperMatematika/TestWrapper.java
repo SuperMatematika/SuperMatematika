@@ -10,6 +10,7 @@ package SuperMatematika;
  * @author 1
  */
 public class TestWrapper {
+
     private String nastavnik;
     private int id_predmeta;
     private int razred;
@@ -23,7 +24,6 @@ public class TestWrapper {
     public void setNastavnik(String nastavnik) {
         this.nastavnik = nastavnik;
     }
-
 
     public void setRazred(int razred) {
         this.razred = razred;
@@ -52,7 +52,6 @@ public class TestWrapper {
     public String getNastavnik() {
         return nastavnik;
     }
-
 
     public int getRazred() {
         return razred;

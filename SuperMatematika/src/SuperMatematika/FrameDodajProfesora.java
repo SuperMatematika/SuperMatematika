@@ -16,29 +16,24 @@ import javax.swing.JOptionPane;
  */
 public class FrameDodajProfesora extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrameDodajProfesora
-     */
     public FrameDodajProfesora() throws SQLException {
         initComponents();
-       
     }
-    public void DodajProfesora() throws SQLException
-           
-    {    int i=Integer.parseInt(this.txtRazred.getText());
-        if(!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("")){
-        DBController.require().DodajKorisnika(this.txtUsername.getText(), this.txtPassword.getText(), this.txtUsertype.getText(), this.txtIme.getText(), this.txtPrezime.getText(), this.txtDatumRodj.getText(), this.txtPol.getText());
-     
-        DBController.require().DodajProfesora(this.txtUsername.getText(), this.txtFakultet.getText());
-        DBController.require().ProfesorPredaje(this.txtPredmet.getText(), this.txtUsername.getText(),i);
-    } else{
-        JOptionPane.showMessageDialog(null, "Niste popunili sva polja");
+
+    public void DodajProfesora() throws SQLException {
+        int i = Integer.parseInt(this.txtRazred.getText());
+        if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("")) {
+            DBController.require().DodajKorisnika(this.txtUsername.getText(), this.txtPassword.getText(), this.txtUsertype.getText(), this.txtIme.getText(), this.txtPrezime.getText(), this.txtDatumRodj.getText(), this.txtPol.getText());
+            DBController.require().DodajProfesora(this.txtUsername.getText(), this.txtFakultet.getText());
+            DBController.require().ProfesorPredaje(this.txtPredmet.getText(), this.txtUsername.getText(), i);
+        } else {
+            JOptionPane.showMessageDialog(null, "Niste popunili sva polja");
+        }
     }
-    }
-    public void najveciId() throws SQLException
-    {
-       long rezultat = DBController.require().getIdPredmeta();
-        JOptionPane.showMessageDialog(null,rezultat);
+
+    public void najveciId() throws SQLException {
+        long rezultat = DBController.require().getIdPredmeta();
+        JOptionPane.showMessageDialog(null, rezultat);
     }
 
     /**
@@ -275,7 +270,6 @@ public class FrameDodajProfesora extends javax.swing.JFrame {
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
         try {
-            // TODO add your handling code here:
             DodajProfesora();
         } catch (SQLException ex) {
             Logger.getLogger(FrameDodajProfesora.class.getName()).log(Level.SEVERE, null, ex);

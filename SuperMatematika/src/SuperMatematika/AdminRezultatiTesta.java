@@ -17,9 +17,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdminRezultatiTesta extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdminRezultatiTesta
-     */
     public AdminRezultatiTesta() {
         initComponents();
         popuniTabelu();
@@ -29,12 +26,12 @@ public class AdminRezultatiTesta extends javax.swing.JPanel {
     private void popuniTabelu() {
       
         String upit = "SELECT *FROM Predmet INNER JOIN (Student INNER JOIN Rezultati_testa ON Student.username = Rezultati_testa.student) ON Predmet.id_predmeta = Rezultati_testa.predmet;";
-        
+
         System.out.println(upit);
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Username"), rezultat.getString("Naziv"), rezultat.getInt("Razred"), rezultat.getInt("Odeljenje"),
+            while (rezultat.next()) {
+                Object[] row = {rezultat.getString("Username"), rezultat.getString("Naziv"), rezultat.getInt("Razred"), rezultat.getInt("Odeljenje"),
                     rezultat.getInt("broj_bodova"), rezultat.getBoolean("odgovor1"), rezultat.getBoolean("odgovor2"), rezultat.getBoolean("odgovor3"),
                     rezultat.getBoolean("odgovor4"), rezultat.getBoolean("odgovor5"), rezultat.getInt("redni_broj_testa")};
                 ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);

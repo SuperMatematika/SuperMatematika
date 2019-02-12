@@ -11,9 +11,6 @@ package SuperMatematika;
  */
 public class ProfesorViewLeft extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ProfesorViewLeft
-     */
     public ProfesorViewLeft() {
         initComponents();
     }

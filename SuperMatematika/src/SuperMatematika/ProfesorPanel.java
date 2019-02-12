@@ -18,9 +18,10 @@ public class ProfesorPanel extends javax.swing.JPanel {
      * Creates new form ProfesorPanel
      */
     Profesor trenutniKorisnik;
+
     public ProfesorPanel(Profesor tk) {
         initComponents();
-         trenutniKorisnik=tk;
+        trenutniKorisnik = tk;
         initComponents();
         ProfesorPodaci newPnl = new ProfesorPodaci(trenutniKorisnik);
         this.pnlMainContent.removeAll();

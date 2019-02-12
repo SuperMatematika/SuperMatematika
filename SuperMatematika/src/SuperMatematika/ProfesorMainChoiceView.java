@@ -14,30 +14,28 @@ import javax.swing.table.DefaultTableModel;
  * @author Melida
  */
 public class ProfesorMainChoiceView extends javax.swing.JPanel {
- Profesor trenutniKorisnik;
-    ArrayList<Predmet> listaPredmeta=new ArrayList();
+
+    Profesor trenutniKorisnik;
+    ArrayList<Predmet> listaPredmeta = new ArrayList();
     ArrayList<RezultatiTesta> rt;
-    /**
-     * Creates new form ProfesorMainChoiceView
-     */
+
     public ProfesorMainChoiceView(Profesor tk) throws SQLException {
-         trenutniKorisnik=tk;
-           rt=DBController.require().getRezultati(trenutniKorisnik);
+        trenutniKorisnik = tk;
+        rt = DBController.require().getRezultati(trenutniKorisnik);
         initComponents();
-         listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
-       
-        listaPredmeta.forEach(e->{
-            System.out.println(e.getNazivPredmeta());  
+        listaPredmeta = DBController.require().getProfPredmeti(trenutniKorisnik);
+
+        listaPredmeta.forEach(e -> {
+            System.out.println(e.getNazivPredmeta());
         });
-       
-          this.jTable1.setAutoCreateRowSorter(true);
+
+        this.jTable1.setAutoCreateRowSorter(true);
         System.out.println(rt.get(0).getRedni_broj_testa());
-        rt.forEach(rezultat-> {
-                Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.getRedni_broj_testa(), !rezultat.isOdgovor1(),!rezultat.isOdgovor2(),!rezultat.isOdgovor3(),!rezultat.isOdgovor4(),!rezultat.isOdgovor5()};
-                ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
-            });
+        rt.forEach(rezultat -> {
+            Object[] row = {rezultat.getStudent(), rezultat.getId_predmeta(), rezultat.getRazred(), rezultat.getOdeljenje(), rezultat.getBroj_bodova(), rezultat.getRedni_broj_testa(), !rezultat.isOdgovor1(), !rezultat.isOdgovor2(), !rezultat.isOdgovor3(), !rezultat.isOdgovor4(), !rezultat.isOdgovor5()};
+            ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
+        });
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,12 +136,12 @@ public class ProfesorMainChoiceView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ProfesorBiraFajl pbf=new ProfesorBiraFajl(this.listaPredmeta,"lekcija");
+        ProfesorBiraFajl pbf = new ProfesorBiraFajl(this.listaPredmeta, "lekcija");
         pbf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ProfesorBiraFajl pbf=new ProfesorBiraFajl(this.listaPredmeta,"vezbe");
+        ProfesorBiraFajl pbf = new ProfesorBiraFajl(this.listaPredmeta, "vezbe");
         pbf.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 

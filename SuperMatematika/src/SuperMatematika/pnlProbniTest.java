@@ -5,23 +5,18 @@
  */
 package SuperMatematika;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 /**
  *
  * @author 1
  */
 public class pnlProbniTest extends javax.swing.JPanel {
+
     Student trenutniKorisnik;
+
     public pnlProbniTest(Student tr) {
-        trenutniKorisnik=tr;
-        
+        trenutniKorisnik = tr;
         initComponents();
-        
+
     }
 
     /**

@@ -7,24 +7,13 @@ package SuperMatematika;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import static javax.swing.text.StyleConstants.Bold;
-import static javax.swing.text.StyleConstants.Size;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
 
 /**
  *
@@ -32,21 +21,18 @@ import javax.swing.UIManager;
  */
 public class pnlPredavanja extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlPredavanja
-     */
     Student trenutniKorisnik;
     Predmet trenutniPredmet;
     ArrayList<String> listaPutanja = new ArrayList();
     ArrayList<String> listaLekcija = new ArrayList();
     ArrayList<JButton> listaButtona = new ArrayList();
 
-    public pnlPredavanja(Student tk,Predmet pk) throws SQLException {
-        trenutniPredmet=pk;
-        trenutniKorisnik=tk;
+    public pnlPredavanja(Student tk, Predmet pk) throws SQLException {
+        trenutniPredmet = pk;
+        trenutniKorisnik = tk;
         initComponents();
-        listaPutanja=DBController.require().getPutanjeOblasti("Lekcija",pk.getId());
-        listaLekcija=DBController.require().getOblasti("Lekcija",pk.getId());
+        listaPutanja = DBController.require().getPutanjeOblasti("Lekcija", pk.getId());
+        listaLekcija = DBController.require().getOblasti("Lekcija", pk.getId());
         createForm();
 //        loadLekcije();
 
@@ -55,15 +41,15 @@ public class pnlPredavanja extends javax.swing.JPanel {
     private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
-        this.MainPanel.setLayout(new GridLayout(3,2,4,2));
+        this.MainPanel.setLayout(new GridLayout(3, 2, 4, 2));
         System.out.println(listaLekcija.size());
         Font f = new Font("Century Gothic", Font.PLAIN, 30);
         for (int i = 0; i < listaLekcija.size(); i++) {
             JButton b = new JButton(listaLekcija.get(i));
             b.setBackground(Color.decode("#7CBB00"));
             b.setFocusPainted(false);
-             b.setForeground(Color.white);
-        b.setFont(f);
+            b.setForeground(Color.white);
+            b.setFont(f);
             b.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     showPdf(evt);
@@ -78,7 +64,6 @@ public class pnlPredavanja extends javax.swing.JPanel {
         }
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,18 +120,18 @@ public class pnlPredavanja extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         pnlBirajPredmet newPnl;
-       try {
-            newPnl = new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniKorisnik.getRazred()),"predavanja");
+        pnlBirajPredmet newPnl;
+        try {
+            newPnl = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(trenutniKorisnik.getRazred()), "predavanja");
 //            newPnl = new pnlBirajRazred(trenutniKorisnik,"predavanja");
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
             this.add(newPnl);
-            
-       } catch (Exception ex) {
-           Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
-       }
+
+        } catch (Exception ex) {
+            Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void showPdf(java.awt.event.ActionEvent evt) {
@@ -157,7 +142,7 @@ public class pnlPredavanja extends javax.swing.JPanel {
                 break;
             }
         }
-        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik,trenutniPredmet,putanja, "predavanja");
+        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik, trenutniPredmet, putanja, "predavanja");
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());

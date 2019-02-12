@@ -44,10 +44,7 @@ public class PanelSviProfesori extends javax.swing.JPanel {
         }
    }
    public void izbrisiIzTabele() throws SQLException
-   {
-       
-           
-      
+   {   
    }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,7 +190,6 @@ public class PanelSviProfesori extends javax.swing.JPanel {
 
     private void btnIzbrisiClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIzbrisiClick
         try {
-            // TODO add your handling code here:
             izbrisiIzTabele();
         } catch (SQLException ex) {
             Logger.getLogger(PanelSviProfesori.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,7 +197,6 @@ public class PanelSviProfesori extends javax.swing.JPanel {
     }//GEN-LAST:event_btnIzbrisiClick
 
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
-        // TODO add your handling code here:
         PanelSviProfesori newPnl = new PanelSviProfesori();
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
@@ -210,7 +205,6 @@ public class PanelSviProfesori extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPrikaziActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        // TODO add your handling code here:
        FrameDodajProfesora fds;
         try {
             fds = new FrameDodajProfesora();

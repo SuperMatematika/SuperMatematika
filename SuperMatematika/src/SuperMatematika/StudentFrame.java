@@ -26,35 +26,32 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Melida
  */
 public class StudentFrame extends javax.swing.JFrame {
+
     Student trenutniKorisnik;
 
     public StudentFrame(Korisnik k) throws SQLException {
         initComponents();
-        
-        this.trenutniKorisnik=new Student(k);
+
+        this.trenutniKorisnik = new Student(k);
         System.out.println(trenutniKorisnik);
         trenutniKorisnik.setRazred(DBController.require().getRazred(trenutniKorisnik));
         trenutniKorisnik.setOdeljenje(DBController.require().getOdeljenje(trenutniKorisnik));
-        
-        
+
         System.out.println(trenutniKorisnik.getIme());
-        this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
-        
+        this.imePrezime.setText(trenutniKorisnik.getIme() + " " + trenutniKorisnik.getPrezime());
+
         mainChoiceView newPnl = new mainChoiceView(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        
+
         setNav();
-        
-        
+
         System.out.println(trenutniKorisnik.getRazred() + " - " + trenutniKorisnik.getOdeljenje());
     }
 
-
 //    
-
     public void setNav() {
         //create the root node
         DefaultMutableTreeNode category = new DefaultMutableTreeNode("Navigacija");
@@ -67,18 +64,17 @@ public class StudentFrame extends javax.swing.JFrame {
         category1.add(category1_2);
         category.add(category1);
         DefaultTreeModel defaultTreeModel = new DefaultTreeModel(category);
-        
 
     }
 
     public void hoverButton(JButton b) {
         b.setBackground(Color.decode("#00A1F1"));
-        
+
     }
 
     public void hoverButtonExit(JButton b) {
         b.setBackground(Color.decode("#0073AD"));
-       
+
     }
 
     /**
@@ -392,7 +388,7 @@ public class StudentFrame extends javax.swing.JFrame {
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        
+
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
@@ -400,7 +396,6 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HoverHandler
 
     private void HoverLeave(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverLeave
-        // TODO add your handling code here:
         hoverButtonExit((JButton) evt.getSource());
     }//GEN-LAST:event_HoverLeave
 
@@ -416,61 +411,54 @@ public class StudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void btnOceneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOceneActionPerformed
-       
-        // TODO add your handling code here:
         OcenePanel newPnl = new OcenePanel(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-   
+
     }//GEN-LAST:event_btnOceneActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-         mainChoiceView main;
+        mainChoiceView main;
         try {
             main = new mainChoiceView(trenutniKorisnik);
             this.pnlMainContent.removeAll();
             this.pnlMainContent.revalidate();
             this.pnlMainContent.setLayout(new BorderLayout());
             this.pnlMainContent.add(main);
-            
-            
+
         } catch (Exception ex) {
 
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPredmetiActionPerformed
-        // TODO add your handling code here:
-        UcenikPredmetiPanel newPnl= new UcenikPredmetiPanel(trenutniKorisnik);
+        UcenikPredmetiPanel newPnl = new UcenikPredmetiPanel(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        
+
     }//GEN-LAST:event_btnPredmetiActionPerformed
 
     private void btnPodesavanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodesavanjaActionPerformed
-        // TODO add your handling code here:
-        PanelPromenaLozinke newPnl= new PanelPromenaLozinke(trenutniKorisnik);
+        PanelPromenaLozinke newPnl = new PanelPromenaLozinke(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-        
+
     }//GEN-LAST:event_btnPodesavanjaActionPerformed
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
-        // TODO add your handling code here:
-        pnlOdabirTesta newPnl=new pnlOdabirTesta(trenutniKorisnik);
-         this.pnlMainContent.removeAll();
+        pnlOdabirTesta newPnl = new pnlOdabirTesta(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-      
+
     }//GEN-LAST:event_btnTestActionPerformed
 
     private void btnTest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest3ActionPerformed

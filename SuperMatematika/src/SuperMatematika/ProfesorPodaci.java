@@ -11,27 +11,25 @@ package SuperMatematika;
  */
 public class ProfesorPodaci extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ProfesorPodaci
-     */
     Profesor trenutniKorisnik;
+
     public ProfesorPodaci(Profesor tk) {
-       
-         trenutniKorisnik=tk;
+
+        trenutniKorisnik = tk;
         initComponents();
         popuniLabele();
     }
-private void popuniLabele() {
+
+    private void popuniLabele() {
         lUsername.setText(trenutniKorisnik.username);
         lIme.setText(trenutniKorisnik.ime);
         lPrezime.setText(trenutniKorisnik.prezime);
         lDatumRodjenja.setText(trenutniKorisnik.datumRodjenja.toString());
         lPol.setText(trenutniKorisnik.pol);
-        
+
         // Za student se pamti razred dok se za nastavnika pamti njegov fakultet
-           
-          
-        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

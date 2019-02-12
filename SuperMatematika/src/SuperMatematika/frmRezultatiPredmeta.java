@@ -20,24 +20,21 @@ import javax.swing.table.TableRowSorter;
  */
 public class frmRezultatiPredmeta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmRezultatiPredmeta
-     */
     Profesor trenutniKorisnik;
     ArrayList<RezultatiTesta> rez;
     TestWrapper izabraniPodaci;
     ArrayList<Predmet> listaPredmeta;
-    public frmRezultatiPredmeta(){
+
+    public frmRezultatiPredmeta() {
         initComponents();
-      
+
     }
 
-
     frmRezultatiPredmeta(Profesor trenutniKorisnik, TestWrapper newTest) throws SQLException {
-        this.trenutniKorisnik=trenutniKorisnik;
-        izabraniPodaci=newTest;
+        this.trenutniKorisnik = trenutniKorisnik;
+        izabraniPodaci = newTest;
         initComponents();
-           filterby.removeAllItems();
+        filterby.removeAllItems();
         filterby.addItem("Ime");
         filterby.addItem("Predmet");
         filterby.addItem("Razred");
@@ -45,34 +42,34 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
         filterby.addItem("redni_broj_testa");
         filterby.addItem("broj_bodova");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        rez=DBController.require().statistika(trenutniKorisnik,newTest);
+        rez = DBController.require().statistika(trenutniKorisnik, newTest);
         System.out.println(rez.size());
-        if(rez.size()>0){
-        rez.forEach(rezultat-> {
-                Object[] row = { rezultat.getStudent(),rezultat.getIme_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getRedni_broj_testa(),rezultat.getBroj_bodova(),!rezultat.isOdgovor1(),!rezultat.isOdgovor2(),!rezultat.isOdgovor3(),!rezultat.isOdgovor4(),!rezultat.isOdgovor5()};
+        if (rez.size() > 0) {
+            rez.forEach(rezultat -> {
+                Object[] row = {rezultat.getStudent(), rezultat.getIme_predmeta(), rezultat.getRazred(), rezultat.getOdeljenje(), rezultat.getRedni_broj_testa(), rezultat.getBroj_bodova(), !rezultat.isOdgovor1(), !rezultat.isOdgovor2(), !rezultat.isOdgovor3(), !rezultat.isOdgovor4(), !rezultat.isOdgovor5()};
                 ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
             });
-        
-        float sum=0;
-        int max=0;
-        int index=0;
-        for(int i=0;i<jTable1.getRowCount();i++){
-            sum+=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
-            if((Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"))>=max){
-                max=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
-                index=i;
+
+            float sum = 0;
+            int max = 0;
+            int index = 0;
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                sum += (Integer) this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+                if ((Integer) this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova")) >= max) {
+                    max = (Integer) this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+                    index = i;
+                }
             }
-        }
-        sum/=jTable1.getRowCount();
-        this.jLabel2.setText(String.valueOf(sum)+"/100");
-        this.jLabel4.setText(String.valueOf(max)+"/100");
-        this.jLabel6.setText(String.valueOf(this.jTable1.getModel().getValueAt(index, jTable1.getColumnModel().getColumnIndex("Ime"))));
-        }else{
+            sum /= jTable1.getRowCount();
+            this.jLabel2.setText(String.valueOf(sum) + "/100");
+            this.jLabel4.setText(String.valueOf(max) + "/100");
+            this.jLabel6.setText(String.valueOf(this.jTable1.getModel().getValueAt(index, jTable1.getColumnModel().getColumnIndex("Ime"))));
+        } else {
             JOptionPane.showMessageDialog(null, "Nema trazenih podataka.");
-            
-        this.jLabel2.setText(String.valueOf(0));
-        this.jLabel4.setText(String.valueOf(0));
-        this.jLabel6.setText("");
+
+            this.jLabel2.setText(String.valueOf(0));
+            this.jLabel4.setText(String.valueOf(0));
+            this.jLabel6.setText("");
         }
     }
 
@@ -290,37 +287,37 @@ public class frmRezultatiPredmeta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-     
+
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-         evt.getWindow().setVisible(false);
+        evt.getWindow().setVisible(false);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         this.filterTable.setText("");
+        this.filterTable.setText("");
         this.jButton1.doClick();
-   
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TableRowSorter<TableModel> sorter=new TableRowSorter<TableModel>(((DefaultTableModel)jTable1.getModel()));
-        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText(),filterby.getSelectedIndex()));
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
+        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText(), filterby.getSelectedIndex()));
         jTable1.setRowSorter(sorter);
-         float sum=0;
-        int max=0;
-        int index=0;
-        for(int i=0;i<jTable1.getRowCount();i++){
-            sum+=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
-            if((Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"))>=max){
-                max=(Integer)this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
-                index=i;
+        float sum = 0;
+        int max = 0;
+        int index = 0;
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            sum += (Integer) this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+            if ((Integer) this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova")) >= max) {
+                max = (Integer) this.jTable1.getModel().getValueAt(i, jTable1.getColumnModel().getColumnIndex("broj_bodova"));
+                index = i;
             }
         }
-        sum/=jTable1.getRowCount();
-        this.jLabel2.setText(String.valueOf(sum)+"/100");
-        this.jLabel4.setText(String.valueOf(max)+"/100");
+        sum /= jTable1.getRowCount();
+        this.jLabel2.setText(String.valueOf(sum) + "/100");
+        this.jLabel4.setText(String.valueOf(max) + "/100");
         this.jLabel6.setText(String.valueOf(this.jTable1.getModel().getValueAt(index, jTable1.getColumnModel().getColumnIndex("Ime"))));
     }//GEN-LAST:event_jButton1ActionPerformed
 

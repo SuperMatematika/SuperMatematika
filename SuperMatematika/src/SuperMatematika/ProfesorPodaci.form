@@ -44,38 +44,39 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblIme" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-                  <Component id="lIme" min="-2" pref="90" max="-2" attributes="0"/>
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="lPrezime" min="-2" pref="170" max="-2" attributes="0"/>
-              </Group>
               <Component id="jSeparator1" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblUsername" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
-                  <Component id="lUsername" min="-2" pref="90" max="-2" attributes="0"/>
-              </Group>
               <Component id="jSeparator2" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblDatumRodjenja" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
-                  <Component id="lDatumRodjenja" min="-2" pref="130" max="-2" attributes="0"/>
-              </Group>
               <Component id="jSeparator4" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblPol" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
-                  <Component id="lPol" min="-2" pref="80" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jSeparator7" pref="701" max="32767" attributes="0"/>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lblIme" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
+                          <Component id="lIme" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="lPrezime" min="-2" pref="170" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lblUsername" min="-2" pref="70" max="-2" attributes="0"/>
+                          <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+                          <Component id="lUsername" min="-2" pref="90" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lblDatumRodjenja" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
+                          <Component id="lDatumRodjenja" min="-2" pref="130" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lblPol" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
+                          <Component id="lPol" min="-2" pref="80" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>

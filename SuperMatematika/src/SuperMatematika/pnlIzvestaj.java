@@ -18,28 +18,25 @@ import javax.swing.JRadioButton;
  */
 public class pnlIzvestaj extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlIzvestaj
-     */
     ArrayList<RezultatiTesta> rt;
     Profesor trenutniKorisnik;
-    
+
     ArrayList<Predmet> listaPredmeta;
-    ArrayList<JRadioButton> RBlistaRazreda=new ArrayList();
-    ArrayList<JRadioButton> RBListaOdeljenja=new ArrayList();
-    ArrayList<JRadioButton> RBlistaPredmeta=new ArrayList();
-    ArrayList<JRadioButton> RBlistaBrojTestova=new ArrayList();
-    
+    ArrayList<JRadioButton> RBlistaRazreda = new ArrayList();
+    ArrayList<JRadioButton> RBListaOdeljenja = new ArrayList();
+    ArrayList<JRadioButton> RBlistaPredmeta = new ArrayList();
+    ArrayList<JRadioButton> RBlistaBrojTestova = new ArrayList();
+
     public pnlIzvestaj(Profesor tk) throws SQLException {
-        trenutniKorisnik=tk;
-         listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
-        rt=DBController.require().getRezultati(trenutniKorisnik);
+        trenutniKorisnik = tk;
+        listaPredmeta = DBController.require().getProfPredmeti(trenutniKorisnik);
+        rt = DBController.require().getRezultati(trenutniKorisnik);
         initComponents();
-         RBlistaRazreda.add(this.jRadioButton1);
+        RBlistaRazreda.add(this.jRadioButton1);
         RBlistaRazreda.add(this.jRadioButton3);
         RBlistaRazreda.add(this.jRadioButton2);
         RBlistaRazreda.add(this.jRadioButton4);
-        
+
         RBListaOdeljenja.add(this.jRadioButton5);
         RBListaOdeljenja.add(this.jRadioButton7);
         RBListaOdeljenja.add(this.jRadioButton6);
@@ -50,16 +47,16 @@ public class pnlIzvestaj extends javax.swing.JPanel {
         RBlistaBrojTestova.add(this.jRadioButton11);
         RBlistaBrojTestova.add(this.jRadioButton12);
         RBlistaBrojTestova.add(this.sviTestovi);
-        listaPredmeta.forEach(e->{
+        listaPredmeta.forEach(e -> {
             RBlistaPredmeta.add(new JRadioButton(e.getNazivPredmeta()));
         });
         this.pnlPredmeti.removeAll();
         this.pnlPredmeti.revalidate();
         this.pnlPredmeti.setLayout(new FlowLayout());
-        RBlistaPredmeta.forEach(e->{
+        RBlistaPredmeta.forEach(e -> {
             System.out.println(e.getText());
             this.btnPredmetiGroup.add(e);
-           
+
             this.pnlPredmeti.add(e);
         });
     }
@@ -434,54 +431,55 @@ public class pnlIzvestaj extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
-        TestWrapper newTest=new TestWrapper();
+        TestWrapper newTest = new TestWrapper();
 
         newTest.setNastavnik(this.trenutniKorisnik.getUsername());
-        for(int i=0;i<4;i++){
-            if(this.RBlistaRazreda.get(i).isSelected()){
-                newTest.setRazred(i+5);
+        for (int i = 0; i < 4; i++) {
+            if (this.RBlistaRazreda.get(i).isSelected()) {
+                newTest.setRazred(i + 5);
                 break;
             }
         }
-        System.out.println("PRE"+newTest.getRazred());
-        for(int i=0;i<this.listaPredmeta.size();i++){
-            if(this.RBlistaPredmeta.get(i).isSelected()){
+        System.out.println("PRE" + newTest.getRazred());
+        for (int i = 0; i < this.listaPredmeta.size(); i++) {
+            if (this.RBlistaPredmeta.get(i).isSelected()) {
                 try {
-                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(),newTest.getRazred()));
+                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(), newTest.getRazred()));
                 } catch (SQLException ex) {
                     Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
             }
         }
-        for(int i=0;i<5;i++){
-            if(this.RBListaOdeljenja.get(i).isSelected()){
-                if(RBListaOdeljenja.get(i).getText().equals("all"))
-                newTest.setOdeljenje(5);
-                else
-                newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
+        for (int i = 0; i < 5; i++) {
+            if (this.RBListaOdeljenja.get(i).isSelected()) {
+                if (RBListaOdeljenja.get(i).getText().equals("all")) {
+                    newTest.setOdeljenje(5);
+                } else {
+                    newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
+                }
                 break;
             }
         }
 
-        for(int i=0;i<5;i++){
-            if(this.RBlistaBrojTestova.get(i).isSelected()){
-                if(RBlistaBrojTestova.get(i).getText().equals("all"))
-                newTest.setRedni_broj_testa(5);
-                else
-                newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
+        for (int i = 0; i < 5; i++) {
+            if (this.RBlistaBrojTestova.get(i).isSelected()) {
+                if (RBlistaBrojTestova.get(i).getText().equals("all")) {
+                    newTest.setRedni_broj_testa(5);
+                } else {
+                    newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
+                }
                 break;
             }
         }
-        try{
+        try {
             try {
-                frmRezultatiPredmeta f=new frmRezultatiPredmeta(trenutniKorisnik,newTest);
+                frmRezultatiPredmeta f = new frmRezultatiPredmeta(trenutniKorisnik, newTest);
                 f.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(pnlRezultatiTesta.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(newTest.getRazred());
             System.out.println(e);
         }

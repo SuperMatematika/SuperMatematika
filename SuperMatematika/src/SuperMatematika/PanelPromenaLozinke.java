@@ -13,9 +13,6 @@ import javax.swing.JOptionPane;
  */
 public class PanelPromenaLozinke extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ProfesorNalog
-     */
     Korisnik trenutniKorisnik;
     public PanelPromenaLozinke(Korisnik tk) {
         trenutniKorisnik=tk;
@@ -145,10 +142,12 @@ public class PanelPromenaLozinke extends javax.swing.JPanel {
 
     private void bPromeniLozinkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPromeniLozinkuActionPerformed
         try {
-            if (imaPraznihPolja())
-            throw new Exception("Nisu sva polja popunjena!");
-            if (!txtNovaLozinka1.getText().equals(txtNovaLozinka2.getText()))
-            throw new Exception("Nove lozinke se ne poklapaju!");
+            if (imaPraznihPolja()) {
+                throw new Exception("Nisu sva polja popunjena!");
+            }
+            if (!txtNovaLozinka1.getText().equals(txtNovaLozinka2.getText())) {
+                throw new Exception("Nove lozinke se ne poklapaju!");
+            }
             DBController.require().postaviNovuLozinku(trenutniKorisnik.getUsername(), txtStaraLozinka.getText(), txtNovaLozinka1.getText());
             JOptionPane.showMessageDialog(this, "Uspesno ste zamenili lozinku!");
         } catch (Exception e) {

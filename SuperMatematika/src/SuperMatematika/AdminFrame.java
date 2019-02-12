@@ -20,14 +20,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdminFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminFrame
-     */
     Admin trenutniKorisnik;
+    
     public AdminFrame() {
         initComponents();
     }
-     AdminFrame(Admin admin) {
+    
+    public AdminFrame(Admin admin) {
         trenutniKorisnik=admin;
         initComponents();
         AdminMainChoiceView newPnl = new AdminMainChoiceView();
@@ -36,15 +35,15 @@ public class AdminFrame extends javax.swing.JFrame {
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
     }
-       public void hoverButton(JButton b) {
+    
+    public void hoverButton(JButton b) {
         b.setBackground(Color.decode("#00A1F1"));
-        
     }
 
     public void hoverButtonExit(JButton b) {
         b.setBackground(Color.decode("#0073AD"));
-       
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -284,13 +283,11 @@ public class AdminFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUceniciMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUceniciMouseClicked
-        // TODO add your handling code here:
         this.btnUcenici.setBackground(Color.decode("#00A1F1"));
         
     }//GEN-LAST:event_btnUceniciMouseClicked
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
         try {
             MainFrame m = new MainFrame();
             m.setVisible(true);
@@ -305,7 +302,6 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRezultatiTesta1MouseClicked
 
     private void btnRezultatiTesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTesta1ActionPerformed
-        // TODO add your handling code here:
         AdminRezultatiTesta newPnl = new AdminRezultatiTesta();
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
@@ -314,7 +310,6 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRezultatiTesta1ActionPerformed
 
     private void btnProfesoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoriMouseClicked
-        // TODO add your handling code here:
         PanelSviProfesori newPnl = new PanelSviProfesori();
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
@@ -328,7 +323,6 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProfesoriActionPerformed
 
     private void btnUceniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUceniciActionPerformed
-        // TODO add your handling code here:
         PanelSviStudenti newPnl = new PanelSviStudenti();
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
@@ -337,8 +331,7 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUceniciActionPerformed
 
     private void btnPocetnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPocetnaActionPerformed
-        // TODO add your handling code here:
-       AdminMainChoiceView newPnl = new AdminMainChoiceView();
+        AdminMainChoiceView newPnl = new AdminMainChoiceView();
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
@@ -356,7 +349,6 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HoverLeave
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         PanelPromenaLozinke newPnl= new PanelPromenaLozinke(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();

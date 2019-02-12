@@ -5,17 +5,12 @@
  */
 package SuperMatematika;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.RowFilter;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -26,23 +21,21 @@ import javax.swing.table.TableRowSorter;
  */
 public class pnlRezultatiTesta extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlRezultatiTesta
-     */
     ArrayList<RezultatiTesta> rt;
     Profesor trenutniKorisnik;
-    
+
     ArrayList<Predmet> listaPredmeta;
-    ArrayList<JRadioButton> RBlistaRazreda=new ArrayList();
-    ArrayList<JRadioButton> RBListaOdeljenja=new ArrayList();
-    ArrayList<JRadioButton> RBlistaPredmeta=new ArrayList();
-    ArrayList<JRadioButton> RBlistaBrojTestova=new ArrayList();
+    ArrayList<JRadioButton> RBlistaRazreda = new ArrayList();
+    ArrayList<JRadioButton> RBListaOdeljenja = new ArrayList();
+    ArrayList<JRadioButton> RBlistaPredmeta = new ArrayList();
+    ArrayList<JRadioButton> RBlistaBrojTestova = new ArrayList();
+
     public pnlRezultatiTesta(Profesor tk) throws SQLException {
-        trenutniKorisnik=tk;
-        listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
-        rt=DBController.require().getRezultati(trenutniKorisnik);
+        trenutniKorisnik = tk;
+        listaPredmeta = DBController.require().getProfPredmeti(trenutniKorisnik);
+        rt = DBController.require().getRezultati(trenutniKorisnik);
         initComponents();
-        
+
         /* ovo dole */
         filterby.removeAllItems();
         filterby.addItem("Ime");
@@ -52,17 +45,15 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
         filterby.addItem("broj_bodova");
         filterby.addItem("redni_broj_testa");
         /*   OVO IZNAD */
-        
-      
-        
+
         this.jTable1.setAutoCreateRowSorter(true);
         System.out.println(rt.get(0).getRedni_broj_testa());
-        rt.forEach(rezultat-> {
-                Object[] row = { rezultat.getStudent(),rezultat.getId_predmeta(),rezultat.getRazred(),rezultat.getOdeljenje(),rezultat.getBroj_bodova(),rezultat.getRedni_broj_testa(), !rezultat.isOdgovor1(),!rezultat.isOdgovor2(),!rezultat.isOdgovor3(),!rezultat.isOdgovor4(),!rezultat.isOdgovor5()};
-                ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
-            });
+        rt.forEach(rezultat -> {
+            Object[] row = {rezultat.getStudent(), rezultat.getId_predmeta(), rezultat.getRazred(), rezultat.getOdeljenje(), rezultat.getBroj_bodova(), rezultat.getRedni_broj_testa(), !rezultat.isOdgovor1(), !rezultat.isOdgovor2(), !rezultat.isOdgovor3(), !rezultat.isOdgovor4(), !rezultat.isOdgovor5()};
+            ((DefaultTableModel) this.jTable1.getModel()).insertRow(0, row);
+        });
     }
- 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,10 +177,10 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TableRowSorter<TableModel> sorter=new TableRowSorter<TableModel>(((DefaultTableModel)jTable1.getModel()));
-        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText(),filterby.getSelectedIndex()));
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
+        sorter.setRowFilter(RowFilter.regexFilter(this.filterTable.getText(), filterby.getSelectedIndex()));
         jTable1.setRowSorter(sorter);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -198,58 +189,59 @@ public class pnlRezultatiTesta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
-        TestWrapper newTest=new TestWrapper();
-       
+        TestWrapper newTest = new TestWrapper();
+
         newTest.setNastavnik(this.trenutniKorisnik.getUsername());
-        for(int i=0;i<4;i++){
-            if(this.RBlistaRazreda.get(i).isSelected()){
-                newTest.setRazred(i+5);
+        for (int i = 0; i < 4; i++) {
+            if (this.RBlistaRazreda.get(i).isSelected()) {
+                newTest.setRazred(i + 5);
                 break;
             }
         }
-        System.out.println("PRE"+newTest.getRazred()); 
-        for(int i=0;i<this.listaPredmeta.size();i++){
-            if(this.RBlistaPredmeta.get(i).isSelected()){
+        System.out.println("PRE" + newTest.getRazred());
+        for (int i = 0; i < this.listaPredmeta.size(); i++) {
+            if (this.RBlistaPredmeta.get(i).isSelected()) {
                 try {
-                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(),newTest.getRazred()));
+                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(), newTest.getRazred()));
                 } catch (SQLException ex) {
                     Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
             }
         }
-        for(int i=0;i<5;i++){
-            if(this.RBListaOdeljenja.get(i).isSelected()){
-                if(RBListaOdeljenja.get(i).getText().equals("all"))
+        for (int i = 0; i < 5; i++) {
+            if (this.RBListaOdeljenja.get(i).isSelected()) {
+                if (RBListaOdeljenja.get(i).getText().equals("all")) {
                     newTest.setOdeljenje(5);
-                else
+                } else {
                     newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
+                }
                 break;
             }
         }
 
-        for(int i=0;i<5;i++){
-            if(this.RBlistaBrojTestova.get(i).isSelected()){
-                if(RBlistaBrojTestova.get(i).getText().equals("all"))
+        for (int i = 0; i < 5; i++) {
+            if (this.RBlistaBrojTestova.get(i).isSelected()) {
+                if (RBlistaBrojTestova.get(i).getText().equals("all")) {
                     newTest.setRedni_broj_testa(5);
-                else
+                } else {
                     newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
+                }
                 break;
             }
         }
-        try{
         try {
-            frmRezultatiPredmeta f=new frmRezultatiPredmeta(trenutniKorisnik,newTest);
-            f.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(pnlRezultatiTesta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        catch(Exception e){
-        System.out.println(newTest.getRazred());
+            try {
+                frmRezultatiPredmeta f = new frmRezultatiPredmeta(trenutniKorisnik, newTest);
+                f.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(pnlRezultatiTesta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception e) {
+            System.out.println(newTest.getRazred());
             System.out.println(e);
         }
-        
+
 
     }//GEN-LAST:event_btnPR2ActionPerformed
 

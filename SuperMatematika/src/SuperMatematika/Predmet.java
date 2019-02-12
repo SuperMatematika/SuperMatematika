@@ -10,6 +10,7 @@ package SuperMatematika;
  * @author 1
  */
 public class Predmet {
+
     private int id;
     private String nazivPredmeta;
     private String predavac;
@@ -56,5 +57,5 @@ public class Predmet {
     public void setRazred(int razred) {
         this.razred = razred;
     }
-    
+
 }

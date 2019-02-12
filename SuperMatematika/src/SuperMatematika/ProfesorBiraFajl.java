@@ -6,8 +6,6 @@
 package SuperMatematika;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,26 +19,24 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class ProfesorBiraFajl extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ProfesorBiraFajl
-     */
     File selectedFile;
     ArrayList<Predmet> listaPredmeta;
     private int id_predmeta;
     String predzad;
+
     public ProfesorBiraFajl() {
         initComponents();
     }
 
-    ProfesorBiraFajl(ArrayList<Predmet> listaPredmeta,String type) {
-        this.listaPredmeta=listaPredmeta;
-        predzad=type;
+    ProfesorBiraFajl(ArrayList<Predmet> listaPredmeta, String type) {
+        this.listaPredmeta = listaPredmeta;
+        predzad = type;
         initComponents();
         jComboBox1.removeAllItems();
-        listaPredmeta.forEach(item->{
-           jComboBox1.addItem(item.getNazivPredmeta());
+        listaPredmeta.forEach(item -> {
+            jComboBox1.addItem(item.getNazivPredmeta());
         });
-        
+
     }
 
     /**
@@ -215,47 +211,46 @@ public class ProfesorBiraFajl extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         final JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        
+
         int returnValue = fc.showOpenDialog(null);
-		// int returnValue = jfc.showSaveDialog(null);
+        // int returnValue = jfc.showSaveDialog(null);
 
-		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			selectedFile = fc.getSelectedFile();
-                        jTextField1.setText(selectedFile.getName());
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            selectedFile = fc.getSelectedFile();
+            jTextField1.setText(selectedFile.getName());
 
-                      
-		}
-        
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-           listaPredmeta.forEach(item->{
-            if(item.getNazivPredmeta().equals(this.jComboBox1.getSelectedItem()))
-                id_predmeta=item.getId();
+            listaPredmeta.forEach(item -> {
+                if (item.getNazivPredmeta().equals(this.jComboBox1.getSelectedItem())) {
+                    id_predmeta = item.getId();
+                }
             });
-            
-            DBController.require().addToDbFile(id_predmeta,this.jTextField2.getText(),jTextField3.getText(),selectedFile.getName(),predzad);
+
+            DBController.require().addToDbFile(id_predmeta, this.jTextField2.getText(), jTextField3.getText(), selectedFile.getName(), predzad);
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorBiraFajl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                                try
-                        {
-                            // run the command
-                            String dest=new File("").getAbsolutePath()+"\\predavanja";
-                            System.out.println(selectedFile);
-                            String s="cmd.exe /c copy \""+selectedFile.getAbsolutePath()+"\" "+dest;
-                            Runtime.getRuntime().exec(s);
-                        }catch (Exception ex) {
-                            Logger.getLogger(ProfesorBiraFajl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+
+        try {
+            // run the command
+            String dest = new File("").getAbsolutePath() + "\\predavanja";
+            System.out.println(selectedFile);
+            String s = "cmd.exe /c copy \"" + selectedFile.getAbsolutePath() + "\" " + dest;
+            Runtime.getRuntime().exec(s);
+        } catch (Exception ex) {
+            Logger.getLogger(ProfesorBiraFajl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-     
+
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**

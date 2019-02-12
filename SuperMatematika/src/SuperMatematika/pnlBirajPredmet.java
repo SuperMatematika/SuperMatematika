@@ -24,35 +24,33 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
     ArrayList<Predmet> listaPredmeta;
     ArrayList<JButton> listaButtona = new ArrayList();
     String prethodnik;
-    /**
-     * Creates new form pnlBirajPredmet
-     */
-    public pnlBirajPredmet(Student s,ArrayList<Predmet> predmeti,String prethodno) {
-        listaPredmeta=new ArrayList<Predmet>(predmeti);
-        trenutniKorisnik=s;
-        prethodnik=prethodno;
+
+    public pnlBirajPredmet(Student s, ArrayList<Predmet> predmeti, String prethodno) {
+        listaPredmeta = new ArrayList<Predmet>(predmeti);
+        trenutniKorisnik = s;
+        prethodnik = prethodno;
         initComponents();
-        
+
         createForm();
     }
-    
+
     private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
-        this.MainPanel.setLayout(new GridLayout(5,4,3,2));
-        
+        this.MainPanel.setLayout(new GridLayout(5, 4, 3, 2));
+
         Font f = new Font("Century Gothic", Font.PLAIN, 30);
-        listaPredmeta.forEach(elemn->{
+        listaPredmeta.forEach(elemn -> {
             JButton b = new JButton(elemn.getNazivPredmeta());
-           
+
             b.setBorder(BorderFactory.createLineBorder(Color.decode("#999999"), 1, false));
-           b.setBackground(Color.decode("#7CBB00"));
+            b.setBackground(Color.decode("#7CBB00"));
             b.setForeground(Color.white);
             b.setFont(f);
-            
+
             b.setFocusPainted(false);
             b.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
                     prikaziOblasti(elemn);
                 }
 
@@ -63,23 +61,23 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
             this.MainPanel.setVisible(true);
         });
         for (int i = 0; i <= listaPredmeta.size(); i++) {
-            
+
         }
 
     }
 
-    private void prikaziOblasti(Predmet p){
+    private void prikaziOblasti(Predmet p) {
         try {
-            switch(this.prethodnik){
+            switch (this.prethodnik) {
                 case "predavanja":
-                    pnlPredavanja main=new pnlPredavanja(trenutniKorisnik,p);
+                    pnlPredavanja main = new pnlPredavanja(trenutniKorisnik, p);
                     this.removeAll();
                     this.revalidate();
                     this.setLayout(new BorderLayout());
                     this.add(main);
                     break;
                 case "zadaci":
-                    pnlZadaci main2=new pnlZadaci(trenutniKorisnik,p);
+                    pnlZadaci main2 = new pnlZadaci(trenutniKorisnik, p);
                     this.removeAll();
                     this.revalidate();
                     this.setLayout(new BorderLayout());
@@ -90,7 +88,6 @@ public class pnlBirajPredmet extends javax.swing.JPanel {
 
         }
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.

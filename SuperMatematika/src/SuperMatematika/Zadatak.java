@@ -11,18 +11,20 @@ import java.lang.String;
 /**
  *
  * @author samed
- * 
- * Ova klasa pamti podatke o pojedinacnom zadatku, putanju do slike, tacan odgovor i netacne odgovore
+ *
+ * Ova klasa pamti podatke o pojedinacnom zadatku, putanju do slike, tacan
+ * odgovor i netacne odgovore
  */
 public class Zadatak {
+
     private int id_zadatka;
     private String oblast;
     private Object slika_zadatka;
 
     Zadatak(int aInt, String str1, String string) {
-        id_zadatka=aInt;
-        oblast=str1;
-        slika_zadatka=(Object)string;
+        id_zadatka = aInt;
+        oblast = str1;
+        slika_zadatka = (Object) string;
     }
 
     public void setSlika_zadatka(Object slika_zadatka) {
@@ -61,6 +63,7 @@ public class Zadatak {
     public String getOblast() {
         return oblast;
     }
+
     public String getPutanjaDoZadatka() {
         return putanjaDoZadatka;
     }
@@ -100,8 +103,6 @@ public class Zadatak {
     public void setPogresanOdg3(String pogresanOdg3) {
         this.pogresanOdg3 = pogresanOdg3;
     }
-    
-    
 
     @Override
     public String toString() {

@@ -16,12 +16,11 @@ import javax.swing.JPanel;
  * @author Melida
  */
 public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
-      Student trenutniKorisnik;
-    /**
-     * Creates new form pnlBiranjeOblastiZaProbniTest
-     */
+
+    Student trenutniKorisnik;
+
     public pnlBiranjeOblastiZaProbniTest(Student tr) {
-        trenutniKorisnik=tr;
+        trenutniKorisnik = tr;
         initComponents();
     }
 
@@ -157,22 +156,19 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         mainChoiceView main;
-        try{
-            main=new mainChoiceView(trenutniKorisnik);
+        try {
+            main = new mainChoiceView(trenutniKorisnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
             this.add(main);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSkupoviSkupoviCheck(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkupoviSkupoviCheck
-        // TODO add your handling code here:
-        if(this.btnSkupovi.isSelected()==true){
+        if (this.btnSkupovi.isSelected() == true) {
             this.pnlSkupovi.setVisible(true);
             this.btnPojamSkupa.setEnabled(true);
             this.btnPrirodniBr.setEnabled(true);
@@ -181,57 +177,54 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSkupoviSkupoviCheck
 
     private void btnSkupoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkupoviActionPerformed
-        // TODO add your handling code here:
-        if(this.btnSkupovi.isSelected()==false){
+        if (this.btnSkupovi.isSelected() == false) {
 
             this.btnPojamSkupa.setEnabled(false);
-            if(this.btnPojamSkupa.isSelected()==true){
-                   this.btnPojamSkupa.setSelected(false);
+            if (this.btnPojamSkupa.isSelected() == true) {
+                this.btnPojamSkupa.setSelected(false);
             }
-           
+
             this.btnOperacije.setEnabled(false);
-             if(this.btnOperacije.isSelected()==true){
-                   this.btnOperacije.setSelected(false);
+            if (this.btnOperacije.isSelected() == true) {
+                this.btnOperacije.setSelected(false);
             }
-              this.btnPrirodniBr.setEnabled(false);
-             if(this.btnPrirodniBr.isSelected()==true){
-                   this.btnPrirodniBr.setSelected(false);
+            this.btnPrirodniBr.setEnabled(false);
+            if (this.btnPrirodniBr.isSelected() == true) {
+                this.btnPrirodniBr.setSelected(false);
             }
         }
     }//GEN-LAST:event_btnSkupoviActionPerformed
 
     private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
-        // TODO add your handling code here:
-       pnlTest newPnl=new pnlTest(trenutniKorisnik, selektovaneOblasti());
+        pnlTest newPnl = new pnlTest(trenutniKorisnik, selektovaneOblasti());
         this.removeAll();
         this.revalidate();
         this.setLayout(new BorderLayout());
         this.add(newPnl);
     }//GEN-LAST:event_btnStartMouseClicked
-    
+
     // Vraca listu od svih oblasti koje se selektovane, one se nalaze u podpanelima panela pnlOblasti
     private ArrayList<String> selektovaneOblasti() {
         ArrayList<String> oblasti = new ArrayList();
-                for (Component c: pnlOblasti.getComponents())
-                    if (c instanceof JCheckBox && ((JCheckBox)c).isSelected())
-                        oblasti.add(((JCheckBox)c).getText());
+        for (Component c : pnlOblasti.getComponents()) {
+            if (c instanceof JCheckBox && ((JCheckBox) c).isSelected()) {
+                oblasti.add(((JCheckBox) c).getText());
+            }
+        }
         return oblasti;
     }
-    
+
     private void btnGeoObjektiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeoObjektiActionPerformed
-                    // TODO add your handling code here:
-            if(this.btnGeoObjekti.isSelected()==false){
+        if (this.btnGeoObjekti.isSelected() == false) {
             this.btnOsnGeoPojmovi.setEnabled(false);
-            this.btnKruzniceKrug.setEnabled(false);  
-                
+            this.btnKruzniceKrug.setEnabled(false);
+
+        } else {
+            this.btnOsnGeoPojmovi.setEnabled(true);
+            this.btnKruzniceKrug.setEnabled(true);
+
         }
-            else
-            {
-                 this.btnOsnGeoPojmovi.setEnabled(true);
-                 this.btnKruzniceKrug.setEnabled(true);
-             
-            }
-            
+
     }//GEN-LAST:event_btnGeoObjektiActionPerformed
 
 
@@ -252,6 +245,5 @@ public class pnlBiranjeOblastiZaProbniTest extends javax.swing.JPanel {
     private javax.swing.JPanel pnlOblasti;
     private javax.swing.JPanel pnlSkupovi;
     // End of variables declaration//GEN-END:variables
-
 
 }

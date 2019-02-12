@@ -5,7 +5,6 @@
  */
 package SuperMatematika;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,25 +23,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class pnlSastaviTest extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlSastaviTest
-     */
     Profesor trenutniKorisnik;
     ArrayList<Predmet> listaPredmeta;
-    ArrayList<JRadioButton> RBlistaRazreda=new ArrayList();
-    ArrayList<JRadioButton> RBListaOdeljenja=new ArrayList();
-    ArrayList<JRadioButton> RBlistaPredmeta=new ArrayList();
-    ArrayList<JRadioButton> RBlistaBrojTestova=new ArrayList();
-    ArrayList<JCheckBox> CBlistaZadataka=new ArrayList();
-    ArrayList<JLabel> zadaciLabele=new ArrayList();
-    ArrayList<JButton> brisiButtoni=new ArrayList();
-    TestWrapper newTest=new TestWrapper();
-    private int iterator=0;
-    public pnlSastaviTest(Profesor tk,ArrayList<Predmet> listaPr) throws SQLException {
-        trenutniKorisnik=tk;
-        listaPredmeta=listaPr;
+    ArrayList<JRadioButton> RBlistaRazreda = new ArrayList();
+    ArrayList<JRadioButton> RBListaOdeljenja = new ArrayList();
+    ArrayList<JRadioButton> RBlistaPredmeta = new ArrayList();
+    ArrayList<JRadioButton> RBlistaBrojTestova = new ArrayList();
+    ArrayList<JCheckBox> CBlistaZadataka = new ArrayList();
+    ArrayList<JLabel> zadaciLabele = new ArrayList();
+    ArrayList<JButton> brisiButtoni = new ArrayList();
+    TestWrapper newTest = new TestWrapper();
+    private int iterator = 0;
+
+    public pnlSastaviTest(Profesor tk, ArrayList<Predmet> listaPr) throws SQLException {
+        trenutniKorisnik = tk;
+        listaPredmeta = listaPr;
         initComponents();
-        
+
         zadaciLabele.add(zad1);
         zadaciLabele.add(zad2);
         zadaciLabele.add(zad3);
@@ -54,52 +50,50 @@ public class pnlSastaviTest extends javax.swing.JPanel {
         brisiButtoni.add(rmButton3);
         brisiButtoni.add(rmButton4);
         brisiButtoni.add(rmButton5);
-        brisiButtoni.forEach(e->{
-            int redniBroj=brisiButtoni.indexOf(e);
+        brisiButtoni.forEach(e -> {
+            int redniBroj = brisiButtoni.indexOf(e);
             e.setVisible(false);
-            e.addActionListener(event->{
-                for(int i=redniBroj;i<iterator;i++){
-                    if(i!=iterator-1){
-                        zadaciLabele.get(i).setText(zadaciLabele.get(i+1).getText());
-                    }
-                    else{
+            e.addActionListener(event -> {
+                for (int i = redniBroj; i < iterator; i++) {
+                    if (i != iterator - 1) {
+                        zadaciLabele.get(i).setText(zadaciLabele.get(i + 1).getText());
+                    } else {
                         zadaciLabele.get(i).setText("");
-                        brisiButtoni.get(iterator-1).setVisible(false);
+                        brisiButtoni.get(iterator - 1).setVisible(false);
                     }
                 }
                 iterator--;
             });
         });
-        
-        
+
         RBlistaRazreda.add(this.jRadioButton1);
         RBlistaRazreda.add(this.jRadioButton3);
         RBlistaRazreda.add(this.jRadioButton2);
         RBlistaRazreda.add(this.jRadioButton4);
-        
+
         RBListaOdeljenja.add(this.jRadioButton5);
         RBListaOdeljenja.add(this.jRadioButton7);
         RBListaOdeljenja.add(this.jRadioButton6);
         RBListaOdeljenja.add(this.jRadioButton8);
-        
+
         RBlistaBrojTestova.add(this.jRadioButton9);
         RBlistaBrojTestova.add(this.jRadioButton10);
         RBlistaBrojTestova.add(this.jRadioButton11);
         RBlistaBrojTestova.add(this.jRadioButton12);
-        
+
         CBlistaZadataka.add(this.btnSkupovi);
         CBlistaZadataka.add(this.btnDeljivost);
         CBlistaZadataka.add(this.btnGeoObjekti1);
         CBlistaZadataka.add(this.btnOsnaSimetrija);
         CBlistaZadataka.add(this.btnRazlomci);
         CBlistaZadataka.add(this.btnUgao);
-        listaPredmeta.forEach(e->{
+        listaPredmeta.forEach(e -> {
             RBlistaPredmeta.add(new JRadioButton(e.getNazivPredmeta()));
         });
         this.pnlPredmeti.removeAll();
         this.pnlPredmeti.revalidate();
         this.pnlPredmeti.setLayout(new FlowLayout());
-        RBlistaPredmeta.forEach(e->{
+        RBlistaPredmeta.forEach(e -> {
             System.out.println(e.getText());
             this.btnPredmetiGroup.add(e);
             this.pnlPredmeti.add(e);
@@ -1076,7 +1070,7 @@ public class pnlSastaviTest extends javax.swing.JPanel {
 
     private void btnSkupoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkupoviActionPerformed
         // TODO add your handling code here:
-        if(this.btnSkupovi.isSelected()==false){
+        if (this.btnSkupovi.isSelected() == false) {
 
         }
     }//GEN-LAST:event_btnSkupoviActionPerformed
@@ -1087,50 +1081,51 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSkupoviSkupoviCheck
 
     private void btnPR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPR2ActionPerformed
-        
+
         newTest.setNastavnik(this.trenutniKorisnik.getUsername());
-         for(int i=0;i<4;i++){
-            if(this.RBlistaRazreda.get(i).isSelected()){
-                newTest.setRazred(i+5);
+        for (int i = 0; i < 4; i++) {
+            if (this.RBlistaRazreda.get(i).isSelected()) {
+                newTest.setRazred(i + 5);
                 break;
             }
         }
-        for(int i=0;i<this.listaPredmeta.size();i++){
-            if(this.RBlistaPredmeta.get(i).isSelected()){
+        for (int i = 0; i < this.listaPredmeta.size(); i++) {
+            if (this.RBlistaPredmeta.get(i).isSelected()) {
                 try {
-                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(),newTest.getRazred()));
+                    newTest.setId_predmeta(DBController.require().getIdPredmeta(this.RBlistaPredmeta.get(i).getText(), newTest.getRazred()));
                 } catch (SQLException ex) {
                     Logger.getLogger(pnlSastaviTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
             }
         }
-        for(int i=0;i<4;i++){
-            if(this.RBListaOdeljenja.get(i).isSelected()){
+        for (int i = 0; i < 4; i++) {
+            if (this.RBListaOdeljenja.get(i).isSelected()) {
                 newTest.setOdeljenje(Integer.parseInt(RBListaOdeljenja.get(i).getText()));
                 break;
             }
         }
-       
-        for(int i=0;i<4;i++){
-            if(this.RBlistaBrojTestova.get(i).isSelected()){
+
+        for (int i = 0; i < 4; i++) {
+            if (this.RBlistaBrojTestova.get(i).isSelected()) {
                 System.out.println(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
                 newTest.setRedni_broj_testa(Integer.parseInt(RBlistaBrojTestova.get(i).getText()));
                 break;
             }
         }
-        
-       
+
+
     }//GEN-LAST:event_btnPR2ActionPerformed
 
-    String getSelected(ArrayList<JRadioButton> j){
-        for(int i=0;i<j.size();i++){
-            if(j.get(i).isSelected())
+    String getSelected(ArrayList<JRadioButton> j) {
+        for (int i = 0; i < j.size(); i++) {
+            if (j.get(i).isSelected()) {
                 return j.get(i).getText();
+            }
         }
         return null;
     }
-    
+
     private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton11ActionPerformed
@@ -1140,26 +1135,25 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton12ActionPerformed
 
     private void btnPrikaziZadatkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziZadatkeActionPerformed
-        ArrayList<String> izabraneOblasti=new ArrayList();
-        DefaultTableModel dm=(DefaultTableModel)this.zadaciTable.getModel();
+        ArrayList<String> izabraneOblasti = new ArrayList();
+        DefaultTableModel dm = (DefaultTableModel) this.zadaciTable.getModel();
         dm.setRowCount(0);
-        this.CBlistaZadataka.forEach(e->{
-            if(e.isSelected()){
+        this.CBlistaZadataka.forEach(e -> {
+            if (e.isSelected()) {
                 izabraneOblasti.add(e.getText());
             }
         });
         try {
-            ArrayList<Zadatak> zadaci=DBController.require().prikaziZadatke(getSelected(RBlistaPredmeta),getSelected(this.RBlistaRazreda),izabraneOblasti);
-            try{
-                zadaci.forEach(z-> {
+            ArrayList<Zadatak> zadaci = DBController.require().prikaziZadatke(getSelected(RBlistaPredmeta), getSelected(this.RBlistaRazreda), izabraneOblasti);
+            try {
+                zadaci.forEach(z -> {
                     System.out.print(z.getOblast());
-                    Object[] row = { z.getId_zadatka(), z.getOblast(),z.getSlika_zadatka() };
+                    Object[] row = {z.getId_zadatka(), z.getOblast(), z.getSlika_zadatka()};
                     ((DefaultTableModel) this.zadaciTable.getModel()).insertRow(0, row);
                 });
-                
+
                 this.TabPanel.setSelectedIndex(1);
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Nista izabrali nijednu oblast!");
             }
         } catch (SQLException ex) {
@@ -1168,12 +1162,12 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPrikaziZadatkeActionPerformed
 
     private void submitTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitTestActionPerformed
-        if(iterator>=5){
-            if(JOptionPane.showConfirmDialog(null, "Jeste li sigurni?")==0){
-                ArrayList<Integer> listaIzabranihZadataka=new ArrayList();
+        if (iterator >= 5) {
+            if (JOptionPane.showConfirmDialog(null, "Jeste li sigurni?") == 0) {
+                ArrayList<Integer> listaIzabranihZadataka = new ArrayList();
 
-                zadaciLabele.forEach(e->{
-                    System.out.println("VREDNOST ZADATKA:"+Integer.valueOf(e.getText()));
+                zadaciLabele.forEach(e -> {
+                    System.out.println("VREDNOST ZADATKA:" + Integer.valueOf(e.getText()));
                     listaIzabranihZadataka.add(Integer.valueOf(e.getText()));
                 });
                 try {
@@ -1184,13 +1178,13 @@ public class pnlSastaviTest extends javax.swing.JPanel {
             }
             prikaziTestove();
             TabPanel.setSelectedIndex(2);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Niste dali 5 zadataka");
         }
     }//GEN-LAST:event_submitTestActionPerformed
 
     private void zadaciTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zadaciTableMouseClicked
-        if(evt.getClickCount()==2 && iterator<5){
+        if (evt.getClickCount() == 2 && iterator < 5) {
             this.zadaciLabele.get(iterator).setText(zadaciTable.getValueAt(zadaciTable.getSelectedRow(), 0).toString());
             this.brisiButtoni.get(iterator).setVisible(true);
             iterator++;
@@ -1292,14 +1286,14 @@ public class pnlSastaviTest extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void prikaziTestove() {
-        DefaultTableModel dm=(DefaultTableModel)this.tabelaTestova.getModel();
+        DefaultTableModel dm = (DefaultTableModel) this.tabelaTestova.getModel();
         dm.setRowCount(0);
         try {
-            ArrayList<TestWrapper> testovi=DBController.require().prikaziTestove(this.trenutniKorisnik);
+            ArrayList<TestWrapper> testovi = DBController.require().prikaziTestove(this.trenutniKorisnik);
             System.out.println(testovi.size());
-            testovi.forEach(z-> {
+            testovi.forEach(z -> {
                 System.out.println(z.getId_predmeta());
-                Object[] row = { z.getId_predmeta(),z.getRazred(),z.getOdeljenje(),z.getRedni_broj_testa()};
+                Object[] row = {z.getId_predmeta(), z.getRazred(), z.getOdeljenje(), z.getRedni_broj_testa()};
                 ((DefaultTableModel) this.tabelaTestova.getModel()).insertRow(0, row);
             });
         } catch (SQLException ex) {

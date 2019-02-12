@@ -25,66 +25,68 @@ import javax.swing.JButton;
  * @author 1
  */
 public class pnlZadaci extends javax.swing.JPanel {
+
     Student trenutniKorisnik;
     Predmet trenutniPredmet;
-    ArrayList<String> listaPutanja=new ArrayList();
-    ArrayList<String> listaOblasti=new ArrayList();
-    ArrayList<JButton> listaButtona=new ArrayList();
-    public pnlZadaci(Student tr,Predmet pk) throws SQLException {
-        trenutniPredmet=pk;
-        trenutniKorisnik=tr;
+    ArrayList<String> listaPutanja = new ArrayList();
+    ArrayList<String> listaOblasti = new ArrayList();
+    ArrayList<JButton> listaButtona = new ArrayList();
+
+    public pnlZadaci(Student tr, Predmet pk) throws SQLException {
+        trenutniPredmet = pk;
+        trenutniKorisnik = tr;
         initComponents();
-        listaPutanja=DBController.require().getPutanjeOblasti("Vezbe",pk.getId());
-        listaOblasti=DBController.require().getOblasti("Vezbe",pk.getId());
+        listaPutanja = DBController.require().getPutanjeOblasti("Vezbe", pk.getId());
+        listaOblasti = DBController.require().getOblasti("Vezbe", pk.getId());
         createForm();
     }
-    private void createForm(){
+
+    private void createForm() {
         this.removeAll();
         this.revalidate();
-        this.setLayout(new GridLayout(listaOblasti.size()<6?6:listaOblasti.size()+1,0));
+        this.setLayout(new GridLayout(listaOblasti.size() < 6 ? 6 : listaOblasti.size() + 1, 0));
         System.out.println(listaOblasti.size());
-          Font f = new Font("Arial", Font.ITALIC, 24);
+        Font f = new Font("Arial", Font.ITALIC, 24);
         this.add(this.btnBack);
-        for(int i=0;i<listaOblasti.size();i++){
-            JButton b=new JButton(listaOblasti.get(i));
+        for (int i = 0; i < listaOblasti.size(); i++) {
+            JButton b = new JButton(listaOblasti.get(i));
             b.setBackground(Color.white);
             b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
-            b.setPreferredSize(new Dimension(40,40));
+            b.setPreferredSize(new Dimension(40, 40));
             b.setFont(f);
-            
+
             b.setFocusPainted(false);
-            
+
             b.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     showPdf(evt);
                 }
-                
+
             }
             );
-            
+
             listaButtona.add(b);
             this.add(b);
             this.setVisible(true);
         }
-      
+
     }
-    
-    
-       
-     private void showPdf(java.awt.event.ActionEvent evt) {                         
-            String putanja=null;
-            for(int i=0;i<this.listaButtona.size();i++){
-                if(evt.getSource()==this.listaButtona.get(i)){
-                    putanja=listaPutanja.get(i);
-                    break;
-                }
+
+    private void showPdf(java.awt.event.ActionEvent evt) {
+        String putanja = null;
+        for (int i = 0; i < this.listaButtona.size(); i++) {
+            if (evt.getSource() == this.listaButtona.get(i)) {
+                putanja = listaPutanja.get(i);
+                break;
             }
-            pnlPDFView newPnl=new pnlPDFView(trenutniKorisnik,trenutniPredmet,putanja,"zadaci");
-            this.removeAll();
-            this.revalidate();
-            this.setLayout(new BorderLayout());
-            this.add(newPnl);
-        }    
+        }
+        pnlPDFView newPnl = new pnlPDFView(trenutniKorisnik, trenutniPredmet, putanja, "zadaci");
+        this.removeAll();
+        this.revalidate();
+        this.setLayout(new BorderLayout());
+        this.add(newPnl);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,18 +131,16 @@ public class pnlZadaci extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         pnlBirajPredmet main;
-        try{
-            main=new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(trenutniPredmet.getRazred()),"zadaci");
-        this.removeAll();
-        this.revalidate();
-        this.setLayout(new BorderLayout());
-        this.add(main);
+        pnlBirajPredmet main;
+        try {
+            main = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(trenutniPredmet.getRazred()), "zadaci");
+            this.removeAll();
+            this.revalidate();
+            this.setLayout(new BorderLayout());
+            this.add(main);
+        } catch (Exception ex) {
+
         }
-        catch(Exception ex)
-        {
-            
-        } // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
 

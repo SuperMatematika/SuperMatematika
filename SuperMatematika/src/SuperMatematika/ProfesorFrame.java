@@ -21,44 +21,41 @@ import javax.swing.JButton;
  * @author Melida
  */
 public class ProfesorFrame extends javax.swing.JFrame {
+
     Profesor trenutniKorisnik;
-    ArrayList<Predmet> listaPredmeta=new ArrayList();
-    /**
-     * Creates new form ProfesorFrame
-     */
-   
-    
-    
+    ArrayList<Predmet> listaPredmeta = new ArrayList();
+
     public ProfesorFrame(Profesor tk) throws SQLException {
-        trenutniKorisnik=tk;
+        trenutniKorisnik = tk;
         initComponents();
-        listaPredmeta=DBController.require().getProfPredmeti(trenutniKorisnik);
-       
-        listaPredmeta.forEach(e->{
-            System.out.println(e.getNazivPredmeta());  
+        listaPredmeta = DBController.require().getProfPredmeti(trenutniKorisnik);
+
+        listaPredmeta.forEach(e -> {
+            System.out.println(e.getNazivPredmeta());
         });
-        
-        this.imePrezime.setText(trenutniKorisnik.getIme()+" "+trenutniKorisnik.getPrezime());
-         ProfesorMainChoiceView newPnl = new ProfesorMainChoiceView(trenutniKorisnik);
+
+        this.imePrezime.setText(trenutniKorisnik.getIme() + " " + trenutniKorisnik.getPrezime());
+        ProfesorMainChoiceView newPnl = new ProfesorMainChoiceView(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
         this.pnlMainContent.add(newPnl);
-       
+
     }
+
     public void hoverButton(JButton b) {
         b.setBackground(Color.decode("#00A1F1"));
-        
+
     }
 
     public void hoverButtonExit(JButton b) {
         b.setBackground(Color.decode("#0073AD"));
-       
+
     }
 
     private ProfesorFrame() {
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -412,7 +409,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
         // TODO add your handling code here:
-         ProfesorPanel newPnl = new ProfesorPanel(trenutniKorisnik);
+        ProfesorPanel newPnl = new ProfesorPanel(trenutniKorisnik);
         this.pnlMainContent.removeAll();
         this.pnlMainContent.revalidate();
         this.pnlMainContent.setLayout(new BorderLayout());
@@ -420,8 +417,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
-         try {
+        try {
             MainFrame m = new MainFrame();
             m.setVisible(true);
             this.dispose();
@@ -431,10 +427,9 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSastaviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSastaviTestActionPerformed
-        // TODO add your handling code here:
         pnlSastaviTest newPnl;
         try {
-            newPnl = new pnlSastaviTest(trenutniKorisnik,listaPredmeta);
+            newPnl = new pnlSastaviTest(trenutniKorisnik, listaPredmeta);
             this.pnlMainContent.removeAll();
             this.pnlMainContent.revalidate();
             this.pnlMainContent.setLayout(new BorderLayout());
@@ -445,7 +440,6 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSastaviTestActionPerformed
 
     private void btnRezultatiTestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRezultatiTestaActionPerformed
-        // TODO add your handling code here:
         pnlRezultatiTesta newPnl;
         try {
             newPnl = new pnlRezultatiTesta(trenutniKorisnik);
@@ -459,78 +453,70 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRezultatiTestaActionPerformed
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
-        // TODO add your handling code here:
-         hoverButton((JButton) evt.getSource());
+        hoverButton((JButton) evt.getSource());
     }//GEN-LAST:event_HoverHandler
 
     private void HoverLeave(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverLeave
-        // TODO add your handling code here:
         hoverButtonExit((JButton) evt.getSource());
     }//GEN-LAST:event_HoverLeave
 
     private void btnIzvestajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzvestajActionPerformed
-        // TODO add your handling code here:
-         pnlIzvestaj newPnl;
-       
+        pnlIzvestaj newPnl;
+
         try {
             newPnl = new pnlIzvestaj(trenutniKorisnik);
-       
+
             this.pnlMainContent.removeAll();
             this.pnlMainContent.revalidate();
             this.pnlMainContent.setLayout(new BorderLayout());
             this.pnlMainContent.add(newPnl);
-             } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnIzvestajActionPerformed
 
     private void btnPodesavanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodesavanjaActionPerformed
-        // TODO add your handling code here:
-         PanelPromenaLozinke newPnl;
-       
-         newPnl = new PanelPromenaLozinke(trenutniKorisnik);
-         this.pnlMainContent.removeAll();
-         this.pnlMainContent.revalidate();
-         this.pnlMainContent.setLayout(new BorderLayout());
-         this.pnlMainContent.add(newPnl);
+        PanelPromenaLozinke newPnl;
+
+        newPnl = new PanelPromenaLozinke(trenutniKorisnik);
+        this.pnlMainContent.removeAll();
+        this.pnlMainContent.revalidate();
+        this.pnlMainContent.setLayout(new BorderLayout());
+        this.pnlMainContent.add(newPnl);
     }//GEN-LAST:event_btnPodesavanjaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ProfesorBiraFajl pbf=new ProfesorBiraFajl(this.listaPredmeta,"vezbe");
+        ProfesorBiraFajl pbf = new ProfesorBiraFajl(this.listaPredmeta, "vezbe");
         pbf.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ProfesorBiraFajl pbf=new ProfesorBiraFajl(this.listaPredmeta,"lekcija");
+        ProfesorBiraFajl pbf = new ProfesorBiraFajl(this.listaPredmeta, "lekcija");
         pbf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnPocetnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPocetnaActionPerformed
-        // TODO add your handling code here:
-         ProfesorMainChoiceView newPnl;
-       
+        ProfesorMainChoiceView newPnl;
+
         try {
             newPnl = new ProfesorMainChoiceView(trenutniKorisnik);
-             this.pnlMainContent.removeAll();
-         this.pnlMainContent.revalidate();
-         this.pnlMainContent.setLayout(new BorderLayout());
-         this.pnlMainContent.add(newPnl);
+            this.pnlMainContent.removeAll();
+            this.pnlMainContent.revalidate();
+            this.pnlMainContent.setLayout(new BorderLayout());
+            this.pnlMainContent.add(newPnl);
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnPocetnaActionPerformed
 
     private void btnSastaviTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSastaviTestMouseClicked
-        // TODO add your handling code here:
         this.btnSastaviTest.setBackground(Color.decode("#00A1F1"));
         this.btnRezultatiTesta.setBackground(Color.decode("#0073AD"));
 
         this.btnProfil.setBackground(Color.decode("#0073AD"));
 
     }//GEN-LAST:event_btnSastaviTestMouseClicked
-
-                                           
 
     /**
      * @param args the command line arguments

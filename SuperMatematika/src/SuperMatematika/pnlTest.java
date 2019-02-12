@@ -6,29 +6,16 @@
 package SuperMatematika;
 
 import SuperMatematika.DBController.GreskaNemaDovoljnoPitanja;
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
 /**
@@ -36,36 +23,36 @@ import javax.swing.Timer;
  * @author 1
  */
 public class pnlTest extends javax.swing.JPanel {
-    
+
     Student trenutniKorisnik;
     private boolean zapamtiUBazi;
     private int ID_predmeta;
     private int redniBrojTesta;
     private ArrayList<String> oblasti; // ovo sluzi samo za random test
     private final int BROJ_ZADATAKA = 5;
-    
-    private int trenutni=0;
-    List<Zadatak> zadaci; 
+
+    private int trenutni = 0;
+    List<Zadatak> zadaci;
     Timer t;
-    private int timerDuration=3600;
-    ArrayList<ZadatakPanel> resenjaZadataka=new ArrayList();   
-    
+    private int timerDuration = 3600;
+    ArrayList<ZadatakPanel> resenjaZadataka = new ArrayList();
+
     // Ovaj konstruktor se koristi za probni test, sastavlja random test
     public pnlTest(Student tr, ArrayList<String> oblasti) {
-        trenutniKorisnik=tr;
+        trenutniKorisnik = tr;
         this.oblasti = oblasti;
         initComponents();
         // Rezultati probnog testa se ne pamte u bazi
         zapamtiUBazi = false;
-  
+
         // Postavi novi test u pocetku
-        bNoviTest.doClick();     
+        bNoviTest.doClick();
     }
-    
+
     // Ovaj konstruktor se koristi za pravi test, u njemu se sastavlja test od upared odrenjenih zadataka od strane nastavnika
     // I btw dubme bNoviTest se gasi jer nema smisla
-    public pnlTest(Student tr, int ID_predmeta, int redniBrojTesta){
-        trenutniKorisnik=tr;
+    public pnlTest(Student tr, int ID_predmeta, int redniBrojTesta) {
+        trenutniKorisnik = tr;
         this.ID_predmeta = ID_predmeta;
         this.redniBrojTesta = redniBrojTesta;
         initComponents();
@@ -76,32 +63,34 @@ public class pnlTest extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         // Moram ovako, ali cu to sigurno da ispravim, 100%, sigurno necu da zaborvim
         // Jer mi je tako trenutno najlakse
         bNoviTest.doClick();
-        
+
         // Nema mogucnost odabira novog testa
         bNoviTest.setEnabled(false);
-        
+
     }
-            
-    
-    private void krajTesta() throws SQLException{
+
+    private void krajTesta() throws SQLException {
         this.btnPrethodni.setEnabled(false);
         this.btnSledeci.setEnabled(false);
         this.bProverResenja.setEnabled(false);
-        if (zapamtiUBazi)
-            DBController.require().submitTest(resenjaZadataka,trenutniKorisnik, ID_predmeta, redniBrojTesta);
+        if (zapamtiUBazi) {
+            DBController.require().submitTest(resenjaZadataka, trenutniKorisnik, ID_predmeta, redniBrojTesta);
+        }
         t.stop();
     }
-    private String sekundeUMinute(int seconds){
-        int s=seconds%60;
-        int m=seconds/60;
-        String str=m+":"+s;
-        
+
+    private String sekundeUMinute(int seconds) {
+        int s = seconds % 60;
+        int m = seconds / 60;
+        String str = m + ":" + s;
+
         return str;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -238,97 +227,98 @@ public class pnlTest extends javax.swing.JPanel {
 
     private void btnPrethodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrethodniActionPerformed
 
-       this.pnlZadaci.removeAll();
-          this.pnlZadaci.revalidate();
-          this.pnlZadaci.setLayout(new GridLayout(1,0,1,0));
-           trenutni--;
-           this.pnlZadaci.add(resenjaZadataka.get(trenutni));
-       
-           this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
-           this.btnPrethodni.setEnabled(trenutni!=0);
+        this.pnlZadaci.removeAll();
+        this.pnlZadaci.revalidate();
+        this.pnlZadaci.setLayout(new GridLayout(1, 0, 1, 0));
+        trenutni--;
+        this.pnlZadaci.add(resenjaZadataka.get(trenutni));
+
+        this.btnSledeci.setEnabled(trenutni != BROJ_ZADATAKA - 1);
+        this.btnPrethodni.setEnabled(trenutni != 0);
 
     }//GEN-LAST:event_btnPrethodniActionPerformed
 
     private void bNoviTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoviTestActionPerformed
-      this.pnlZadaci.removeAll();
+        this.pnlZadaci.removeAll();
         this.pnlZadaci.revalidate();
-        
-        this.pnlZadaci.setLayout(new GridLayout(1,0,1,0));
+
+        this.pnlZadaci.setLayout(new GridLayout(1, 0, 1, 0));
         try {
-            
-            try{
+
+            try {
                 this.t.stop();
-            }catch(Exception e){}
-            timerDuration=3600;
-            trenutni=0;
+            } catch (Exception e) {
+            }
+            timerDuration = 3600;
+            trenutni = 0;
             // Znam da je ovo glupo ali...
             // Na osnovu varijable zapamtiUBazi odredjujem da li cu da sastavljam random test ili predefinisani test
-            if (!zapamtiUBazi)
+            if (!zapamtiUBazi) {
                 zadaci = DBController.require().SastaviTest(oblasti, BROJ_ZADATAKA);
+            }
             // Ako treba da se pamti u bazi onda se to radi u konstruktoru jer se u tom slucaju to radi samo jednom
-            
-            
+
             resenjaZadataka.clear();
-            for (Zadatak z: zadaci){
+            for (Zadatak z : zadaci) {
                 resenjaZadataka.add(new ZadatakPanel(z));
             }
             this.pnlZadaci.add(resenjaZadataka.get(trenutni));
             this.btnPrethodni.setEnabled(false);
             this.btnSledeci.setEnabled(true);
             this.bProverResenja.setEnabled(true);
-   //     jPanel1.setViewportView(mainPanel);
+            //     jPanel1.setViewportView(mainPanel);
             ActionListener actListner = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(timerDuration<=0){
+                    if (timerDuration <= 0) {
                         JOptionPane.showMessageDialog(null, "Isteklo je vreme");
                         try {
                             krajTesta();
                         } catch (SQLException ex) {
                             Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }else{
-                        resenjaZadataka.forEach(er->{
-                            System.out.println("D"+ er);
+                    } else {
+                        resenjaZadataka.forEach(er -> {
+                            System.out.println("D" + er);
                         });
                         System.out.println();
                         timerDuration--;
                         timer.setText(sekundeUMinute(timerDuration));
-                      //  timer.setText(String.valueOf(timerDuration));
+                        //  timer.setText(String.valueOf(timerDuration));
                     }
                 }
             };
-            t=new Timer(1000,actListner);
+            t = new Timer(1000, actListner);
             t.start();
         } catch (SQLException ex) {
             Logger.getLogger(pnlTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (GreskaNemaDovoljnoPitanja g) {
-                 JOptionPane.showMessageDialog(this, g.getMessage() + "Ovo sto sledi je bug, ne bi smeo da otvori sledeci prozor, resicu to, sad nemam vremena");
-         
+            JOptionPane.showMessageDialog(this, g.getMessage() + "Ovo sto sledi je bug, ne bi smeo da otvori sledeci prozor, resicu to, sad nemam vremena");
+
         }
     }//GEN-LAST:event_bNoviTestActionPerformed
 
     private void bProverResenjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProverResenjaActionPerformed
         int brojTacnihOdgovora = 0;
-        
+
         // Prolazi kroz sve komponente u jPanel1, kad naidje na komponentu tipa ZadatakPanel koristi funkcije te komponente da proveri
         // da li je pritisnut neki radioButton i da li je dati odgovor tacan
         // Prikazuje gresku ako nije pritisnut nijedan radio button za neki zadatak
         // I na kraju ispisuje rezultat
-        
         /**
-         * 
+         *
          */
-        for (Component c: resenjaZadataka)
-            if (c instanceof ZadatakPanel)
-            {
-                if (!((ZadatakPanel) c).pritisnutJeNekiRadioButton()){
+        for (Component c : resenjaZadataka) {
+            if (c instanceof ZadatakPanel) {
+                if (!((ZadatakPanel) c).pritisnutJeNekiRadioButton()) {
                     JOptionPane.showMessageDialog(this, "Niste dali odgovor na sve zadatke!");
                     return;
                 }
-                if (((ZadatakPanel) c).odgovorJeTacan())
+                if (((ZadatakPanel) c).odgovorJeTacan()) {
                     brojTacnihOdgovora++;
+                }
             }
+        }
         try {
             krajTesta();
         } catch (SQLException ex) {
@@ -340,16 +330,14 @@ public class pnlTest extends javax.swing.JPanel {
     private void btnSledeciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSledeciActionPerformed
         this.pnlZadaci.removeAll();
         this.pnlZadaci.revalidate();
-        this.pnlZadaci.setLayout(new GridLayout(1,0,1,0));  
-           trenutni++;
+        this.pnlZadaci.setLayout(new GridLayout(1, 0, 1, 0));
+        trenutni++;
         this.pnlZadaci.add(resenjaZadataka.get(trenutni));
-        this.btnSledeci.setEnabled(trenutni!=BROJ_ZADATAKA-1);
-        this.btnPrethodni.setEnabled(trenutni!=0);
-        
+        this.btnSledeci.setEnabled(trenutni != BROJ_ZADATAKA - 1);
+        this.btnPrethodni.setEnabled(trenutni != 0);
+
     }//GEN-LAST:event_btnSledeciActionPerformed
 
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bNoviTest;

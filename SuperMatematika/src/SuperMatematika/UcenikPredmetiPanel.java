@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,29 +23,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UcenikPredmetiPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form UcenikPredmetiPanel
-     */
     Student trenutniKorisnik;
     ArrayList<Predmet> predmeti;
     ArrayList<JLabel> listaPredmeta = new ArrayList();
     ArrayList<JLabel> listaProfesora = new ArrayList();
+
     public UcenikPredmetiPanel(Student tk) {
-        trenutniKorisnik=tk;
+        trenutniKorisnik = tk;
         initComponents();
-        popuniTabelu();  
+        popuniTabelu();
     }
-    
+
     private void popuniTabelu() {
-      
-        String upit = "SELECT Predmet.Naziv, Users.Ime, Users.Prezime\n" +
-                      "FROM Users INNER JOIN ((Nastavnik INNER JOIN Predmet ON Nastavnik.username = Predmet.Username_nastavnika) INNER JOIN SlusaPredmet ON Predmet.ID_predmeta = SlusaPredmet.ID_predmeta) ON Users.Username = Nastavnik.username\n" +
-                      "WHERE SlusaPredmet.Username_ucenik=\"" + trenutniKorisnik.getUsername() + "\";";
-        
+
+        String upit = "SELECT Predmet.Naziv, Users.Ime, Users.Prezime\n"
+                + "FROM Users INNER JOIN ((Nastavnik INNER JOIN Predmet ON Nastavnik.username = Predmet.Username_nastavnika) INNER JOIN SlusaPredmet ON Predmet.ID_predmeta = SlusaPredmet.ID_predmeta) ON Users.Username = Nastavnik.username\n"
+                + "WHERE SlusaPredmet.Username_ucenik=\"" + trenutniKorisnik.getUsername() + "\";";
+
         try {
             ResultSet rezultat = DBController.require().submitQuery(upit);
-            while(rezultat.next()) {
-                Object[] row = { rezultat.getString("Naziv"), rezultat.getString("Ime"), rezultat.getString("Prezime") };
+            while (rezultat.next()) {
+                Object[] row = {rezultat.getString("Naziv"), rezultat.getString("Ime"), rezultat.getString("Prezime")};
                 ((DefaultTableModel) jTable1.getModel()).insertRow(0, row);
             }
         } catch (SQLException ex) {
@@ -55,21 +51,21 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
             Logger.getLogger(OcenePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-   private void createForm() {
+
+    private void createForm() {
         this.MainPanel.removeAll();
         this.MainPanel.revalidate();
         this.MainPanel.setLayout(new GridLayout(predmeti.size(), 2));
         Font f = new Font("Arial", Font.ITALIC, 24);
-        predmeti.forEach(elemn->{
+        predmeti.forEach(elemn -> {
             JLabel b = new JLabel(elemn.getNazivPredmeta());
             b.setBackground(Color.white);
             b.setPreferredSize(new Dimension(40, 40));
             b.setFont(f);
-            
-            JLabel prof=new JLabel(elemn.getPredavac());
+
+            JLabel prof = new JLabel(elemn.getPredavac());
             prof.setBackground(Color.green);
-            prof.setPreferredSize(new Dimension(40,40));
+            prof.setPreferredSize(new Dimension(40, 40));
             prof.setFont(f);
             listaPredmeta.add(b);
             this.MainPanel.add(b);
@@ -78,7 +74,6 @@ public class UcenikPredmetiPanel extends javax.swing.JPanel {
         });
 
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.

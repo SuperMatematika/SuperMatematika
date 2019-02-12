@@ -20,20 +20,17 @@ import javax.swing.JButton;
  */
 public class pnlBirajRazred extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlBirajRazred
-     */
     Student trenutniKorisnik;
     ArrayList<JButton> listaButtona = new ArrayList();
     String prethodnik;
-    
-    public pnlBirajRazred(Student s,String prethodno) {
-        trenutniKorisnik=s;
-        prethodnik=prethodno;
+
+    public pnlBirajRazred(Student s, String prethodno) {
+        trenutniKorisnik = s;
+        prethodnik = prethodno;
         initComponents();
         createForm();
     }
-    
+
     private void createForm() {
         this.removeAll();
         this.revalidate();
@@ -42,14 +39,14 @@ public class pnlBirajRazred extends javax.swing.JPanel {
         Font f = new Font("Arial", Font.ITALIC, 24);
         for (int i = 5; i <= 8; i++) {
             System.out.println("asd");
-            JButton b = new JButton(i+" Razred");
+            JButton b = new JButton(i + " Razred");
             b.setBackground(Color.white);
             b.setBorder(BorderFactory.createSoftBevelBorder(1, Color.darkGray, Color.lightGray));
             b.setPreferredSize(new Dimension(40, 40));
             b.setFont(f);
-            
+
             b.setFocusPainted(false);
-            int razred=i;    
+            int razred = i;
             b.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     prikaziPredmete(razred);
@@ -65,10 +62,10 @@ public class pnlBirajRazred extends javax.swing.JPanel {
 
     }
 
-    private void prikaziPredmete(int razred){
+    private void prikaziPredmete(int razred) {
         pnlBirajPredmet main;
         try {
-            main = new pnlBirajPredmet(trenutniKorisnik,DBController.require().getPredmete(razred),prethodnik);
+            main = new pnlBirajPredmet(trenutniKorisnik, DBController.require().getPredmete(razred), prethodnik);
             this.removeAll();
             this.revalidate();
             this.setLayout(new BorderLayout());
@@ -77,6 +74,7 @@ public class pnlBirajRazred extends javax.swing.JPanel {
 
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,7 +110,7 @@ public class pnlBirajRazred extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       mainChoiceView main;
+        mainChoiceView main;
         try {
             main = new mainChoiceView(trenutniKorisnik);
             this.removeAll();

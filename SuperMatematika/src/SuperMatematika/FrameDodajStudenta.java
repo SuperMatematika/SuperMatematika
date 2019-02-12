@@ -17,36 +17,27 @@ import javax.swing.JOptionPane;
  */
 public class FrameDodajStudenta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrameDodajStudenta
-     */
     public FrameDodajStudenta() {
         initComponents();
     }
-    public void DodajStudenta() throws SQLException
-            
+    
+    public void DodajStudenta() throws SQLException       
     {
         int r=Integer.parseInt(this.txtRazred.getText());
         int o=Integer.parseInt(this.txtOdeljenje.getText());
         System.out.println("Razred je "+r+" Odeljenje je"+o);
-        String username=txtUsername.getText();
         
-        try{
-            if(!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("") && !txtRazred.getText().equals("") && !txtOdeljenje.getText().equals(""))
-            { 
-                DBController.require().DodajKorisnika(this.txtUsername.getText(),this.txtPassword.getText(),this.txtUsertype.getText(), this.txtIme.getText(), this.txtPrezime.getText(), this.txtDatumRodj.getText(), this.txtPol.getText());
-                 DBController.require().DodajStudenta(this.txtUsername.getText(), Integer.parseInt(this.txtRazred.getText()), Integer.parseInt(this.txtOdeljenje.getText()));
-            }
-            else
-            {
+        try {
+            if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("") && !txtRazred.getText().equals("") && !txtOdeljenje.getText().equals("")) {
+                DBController.require().DodajKorisnika(this.txtUsername.getText(), this.txtPassword.getText(), this.txtUsertype.getText(), this.txtIme.getText(), this.txtPrezime.getText(), this.txtDatumRodj.getText(), this.txtPol.getText());
+                DBController.require().DodajStudenta(this.txtUsername.getText(), Integer.parseInt(this.txtRazred.getText()), Integer.parseInt(this.txtOdeljenje.getText()));
+            } else {
                 JOptionPane.showMessageDialog(null, "Niste popunili sva polja");
             }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Greska");
         }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(null,"Greska");
-        }
-        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -223,9 +214,8 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
         try {
-            // TODO add your handling code here:
             DodajStudenta();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(FrameDodajStudenta.class.getName()).log(Level.SEVERE, null, ex);
         }
