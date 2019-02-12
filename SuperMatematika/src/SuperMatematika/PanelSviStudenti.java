@@ -55,8 +55,10 @@ public class PanelSviStudenti extends javax.swing.JPanel {
         btnIzbrisi = new javax.swing.JButton();
         btnIzmeni = new javax.swing.JButton();
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(102, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -68,34 +70,62 @@ public class PanelSviStudenti extends javax.swing.JPanel {
                 "Username", "Ime", "Prezime", "Godina rodjenja", "Pol", "Razred", "Odeljenje"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 500));
-
-        btnDodaj.setBackground(new java.awt.Color(153, 153, 153));
+        btnDodaj.setBackground(new java.awt.Color(124, 187, 0));
+        btnDodaj.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
         btnDodaj.setText("Dodaj");
+        btnDodaj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         btnDodaj.setFocusPainted(false);
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDodajActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDodaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 170, 30));
 
-        btnIzbrisi.setBackground(new java.awt.Color(153, 153, 153));
+        btnIzbrisi.setBackground(new java.awt.Color(124, 187, 0));
+        btnIzbrisi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnIzbrisi.setForeground(new java.awt.Color(255, 255, 255));
         btnIzbrisi.setText("Izbrisi");
+        btnIzbrisi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         btnIzbrisi.setFocusPainted(false);
         btnIzbrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIzbrisiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIzbrisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 170, 30));
 
-        btnIzmeni.setBackground(new java.awt.Color(153, 153, 153));
+        btnIzmeni.setBackground(new java.awt.Color(124, 187, 0));
+        btnIzmeni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
         btnIzmeni.setText("Izmeni");
+        btnIzmeni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         btnIzmeni.setFocusPainted(false);
-        jPanel1.add(btnIzmeni, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 170, 30));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIzbrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnIzbrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
