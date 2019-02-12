@@ -136,14 +136,14 @@ public class ProfilPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUcenikPodaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUcenikPodaciActionPerformed
-        Navigacija.PromeniPanel(this.pnlMainContent,new UcenikPodaciPanel(trenutniKorisnik));
+        Navigacija.PromeniPanel(this.pnlMainContent, new UcenikPodaciPanel(trenutniKorisnik));
         this.btnUcenikPodaci.setBackground(Color.decode("#FFCC42"));
         this.btnMojiPredmeti.setBackground(Color.decode("#FFBB00"));
         this.btnNalog.setBackground(Color.decode("#FFBB00"));
     }//GEN-LAST:event_btnUcenikPodaciActionPerformed
 
     private void btnMojiPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMojiPredmetiActionPerformed
-        Navigacija.PromeniPanel(this.pnlMainContent,new UcenikPredmetiPanel(trenutniKorisnik));
+        Navigacija.PromeniPanel(this.pnlMainContent, new UcenikPredmetiPanel(trenutniKorisnik));
         this.btnMojiPredmeti.setBackground(Color.decode("#FFCC42"));
         this.btnNalog.setBackground(Color.decode("#FFBB00"));
         this.btnUcenikPodaci.setBackground(Color.decode("#FFBB00"));
@@ -151,7 +151,7 @@ public class ProfilPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMojiPredmetiActionPerformed
 
     private void btnNalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNalogActionPerformed
-        Navigacija.PromeniPanel(this.pnlMainContent,new PanelPromenaLozinke(trenutniKorisnik));
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelPromenaLozinke(trenutniKorisnik));
         this.btnMojiPredmeti.setBackground(Color.decode("#FFBB00"));
         this.btnNalog.setBackground(Color.decode("#FFCC42"));
         this.btnUcenikPodaci.setBackground(Color.decode("#FFBB00"));
@@ -164,7 +164,7 @@ public class ProfilPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         mainChoiceView main;
         try {
-            Navigacija.PromeniPanel(this,new mainChoiceView(trenutniKorisnik));
+            Navigacija.PromeniPanel(this, new mainChoiceView(trenutniKorisnik));
         } catch (Exception ex) {
 
         }

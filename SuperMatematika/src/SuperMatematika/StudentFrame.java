@@ -427,7 +427,6 @@ public class StudentFrame extends javax.swing.JFrame {
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
         Navigacija.PromeniPanel(this.pnlMainContent, new pnlOdabirTesta(trenutniKorisnik));
-
     }//GEN-LAST:event_btnTestActionPerformed
 
     private void btnTest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest3ActionPerformed

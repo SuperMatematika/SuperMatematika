@@ -61,9 +61,7 @@ public class pnlZadaci extends javax.swing.JPanel {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     showPdf(evt);
                 }
-
-            }
-            );
+            });
 
             listaButtona.add(b);
             this.add(b);
