@@ -21,8 +21,8 @@ public class FrameDodajProfesora extends javax.swing.JFrame {
     }
 
     public void DodajProfesora() throws SQLException {
-        int i = Integer.parseInt(this.txtRazred.getText());
-        if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("")) {
+        if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("") && !txtRazred.getText().equals("")) {
+            int i = Integer.parseInt(this.txtRazred.getText());
             DBController.require().DodajKorisnika(this.txtUsername.getText(), this.txtPassword.getText(), this.txtUsertype.getText(), this.txtIme.getText(), this.txtPrezime.getText(), this.txtDatumRodj.getText(), this.txtPol.getText());
             DBController.require().DodajProfesora(this.txtUsername.getText(), this.txtFakultet.getText());
             DBController.require().ProfesorPredaje(this.txtPredmet.getText(), this.txtUsername.getText(), i);

@@ -23,12 +23,11 @@ public class FrameDodajStudenta extends javax.swing.JFrame {
     
     public void DodajStudenta() throws SQLException       
     {
-        int r=Integer.parseInt(this.txtRazred.getText());
-        int o=Integer.parseInt(this.txtOdeljenje.getText());
-        System.out.println("Razred je "+r+" Odeljenje je"+o);
-        
         try {
-            if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("") && !txtRazred.getText().equals("") && !txtOdeljenje.getText().equals("")) {
+            if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtUsertype.getText().equals("") && !txtIme.getText().equals("") && !txtPrezime.getText().equals("") && !txtDatumRodj.getText().equals("") && !txtPol.getText().equals("") && !txtRazred.getText().equals("") && !txtOdeljenje.getText().equals("") && !txtRazred.getText().equals("") && !txtOdeljenje.getText().equals("")) {
+                int r=Integer.parseInt(this.txtRazred.getText());
+                int o=Integer.parseInt(this.txtOdeljenje.getText());
+                System.out.println("Razred je "+r+" Odeljenje je"+o);
                 DBController.require().DodajKorisnika(this.txtUsername.getText(), this.txtPassword.getText(), this.txtUsertype.getText(), this.txtIme.getText(), this.txtPrezime.getText(), this.txtDatumRodj.getText(), this.txtPol.getText());
                 DBController.require().DodajStudenta(this.txtUsername.getText(), Integer.parseInt(this.txtRazred.getText()), Integer.parseInt(this.txtOdeljenje.getText()));
             } else {
