@@ -439,7 +439,7 @@ public class FrameUcenik extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTestActionPerformed
 
     private void btnTest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest3ActionPerformed
-        // TODO add your handling code here:
+        Navigacija.PromeniPanel(this.pnlMainContent, new PanelBiranjeOblastiZaProbniTest(trenutniKorisnik));
     }//GEN-LAST:event_btnTest3ActionPerformed
 
     /**
