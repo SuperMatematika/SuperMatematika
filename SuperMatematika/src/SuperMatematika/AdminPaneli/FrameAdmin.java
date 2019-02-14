@@ -227,6 +227,7 @@ public class FrameAdmin extends javax.swing.JFrame {
         jLabel1.setText("ADMINISTRATOR");
         ProfesorViewLeft.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(0, 115, 173));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SlikeDizajn/PodesavanjaIcon.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

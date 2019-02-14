@@ -126,26 +126,12 @@ public class MainFrame extends javax.swing.JFrame {
         btnLogin.setText("LOG IN");
         btnLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         btnLogin.setFocusPainted(false);
-        btnLogin.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                HoverHandler(evt);
-            }
-        });
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HoverHandler(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 HoverHandler(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 HoverExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnLoginColorWhenPressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                HoverOnReleased(evt);
             }
         });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +220,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(pnlLoginLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(lblDangerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblWrongUser, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlLoginLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
@@ -268,7 +254,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDangerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWrongUser, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblWrongUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -416,25 +402,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void HoverOnReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverOnReleased
-        this.btnLogin.setBackground(Color.decode("#7CBB00"));
-        this.btnLogin.setForeground(Color.white);
-    }//GEN-LAST:event_HoverOnReleased
-
-    private void btnLoginColorWhenPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginColorWhenPressed
-        // TODO add your handling code here:
-        this.btnLogin.setBackground(Color.decode("#7CBB00"));
-        this.btnLogin.setForeground(Color.white);
-    }//GEN-LAST:event_btnLoginColorWhenPressed
-
     private void HoverExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverExited
         this.btnLogin.setBackground(Color.decode("#7CBB00"));
-        this.btnLogin.setForeground(Color.white);
+       
     }//GEN-LAST:event_HoverExited
 
     private void HoverHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoverHandler
-        this.btnLogin.setBackground(Color.white);
-        this.btnLogin.setForeground(Color.decode("#7CBB00"));
+        this.btnLogin.setBackground(Color.decode("#8ED600"));
+        
     }//GEN-LAST:event_HoverHandler
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
