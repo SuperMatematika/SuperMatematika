@@ -43,9 +43,6 @@ public class PanelZadatak extends JPanel {
         // a onda sledi buttongroup sa ponudjenim odgovirma
         // ovo sa labelom je samo za test
         ImageIcon myPicture;
-//        try {
-        //  myPicture = ImageIO.read(new File(new File("").getAbsolutePath() + z.getPutanjaDoZadatka()));
-        //  myPicture = ImageIO.read(new File("C:\\Users\\samed\\Documents\\Lightshot\\Screenshot_11.png"));
 
         // TODO: da pokaze da je pogresan odgovor
         // TODO: da postavim velicinu slike
@@ -54,10 +51,7 @@ public class PanelZadatak extends JPanel {
         picLabel.setSize(300, 100);
         picLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(picLabel);
-//        } catch (IOException ex) {
-//            Logger.getLogger(ZadatakPanel.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
+        
         // Pamtim tacan odgovor na dato pitanje
         tacanOdgovor = z.getTacanOdogovor();
 

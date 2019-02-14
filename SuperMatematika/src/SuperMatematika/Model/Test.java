@@ -37,40 +37,29 @@ public class Test {
 
         try {
 
-            // Step 2.B: Creating JDBC Statement 
             statement = (Statement) connection.createStatement();
             resultSet = statement.executeQuery("SELECT * from PraviTest "
                     + "WHERE Razred = '" + razred + "' AND Oblast = '" + oblast + "'"
                     + "ORDER BY RAND() LIMIT " + brojZadataka + ";");
 
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-            try {
-                while (resultSet.next()) {
-                    Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
-                            resultSet.getString("TacanOdgovor"),
-                            resultSet.getString("PogresanOdgovor1"),
-                            resultSet.getString("PogresanOdgovor2"),
-                            resultSet.getString("PogresanOdgovor3"));
-                    zadaci.add(temp);
-                }
-
-            } catch (Exception e) {
-                System.out.println(e);
+            
+            while (resultSet.next()) {
+                Zadatak temp = new Zadatak(resultSet.getString("Putanja"),
+                        resultSet.getString("TacanOdgovor"),
+                        resultSet.getString("PogresanOdgovor1"),
+                        resultSet.getString("PogresanOdgovor2"),
+                        resultSet.getString("PogresanOdgovor3"));
+                zadaci.add(temp);
             }
-            // processing returned data and printing into console
+
 
         } catch (Exception E) {
             System.out.println(E);
         } finally {
 
-            // Step 3: Closing database connection
             try {
                 if (null != connection) {
-
-                    // cleanup resources, once after 
                     statement.close();
-
-                    //connection.close();
                 }
             } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
